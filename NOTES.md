@@ -12,7 +12,7 @@ Format: what we chose · what else we considered · why (evidence) · what the a
 ## Debugging log
 Format: symptom · how we narrowed it down · fix · how we checked it
 
--
+- 2026-11-08 · Tracing mode on web recorded taps as `x: NaN, y: NaN` and drew no dots · scripted browser test clicked known image pixels (1000,500) and logged the output; `nativeEvent.locationX` was undefined, so the bug was in reading the tap, not in the scale math · `Pressable onPress` on web is a click event with no location; switched to the responder handlers (`onStartShouldSetResponder` + `onResponderRelease`), which report `locationX/Y` on web and phone · same test now logs (1000,500) and (1799,439) for clicks at (1000,500) and (1800,440); off by ≤1 px from rounding. Agent (Claude) wrote the first version, caught it in its own browser test, and fixed it
 
 ## Who did what
 - Stephanie:

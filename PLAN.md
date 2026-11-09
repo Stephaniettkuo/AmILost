@@ -45,13 +45,13 @@ Keep branches small (one task each) so merges don't conflict.
 ### Phase 0 — Setup (Nov 8–10)
 - [x] Expo project, SVG, web support, Jest
 - [x] Shared types (`src/types.ts`), sample graph, notes log
-- [ ] Put floor plan images in `assets/floors/` as `gdc-1.png`, `gdc-2.png`, `gdc-3.png`
-- [ ] Record each image's width and height in pixels (needed for `Floor`)
+- [x] Floor plan images in `assets/` as `gdc-1.png`, `gdc-2.png`, `gdc-3.png`
+- [x] Image sizes recorded in `src/data/floors.ts`
 - [ ] Both partners run the app on their own phone from a fresh `git pull`
 
 ### Phase 1 — One floor working end to end (Nov 10–15)
 - [ ] Screen shows one floor plan image with the sample route drawn on top
-- [ ] **Tracing mode:** tap the floor plan, app prints the x/y. This is how we
+- [x] **Tracing mode:** tap the floor plan, app prints the x/y. This is how we
       get coordinates for nodes instead of guessing them
 - [ ] Trace GDC floor 1: rooms, hallway corners/intersections, entrances,
       stairs, elevators → `src/data/gdc.ts`
