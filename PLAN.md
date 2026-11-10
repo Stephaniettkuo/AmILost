@@ -57,7 +57,8 @@ Keep branches small (one task each) so merges don't conflict.
       stairs, elevators → `src/data/gdc.ts`
 - [ ] `findRoute(graph, startId, endId)` using Dijkstra → `src/routing.ts`
 - [ ] First tests: 2–3 trips on floor 1 with answers worked out by hand
-- [ ] Data check test: every edge points to real nodes, every room is reachable
+- [x] Data check test: every edge points to real nodes, every room is reachable (`src/data/gdc.test.ts`)
+- [ ] Review agent's floor 2 draft (`Show map data`), record fixes in `NOTES.md`
 - [ ] Screen draws a real route on floor 1
 
 ### Phase 2 — All three floors + choices (Nov 16–21)
