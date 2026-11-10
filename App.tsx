@@ -10,16 +10,20 @@ import { graphToFile } from './src/data/exportGraph';
 import MapDataOverlay from './src/MapDataOverlay';
 import { MapGraph, MapNode, NodeKind } from './src/types';
 import {
-  Point, addNode, attachToEdge, connectToNode, detach, moveNode, nearestEdge, nearestNode,
-  nextHallId, removeEdge, removeNode, snapToNetwork,
+  Point, addNode, attachToEdge, connectToNode, detach, idMatchesKind, idPattern, moveNode, nearestEdge, nearestNode,
+  nextHallId, removeEdge, removeNode, slug, snapToNetwork, suggestId, updateNode,
 } from './src/editGraph';
 
 // add: tap to place a new point · move: drag a dot · reconnect: move a dot to
-// another line · delete: tap a dot or line to remove it
-type Mode = 'add' | 'move' | 'reconnect' | 'delete';
+// another line · delete: tap a dot or line to remove it · edit: change a dot's
+// category, name, other names
+type Mode = 'add' | 'move' | 'reconnect' | 'delete' | 'edit';
 type Snapshot = { graph: MapGraph; edited: Set<string> }; // what Undo restores
 
-const kinds: NodeKind[] = ['room', 'hall', 'stairs', 'elevator', 'entrance'];
+const kinds: NodeKind[] = ['room', 'hall', 'stairs', 'elevator', 'entrance', 'outdoor'];
+
+// The Edit panel's fields.
+type Form = { id: string; kind: NodeKind; label: string; aliases: string };
 
 export default function App() {
   const [floor, setFloor] = useState(gdcFloors[0]);
@@ -33,6 +37,8 @@ export default function App() {
   const [addKind, setAddKind] = useState<NodeKind>('room');      // add: what to place
   const [addName, setAddName] = useState('');                    // add: e.g. "2.808A"
   const [message, setMessage] = useState('');                    // feedback under the buttons
+  const [editing, setEditing] = useState<string | null>(null);   // edit: dot being edited
+  const [form, setForm] = useState<Form>({ id: '', kind: 'room', label: '', aliases: '' });
   const dragging = useRef<string | null>(null);                  // move: dot being dragged
   const dragged = useRef(false);                                 // move: did it actually move?
   const { width } = useWindowDimensions();
@@ -106,6 +112,8 @@ export default function App() {
       onAddTap(p);
     } else if (mode === 'reconnect') {
       onReconnectTap(p);
+    } else if (mode === 'edit') {
+      onEditTap(p);
     } else {
       onDeleteTap(p);
     }
@@ -120,9 +128,8 @@ export default function App() {
     } else if (!name) {
       setMessage('Type a name first (e.g. 2.808A, 2.1S1, or "Main entrance").');
       return;
-    } else if (addKind === 'entrance') {
-      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-      node = { id: `${floor.id}-entrance-${slug}`, kind: 'entrance', floor: floor.id, ...p, label: name };
+    } else if (addKind === 'entrance' || addKind === 'outdoor') {
+      node = { id: `${floor.id}-${addKind}-${slug(name)}`, kind: addKind, floor: floor.id, ...p, label: name };
     } else {
       // rooms, stairs, elevators use the number on the plan: "2.808A" -> GDC-2.808A
       if (!name.startsWith(`${floor.id.replace('GDC-', '')}.`)) {
@@ -141,6 +148,51 @@ export default function App() {
     if (addKind !== 'hall') setAddName('');
   }
 
+  // ---- Edit: tap a dot, change its details in the panel, Save.
+  function onEditTap(p: Point) {
+    const node = nearestNode(graph, floor.id, p, reach);
+    if (!node) return;
+    setEditing(node.id);
+    setForm({ id: node.id, kind: node.kind, label: node.label ?? '', aliases: (node.aliases ?? []).join(', ') });
+    setMessage('');
+  }
+
+  // Changing the category suggests a matching id (e.g. hall-S -> outdoor-patio).
+  function pickFormKind(kind: NodeKind) {
+    setForm({ ...form, kind, id: suggestId(graph, floor.id, kind, form.label, form.id) });
+  }
+
+  // For entrances and outdoor spots the id comes from the name, so keep it in sync.
+  function onFormLabel(label: string) {
+    const auto = form.kind === 'entrance' || form.kind === 'outdoor';
+    setForm({ ...form, label, id: auto ? suggestId(graph, floor.id, form.kind, label, form.id) : form.id });
+  }
+
+  function saveEdit() {
+    if (!editing) return;
+    const id = form.id.trim();
+    if (!idMatchesKind(id, form.kind)) {
+      setMessage(form.kind === 'entrance' || form.kind === 'outdoor'
+        ? `Give this ${form.kind} a name — its id is made from the name.`
+        : `A ${form.kind} id needs a plan number, e.g. GDC-2.702 or GDC-2.1S1.`);
+      return;
+    }
+    if (!idPattern.test(id)) {
+      setMessage(`"${id || '(empty)'}" isn't in our id format — e.g. GDC-2.702, GDC-2-hall-B, GDC-2-outdoor-patio.`);
+      return;
+    }
+    if (id !== editing && graph.nodes.some((n) => n.id === id)) {
+      setMessage(`${id} already exists.`);
+      return;
+    }
+    const aliases = form.aliases.split(',').map((a) => a.trim()).filter(Boolean);
+    change(updateNode(graph, editing, {
+      id, kind: form.kind, label: form.label.trim() || undefined, aliases: aliases.length ? aliases : undefined,
+    }), id);
+    setMessage(`Saved ${id}.`);
+    setEditing(null);
+  }
+
   // ---- Reconnect: first tap picks a dot, second tap picks where it goes.
   function onReconnectTap(p: Point) {
     const node = nearestNode(graph, floor.id, p, reach);
@@ -156,7 +208,8 @@ export default function App() {
 
   // ---- Delete: a dot (its hallway closes back up) or a single line.
   function onDeleteTap(p: Point) {
-    const node = nearestNode(graph, floor.id, p, reach);
+    // Only a tap right on a dot deletes the dot, so short lines can still be tapped.
+    const node = nearestNode(graph, floor.id, p, reach / 2);
     if (node) {
       change(removeNode(graph, node.id));
       setMessage(`Deleted ${node.id}.`);
@@ -172,11 +225,13 @@ export default function App() {
   function switchFloor(id: string) {
     setFloor(gdcFloors.find((f) => f.id === id)!);
     setSelected(null);
+    setEditing(null);
   }
 
   function pickMode(m: Mode) {
     setMode(m);
     setSelected(null);
+    setEditing(null);
     setMessage('');
     setShowData(true);
   }
@@ -190,6 +245,9 @@ export default function App() {
       ? `Now tap the line (or dot) where ${short(selected)} should connect. Tap it again to cancel.`
       : 'Tap the dot you want to connect to a different line.',
     delete: 'Tap a dot to delete it, or tap a line to delete just the line.',
+    edit: editing
+      ? 'Change the details below the buttons, then Save.'
+      : 'Tap a dot to change its category, name, or other names.',
   }[mode];
 
   const changed = graph !== gdcGraph;
@@ -212,7 +270,7 @@ export default function App() {
       </View>
 
       <View style={styles.row}>
-        {(['add', 'move', 'reconnect', 'delete'] as Mode[]).map((m) => (
+        {(['add', 'move', 'reconnect', 'delete', 'edit'] as Mode[]).map((m) => (
           <Pressable key={m} onPress={() => pickMode(m)} style={[styles.button, mode === m && styles.selected]}>
             <Text>{m[0].toUpperCase() + m.slice(1)}</Text>
           </Pressable>
@@ -245,6 +303,51 @@ export default function App() {
         </View>
       )}
 
+      {mode === 'edit' && editing && (
+        <View style={styles.panel}>
+          <Text style={styles.bold}>Editing {editing}</Text>
+          <View style={styles.row}>
+            <Text>Category:</Text>
+            {kinds.map((k) => (
+              <Pressable key={k} onPress={() => pickFormKind(k)} style={[styles.button, form.kind === k && styles.selected]}>
+                <Text>{k}</Text>
+              </Pressable>
+            ))}
+          </View>
+          <View style={styles.row}>
+            <Text>Name people see:</Text>
+            <TextInput
+              value={form.label}
+              onChangeText={onFormLabel}
+              placeholder="e.g. Front office (optional)"
+              style={styles.input}
+            />
+            <Text>Other names:</Text>
+            <TextInput
+              value={form.aliases}
+              onChangeText={(aliases) => setForm({ ...form, aliases })}
+              placeholder="comma-separated, e.g. Advising, CS office"
+              style={[styles.input, styles.wide]}
+            />
+          </View>
+          <View style={styles.row}>
+            <Text>Id:</Text>
+            <TextInput
+              value={form.id}
+              onChangeText={(id) => setForm({ ...form, id })}
+              autoCapitalize="none"
+              style={[styles.input, styles.wide]}
+            />
+            <Pressable onPress={saveEdit} style={[styles.button, styles.save]}>
+              <Text>Save</Text>
+            </Pressable>
+            <Pressable onPress={() => setEditing(null)} style={styles.button}>
+              <Text>Cancel</Text>
+            </Pressable>
+          </View>
+        </View>
+      )}
+
       <Text style={styles.hint}>{hint}</Text>
       {/* Always rendered (even empty) so the map doesn't jump when a message appears. */}
       <Text style={styles.message} numberOfLines={1}>{message || ' '}</Text>
@@ -264,7 +367,8 @@ export default function App() {
           <Svg width={width} height={shownHeight} viewBox={`0 0 ${floor.width} ${floor.height}`}>
             {showData && (
               <MapDataOverlay
-                graph={graph} floorId={floor.id} needsCheck={needsCheck} edited={edited} selected={selected}
+                graph={graph} floorId={floor.id} needsCheck={needsCheck} edited={edited}
+                selected={selected ?? editing}
               />
             )}
           </Svg>
@@ -307,6 +411,10 @@ const styles = StyleSheet.create({
   selected: { backgroundColor: '#ffd8a8' },
   disabled: { opacity: 0.4 },
   input: { borderWidth: 1, borderRadius: 6, paddingVertical: 6, paddingHorizontal: 10, minWidth: 180 },
+  wide: { minWidth: 280 },
+  panel: { margin: 8, padding: 8, borderWidth: 1, borderColor: '#ccc', borderRadius: 8, backgroundColor: '#f8f9fa' },
+  bold: { fontWeight: 'bold', paddingHorizontal: 8 },
+  save: { backgroundColor: '#d3f9d8' },
   hint: { color: '#555', paddingHorizontal: 8, paddingTop: 4 },
   message: { color: '#2b8a3e', paddingHorizontal: 8, paddingTop: 2, minHeight: 22 },
   heading: { padding: 8, fontWeight: 'bold' },

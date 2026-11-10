@@ -5,6 +5,7 @@ import { MapGraph } from './types';
 
 const colors: Record<string, string> = {
   hall: '#1c7ed6', room: '#e03131', stairs: '#2f9e44', elevator: '#9c36b5', entrance: '#f08c00',
+  outdoor: '#0ca678',
 };
 
 type Props = {
@@ -33,12 +34,18 @@ export default function MapDataOverlay({ graph, floorId, needsCheck, edited, sel
         <G key={n.id}>
           {ring(n.id) && <Circle cx={n.x} cy={n.y} r={11} fill="none" stroke={ring(n.id)!} strokeWidth={3} />}
           <Circle cx={n.x} cy={n.y} r={5} fill={colors[n.kind]} />
-          {/* Short name: "2.316" for rooms, "hall-B" for hallway points */}
           <SvgText x={n.x + 7} y={n.y - 6} fontSize={11} fill={colors[n.kind]}>
-            {n.id.replace(`${floorId}-`, '').replace('GDC-', '')}
+            {nameOf(n.id, n.label)}
           </SvgText>
         </G>
       ))}
     </G>
   );
+}
+
+// What to write next to a dot: "2.316", "hall-B", or "2.702 · Front office".
+function nameOf(id: string, label?: string) {
+  const short = id.replace(/^GDC-(\d+-)?/, '');
+  if (!label || label.includes(short)) return short;
+  return /^\d/.test(short) ? `${short} · ${label}` : label;
 }

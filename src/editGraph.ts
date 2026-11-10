@@ -1,6 +1,6 @@
 // Map editing used by the in-app editor. Pure functions: each takes a graph
 // and returns a new one, so they're easy to test.
-import { MapEdge, MapGraph, MapNode } from './types';
+import { MapEdge, MapGraph, MapNode, NodeKind } from './types';
 
 export type Point = { x: number; y: number };
 
@@ -71,8 +71,13 @@ export function attachToEdge(g: MapGraph, id: string, edge: MapEdge, p: Point): 
 
 // Detach a node and connect it straight to another node instead.
 export function connectToNode(g: MapGraph, id: string, targetId: string): MapGraph {
-  const out = detach(g, id);
-  return { ...out, edges: [...out.edges, { from: targetId, to: id }] };
+  return addEdge(detach(g, id), targetId, id);
+}
+
+// Add a line, unless it's already there.
+export function addEdge(g: MapGraph, a: string, b: string): MapGraph {
+  if (a === b || g.edges.some((e) => same(e, a, b))) return g;
+  return { ...g, edges: [...g.edges, { from: a, to: b }] };
 }
 
 export function addNode(g: MapGraph, node: MapNode): MapGraph {
@@ -85,8 +90,10 @@ export function removeNode(g: MapGraph, id: string): MapGraph {
   return { ...out, nodes: out.nodes.filter((n) => n.id !== id) };
 }
 
+// Remove one line (if a line was listed twice by mistake, one copy stays).
 export function removeEdge(g: MapGraph, edge: MapEdge): MapGraph {
-  return { ...g, edges: g.edges.filter((e) => !same(e, edge.from, edge.to)) };
+  const i = g.edges.findIndex((e) => same(e, edge.from, edge.to));
+  return i < 0 ? g : { ...g, edges: [...g.edges.slice(0, i), ...g.edges.slice(i + 1)] };
 }
 
 // Next unused hallway id on a floor: GDC-2-hall-A, ..., Z, AA, AB, ...
@@ -118,7 +125,7 @@ export function snapToNetwork(
   const c = closestOnSegment(p, a, b);
   if (dist(p, c) <= onLine) return attachToEdge(out, id, edge, p);
   const end = [a, b].find((n) => dist(n, c) <= 8);
-  if (end) return { ...out, edges: [...out.edges, { from: end.id, to: id }] };
+  if (end) return addEdge(out, end.id, id);
   const junction: MapNode = { id: nextHallId(out, node.floor), kind: 'hall', floor: node.floor, x: c.x, y: c.y };
   out = addNode(out, junction);
   out = removeEdge(out, edge);
@@ -126,5 +133,44 @@ export function snapToNetwork(
     ...out,
     edges: [...out.edges, { from: edge.from, to: junction.id }, { from: junction.id, to: edge.to },
       { from: junction.id, to: id }],
+  };
+}
+
+// Our id formats: rooms/stairs/elevators use the plan number (GDC-2.702, GDC-2.1S1),
+// hallway points get letters (GDC-2-hall-B), entrances/outdoor spots use their name.
+export const idPattern = /^GDC-\d(\.[0-9A-Z]+|-hall-[A-Z]+|-(entrance|outdoor)-[a-z0-9-]+)$/;
+
+// "North Patio!" -> "north-patio"
+export function slug(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+// A good id for a node of this kind (used when its category changes).
+export function suggestId(
+  g: MapGraph, floorId: string, kind: NodeKind, label: string, currentId: string,
+): string {
+  if (kind === 'hall') return currentId.includes('-hall-') ? currentId : nextHallId(g, floorId);
+  if (kind === 'entrance' || kind === 'outdoor') {
+    return label.trim() ? `${floorId}-${kind}-${slug(label)}` : ''; // needs a name
+  }
+  // room / stairs / elevator: keep a plan number if it already has one
+  return /^GDC-\d\.[0-9A-Z]+$/.test(currentId) ? currentId : '';
+}
+
+// Does the id fit the category? (hall -> "-hall-", outdoor -> "-outdoor-",
+// entrance -> "-entrance-", room/stairs/elevator -> a plan number.)
+export function idMatchesKind(id: string, kind: NodeKind): boolean {
+  if (kind === 'hall' || kind === 'entrance' || kind === 'outdoor') return id.includes(`-${kind}-`);
+  return /^GDC-\d\.[0-9A-Z]+$/.test(id);
+}
+
+// Change a node's details. If the id changes, its lines are renamed too.
+export function updateNode(g: MapGraph, id: string, changes: Partial<MapNode>): MapGraph {
+  const newId = changes.id ?? id;
+  const rename = (x: string) => (x === id ? newId : x);
+  return {
+    ...g,
+    nodes: g.nodes.map((n) => (n.id === id ? { ...n, ...changes, id: newId } : n)),
+    edges: g.edges.map((e) => ({ ...e, from: rename(e.from), to: rename(e.to) })),
   };
 }

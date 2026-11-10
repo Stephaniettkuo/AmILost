@@ -1,6 +1,7 @@
 // Data checks: catch tracing mistakes before they become wrong routes.
 import { expect, test } from '@jest/globals';
 import { gdcGraph, needsCheck } from './gdc';
+import { idMatchesKind, idPattern } from '../editGraph';
 
 const ids = gdcGraph.nodes.map((n) => n.id);
 const byId = new Map(gdcGraph.nodes.map((n) => [n.id, n]));
@@ -13,6 +14,11 @@ test('node ids are unique', () => {
 test('every edge connects two existing nodes', () => {
   const broken = gdcGraph.edges.filter((e) => !byId.has(e.from) || !byId.has(e.to));
   expect(broken).toEqual([]);
+});
+
+test('no line is listed twice', () => {
+  const keys = gdcGraph.edges.map((e) => [e.from, e.to].sort().join(' – '));
+  expect(keys.filter((k, i) => keys.indexOf(k) !== i)).toEqual([]);
 });
 
 test('every node sits on a known floor, inside its image', () => {
@@ -32,8 +38,11 @@ test('edges between floors have a cost; edges on one floor do not need one', () 
 });
 
 test('ids follow our naming format', () => {
-  const ok = /^GDC-\d(\.[0-9A-Z]+|-hall-[A-Z]+|-entrance-[a-z-]+)$/;
-  expect(ids.filter((id) => !ok.test(id))).toEqual([]);
+  expect(ids.filter((id) => !idPattern.test(id))).toEqual([]);
+});
+
+test("each id fits its category (a patio isn't named hall-…)", () => {
+  expect(gdcGraph.nodes.filter((n) => !idMatchesKind(n.id, n.kind)).map((n) => n.id)).toEqual([]);
 });
 
 test('every room can be reached from every other point (no islands)', () => {

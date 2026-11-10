@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals';
 import {
-  addNode, attachToEdge, connectToNode, detach, nearestEdge, nextHallId, removeEdge, removeNode, snapToNetwork,
+  addNode, attachToEdge, idMatchesKind, idPattern, suggestId, updateNode, connectToNode, detach, nearestEdge, nextHallId, removeEdge, removeNode, snapToNetwork,
 } from './editGraph';
 import { MapGraph } from './types';
 
@@ -77,4 +77,32 @@ test('snap: nothing nearby, the point stays unconnected', () => {
   const lone = addNode(g, { id: 'Z', kind: 'room', floor: 'F', x: 0, y: 0 });
   const out = snapToNetwork(lone, 'Z', { x: 50, y: 99 }, 6, 10);
   expect(out.edges).toEqual(g.edges);
+});
+
+test('updateNode changes the category/name and renames the id in its lines', () => {
+  const out = updateNode(g, 'B', { id: 'F-outdoor-patio', kind: 'outdoor', label: 'Patio' });
+  expect(out.nodes.find((n) => n.id === 'F-outdoor-patio')).toMatchObject({ kind: 'outdoor', label: 'Patio' });
+  expect(out.nodes.some((n) => n.id === 'B')).toBe(false);
+  expect(pairs(out)).toEqual(['A-R', 'C-F-outdoor-patio', 'F-outdoor-patio-R']);
+});
+
+test('suggestId builds ids the same way as our naming format', () => {
+  expect(suggestId(g, 'GDC-2', 'outdoor', 'North Patio!', 'GDC-2-hall-S')).toBe('GDC-2-outdoor-north-patio');
+  expect(suggestId(g, 'GDC-2', 'room', 'Front office', 'GDC-2.702')).toBe('GDC-2.702');
+  expect(suggestId(g, 'GDC-2', 'room', '', 'GDC-2-hall-S')).toBe(''); // needs a room number
+  expect(idPattern.test('GDC-2-outdoor-north-patio')).toBe(true);
+  expect(suggestId(g, 'GDC-2', 'outdoor', '', 'GDC-2-hall-S')).toBe(''); // needs a name
+  expect(idPattern.test('GDC-2-patio')).toBe(false);
+  expect(idMatchesKind('GDC-2-hall-S', 'outdoor')).toBe(false);
+  expect(idMatchesKind('GDC-2-outdoor-patio', 'outdoor')).toBe(true);
+});
+
+test('connecting to a point that is already connected does not add a second line', () => {
+  const once = connectToNode(g, 'R', 'C');
+  expect(pairs(connectToNode(once, 'R', 'C'))).toEqual(pairs(once));
+});
+
+test('deleting a line that was listed twice leaves one copy', () => {
+  const twice: MapGraph = { ...g, edges: [...g.edges, { from: 'C', to: 'B' }] };
+  expect(pairs(removeEdge(twice, { from: 'B', to: 'C' }))).toEqual(['A-R', 'B-C', 'B-R']);
 });

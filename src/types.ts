@@ -2,7 +2,8 @@
 // Change this file together, not alone.
 
 // What a point on the map is.
-export type NodeKind = 'room' | 'hall' | 'stairs' | 'elevator' | 'entrance';
+// 'outdoor' = walkable outside spots, e.g. a patio.
+export type NodeKind = 'room' | 'hall' | 'stairs' | 'elevator' | 'entrance' | 'outdoor';
 
 // One point on one floor.
 export type MapNode = {
@@ -11,7 +12,8 @@ export type MapNode = {
   floor: string;  // which Floor it's on, e.g. "GDC-3"
   x: number;      // position in pixels on that floor's plan image
   y: number;
-  label?: string; // what users see, e.g. "GDC 3.106" (rooms only)
+  label?: string; // what users see, e.g. "Front office" or "Patio"
+  aliases?: string[]; // other names people might search for, e.g. ["Advising"]
 };
 
 // A walkable connection. Edges go both ways.

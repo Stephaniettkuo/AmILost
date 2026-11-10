@@ -12,3 +12,8 @@ test('exported file keeps every node and edge', () => {
   for (const n of gdcGraph.nodes) expect(text).toContain(nodeToLine(n));
   expect(text.match(/from: /g)?.length).toBe(gdcGraph.edges.length);
 });
+
+test('other names (aliases) are written out', () => {
+  const line = nodeToLine({ id: 'X', kind: 'room', floor: 'F', x: 1, y: 2, label: 'Front office', aliases: ['Advising'] });
+  expect(line).toContain("label: 'Front office', aliases: ['Advising'] }");
+});

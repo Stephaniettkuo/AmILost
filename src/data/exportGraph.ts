@@ -6,7 +6,8 @@ const q = (s: string) => `'${s.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
 
 export function nodeToLine(n: MapNode): string {
   const label = n.label ? `, label: ${q(n.label)}` : '';
-  return `    { id: ${q(n.id)}, kind: ${q(n.kind)}, floor: ${q(n.floor)}, x: ${n.x}, y: ${n.y}${label} },`;
+  const aliases = n.aliases?.length ? `, aliases: [${n.aliases.map(q).join(', ')}]` : '';
+  return `    { id: ${q(n.id)}, kind: ${q(n.kind)}, floor: ${q(n.floor)}, x: ${n.x}, y: ${n.y}${label}${aliases} },`;
 }
 
 export function graphToFile(g: MapGraph, needsCheck: string[]): string {
