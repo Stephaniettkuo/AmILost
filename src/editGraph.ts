@@ -80,6 +80,24 @@ export function addEdge(g: MapGraph, a: string, b: string): MapGraph {
   return { ...g, edges: [...g.edges, { from: a, to: b }] };
 }
 
+// Split a line with a new hallway point at the spot on the line closest to p:
+// a - b becomes a - new - b. Returns the new graph and the new point's id
+// (id is null if the line isn't in the graph; if p is on top of an end point,
+// nothing is split and that end point's id is returned).
+export function splitEdgeAt(
+  g: MapGraph, edge: MapEdge, p: Point,
+): { graph: MapGraph; id: string | null } {
+  const a = g.nodes.find((n) => n.id === edge.from);
+  const b = g.nodes.find((n) => n.id === edge.to);
+  if (!a || !b || !g.edges.some((e) => same(e, edge.from, edge.to))) return { graph: g, id: null };
+  const c = closestOnSegment(p, a, b);
+  const end = [a, b].find((n) => dist(n, c) < 1);
+  if (end) return { graph: g, id: end.id };
+  const node: MapNode = { id: nextHallId(g, a.floor), kind: 'hall', floor: a.floor, x: c.x, y: c.y };
+  const out = removeEdge(addNode(g, node), edge);
+  return { graph: { ...out, edges: [...out.edges, { from: a.id, to: node.id }, { from: node.id, to: b.id }] }, id: node.id };
+}
+
 export function addNode(g: MapGraph, node: MapNode): MapGraph {
   return { ...g, nodes: [...g.nodes, node] };
 }

@@ -8,6 +8,7 @@ Format: what we chose · what else we considered · why (evidence) · what the a
 
 - 2026-11-08 · Expo (React Native + TypeScript) instead of a plain web app · web app · we want a real phone app; Expo also runs in the browser for the demo
 - 2026-11-08 · Map stored as a graph (nodes + edges) in our own types (`src/types.ts`) · drawing routes freehand / an outside indoor-map service · lets us use Dijkstra and test routes against answers worked out by hand from the floor plans
+- 2026-11-12 · Editor gets a **Lines** mode (dot→dot adds a line; tapping a line splits it with a new hallway point, then the next tap connects it) · a separate "connect two lines" tool / making users drag points to fix wrong routes · some lines send routes the wrong way and we could only edit points; one mode with two tap rules keeps the editor small, and it reuses `addEdge` (already refuses duplicates and self-lines) · agent wrote `splitEdgeAt` + tests (tests written first and seen failing; then broke `splitEdgeAt` on purpose and 2 tests failed). We checked in the browser on floor 2: split a line, connected it to a second line, tried a duplicate (refused, no Undo step), cancelled, undid both steps; the export box matched each step
 
 ## Debugging log
 Format: symptom · how we narrowed it down · fix · how we checked it

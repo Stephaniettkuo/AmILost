@@ -14,14 +14,14 @@ import { findRoute } from './src/routing';
 import { shortId } from './src/names';
 import { MapGraph, MapNode, NodeKind } from './src/types';
 import {
-  Point, addNode, attachToEdge, connectToNode, detach, idMatchesKind, idPattern, moveNode, nearestEdge, nearestNode,
+  Point, addEdge, addNode, splitEdgeAt, attachToEdge, connectToNode, detach, idMatchesKind, idPattern, moveNode, nearestEdge, nearestNode,
   nextHallId, removeEdge, removeNode, slug, snapToNetwork, suggestId, updateNode,
 } from './src/editGraph';
 
 // add: tap to place a new point · move: drag a dot · reconnect: move a dot to
 // another line · delete: tap a dot or line to remove it · edit: change a dot's
-// category, name, other names
-type Mode = 'add' | 'move' | 'reconnect' | 'delete' | 'edit';
+// category, name, other names · lines: add a line between two dots, or split a line
+type Mode = 'add' | 'move' | 'reconnect' | 'lines' | 'delete' | 'edit';
 type Snapshot = { graph: MapGraph; edited: Set<string> }; // what Undo restores
 
 const kinds: NodeKind[] = ['room', 'hall', 'stairs', 'elevator', 'entrance', 'outdoor'];
@@ -122,6 +122,8 @@ export default function App() {
       onAddTap(p);
     } else if (mode === 'reconnect') {
       onReconnectTap(p);
+    } else if (mode === 'lines') {
+      onLinesTap(p);
     } else if (mode === 'edit') {
       onEditTap(p);
     } else {
@@ -216,6 +218,46 @@ export default function App() {
     setSelected(null);
   }
 
+  // ---- Lines: tap a dot, then another dot = add a line between them.
+  // Tap on a line = split it with a new hallway point (which gets selected, so
+  // the next tap connects it). Tap the selected dot again = cancel.
+  function onLinesTap(p: Point) {
+    const node = nearestNode(graph, floor.id, p, reach);
+    if (node) {
+      if (!selected) {
+        setSelected(node.id);
+        setMessage('');
+      } else if (node.id === selected) {
+        setSelected(null);
+        setMessage('Cancelled.');
+      } else {
+        const next = addEdge(graph, selected, node.id);
+        if (next === graph) {
+          setMessage(`${shortId(selected)} and ${shortId(node.id)} are already connected.`);
+        } else {
+          change(next, selected);
+          setMessage(`Added a line ${shortId(selected)} – ${shortId(node.id)}.`);
+        }
+        setSelected(null);
+      }
+      return;
+    }
+    // Lines touching the selected dot are skipped, so you can't connect a dot to its own hallway.
+    const edge = nearestEdge(graph, floor.id, p, reach, selected ?? undefined);
+    if (!edge) return;
+    const { graph: split, id } = splitEdgeAt(graph, edge, p);
+    if (!id) return;
+    if (!selected) {
+      change(split, id);
+      setSelected(id);
+      setMessage(`Split the line with ${shortId(id)}. Now tap the dot or line to connect it to.`);
+    } else {
+      change(addEdge(split, selected, id), id);
+      setSelected(null);
+      setMessage(`Added a line ${shortId(selected)} – ${shortId(id)} (split the other line at ${shortId(id)}).`);
+    }
+  }
+
   // ---- Delete: a dot (its hallway closes back up) or a single line.
   function onDeleteTap(p: Point) {
     // Only a tap right on a dot deletes the dot, so short lines can still be tapped.
@@ -254,6 +296,9 @@ export default function App() {
     reconnect: selected
       ? `Now tap the line (or dot) where ${shortId(selected)} should connect. Tap it again to cancel.`
       : 'Tap the dot you want to connect to a different line.',
+    lines: selected
+      ? `${shortId(selected)} is selected. Tap another dot to add a line to it, or tap a line to connect to a new point on it. Tap ${shortId(selected)} again to cancel.`
+      : 'Tap a dot, then another dot to add a line. Or tap a line to split it with a new hallway point, then tap where it should connect.',
     delete: 'Tap a dot to delete it, or tap a line to delete just the line.',
     edit: editing
       ? 'Change the details below the buttons, then Save.'
@@ -334,7 +379,7 @@ export default function App() {
 
       {screen === 'edit' && (<>
       <View style={styles.row}>
-        {(['add', 'move', 'reconnect', 'delete', 'edit'] as Mode[]).map((m) => (
+        {(['add', 'move', 'reconnect', 'lines', 'delete', 'edit'] as Mode[]).map((m) => (
           <Pressable key={m} onPress={() => pickMode(m)} style={[styles.button, mode === m && styles.selected]}>
             <Text>{m[0].toUpperCase() + m.slice(1)}</Text>
           </Pressable>

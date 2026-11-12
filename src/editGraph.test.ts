@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals';
 import {
-  addNode, attachToEdge, idMatchesKind, idPattern, suggestId, updateNode, connectToNode, detach, nearestEdge, nextHallId, removeEdge, removeNode, snapToNetwork,
+  addEdge, splitEdgeAt, addNode, attachToEdge, idMatchesKind, idPattern, suggestId, updateNode, connectToNode, detach, nearestEdge, nextHallId, removeEdge, removeNode, snapToNetwork,
 } from './editGraph';
 import { MapGraph } from './types';
 
@@ -105,4 +105,39 @@ test('connecting to a point that is already connected does not add a second line
 test('deleting a line that was listed twice leaves one copy', () => {
   const twice: MapGraph = { ...g, edges: [...g.edges, { from: 'C', to: 'B' }] };
   expect(pairs(removeEdge(twice, { from: 'B', to: 'C' }))).toEqual(['A-R', 'B-C', 'B-R']);
+});
+
+// Lines mode. Map: A(0,0) -- R(50,0) -- B(100,0), B -- C(100,80).
+test('addEdge joins two points and keeps every other line', () => {
+  // A and C aren't joined yet, so one new line appears; the 3 old ones stay.
+  expect(pairs(addEdge(g, 'A', 'C'))).toEqual(['A-C', 'A-R', 'B-C', 'B-R']);
+});
+
+test('addEdge refuses a duplicate (either direction) and a line to itself', () => {
+  expect(addEdge(g, 'C', 'B')).toBe(g);
+  expect(addEdge(g, 'A', 'A')).toBe(g);
+});
+
+test('splitEdgeAt puts a new hallway point on the line where you tapped', () => {
+  // Tap (97, 30) beside B(100,0)-C(100,80): the closest spot on that vertical line is (100, 30).
+  // The new point is the first free hall id, F-hall-A, and B-C becomes B-new-C.
+  const { graph, id } = splitEdgeAt(g, { from: 'B', to: 'C' }, { x: 97, y: 30 });
+  expect(id).toBe('F-hall-A');
+  expect(graph.nodes.find((n) => n.id === id)).toMatchObject({ kind: 'hall', floor: 'F', x: 100, y: 30 });
+  expect(pairs(graph)).toEqual(['A-R', 'B-F-hall-A', 'B-R', 'C-F-hall-A']);
+});
+
+test('splitEdgeAt then addEdge connects one hallway to another', () => {
+  // Split A-R at (20,5) -> (20,0); split B-C at (100,40); join the two new points.
+  const one = splitEdgeAt(g, { from: 'A', to: 'R' }, { x: 20, y: 5 });
+  const two = splitEdgeAt(one.graph, { from: 'B', to: 'C' }, { x: 100, y: 40 });
+  expect(two.id).toBe('F-hall-B');
+  expect(pairs(addEdge(two.graph, one.id!, two.id!))).toEqual(
+    ['A-F-hall-A', 'B-F-hall-B', 'B-R', 'C-F-hall-B', 'F-hall-A-F-hall-B', 'F-hall-A-R'],
+  );
+});
+
+test('splitEdgeAt does nothing for a missing line or a tap on an end point', () => {
+  expect(splitEdgeAt(g, { from: 'A', to: 'C' }, { x: 5, y: 5 })).toEqual({ graph: g, id: null });
+  expect(splitEdgeAt(g, { from: 'B', to: 'C' }, { x: 100, y: -9 })).toEqual({ graph: g, id: 'B' });
 });
