@@ -1,6 +1,7 @@
 // Draws map data (nodes + edges) for one floor over the floor plan, for review.
 // Coordinates are image pixels, like everything else.
 import { Circle, G, Line, Text as SvgText } from 'react-native-svg';
+import { placeName } from './names';
 import { MapGraph } from './types';
 
 const colors: Record<string, string> = {
@@ -35,7 +36,7 @@ export default function MapDataOverlay({ graph, floorId, needsCheck, edited, sel
           {ring(n.id) && <Circle cx={n.x} cy={n.y} r={11} fill="none" stroke={ring(n.id)!} strokeWidth={3} />}
           <Circle cx={n.x} cy={n.y} r={5} fill={colors[n.kind]} />
           <SvgText x={n.x + 7} y={n.y - 6} fontSize={11} fill={colors[n.kind]}>
-            {nameOf(n.id, n.label)}
+            {placeName(n)}
           </SvgText>
         </G>
       ))}
@@ -43,9 +44,3 @@ export default function MapDataOverlay({ graph, floorId, needsCheck, edited, sel
   );
 }
 
-// What to write next to a dot: "2.316", "hall-B", or "2.702 · Front office".
-function nameOf(id: string, label?: string) {
-  const short = id.replace(/^GDC-(\d+-)?/, '');
-  if (!label || label.includes(short)) return short;
-  return /^\d/.test(short) ? `${short} · ${label}` : label;
-}

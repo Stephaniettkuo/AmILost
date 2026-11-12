@@ -15,8 +15,8 @@ export function graphToFile(g: MapGraph, needsCheck: string[]): string {
   return [
     '// GDC map data: points (nodes) and walkable connections (edges).',
     '//',
-    '// Floor 2 started as an AGENT DRAFT (Claude, 2026-11-10) and is being',
-    '// reviewed with the in-app editor. Review notes are in NOTES.md.',
+    '// Floor 2: agent draft (2026-11-10), reviewed and fixed by us (see NOTES.md).',
+    '// Floors 1 and 3: agent drafts (2026-11-12) being reviewed with the in-app editor.',
     '// Points listed in `needsCheck` are guesses the agent was least sure of.',
     "import { MapGraph } from '../types';",
     "import { gdcFloors } from './floors';",

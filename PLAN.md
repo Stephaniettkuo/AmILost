@@ -50,24 +50,25 @@ Keep branches small (one task each) so merges don't conflict.
 - [ ] Both partners run the app on their own phone from a fresh `git pull`
 
 ### Phase 1 — One floor working end to end (Nov 10–15)
-- [ ] Screen shows one floor plan image with the sample route drawn on top
+- [x] Screen shows the floor plan with the route drawn on top
 - [x] **Tracing mode:** tap the floor plan, app prints the x/y. This is how we
       get coordinates for nodes instead of guessing them
-- [ ] Trace GDC floor 1: rooms, hallway corners/intersections, entrances,
+- [x] (agent draft, needs review) Trace GDC floor 1: rooms, hallway corners/intersections, entrances,
       stairs, elevators → `src/data/gdc.ts`
-- [ ] `findRoute(graph, startId, endId)` using Dijkstra → `src/routing.ts`
-- [ ] First tests: 2–3 trips on floor 1 with answers worked out by hand
+- [x] `findRoute(graph, startId, endId)` using Dijkstra → `src/routing.ts` (walkthrough: `docs/dijkstra.md`)
+- [x] First tests: trips on floor 2 with answers worked out by hand
 - [x] Data check test: every edge points to real nodes, every room is reachable (`src/data/gdc.test.ts`)
-- [ ] Review agent's floor 2 draft (`Show map data`), record fixes in `NOTES.md`
-- [ ] Screen draws a real route on floor 1
+- [x] Review agent's floor 2 draft (`Show map data`), record fixes in `NOTES.md`
+- [ ] Review agent's floor 1 and 3 drafts (27 flagged points), record fixes in `NOTES.md`
+- [x] Screen draws a real route
 
 ### Phase 2 — All three floors + choices (Nov 16–21)
-- [ ] Trace GDC floors 2 and 3
-- [ ] Connect floors with stairs and elevator edges (set `cost` by hand)
-- [ ] Floor switcher: route shows each floor's part, user flips between them
-- [ ] Start and destination pickers (search a room by label)
-- [ ] Stairs / elevator option. Elevator-only routing skips stair edges
-- [ ] Tests: one cross-floor trip, one elevator-only trip, one with no path → `null`
+- [x] Trace GDC floors 2 and 3 (floor 3: agent draft, needs review)
+- [x] Connect floors with stairs and elevator edges (set `cost` by hand)
+- [x] Floor switcher: route shows each floor's part, user flips between them
+- [x] Start and destination pickers (search a room by label)
+- [x] Stairs / elevator option. Elevator-only routing skips stair edges
+- [x] Tests: one cross-floor trip, one elevator-only trip, one with no path → `null`
 
 ### Phase 3 — Make it usable (Nov 22–26, Thanksgiving week, plan light)
 - [ ] Step-by-step directions ("Take the elevator to floor 3, turn left…")

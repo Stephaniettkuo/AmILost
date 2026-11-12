@@ -8,6 +8,10 @@ import { floorImages, gdcFloors } from './src/data/floors';
 import { gdcGraph, needsCheck } from './src/data/gdc';
 import { graphToFile } from './src/data/exportGraph';
 import MapDataOverlay from './src/MapDataOverlay';
+import PlacePicker from './src/PlacePicker';
+import RouteOverlay from './src/RouteOverlay';
+import { findRoute } from './src/routing';
+import { shortId } from './src/names';
 import { MapGraph, MapNode, NodeKind } from './src/types';
 import {
   Point, addNode, attachToEdge, connectToNode, detach, idMatchesKind, idPattern, moveNode, nearestEdge, nearestNode,
@@ -26,7 +30,12 @@ const kinds: NodeKind[] = ['room', 'hall', 'stairs', 'elevator', 'entrance', 'ou
 type Form = { id: string; kind: NodeKind; label: string; aliases: string };
 
 export default function App() {
-  const [floor, setFloor] = useState(gdcFloors[0]);
+  // navigate: pick From/To and see the route · edit: the map editor
+  const [screen, setScreen] = useState<'navigate' | 'edit'>('navigate');
+  const [fromId, setFromId] = useState<string | null>('GDC-2-entrance-main');
+  const [toId, setToId] = useState<string | null>(null);
+  const [avoidStairs, setAvoidStairs] = useState(false);
+  const [floor, setFloor] = useState(gdcFloors.find((f) => f.id === 'GDC-2') ?? gdcFloors[0]);
   const [showData, setShowData] = useState(true);
   const [mode, setMode] = useState<Mode>('move');
   // Editable copy of the map data. Edits live here until pasted into gdc.ts.
@@ -78,7 +87,7 @@ export default function App() {
   // ---- Move: hallway dots drag their lines along; other dots leave their
   // hallway while dragged and connect to the nearest hallway when dropped.
   function onGrab(e: GestureResponderEvent) {
-    if (mode !== 'move') return;
+    if (screen !== 'edit' || mode !== 'move') return;
     const node = nearestNode(graph, floor.id, toImage(e), reach);
     dragging.current = node?.id ?? null;
     dragged.current = false;
@@ -86,7 +95,7 @@ export default function App() {
 
   function onDrag(e: GestureResponderEvent) {
     const id = dragging.current;
-    if (mode !== 'move' || !id) return;
+    if (screen !== 'edit' || mode !== 'move' || !id) return;
     const p = toImage(e);
     if (!dragged.current) {
       dragged.current = true;
@@ -98,6 +107,7 @@ export default function App() {
   }
 
   function onRelease(e: GestureResponderEvent) {
+    if (screen !== 'edit') return;
     const p = toImage(e);
     if (mode === 'move') {
       const id = dragging.current;
@@ -106,7 +116,7 @@ export default function App() {
       const node = graph.nodes.find((n) => n.id === id)!;
       if (node.kind !== 'hall') {
         setGraph(snapToNetwork(graph, id, p, onLine, near));
-        setMessage(`Moved ${short(id)} and connected it to the nearest hallway.`);
+        setMessage(`Moved ${shortId(id)} and connected it to the nearest hallway.`);
       }
     } else if (mode === 'add') {
       onAddTap(p);
@@ -218,7 +228,7 @@ export default function App() {
     const edge = nearestEdge(graph, floor.id, p, reach);
     if (edge) {
       change(removeEdge(graph, edge));
-      setMessage(`Deleted the line ${short(edge.from)} – ${short(edge.to)}.`);
+      setMessage(`Deleted the line ${shortId(edge.from)} – ${shortId(edge.to)}.`);
     }
   }
 
@@ -242,7 +252,7 @@ export default function App() {
       : 'Type the name, then tap where the door is. It connects to the nearest hallway.',
     move: 'Drag a dot. Rooms leave their hallway and reconnect where you drop them; hallway dots bring their lines.',
     reconnect: selected
-      ? `Now tap the line (or dot) where ${short(selected)} should connect. Tap it again to cancel.`
+      ? `Now tap the line (or dot) where ${shortId(selected)} should connect. Tap it again to cancel.`
       : 'Tap the dot you want to connect to a different line.',
     delete: 'Tap a dot to delete it, or tap a line to delete just the line.',
     edit: editing
@@ -252,8 +262,59 @@ export default function App() {
 
   const changed = graph !== gdcGraph;
 
+  const route = fromId && toId ? findRoute(graph, fromId, toId, { avoidStairs }) : null;
+  const routeFloors = route ? [...new Set(route.nodes.map((n) => n.floor))] : [];
+  // Floors in the order you visit them, e.g. 1 -> 2 -> 1
+  const floorSteps = route ? route.nodes.map((n) => n.floor).filter((f, i, all) => f !== all[i - 1]) : [];
+
+  // Choosing a place shows the floor where the route starts.
+  function choose(which: 'from' | 'to', id: string) {
+    const f = which === 'from' ? id : fromId;
+    which === 'from' ? setFromId(id) : setToId(id);
+    const startFloor = graph.nodes.find((n) => n.id === f)?.floor;
+    if (startFloor) setFloor(gdcFloors.find((x) => x.id === startFloor) ?? floor);
+  }
+
   return (
     <ScrollView style={styles.page}>
+      <View style={styles.row}>
+        <Text style={styles.title}>AmILost</Text>
+        <Pressable onPress={() => setScreen('navigate')} style={[styles.button, screen === 'navigate' && styles.selected]}>
+          <Text>Navigate</Text>
+        </Pressable>
+        <Pressable onPress={() => setScreen('edit')} style={[styles.button, screen === 'edit' && styles.selected]}>
+          <Text>Edit map</Text>
+        </Pressable>
+      </View>
+
+      {screen === 'navigate' && (
+        <>
+          <View style={styles.row}>
+            <PlacePicker label="From" graph={graph} value={fromId} onChange={(id) => choose('from', id)} />
+            <Pressable
+              onPress={() => { setFromId(toId); setToId(fromId); if (toId) choose('from', toId); }}
+              style={[styles.button, styles.swap]}
+            >
+              <Text>⇅ Swap</Text>
+            </Pressable>
+            <PlacePicker label="To" graph={graph} value={toId} onChange={(id) => choose('to', id)} />
+          </View>
+          <View style={styles.row}>
+            <Pressable onPress={() => setAvoidStairs(!avoidStairs)} style={[styles.button, avoidStairs && styles.selected]}>
+              <Text>Elevator only (no stairs)</Text>
+            </Pressable>
+            <Text style={styles.hint}>
+              {!fromId || !toId
+                ? 'Choose where you are and where you want to go.'
+                : !route
+                  ? 'No route found between these two places.'
+                  : `${route.nodes.length} stops` +
+                    (floorSteps.length > 1 ? ` · floors ${floorSteps.map((f) => f.replace('GDC-', '')).join(' → ')}` : '')}
+            </Text>
+          </View>
+        </>
+      )}
+
       <View style={styles.row}>
         {gdcFloors.map((f) => (
           <Pressable
@@ -261,14 +322,17 @@ export default function App() {
             onPress={() => switchFloor(f.id)}
             style={[styles.button, f.id === floor.id && styles.selected]}
           >
-            <Text>{f.name}</Text>
+            <Text>{f.name}{screen === 'navigate' && routeFloors.includes(f.id) ? ' •' : ''}</Text>
           </Pressable>
         ))}
-        <Pressable onPress={() => setShowData(!showData)} style={[styles.button, showData && styles.selected]}>
-          <Text>Show map data</Text>
-        </Pressable>
+        {screen === 'edit' && (
+          <Pressable onPress={() => setShowData(!showData)} style={[styles.button, showData && styles.selected]}>
+            <Text>Show map data</Text>
+          </Pressable>
+        )}
       </View>
 
+      {screen === 'edit' && (<>
       <View style={styles.row}>
         {(['add', 'move', 'reconnect', 'delete', 'edit'] as Mode[]).map((m) => (
           <Pressable key={m} onPress={() => pickMode(m)} style={[styles.button, mode === m && styles.selected]}>
@@ -351,6 +415,7 @@ export default function App() {
       <Text style={styles.hint}>{hint}</Text>
       {/* Always rendered (even empty) so the map doesn't jump when a message appears. */}
       <Text style={styles.message} numberOfLines={1}>{message || ' '}</Text>
+      </>)}
 
       {/* Touch handler (works on phone and web; Pressable has no tap position on web). */}
       <View
@@ -365,7 +430,8 @@ export default function App() {
         {/* Drawn in image pixels; viewBox scales them to the screen. */}
         <View style={StyleSheet.absoluteFill} pointerEvents="none">
           <Svg width={width} height={shownHeight} viewBox={`0 0 ${floor.width} ${floor.height}`}>
-            {showData && (
+            {screen === 'navigate' && route && <RouteOverlay route={route} floorId={floor.id} />}
+            {screen === 'edit' && showData && (
               <MapDataOverlay
                 graph={graph} floorId={floor.id} needsCheck={needsCheck} edited={edited}
                 selected={selected ?? editing}
@@ -375,7 +441,7 @@ export default function App() {
         </View>
       </View>
 
-      {changed && (
+      {screen === 'edit' && changed && (
         <>
           <Text style={styles.heading}>
             Unsaved edits. To save: click in the box, select all (Cmd+A), copy, and paste over
@@ -399,10 +465,6 @@ export default function App() {
   );
 }
 
-// "GDC-2.316" -> "2.316", "GDC-2-hall-B" -> "hall-B"
-function short(id: string) {
-  return id.replace(/^GDC-(\d+-)?/, '');
-}
 
 const styles = StyleSheet.create({
   page: { flex: 1, backgroundColor: 'white', paddingTop: 50 },
@@ -416,6 +478,8 @@ const styles = StyleSheet.create({
   bold: { fontWeight: 'bold', paddingHorizontal: 8 },
   save: { backgroundColor: '#d3f9d8' },
   hint: { color: '#555', paddingHorizontal: 8, paddingTop: 4 },
+  title: { fontSize: 20, fontWeight: 'bold', marginRight: 8 },
+  swap: { alignSelf: 'flex-end' },
   message: { color: '#2b8a3e', paddingHorizontal: 8, paddingTop: 2, minHeight: 22 },
   heading: { padding: 8, fontWeight: 'bold' },
   code: { paddingHorizontal: 8, fontFamily: 'Courier', fontSize: 12 },

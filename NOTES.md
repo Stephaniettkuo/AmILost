@@ -28,13 +28,20 @@ Format: symptom · how we narrowed it down · fix · how we checked it
 ## Reused code and libraries
 - Expo SDK 58 (`blank-typescript` template), react-native-svg 15.16.0, jest-expo 58
 
-## Floor 2 draft review (fill in)
-- Points we moved: 
-- Edges we added/removed: 
+## Floor 2 draft review
+Agent draft (commit d5309b2) vs. our reviewed data (commit 02684d7), compared by script:
+- Points: 106 → 115. Moved more than 3 px: 6 (2.1S1, 2.216, 2.2E2, 2.2E3, 2.402, 2.5S3). Deleted: 0. Category changed: 0
+- Added 9: 4 entrances the agent missed, 4 new hallway points, and the atrium (2.100). The main entrance (below) was also missed, but fixed before d5309b2 was committed
+- Lines: 11 removed, 20 added (108 → 117)
+- `needsCheck` flags: only 2 of the 6 moved points had been flagged (2.402, 2.1S1); 4 moved points were not flagged (both elevators 2.2E2/2.2E3, auditorium 2.216, stairs 2.5S3). The agent's own uncertainty didn't predict its mistakes well
 - 2026-11-10 · Missing point: the main entrance is the double doors west of the atrium (by hall-Q); the agent hadn't marked it as an entrance. Added `GDC-2-entrance-main` at (752, 820), connected to hall-Q
-- `needsCheck` points that were actually right: 
-- Verdict (use agent drafts for floors 1 and 3?): 
+- Verdict (use agent drafts for floors 1 and 3?): _decide together_ — about 94% of draft points kept their position, but it missed most entrances and misplaced both elevators
 
 ## Limitations / ideas for later
 - Room 2.902 is left out on floor 2: its only door is on the outside walkway, not inside the building
 - Floor 2 atrium (2.100): not sure which parts are open floor vs. open-to-below; draft assumes both sides of the 2.100 outline are walkable
+- Routes can go outside through the floor 2 patio (between the atrium and the 2.400 hallway). Fine in good weather; no "stay indoors" option yet
+- Floor 1 entrances are guesses (west entrance through 1.702, north entrance through 1.410, two east exits); floor 3 has no entrances or bridges to other buildings in the data
+- Floor 1's north and south blocks don't connect on floor 1 in our data (we couldn't confirm a passage), so routes between them go through floor 2
+- Stair/elevator costs (150 / 250) are guesses, not measured
+- No live location: the user picks a starting point
