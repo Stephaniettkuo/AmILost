@@ -48,9 +48,11 @@ describe('small made-up maps (answers obvious by looking)', () => {
 
 describe('GDC floor 2 (checked against the floor plan)', () => {
   test('main entrance -> 2.702 front office: down through the atrium', () => {
-    // Only sensible way: in the main doors, diagonally across the atrium past 2.100, to 2.702's door.
+    // Only sensible way: in the main doors (752,820), east to hall-Q (800,820), then
+    // across the open atrium to hall-Z (921,844) and straight down to 2.702's door (920,942).
+    // ~48 + 123 + 98 = ~269 px; every other way is longer (e.g. via hall-U adds a detour east).
     expect(ids(findRoute(gdcGraph, 'GDC-2-entrance-main', 'GDC-2.702'))).toEqual(
-      ['-entrance-main', '-hall-Q', '-hall-AB', '-hall-T', '.702'],
+      ['-entrance-main', '-hall-Q', '-hall-Z', '.702'],
     );
   });
 
@@ -72,9 +74,14 @@ describe('GDC floor 2 (checked against the floor plan)', () => {
   });
 
   test("men's restroom 2.202 -> 2.816: around stairwell 2.1S1, down past 2.6E1, east", () => {
+    // The 2.1S1 stair block is in the way straight south of hall-N (975,705), so go around it:
+    //   east: N -> O (1035,712) -> S (1090,821) -> U (975,950):  ~60 + 122 + 173 = ~355 px
+    //   west: N -> AC -> M -> Q -> Z -> U:  ~76 + 84 + 108 + 123 + 119 = ~510 px
+    // East is shorter and crosses open atrium floor. Then down past 6E1 to the south
+    // hallway (hall-T, 978,1151) and east along it to 2.816.
     expect(ids(findRoute(gdcGraph, 'GDC-2.202', 'GDC-2.816'))).toEqual([
-      '.202', '.204', '-hall-G', '-hall-N', '-hall-AC', '-hall-M', '-hall-Q', '-hall-AB', '-hall-T',
-      '-hall-U', '.6E1', '-hall-X', '-hall-AA',
+      '.202', '.204', '-hall-G', '-hall-N', '-hall-O', '-hall-S',
+      '-hall-U', '.6E1', '-hall-T',
       '.802', '.804', '.806', '.808', '.810', '.812', '.814', '.816',
     ]);
   });
