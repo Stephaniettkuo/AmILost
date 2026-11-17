@@ -1,8 +1,7 @@
 // The app shell: loads fonts, holds the current screen and the chosen From / To / options,
 // and switches screens. Each screen is a file in src/screens/.
-import { Fredoka_500Medium, Fredoka_600SemiBold } from '@expo-google-fonts/fredoka';
-import { Nunito_400Regular, Nunito_700Bold } from '@expo-google-fonts/nunito';
 import { useFonts } from 'expo-font';
+import { appFonts } from './src/fonts';
 import { useEffect, useMemo, useState } from 'react';
 import { BackHandler, Platform, View } from 'react-native';
 import { gdcGraph } from './src/data/gdc';
@@ -26,7 +25,7 @@ const BACK: Partial<Record<Screen, Screen>> = {
 };
 
 export default function App() {
-  const [loaded] = useFonts({ Fredoka_500Medium, Fredoka_600SemiBold, Nunito_400Regular, Nunito_700Bold });
+  const [loaded] = useFonts(appFonts);
   const [screen, setScreen] = useState<Screen>('home');
   const [fromId, setFromId] = useState('GDC-2-entrance-main');
   const [toId, setToId] = useState<string | null>(null);
@@ -51,7 +50,7 @@ export default function App() {
 
   // Dev only: open the app at /#style on web to see the building blocks. Remove before we ship.
   if (Platform.OS === 'web' && typeof window !== 'undefined' && window.location.hash === '#style') return <StyleCheck />;
-  if (!loaded) return <View style={{ flex: 1, backgroundColor: colors.cream }} />; // cream until fonts are ready
+  if (!loaded) return <View style={{ flex: 1, backgroundColor: colors.paper }} />; // cream until fonts are ready
 
   const place = toId ? gdcGraph.nodes.find((n) => n.id === toId) : undefined;
 

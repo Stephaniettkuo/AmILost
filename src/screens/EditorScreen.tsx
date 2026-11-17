@@ -456,18 +456,18 @@ export default function EditorScreen({ onBack }: { onBack: () => void }) {
 
 
 const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: colors.cream, paddingTop: 50 },
+  page: { flex: 1, backgroundColor: colors.paper, paddingTop: 50 },
   row: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, paddingHorizontal: 8, paddingVertical: 4 },
   button: { paddingVertical: 6, paddingHorizontal: 12, borderWidth: 1, borderRadius: 6 },
-  selected: { backgroundColor: colors.peach },
+  selected: { backgroundColor: colors.wash },
   disabled: { opacity: 0.4 },
   input: { borderWidth: 1, borderRadius: 6, paddingVertical: 6, paddingHorizontal: 10, minWidth: 180 },
   wide: { minWidth: 280 },
   panel: { margin: 8, padding: 8, borderWidth: 1, borderColor: '#ccc', borderRadius: 8, backgroundColor: '#f8f9fa' },
   bold: { fontWeight: 'bold', paddingHorizontal: 8 },
   save: { backgroundColor: '#d3f9d8' },
-  hint: { color: colors.latte, paddingHorizontal: 8, paddingTop: 4 },
-  title: { fontSize: 22, fontFamily: fonts.title, color: colors.cocoa, marginRight: 8 },
+  hint: { color: colors.fadedInk, paddingHorizontal: 8, paddingTop: 4 },
+  title: { fontSize: 22, fontFamily: fonts.title, color: colors.ink, marginRight: 8 },
   swap: { alignSelf: 'flex-end' },
   message: { color: '#2b8a3e', paddingHorizontal: 8, paddingTop: 2, minHeight: 22 },
   heading: { padding: 8, fontWeight: 'bold' },

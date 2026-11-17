@@ -1,9 +1,8 @@
 // Development only: a page that shows every building block, so we can look at them in the
 // browser (open the app at  http://localhost:8081/#style ). Remove before we ship.
-import { Fredoka_500Medium, Fredoka_600SemiBold } from '@expo-google-fonts/fredoka';
-import { Nunito_400Regular, Nunito_700Bold } from '@expo-google-fonts/nunito';
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import { appFonts } from './fonts';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Card from './components/Card';
@@ -11,7 +10,7 @@ import Chip from './components/Chip';
 import DirectionArrow from './components/DirectionArrow';
 import FloorMap from './components/FloorMap';
 import ProgressDots from './components/ProgressDots';
-import PuffyButton from './components/PuffyButton';
+import StampButton from './components/StampButton';
 import { gdcGraph } from './data/gdc';
 import { Arrow, directions } from './directions';
 import { findRoute } from './routing';
@@ -21,7 +20,7 @@ const arrows: Arrow[] = ['straight', 'left', 'right', 'slightLeft', 'slightRight
   'stairsUp', 'stairsDown', 'elevatorUp', 'elevatorDown', 'arrive'];
 
 export default function StyleCheck() {
-  const [loaded] = useFonts({ Fredoka_500Medium, Fredoka_600SemiBold, Nunito_400Regular, Nunito_700Bold });
+  const [loaded] = useFonts(appFonts);
   const [arrow, setArrow] = useState<Arrow>('straight');
   const [step, setStep] = useState(0);
   const [pressed, setPressed] = useState(0);
@@ -44,9 +43,9 @@ export default function StyleCheck() {
 
       <Text style={styles.heading}>Buttons (tap them: they squish)</Text>
       <View style={styles.row}>
-        <PuffyButton label="Directions" onPress={() => setPressed(pressed + 1)} icon={<Ionicons name="navigate" size={20} color={colors.white} />} />
-        <PuffyButton label="Back" variant="secondary" onPress={() => setPressed(pressed + 1)} />
-        <PuffyButton label="Disabled" disabled />
+        <StampButton label="Directions" onPress={() => setPressed(pressed + 1)} icon={<Ionicons name="navigate" size={20} color={colors.light} />} />
+        <StampButton label="Back" variant="secondary" onPress={() => setPressed(pressed + 1)} />
+        <StampButton label="Disabled" disabled />
       </View>
       <Text style={styles.body}>Pressed {pressed} times</Text>
 
@@ -55,7 +54,7 @@ export default function StyleCheck() {
         {['Restrooms', 'Elevators', 'Front office'].map((c) => (
           <Chip key={c} label={c} selected={chip === c} onPress={() => setChip(c)} />
         ))}
-        <Chip label="From: Main entrance" icon={<Ionicons name="location" size={16} color={colors.deepOrange} />} />
+        <Chip label="From: Main entrance" icon={<Ionicons name="location" size={16} color={colors.rustDark} />} />
       </View>
 
       <Text style={styles.heading}>Card (springs up when it appears)</Text>
@@ -73,8 +72,8 @@ export default function StyleCheck() {
       <Text style={styles.heading}>Progress dots + map zoomed to a step</Text>
       <ProgressDots count={steps.length} index={Math.min(step, steps.length - 1)} />
       <View style={styles.row}>
-        <PuffyButton label="Back" variant="secondary" onPress={() => setStep(Math.max(0, step - 1))} />
-        <PuffyButton label="Next" onPress={() => setStep(Math.min(steps.length - 1, step + 1))} />
+        <StampButton label="Back" variant="secondary" onPress={() => setStep(Math.max(0, step - 1))} />
+        <StampButton label="Next" onPress={() => setStep(Math.min(steps.length - 1, step + 1))} />
       </View>
       <Text style={styles.body}>{cur.text}</Text>
       <FloorMap floorId={cur.floor} route={route} focus={focus} highlight={{ from: cur.from, to: cur.to }} />
@@ -88,12 +87,12 @@ export default function StyleCheck() {
 }
 
 const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: colors.cream },
+  page: { flex: 1, backgroundColor: colors.paper },
   content: { padding: spacing.md, gap: spacing.md, paddingTop: 50, paddingBottom: 80 },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, alignItems: 'center' },
   center: { alignItems: 'center', paddingVertical: spacing.md },
-  title: { fontFamily: fonts.title, fontSize: 34, color: colors.cocoa },
-  heading: { fontFamily: fonts.title, fontSize: 20, color: colors.cocoa, marginTop: spacing.md },
-  cardTitle: { fontFamily: fonts.title, fontSize: 28, color: colors.cocoa },
-  body: { fontFamily: fonts.body, fontSize: 16, color: colors.latte },
+  title: { fontFamily: fonts.title, fontSize: 34, color: colors.ink },
+  heading: { fontFamily: fonts.title, fontSize: 26, color: colors.ink, marginTop: spacing.md },
+  cardTitle: { fontFamily: fonts.title, fontSize: 28, color: colors.ink },
+  body: { fontFamily: fonts.body, fontSize: 19, color: colors.fadedInk },
 });

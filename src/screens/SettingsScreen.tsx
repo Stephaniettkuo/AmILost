@@ -1,7 +1,7 @@
 // Settings: the elevator-only default, About, and the team-only map editor.
 import { StyleSheet, Switch, Text, View } from 'react-native';
 import Card from '../components/Card';
-import PuffyButton from '../components/PuffyButton';
+import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';
 import { colors, fonts, spacing } from '../theme';
 
@@ -24,8 +24,8 @@ export default function SettingsScreen({ avoidStairs, onAvoidStairs, onBack, onE
           <Switch
             value={avoidStairs}
             onValueChange={onAvoidStairs}
-            trackColor={{ false: colors.peach, true: colors.orange }}
-            thumbColor={colors.white}
+            trackColor={{ false: colors.wash, true: colors.rust }}
+            thumbColor={colors.light}
           />
         </View>
       </Card>
@@ -38,7 +38,7 @@ export default function SettingsScreen({ avoidStairs, onAvoidStairs, onBack, onE
         </Text>
       </Card>
 
-      <PuffyButton label="Map editor (team only)" variant="secondary" onPress={onEditor} />
+      <StampButton label="Map editor (team only)" variant="secondary" onPress={onEditor} />
     </Screen>
   );
 }
@@ -46,6 +46,6 @@ export default function SettingsScreen({ avoidStairs, onAvoidStairs, onBack, onE
 const styles = StyleSheet.create({
   switchRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   flex: { flex: 1 },
-  label: { fontFamily: fonts.title, fontSize: 20, color: colors.cocoa },
-  small: { fontFamily: fonts.body, fontSize: 15, color: colors.latte, marginTop: spacing.xs },
+  label: { fontFamily: fonts.title, fontSize: 26, color: colors.ink },
+  small: { fontFamily: fonts.body, fontSize: 19, color: colors.fadedInk, marginTop: spacing.xs },
 });

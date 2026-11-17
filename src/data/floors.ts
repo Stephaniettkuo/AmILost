@@ -14,3 +14,11 @@ export const floorImages: Record<string, number> = {
   'GDC-2': require('../../assets/gdc-2.png'),
   'GDC-3': require('../../assets/gdc-3.png'),
 };
+
+// The same plans with a transparent page and sepia ink lines (made by scripts/make_clear_plans.py).
+// Same pixel size, so x/y still line up. The editor keeps using the originals above.
+export const floorImagesClear: Record<string, number> = {
+  'GDC-1': require('../../assets/gdc-1-clear.png'),
+  'GDC-2': require('../../assets/gdc-2-clear.png'),
+  'GDC-3': require('../../assets/gdc-3-clear.png'),
+};

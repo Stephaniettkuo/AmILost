@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Image, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Circle, Polyline } from 'react-native-svg';
-import { floorImages, gdcFloors } from '../data/floors';
+import { floorImagesClear, gdcFloors } from '../data/floors';
 import { Point } from '../editGraph';
 import { useReduceMotion } from '../motion';
 import { MAX_WIDTH, colors, radii, shadow, spacing } from '../theme';
@@ -98,40 +98,40 @@ export default function FloorMap({ floorId, route, focus, highlight, pin, you, w
     <View style={[styles.shadowBox, shadow, { width: w, height: h }]}>
       <View style={styles.clip}>
         <Image
-          source={floorImages[floorId]}
-          style={{ position: 'absolute', left: -view.x * s, top: -view.y * s, width: floor.width * s, height: floor.height * s, opacity: 0.55 }}
+          source={floorImagesClear[floorId]}
+          style={{ position: 'absolute', left: -view.x * s, top: -view.y * s, width: floor.width * s, height: floor.height * s, opacity: 0.9 }}
         />
         <Svg width={w} height={h} viewBox={`${view.x} ${view.y} ${view.w} ${view.h}`} style={StyleSheet.absoluteFill}>
           {/* With a highlight, the whole route is drawn thin and faded under the bright stretch. */}
           {highlight && runs.map((run, i) => (
-            <Polyline key={`f${i}`} points={pts(run)} fill="none" stroke={colors.apricot} opacity={0.45}
+            <Polyline key={`f${i}`} points={pts(run)} fill="none" stroke={colors.brass} opacity={0.45}
               strokeWidth={px(5)} strokeLinecap="round" strokeLinejoin="round" />
           ))}
           {bright.map((run, i) => (
             <RouteLine key={`b${i}`} points={pts(run)} casing={px(12)} line={px(7)} />
           ))}
           {lifts.map((n) => (
-            <Circle key={n.id + n.floor} cx={n.x} cy={n.y} r={px(8)} fill={colors.white} stroke={colors.orange} strokeWidth={px(4)} />
+            <Circle key={n.id + n.floor} cx={n.x} cy={n.y} r={px(8)} fill={colors.light} stroke={colors.rust} strokeWidth={px(4)} />
           ))}
           {pin && (
             <>
-              <Circle cx={pin.x} cy={pin.y} r={px(12)} fill={colors.deepOrange} stroke={colors.white} strokeWidth={px(4)} />
-              <Circle cx={pin.x} cy={pin.y} r={px(4)} fill={colors.white} />
+              <Circle cx={pin.x} cy={pin.y} r={px(12)} fill={colors.seal} stroke={colors.light} strokeWidth={px(4)} />
+              <Circle cx={pin.x} cy={pin.y} r={px(4)} fill={colors.light} />
             </>
           )}
           {start?.floor === floorId && (
-            <Circle cx={start.x} cy={start.y} r={px(10)} fill={colors.mint} stroke={colors.white} strokeWidth={px(4)} />
+            <Circle cx={start.x} cy={start.y} r={px(10)} fill={colors.sage} stroke={colors.light} strokeWidth={px(4)} />
           )}
           {end?.floor === floorId && (
             <>
-              <Circle cx={end.x} cy={end.y} r={px(12)} fill={colors.deepOrange} stroke={colors.white} strokeWidth={px(4)} />
-              <Circle cx={end.x} cy={end.y} r={px(4)} fill={colors.white} />
+              <Circle cx={end.x} cy={end.y} r={px(12)} fill={colors.seal} stroke={colors.light} strokeWidth={px(4)} />
+              <Circle cx={end.x} cy={end.y} r={px(4)} fill={colors.light} />
             </>
           )}
           {cur.you && (
             <>
-              <Circle cx={cur.you.x} cy={cur.you.y} r={px(16)} fill={colors.peach} opacity={0.7} />
-              <Circle cx={cur.you.x} cy={cur.you.y} r={px(8)} fill={colors.cocoa} stroke={colors.white} strokeWidth={px(3)} />
+              <Circle cx={cur.you.x} cy={cur.you.y} r={px(16)} fill={colors.brass} opacity={0.35} />
+              <Circle cx={cur.you.x} cy={cur.you.y} r={px(8)} fill={colors.ink} stroke={colors.light} strokeWidth={px(3)} />
             </>
           )}
         </Svg>
@@ -144,13 +144,13 @@ export default function FloorMap({ floorId, route, focus, highlight, pin, you, w
 function RouteLine({ points, casing, line }: { points: string; casing: number; line: number }) {
   return (
     <>
-      <Polyline points={points} fill="none" stroke={colors.apricot} strokeWidth={casing} strokeLinecap="round" strokeLinejoin="round" />
-      <Polyline points={points} fill="none" stroke={colors.orange} strokeWidth={line} strokeLinecap="round" strokeLinejoin="round" />
+      <Polyline points={points} fill="none" stroke={colors.brass} strokeWidth={casing} strokeLinecap="round" strokeLinejoin="round" />
+      <Polyline points={points} fill="none" stroke={colors.rust} strokeWidth={line} strokeLinecap="round" strokeLinejoin="round" />
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  shadowBox: { borderRadius: radii.card, backgroundColor: colors.vanilla },
-  clip: { flex: 1, borderRadius: radii.card, overflow: 'hidden' },
+  shadowBox: { borderRadius: radii.card, backgroundColor: colors.parchment },
+  clip: { flex: 1, borderRadius: radii.card, overflow: 'hidden', borderWidth: 1, borderColor: colors.line },
 });

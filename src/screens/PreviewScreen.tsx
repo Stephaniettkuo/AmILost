@@ -4,7 +4,7 @@ import { StyleSheet, Switch, Text, View } from 'react-native';
 import Card from '../components/Card';
 import Chip from '../components/Chip';
 import FloorMap from '../components/FloorMap';
-import PuffyButton from '../components/PuffyButton';
+import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';
 import { Step, routeSummary } from '../directions';
 import { floorLabel } from '../names';
@@ -32,8 +32,8 @@ export default function PreviewScreen({ route, steps, avoidStairs, onAvoidStairs
         <Switch
           value={avoidStairs}
           onValueChange={onAvoidStairs}
-          trackColor={{ false: colors.peach, true: colors.orange }}
-          thumbColor={colors.white}
+          trackColor={{ false: colors.wash, true: colors.rust }}
+          thumbColor={colors.light}
         />
       </View>
     </Card>
@@ -72,15 +72,15 @@ export default function PreviewScreen({ route, steps, avoidStairs, onAvoidStairs
       )}
       <FloorMap floorId={shown} route={route} focus={route.nodes.filter((n) => n.floor === shown)} />
       {toggle}
-      <PuffyButton label="Start" onPress={onStart} />
+      <StampButton label="Start" onPress={onStart} />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  summary: { fontFamily: fonts.bodyBold, fontSize: 18, color: colors.cocoa },
+  summary: { fontFamily: fonts.bodyBold, fontSize: 22, color: colors.ink },
   row: { flexDirection: 'row', gap: spacing.sm },
-  body: { fontFamily: fonts.body, fontSize: 17, color: colors.cocoa },
+  body: { fontFamily: fonts.body, fontSize: 20, color: colors.ink },
   switchRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.md },
-  switchLabel: { flex: 1, fontFamily: fonts.bodyBold, fontSize: 16, color: colors.cocoa },
+  switchLabel: { flex: 1, fontFamily: fonts.bodyBold, fontSize: 20, color: colors.ink },
 });

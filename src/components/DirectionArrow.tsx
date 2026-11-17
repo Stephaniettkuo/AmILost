@@ -19,7 +19,7 @@ const LABEL: Record<Arrow, string> = {
   elevatorUp: 'Take the elevator up', elevatorDown: 'Take the elevator down', arrive: 'You are here',
 };
 
-const stroke = { stroke: colors.orange, strokeWidth: 10, strokeLinecap: 'round', strokeLinejoin: 'round', fill: 'none' } as const;
+const stroke = { stroke: colors.rust, strokeWidth: 10, strokeLinecap: 'round', strokeLinejoin: 'round', fill: 'none' } as const;
 
 // The drawing for one kind of step, in a 100 x 100 box.
 function Glyph({ arrow }: { arrow: Arrow }) {

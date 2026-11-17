@@ -1,8 +1,8 @@
 // Arrived: a happy bounce, confetti, and what to do next.
 import { useEffect, useRef } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
-import Confetti from '../components/Confetti';
-import PuffyButton from '../components/PuffyButton';
+import ArrivalStamp from '../components/ArrivalStamp';
+import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';
 import { nativeDriver, useReduceMotion } from '../motion';
 import { placeName } from '../names';
@@ -22,20 +22,20 @@ export default function ArrivedScreen({ place, onDone, onDirectionsBack }: Props
   return (
     <Screen>
       <View style={styles.hero}>
-        <Confetti />
+        <ArrivalStamp />
         <Animated.View style={{ transform: [{ scale: pop }], alignItems: 'center', gap: spacing.sm }}>
-          <Text style={styles.big}>You made it! 🎉</Text>
+          <Text style={styles.big}>You made it!</Text>
           <Text style={styles.place}>{placeName(place)}</Text>
         </Animated.View>
       </View>
-      <PuffyButton label="Done" onPress={onDone} />
-      <PuffyButton label="Directions back" variant="secondary" onPress={onDirectionsBack} />
+      <StampButton label="Done" onPress={onDone} />
+      <StampButton label="Directions back" variant="secondary" onPress={onDirectionsBack} />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  hero: { height: 260, alignItems: 'center', justifyContent: 'center' },
-  big: { fontFamily: fonts.title, fontSize: 38, color: colors.cocoa, textAlign: 'center' },
-  place: { fontFamily: fonts.bodyBold, fontSize: 22, color: colors.deepOrange, textAlign: 'center' },
+  hero: { alignItems: 'center', justifyContent: 'center', gap: spacing.md, paddingVertical: spacing.lg },
+  big: { fontFamily: fonts.title, fontSize: 44, color: colors.ink, textAlign: 'center' },
+  place: { fontFamily: fonts.label, fontSize: 18, letterSpacing: 1, color: colors.rustDark, textAlign: 'center' },
 });

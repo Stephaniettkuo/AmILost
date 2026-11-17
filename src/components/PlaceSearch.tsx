@@ -22,7 +22,7 @@ export default function PlaceSearch({ graph, value, onChangeText, onChoose, plac
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder ?? 'Room number or name'}
-        placeholderTextColor={colors.latte}
+        placeholderTextColor={colors.fadedInk}
         autoCapitalize="none"
         autoCorrect={false}
         autoFocus={autoFocus}
@@ -46,14 +46,15 @@ export default function PlaceSearch({ graph, value, onChangeText, onChoose, plac
 const styles = StyleSheet.create({
   wrap: { gap: spacing.sm },
   input: {
-    minHeight: 60, borderRadius: radii.pill, backgroundColor: colors.vanilla, paddingHorizontal: spacing.lg,
-    fontFamily: fonts.bodyBold, fontSize: 18, color: colors.cocoa, borderWidth: 2, borderColor: colors.peach,
+    minHeight: 56, borderRadius: radii.pill, backgroundColor: colors.parchment, paddingHorizontal: spacing.lg,
+    fontFamily: fonts.bodyBold, fontSize: 22, color: colors.ink, borderWidth: 1, borderColor: colors.line,
   },
   row: {
     minHeight: minTouch + 4, flexDirection: 'row', alignItems: 'center', gap: spacing.sm,
-    paddingHorizontal: spacing.md, borderRadius: radii.small, backgroundColor: colors.vanilla,
+    paddingHorizontal: spacing.md, borderRadius: radii.small, backgroundColor: colors.parchment,
+    borderWidth: 1, borderColor: colors.line,
   },
-  name: { flex: 1, fontFamily: fonts.bodyBold, fontSize: 16, color: colors.cocoa },
-  floor: { fontFamily: fonts.body, fontSize: 14, color: colors.latte },
-  none: { fontFamily: fonts.body, fontSize: 16, color: colors.latte, paddingHorizontal: spacing.sm },
+  name: { flex: 1, fontFamily: fonts.bodyBold, fontSize: 21, color: colors.ink },
+  floor: { fontFamily: fonts.label, fontSize: 12, color: colors.fadedInk },
+  none: { fontFamily: fonts.body, fontSize: 20, color: colors.fadedInk, paddingHorizontal: spacing.sm },
 });

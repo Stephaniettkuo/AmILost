@@ -1,4 +1,4 @@
-// A small round label. Tappable if you give it onPress; peach when selected.
+// A small paper label, like a ticket. Tappable if you give it onPress; washed in tan when selected.
 import { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, fonts, minTouch, radii, spacing } from '../theme';
@@ -20,10 +20,10 @@ export default function Chip({ label, selected, onPress, icon }: Props) {
 const styles = StyleSheet.create({
   chip: {
     flexDirection: 'row', alignItems: 'center', gap: spacing.xs,
-    paddingHorizontal: spacing.md, paddingVertical: spacing.sm, borderRadius: radii.pill,
-    backgroundColor: colors.vanilla, borderWidth: 2, borderColor: colors.peach,
+    paddingHorizontal: spacing.md, paddingVertical: spacing.sm, borderRadius: radii.small,
+    backgroundColor: colors.parchment, borderWidth: 1, borderColor: colors.line,
   },
   tappable: { minHeight: minTouch, justifyContent: 'center' },
-  selected: { backgroundColor: colors.peach, borderColor: colors.apricot },
-  label: { fontFamily: fonts.bodyBold, fontSize: 15, color: colors.cocoa },
+  selected: { backgroundColor: colors.wash, borderColor: colors.ink },
+  label: { fontFamily: fonts.label, fontSize: 13, color: colors.ink },
 });

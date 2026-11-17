@@ -1,5 +1,9 @@
 # Task: turn-by-turn arrows + app redesign
 
+> **Update (2026-11-18):** the visual style below (cute, puffy, Fredoka/Nunito, orange) was replaced by the
+> parchment theme. The structure, parts and screens are unchanged; the current look is the
+> "Design system" section of `CLAUDE.md`.
+
 Goal: turn AmILost from a dev tool into a real, cute app that guides a person
 step by step to a room in GDC. Follow the **Design system** in `CLAUDE.md`.
 

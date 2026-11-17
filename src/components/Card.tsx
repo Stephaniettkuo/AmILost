@@ -1,4 +1,4 @@
-// A vanilla card with a soft shadow. Springs up into place when it appears.
+// A parchment card with a thin ink border and a soft shadow. Settles into place when it appears.
 import { ReactNode, useEffect, useRef } from 'react';
 import { Animated, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { nativeDriver, useReduceMotion } from '../motion';
@@ -9,14 +9,14 @@ export default function Card({ children, style }: { children: ReactNode; style?:
   const appear = useRef(new Animated.Value(reduce ? 1 : 0)).current; // 0 = hidden, 1 = in place
   useEffect(() => {
     if (reduce) { appear.setValue(1); return; }
-    Animated.spring(appear, { toValue: 1, useNativeDriver: nativeDriver, speed: 14, bounciness: 8 }).start();
+    Animated.spring(appear, { toValue: 1, useNativeDriver: nativeDriver, speed: 14, bounciness: 4 }).start();
   }, [appear, reduce]);
 
   return (
     <Animated.View
       style={[
         styles.card, shadow,
-        { opacity: appear, transform: [{ translateY: appear.interpolate({ inputRange: [0, 1], outputRange: [24, 0] }) }] },
+        { opacity: appear, transform: [{ translateY: appear.interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }] },
         style,
       ]}
     >
@@ -26,5 +26,8 @@ export default function Card({ children, style }: { children: ReactNode; style?:
 }
 
 const styles = StyleSheet.create({
-  card: { backgroundColor: colors.vanilla, borderRadius: radii.card, padding: spacing.lg },
+  card: {
+    backgroundColor: colors.parchment, borderRadius: radii.card, padding: spacing.lg,
+    borderWidth: 1, borderColor: colors.line,
+  },
 });

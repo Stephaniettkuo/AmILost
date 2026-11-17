@@ -32,7 +32,7 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
     <Screen
       right={
         <Pressable accessibilityRole="button" accessibilityLabel="Settings" onPress={onSettings} style={styles.gear}>
-          <Ionicons name="settings-outline" size={26} color={colors.cocoa} />
+          <Ionicons name="settings-outline" size={26} color={colors.ink} />
         </Pressable>
       }
     >
@@ -48,7 +48,7 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
           label={`From: ${from ? placeName(from) : 'choose'}`}
           selected={changingFrom}
           onPress={() => { setChangingFrom(!changingFrom); setFromQuery(''); }}
-          icon={<Ionicons name="location" size={16} color={colors.deepOrange} />}
+          icon={<Ionicons name="location" size={16} color={colors.rustDark} />}
         />
       </View>
       {changingFrom && (
@@ -65,8 +65,8 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
 }
 
 const styles = StyleSheet.create({
-  title: { fontFamily: fonts.title, fontSize: 40, color: colors.cocoa, marginTop: spacing.md },
+  title: { fontFamily: fonts.title, fontSize: 52, color: colors.ink, marginTop: spacing.md },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
-  small: { fontFamily: fonts.bodyBold, fontSize: 16, color: colors.latte },
+  small: { fontFamily: fonts.bodyBold, fontSize: 20, color: colors.fadedInk },
   gear: { width: minTouch, height: minTouch, alignItems: 'center', justifyContent: 'center' },
 });

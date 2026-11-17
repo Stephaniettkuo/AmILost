@@ -30,15 +30,16 @@ Expo SDK 58, React Native 0.88, TypeScript, react-native-svg, react-native-web, 
 **`AGENTS.md` came with the Expo template.** Its Expo tips are useful, but ignore its
 "use Expo Router" rule: we switch screens with simple state in `App.tsx` (see "Screens").
 Animations use React Native's built-in `Animated` API (no Reanimated).
-Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-google-fonts/fredoka`,
-`@expo-google-fonts/nunito`, `@expo/vector-icons`. Ask before adding anything else.
+Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-google-fonts/cormorant-garamond`,
+`@expo-google-fonts/special-elite`, `@expo/vector-icons`. Ask before adding anything else.
 
 ## Files
 | File | What it is |
 |---|---|
 | `App.tsx` | Loads fonts, holds the current screen + chosen From/To, switches screens. (Before the redesign it held Navigate + the editor directly.) |
-| `src/theme.ts` | Design tokens: colors, spacing, radii, shadows, fonts. |
-| `src/screens/`, `src/components/` | One file per screen; shared puffy UI pieces (button, card, chip, arrow, map view). |
+| `src/theme.ts`, `src/fonts.ts` | Design tokens (colors, spacing, radii, shadows, font names) and the list of fonts to load. |
+| `scripts/` | `make_paper.py` (paper texture) and `make_clear_plans.py` (sepia, transparent floor plans). Run with `python3`; the pictures they make are committed. |
+| `src/screens/`, `src/components/` | One file per screen; shared UI pieces (stamp button, card, chip, arrow, map view, arrival stamp). |
 | `src/directions.ts` | Turns a `Route` into turn-by-turn steps (arrows + text). |
 | `src/types.ts` | Shared types: `MapNode`, `MapEdge`, `Floor`, `MapGraph`, `Route`. Change together, not alone. |
 | `src/data/gdc.ts` | All map data: nodes and edges for floors 1–3, plus `needsCheck` (agent guesses to review). |
@@ -58,38 +59,45 @@ component in `src/screens/`. Shared UI pieces live in `src/components/`. Full sp
 `docs/tasks/arrows-and-redesign.md`.
 
 ## Design system (follow this for every UI change)
-Vibe: **cute, bubbly, puffy, warm** — like a soft cream pastry with orange icing. Simple and
-clean: lots of space, few things on screen at once, big friendly shapes.
+Vibe: **old and warm** — tea-stained parchment, sepia ink, antique brass, postmarks and old survey
+maps. Calm and uncluttered: few things on screen at once, plenty of space, serious but friendly.
 - **All colors, sizes, radii, shadows and fonts come from `src/theme.ts`.** Never hard-code a color in a screen.
-- Palette (cream → orange, brown text):
+- Palette (paper, ink, brass):
 
   | Token | Hex | Use |
   |---|---|---|
-  | `cream` | `#FFF8EE` | app background |
-  | `vanilla` | `#FFF1DE` | cards, sheets |
-  | `peach` | `#FFD9B5` | soft fills, chips, selected states |
-  | `apricot` | `#FFB877` | secondary buttons, map route casing |
-  | `orange` | `#FF8A3D` | primary buttons, route line, arrows |
-  | `deepOrange` | `#E8661A` | pressed state, puffy button "bottom edge" |
-  | `cocoa` | `#5B3A29` | main text (good contrast on all the creams) |
-  | `latte` | `#9C7A66` | secondary text, hints |
-  | `white` | `#FFFFFF` | text on orange, highlights |
-  | `mint` | `#9ED6A8` | start pin / success accents (sparingly) |
+  | `paper` | `#E8D8B8` | app background (under the paper texture) |
+  | `parchment` | `#F2E6CC` | cards, sheets, inputs |
+  | `wash` | `#DCC59A` | soft fills, selected chips |
+  | `brass` | `#B8893A` | secondary accents, route casing |
+  | `rust` | `#9A5B2E` | primary buttons, route line, arrows |
+  | `rustDark` | `#6E3E1C` | pressed state, button borders |
+  | `ink` | `#3B2A1E` | main text and drawn lines |
+  | `fadedInk` | `#6B5439` | secondary text, hints |
+  | `line` | `#A68A5E` | thin borders on cards and chips |
+  | `light` | `#FBF5E6` | text on rust, highlights |
+  | `sage` | `#8A9A78` | start pin, success accents (sparingly) |
+  | `seal` | `#8E3B2E` | wax-seal red: destination pin, arrival stamp |
 
-- **Puffy shapes:** big radii (cards 28, buttons fully round/pill, chips 999), generous padding,
-  a soft warm shadow (`#C07A4A`, opacity ~0.18, y-offset 6, blur 14), and on buttons a darker
-  bottom edge (`deepOrange`, 4 px) so they look like squishy candy.
-- **Fonts:** `Fredoka` for titles and buttons (rounded, cute), `Nunito` for body text. Load with
-  `expo-font`; show the cream splash until fonts are ready.
-- **Icons/arrows:** drawn with `react-native-svg` (rounded line caps and joins, thick strokes) or
-  `@expo/vector-icons` (Ionicons, rounded variants).
-- **Motion (built-in `Animated`):** buttons squish on press (scale ~0.95, spring back); cards and
-  sheets spring up when they appear; the direction arrow gently bobs and **springs/rotates** to the
-  new direction on each step; arrival gets a happy bounce + a few confetti dots. Keep animations
-  short (150–400 ms) and use the native driver. If the phone has "Reduce Motion" on
-  (`AccessibilityInfo.isReduceMotionEnabled`), skip the bobbing/confetti.
-- **The floor plan** is a black-and-white CAD drawing: show it inside a rounded `vanilla` card,
-  slightly faded (~0.55 opacity) so the orange route stands out.
+- **Paper shapes:** small corners (cards 10, buttons and chips 6–8), thin 1 px borders in `line`,
+  a soft sepia shadow (`#4A2F14`, opacity ~0.22, y-offset 3, blur 7). Buttons are brass-plate /
+  rubber-stamp style: a double border, no candy "bottom edge".
+- **Background:** every screen sits on `assets/paper.jpg` (tea-stained paper). It is generated by
+  `scripts/make_paper.py` from random noise, so it is ours; don't copy photos from the internet.
+- **Fonts:** `Cormorant Garamond` (titles and reading text) and `Special Elite` (a typewriter face
+  for small labels, buttons, chips, stamps). Load with `expo-font` (list in `src/fonts.ts`); show the
+  plain paper color until fonts are ready.
+- **Icons/arrows:** drawn with `react-native-svg` (round line caps and joins) or
+  `@expo/vector-icons` (Ionicons).
+- **Motion (built-in `Animated`):** gentle, like paper settling: buttons press in (scale ~0.97);
+  cards settle up when they appear; the direction arrow gently bobs and **springs/rotates** to the
+  new direction on each step; the map glides between steps; arrival stamps down an "ARRIVED" postmark
+  and wax seal. Keep animations short (150–400 ms). If the phone has "Reduce Motion" on
+  (`AccessibilityInfo.isReduceMotionEnabled`), skip the bobbing and the stamp animation.
+- **The floor plan** is shown as sepia ink on transparent paper (`assets/gdc-N-clear.png`, made by
+  `scripts/make_clear_plans.py`, same pixel size as the originals so coordinates still line up),
+  inside a parchment card, with the rust route on top. The original black-and-white plans stay in
+  `assets/` for the map editor.
 - Text: short and friendly ("Where to?", "Turn left at the restrooms", "You made it!"). Touch
   targets at least 48 px tall. Must look right on a phone first, then web.
 

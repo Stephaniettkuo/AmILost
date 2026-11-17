@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Card from '../components/Card';
 import Chip from '../components/Chip';
 import FloorMap from '../components/FloorMap';
-import PuffyButton from '../components/PuffyButton';
+import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';
 import { floorLabel, placeName } from '../names';
 import { colors, fonts, spacing } from '../theme';
@@ -25,13 +25,13 @@ export default function PlaceScreen({ place, onBack, onDirections }: Props) {
         )}
       </Card>
       <FloorMap floorId={place.floor} focus={[place]} pin={place} />
-      <PuffyButton label="Directions" onPress={onDirections} />
+      <StampButton label="Directions" onPress={onDirections} />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  name: { fontFamily: fonts.title, fontSize: 30, color: colors.cocoa },
+  name: { fontFamily: fonts.title, fontSize: 38, color: colors.ink },
   row: { flexDirection: 'row', gap: spacing.sm, marginTop: spacing.sm },
-  also: { fontFamily: fonts.body, fontSize: 15, color: colors.latte, marginTop: spacing.sm },
+  also: { fontFamily: fonts.body, fontSize: 19, color: colors.fadedInk, marginTop: spacing.sm },
 });

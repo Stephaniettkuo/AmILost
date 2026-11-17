@@ -7,7 +7,7 @@ import Card from '../components/Card';
 import DirectionArrow from '../components/DirectionArrow';
 import FloorMap from '../components/FloorMap';
 import ProgressDots from '../components/ProgressDots';
-import PuffyButton from '../components/PuffyButton';
+import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';
 import { Step, distanceText, stepDistancePx } from '../directions';
 import { floorLabel } from '../names';
@@ -63,8 +63,8 @@ export default function DirectionsScreen({ route, steps, index, onIndex, onBack,
       />
 
       <View style={styles.buttons}>
-        <PuffyButton label="Back" variant="secondary" onPress={() => (index === 0 ? onBack() : onIndex(index - 1))} style={styles.flex} />
-        <PuffyButton label={last ? "I'm here" : 'Next'} onPress={() => (last ? onArrive() : onIndex(index + 1))} style={styles.flex} />
+        <StampButton label="Back" variant="secondary" onPress={() => (index === 0 ? onBack() : onIndex(index - 1))} style={styles.flex} />
+        <StampButton label={last ? "I'm here" : 'Next'} onPress={() => (last ? onArrive() : onIndex(index + 1))} style={styles.flex} />
       </View>
       <ProgressDots count={steps.length} index={index} />
     </Screen>
@@ -73,9 +73,9 @@ export default function DirectionsScreen({ route, steps, index, onIndex, onBack,
 
 const styles = StyleSheet.create({
   top: { height: 270, alignItems: 'center', justifyContent: 'space-between', paddingVertical: spacing.md },
-  lift: { backgroundColor: colors.peach },
-  text: { fontFamily: fonts.title, fontSize: 22, color: colors.cocoa, textAlign: 'center', height: 84 },
-  distance: { fontFamily: fonts.body, fontSize: 16, color: colors.latte, height: 22 },
+  lift: { backgroundColor: colors.wash },
+  text: { fontFamily: fonts.title, fontSize: 28, lineHeight: 30, color: colors.ink, textAlign: 'center', height: 90 },
+  distance: { fontFamily: fonts.label, fontSize: 13, letterSpacing: 1, color: colors.fadedInk, height: 22 },
   buttons: { flexDirection: 'row', gap: spacing.md },
   flex: { flex: 1 },
 });
