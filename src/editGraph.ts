@@ -50,9 +50,15 @@ export function moveNode(g: MapGraph, id: string, p: Point): MapGraph {
 
 // Take a node off its current line. If it sat between exactly two
 // neighbors (a - node - b), join them (a - b) so the hallway stays connected.
+// Lines to another floor (a stair or elevator going up/down) are left alone: they stay
+// attached, and they're never used to join neighbors (that would make a floor link with no cost).
 export function detach(g: MapGraph, id: string): MapGraph {
-  const neighbors = g.edges.filter((e) => touches(e, id)).map((e) => (e.from === id ? e.to : e.from));
-  let edges = g.edges.filter((e) => !touches(e, id));
+  const floorOf = new Map(g.nodes.map((n) => [n.id, n.floor]));
+  const other = (e: MapEdge) => (e.from === id ? e.to : e.from);
+  const sameFloor = (e: MapEdge) => floorOf.get(other(e)) === floorOf.get(id);
+  const hallway = g.edges.filter((e) => touches(e, id) && sameFloor(e));
+  const neighbors = hallway.map(other);
+  let edges = g.edges.filter((e) => !hallway.includes(e));
   const [a, b] = neighbors;
   if (neighbors.length === 2 && !edges.some((e) => same(e, a, b))) edges = [...edges, { from: a, to: b }];
   return { ...g, edges };
@@ -103,9 +109,10 @@ export function addNode(g: MapGraph, node: MapNode): MapGraph {
 }
 
 // Delete a node. Like detach: if it sat between two neighbors, they get joined.
+// Its links to other floors go too (detach keeps them, but the node is gone).
 export function removeNode(g: MapGraph, id: string): MapGraph {
   const out = detach(g, id);
-  return { ...out, nodes: out.nodes.filter((n) => n.id !== id) };
+  return { ...out, nodes: out.nodes.filter((n) => n.id !== id), edges: out.edges.filter((e) => !touches(e, id)) };
 }
 
 // Remove one line (if a line was listed twice by mistake, one copy stays).

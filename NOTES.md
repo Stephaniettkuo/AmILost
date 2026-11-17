@@ -18,6 +18,7 @@ Format: what we chose · what else we considered · why (evidence) · what the a
 - 2026-11-17 · Floor 4 map data drafted by the agent (99 points, 111 lines, 8 stair/elevator links to floor 3), same method as floors 1 and 3: room numbers read from 2× zoomed tiles of `gdc-4.png` with pixel rulers, rooms placed on the corridor line in front of their door · NOT reviewed by us yet; 10 points in `needsCheck` (doors the agent couldn't see: 4.424, 4.504, 4.506, 4.202, 4.818, 4.830, 4.716, 4.440; 4.1S1 entry from the atrium; 4.6E1 door side). Stair numbers change between floors (3.4S3 → 4.5S3), matched by position on the plan. Skipped 4.722 (looks like a closet). All data tests pass; app route main entrance → 4.416 goes floors 2 → 3 → 4 by stairs 1S1
 
 ## Debugging log
+- 2026-11-17 · After moving elevator 4.6E1 in the editor, the data test "edges between floors have a cost" failed on a line 4.600 → 3.6E1, and the real elevator link 3.6E1 ↔ 4.6E1 was gone · the bad line joined the two neighbors 4.6E1 used to have; `detach` in `src/editGraph.ts` joins a point's two neighbors when it leaves a hallway, and it counted the link to the floor below as a hallway neighbor (4.6E1 had exactly 2 lines because floor 5 doesn't exist yet) · fixed the data by hand (put back 3.6E1 ↔ 4.6E1, cost 250). Editor fix: `detach` now only joins neighbors on the same floor and leaves floor links attached; `removeNode` drops a deleted point's floor links. Agent wrote 3 tests first (elevator with one hallway line + a link down, elevator between two hallway points + a link down, deleting that elevator) and saw all 3 fail on the old code; then broke the same-floor check on purpose and the same 3 failed · 72 tests pass; all 8 floor 3–4 links present. In the browser editor, dragged 4.6E1 on floor 4: it reconnected to the corridor and the export still had `3.6E1 ↔ 4.6E1, cost 250` and no between-floor line without a cost
 - 2026-11-17 · Floor 4 draft: four lounge lines (to 4.410, 4.434, 4.728, 4.802) went straight through the curved walls · agent drew the graph over the plan and looked at each area · reached each lounge from the open corridor end instead (new hallway point hall-O for 4.434) · re-drew; lines stay in open floor, 69 tests pass. Caught by the agent's own overlay check, before our review
 
 Format: symptom · how we narrowed it down · fix · how we checked it
@@ -48,6 +49,14 @@ Agent draft (commit d5309b2) vs. our reviewed data (commit 02684d7), compared by
 - `needsCheck` flags: only 2 of the 6 moved points had been flagged (2.402, 2.1S1); 4 moved points were not flagged (both elevators 2.2E2/2.2E3, auditorium 2.216, stairs 2.5S3). The agent's own uncertainty didn't predict its mistakes well
 - 2026-11-10 · Missing point: the main entrance is the double doors west of the atrium (by hall-Q); the agent hadn't marked it as an entrance. Added `GDC-2-entrance-main` at (752, 820), connected to hall-Q
 - Verdict (use agent drafts for floors 1 and 3?): _decide together_ — about 94% of draft points kept their position, but it missed most entrances and misplaced both elevators
+
+## Floor 4 draft review
+Agent draft (rebuilt from its draft script, not committed on its own) vs. our reviewed data (commit abfc8c7), compared by script on 2026-11-17:
+- Points: 99 → 102. Moved more than 3 px: 5 (4.710B 106 px, 4.710 52, 4.100 51, 4.202 42, 4.710A 23). Deleted: 0. Category or name changed: 0
+- Added 3 hallway points (hall-P, hall-Q, hall-R): the north wing's east end and the 4.716 / 4.710 area of the south wing
+- Lines: 6 removed, 15 added (111 → 120). The agent had put the middle-island rooms (4.710, 4.710A, 4.710B) on the corridor lines; we connected them to each other and to the south-corridor rooms (4.816, 4.820) instead
+- `needsCheck` flags: 1 of the 5 moved points had been flagged (4.202); 4.710/4.710A/4.710B and the atrium 4.100 were not. 9 of the 10 flagged points needed no move. Same pattern as floor 2: the agent's uncertainty didn't predict its mistakes well
+- Compared with floor 2 (6 of 106 moved, 9 added): about the same amount of fixing
 
 ## Limitations / ideas for later
 - Room 2.902 is left out on floor 2: its only door is on the outside walkway, not inside the building
