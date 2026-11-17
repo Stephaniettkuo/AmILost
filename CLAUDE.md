@@ -28,12 +28,18 @@ npx expo install <pkg>  # add packages (picks versions that match Expo SDK 58)
 ## Stack
 Expo SDK 58, React Native 0.88, TypeScript, react-native-svg, react-native-web, Jest.
 **`AGENTS.md` came with the Expo template.** Its Expo tips are useful, but ignore its
-"use Expo Router" rule: this app is one screen in `App.tsx` on purpose.
+"use Expo Router" rule: we switch screens with simple state in `App.tsx` (see "Screens").
+Animations use React Native's built-in `Animated` API (no Reanimated).
+Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-google-fonts/fredoka`,
+`@expo-google-fonts/nunito`, `@expo/vector-icons`. Ask before adding anything else.
 
 ## Files
 | File | What it is |
 |---|---|
-| `App.tsx` | The only screen. Two views: **Navigate** (From/To pickers, route on the map) and **Edit map** (the map editor). |
+| `App.tsx` | Loads fonts, holds the current screen + chosen From/To, switches screens. (Before the redesign it held Navigate + the editor directly.) |
+| `src/theme.ts` | Design tokens: colors, spacing, radii, shadows, fonts. |
+| `src/screens/`, `src/components/` | One file per screen; shared puffy UI pieces (button, card, chip, arrow, map view). |
+| `src/directions.ts` | Turns a `Route` into turn-by-turn steps (arrows + text). |
 | `src/types.ts` | Shared types: `MapNode`, `MapEdge`, `Floor`, `MapGraph`, `Route`. Change together, not alone. |
 | `src/data/gdc.ts` | All map data: nodes and edges for floors 1–3, plus `needsCheck` (agent guesses to review). |
 | `src/data/floors.ts` | Floor list, image sizes, image files (`assets/gdc-1.png` …). |
@@ -45,6 +51,49 @@ Expo SDK 58, React Native 0.88, TypeScript, react-native-svg, react-native-web, 
 | `src/PlacePicker.tsx`, `src/names.ts` | Search box and how places are named/searched. |
 | `NOTES.md`, `PLAN.md` | Decision/debugging log for the slides; checklist and timeline. |
 
+## Screens
+App flow: **Home → Place → Route preview → Directions → Arrived**, plus **Settings** and the
+**Map editor** (team-only, opened from Settings). Screen = a piece of state in `App.tsx`
+(`'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor'`); each screen is a
+component in `src/screens/`. Shared UI pieces live in `src/components/`. Full spec:
+`docs/tasks/arrows-and-redesign.md`.
+
+## Design system (follow this for every UI change)
+Vibe: **cute, bubbly, puffy, warm** — like a soft cream pastry with orange icing. Simple and
+clean: lots of space, few things on screen at once, big friendly shapes.
+- **All colors, sizes, radii, shadows and fonts come from `src/theme.ts`.** Never hard-code a color in a screen.
+- Palette (cream → orange, brown text):
+
+  | Token | Hex | Use |
+  |---|---|---|
+  | `cream` | `#FFF8EE` | app background |
+  | `vanilla` | `#FFF1DE` | cards, sheets |
+  | `peach` | `#FFD9B5` | soft fills, chips, selected states |
+  | `apricot` | `#FFB877` | secondary buttons, map route casing |
+  | `orange` | `#FF8A3D` | primary buttons, route line, arrows |
+  | `deepOrange` | `#E8661A` | pressed state, puffy button "bottom edge" |
+  | `cocoa` | `#5B3A29` | main text (good contrast on all the creams) |
+  | `latte` | `#9C7A66` | secondary text, hints |
+  | `white` | `#FFFFFF` | text on orange, highlights |
+  | `mint` | `#9ED6A8` | start pin / success accents (sparingly) |
+
+- **Puffy shapes:** big radii (cards 28, buttons fully round/pill, chips 999), generous padding,
+  a soft warm shadow (`#C07A4A`, opacity ~0.18, y-offset 6, blur 14), and on buttons a darker
+  bottom edge (`deepOrange`, 4 px) so they look like squishy candy.
+- **Fonts:** `Fredoka` for titles and buttons (rounded, cute), `Nunito` for body text. Load with
+  `expo-font`; show the cream splash until fonts are ready.
+- **Icons/arrows:** drawn with `react-native-svg` (rounded line caps and joins, thick strokes) or
+  `@expo/vector-icons` (Ionicons, rounded variants).
+- **Motion (built-in `Animated`):** buttons squish on press (scale ~0.95, spring back); cards and
+  sheets spring up when they appear; the direction arrow gently bobs and **springs/rotates** to the
+  new direction on each step; arrival gets a happy bounce + a few confetti dots. Keep animations
+  short (150–400 ms) and use the native driver. If the phone has "Reduce Motion" on
+  (`AccessibilityInfo.isReduceMotionEnabled`), skip the bobbing/confetti.
+- **The floor plan** is a black-and-white CAD drawing: show it inside a rounded `vanilla` card,
+  slightly faded (~0.55 opacity) so the orange route stands out.
+- Text: short and friendly ("Where to?", "Turn left at the restrooms", "You made it!"). Touch
+  targets at least 48 px tall. Must look right on a phone first, then web.
+
 ## Map data rules
 - Coordinates are **pixels on that floor's plan image** (images are ~2420×1520). Never resize or replace a floor image — all its coordinates would be wrong.
 - Edges are two-way. Same-floor edges have no `cost` (length = pixel distance). Between-floor edges (same stair/elevator number on each floor) need a `cost`: stairs 150, elevator 250 per floor (rough guesses).
@@ -54,7 +103,7 @@ Expo SDK 58, React Native 0.88, TypeScript, react-native-svg, react-native-web, 
   - entrances / outdoor spots: from the name — `GDC-2-entrance-main`, `GDC-2-outdoor-patio`
 - `label` = what people see ("Front office"); `aliases` = extra search words.
 - Data checks in `src/data/gdc.test.ts`: unique ids, edges point to real nodes, no duplicate lines, ids fit their category, nodes inside their image, between-floor edges have a cost, and **no islands** (everything reachable).
-- Floor 2 was reviewed by us. **Floors 1 and 3 are agent drafts, not yet reviewed.**
+- Floors 1–3 have been reviewed by us. A few points are still listed in `needsCheck`.
 
 ## The map editor (Edit map)
 Modes: **Add** (kind + name, connects to nearest hallway), **Move** (hallway dots drag their lines; other dots leave their hallway and reconnect where dropped), **Reconnect** (move a dot onto a different line), **Delete** (a dot, or one line), **Edit** (category, name, other names, id). One **Undo** for every action. Edits live in memory; the user saves by copying the text box under the map over `src/data/gdc.ts`.
