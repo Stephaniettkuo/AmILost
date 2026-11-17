@@ -588,23 +588,12 @@ export const gdcGraph: MapGraph = {
     { from: 'GDC-3-hall-K', to: 'GDC-3.4S3' },
     { from: 'GDC-3.710A', to: 'GDC-3.712' },
     { from: 'GDC-3.712', to: 'GDC-3.714' },
+    { from: 'GDC-2-hall-H', to: 'GDC-2.216' },
+    { from: 'GDC-2-hall-J', to: 'GDC-2.216' },
   ],
 };
 
 // Agent guesses to check first (door position or connection uncertain).
 export const needsCheck: string[] = [
-  'GDC-3.314',
-  'GDC-3.206',
-  'GDC-3.408',
-  'GDC-3.424',
-  'GDC-3.504',
-  'GDC-3.516',
-  'GDC-3.208',
-  'GDC-3.436',
-  'GDC-3.710',
-  'GDC-3.718',
-  'GDC-3.830',
-  'GDC-3.814',
-  'GDC-3.818',
-  'GDC-3.828',
+  
 ];
