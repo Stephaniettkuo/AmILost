@@ -13,6 +13,8 @@ Format: what we chose · what else we considered · why (evidence) · what the a
 ## Debugging log
 Format: symptom · how we narrowed it down · fix · how we checked it
 
+- 2026-11-17 · After our floor 2 data fixes, 2 route tests failed (main entrance → 2.316 now went through 2.302; 2.402 → 2.504 no longer passed 2.506) · compared each new route with the floor plan: we had removed the hall-C – hall-D door on purpose, added 2.302's atrium doors, and moved 2.506's door, so the new routes are right · re-derived both expected routes by hand from the data (2.302 way ~148 px vs ~291 px around; 2.402 → 2.504 cost ~367 px) and updated the tests with the reasoning · all 49 tests pass. Shows the route tests catch data changes that alter routes
+
 - 2026-11-10 · New data checks failed on our own floor 2 data: a room id `GDC-2.Atrium` (not a plan number) and the line hall-AB – Atrium listed twice · tests "ids follow our naming format" and the new "no line is listed twice" named them · editor now refuses duplicate lines and wrong-category ids; the Atrium can be fixed in Edit mode (plan number 2.100, name "Atrium") · browser test of that fix + export passes all checks
 - 2026-11-10 · Deleting the duplicated Atrium line cut the Atrium off entirely · Delete removed every copy of that line, not one · now removes one copy (unit test added). Also: on that ~30 px line, tapping its middle deleted the hall-AB dot instead (dots won within 15 px); Delete now needs a tap right on a dot, so short lines are tappable · browser test: one line left, map stays connected
 

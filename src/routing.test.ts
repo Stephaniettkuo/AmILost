@@ -56,21 +56,25 @@ describe('GDC floor 2 (checked against the floor plan)', () => {
     );
   });
 
-  test('main entrance -> 2.316: up the main hallway, not around the NW wing', () => {
-    // Two ways into the NW wing's north hallway from the main hallway (hall-G):
-    //   up past the restrooms to hall-D, then west:  ~119 + 35 + 190 = ~344 px
-    //   west along the south hallway, up, then east: ~35 + 283 + 112 + 93 = ~523 px
+  test('main entrance -> 2.316: through 2.302 into the NW wing, around the west side', () => {
+    // 2026-11-17: the door hall-C – hall-D (NW wing north hallway <-> main hallway) was removed
+    // (we checked the plan), so the north hallway is a dead end from the main-hallway side.
+    // Ways into the wing's south hallway from the atrium (hall-AC):
+    //   through 2.302's atrium doors to 2.302A:      ~24 + ~124 = ~148 px
+    //   around via hall-N, hall-G, hall-F to 2.302A: ~76 + 100 + 27 + 88 = ~291 px
+    // then west along the south hallway, up the west side (hall-E -> hall-B), east to 2.316.
     expect(ids(findRoute(gdcGraph, 'GDC-2-entrance-main', 'GDC-2.316'))).toEqual([
-      '-entrance-main', '-hall-Q', '-hall-M', '-hall-AC', '-hall-N', '-hall-G',
-      '.204', '.202', '-hall-D', '-hall-C', '.326', '.324', '.322', '.320', '.318', '.316',
+      '-entrance-main', '-hall-Q', '-hall-M', '-hall-AC', '.302', '.302A', '.304', '.306', '.308', '.310',
+      '-hall-E', '.312', '.314', '-hall-B', '.3S2', '.316',
     ]);
   });
 
   test('2.402 -> 2.504: along the bottom hallway, then up the 2.500 hallway (cost by hand)', () => {
     const r = findRoute(gdcGraph, 'GDC-2.402', 'GDC-2.504');
-    expect(ids(r)).toEqual(['.402', '-hall-K', '-hall-AD', '-hall-L', '.5S3', '.502', '.506', '.504']);
-    // straight segments: 81 + 30 + 157 + 54 + 23 + 35 + 12 = 392 px
-    expect(r?.cost).toBeCloseTo(392);
+    // 2026-11-17: 2.506 now sits past 2.504 (its door moved), so 2.504 comes right after 2.502.
+    expect(ids(r)).toEqual(['.402', '-hall-K', '-hall-AD', '-hall-L', '.5S3', '.502', '.504']);
+    // segments: 81 + 30 + 157 + 54 + 23 + 22.4 (2.502 -> 2.504 is 4 px across, 22 px up) = ~367.4 px
+    expect(r?.cost).toBeCloseTo(367.4, 0);
   });
 
   test("men's restroom 2.202 -> 2.816: around stairwell 2.1S1, down past 2.6E1, east", () => {
