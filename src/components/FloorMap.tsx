@@ -1,10 +1,12 @@
 // A floor plan in a rounded card: faded plan + the orange route on top.
 // `focus` zooms and centers on a set of points (image pixels); without it the whole
 // plan is shown. `highlight` makes one stretch of the route bright and fades the rest.
-import { Image, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Animated, Easing, Image, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Circle, Polyline } from 'react-native-svg';
 import { floorImages, gdcFloors } from '../data/floors';
 import { Point } from '../editGraph';
+import { useReduceMotion } from '../motion';
 import { MAX_WIDTH, colors, radii, shadow, spacing } from '../theme';
 import { Route } from '../types';
 
@@ -38,12 +40,40 @@ function viewRect(floor: { width: number; height: number }, aspect: number, focu
   return { x: clamp(cx - w / 2, 0, floor.width - w), y: clamp(cy - h / 2, 0, floor.height - h), w, h };
 }
 
+type Rect = { x: number; y: number; w: number; h: number };
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const lerpRect = (a: Rect, b: Rect, t: number): Rect =>
+  ({ x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t), w: lerp(a.w, b.w, t), h: lerp(a.h, b.h, t) });
+const lerpPoint = (a: Point | undefined, b: Point | undefined, t: number): Point | undefined =>
+  a && b ? { x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t) } : b;
+
 export default function FloorMap({ floorId, route, focus, highlight, pin, you, width, height }: Props) {
   const window = useWindowDimensions();
   const floor = gdcFloors.find((f) => f.id === floorId)!;
   const w = Math.max(width ?? Math.min(window.width, MAX_WIDTH) - 2 * spacing.md, 100); // window can report 0 for a moment on web
   const h = height ?? Math.round(w * 0.7);
-  const view = viewRect(floor, w / h, focus);
+  // When the focus changes on the same floor, the view glides over (and the "you are here" dot
+  // slides with it) instead of jumping. On another floor, or with Reduce Motion, it just switches.
+  const reduce = useReduceMotion();
+  const target = { floorId, view: viewRect(floor, w / h, focus), you };
+  const [shown, setShown] = useState(target);
+  const shownRef = useRef(shown);
+  shownRef.current = shown;
+  const key = JSON.stringify([floorId, target.view, you]);
+  useEffect(() => {
+    const from = shownRef.current;
+    if (reduce || from.floorId !== floorId) { setShown(target); return; }
+    if (key === JSON.stringify([floorId, from.view, from.you])) return; // already there
+    const t = new Animated.Value(0);
+    const id = t.addListener(({ value }) => setShown({
+      floorId, view: lerpRect(from.view, target.view, value), you: lerpPoint(from.you, target.you, value),
+    }));
+    Animated.timing(t, { toValue: 1, duration: 400, easing: Easing.inOut(Easing.cubic), useNativeDriver: false }).start();
+    return () => { t.removeListener(id); t.stopAnimation(); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key, reduce]);
+  const cur = shown.floorId === floorId ? shown : target; // never draw the old floor's view on a new floor
+  const view = cur.view;
   const s = w / view.w;             // screen pixels per plan pixel
   const px = (screenPx: number) => screenPx / s; // line widths/pin sizes stay the same on screen when zoomed
 
@@ -98,10 +128,10 @@ export default function FloorMap({ floorId, route, focus, highlight, pin, you, w
               <Circle cx={end.x} cy={end.y} r={px(4)} fill={colors.white} />
             </>
           )}
-          {you && (
+          {cur.you && (
             <>
-              <Circle cx={you.x} cy={you.y} r={px(16)} fill={colors.peach} opacity={0.7} />
-              <Circle cx={you.x} cy={you.y} r={px(8)} fill={colors.cocoa} stroke={colors.white} strokeWidth={px(3)} />
+              <Circle cx={cur.you.x} cy={cur.you.y} r={px(16)} fill={colors.peach} opacity={0.7} />
+              <Circle cx={cur.you.x} cy={cur.you.y} r={px(8)} fill={colors.cocoa} stroke={colors.white} strokeWidth={px(3)} />
             </>
           )}
         </Svg>

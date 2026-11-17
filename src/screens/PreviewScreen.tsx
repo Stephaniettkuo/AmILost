@@ -52,6 +52,16 @@ export default function PreviewScreen({ route, steps, avoidStairs, onAvoidStairs
     );
   }
 
+  if (route.nodes.length === 1) {
+    return (
+      <Screen onBack={onBack} title="You're already here">
+        <Card>
+          <Text style={styles.body}>Your starting point and your destination are the same place. Pick somewhere else to go!</Text>
+        </Card>
+      </Screen>
+    );
+  }
+
   return (
     <Screen onBack={onBack} title="Your route">
       <Text style={styles.summary}>{routeSummary(route, steps)}</Text>

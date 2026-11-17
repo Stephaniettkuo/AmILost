@@ -3,8 +3,8 @@
 import { Fredoka_500Medium, Fredoka_600SemiBold } from '@expo-google-fonts/fredoka';
 import { Nunito_400Regular, Nunito_700Bold } from '@expo-google-fonts/nunito';
 import { useFonts } from 'expo-font';
-import { useMemo, useState } from 'react';
-import { Platform, View } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import { BackHandler, Platform, View } from 'react-native';
 import { gdcGraph } from './src/data/gdc';
 import { directions } from './src/directions';
 import { findRoute } from './src/routing';
@@ -20,6 +20,11 @@ import { colors } from './src/theme';
 
 type Screen = 'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor';
 
+// Where the phone's back button goes from each screen (Home has none: the app closes).
+const BACK: Partial<Record<Screen, Screen>> = {
+  place: 'home', preview: 'place', directions: 'preview', arrived: 'directions', settings: 'home', editor: 'settings',
+};
+
 export default function App() {
   const [loaded] = useFonts({ Fredoka_500Medium, Fredoka_600SemiBold, Nunito_400Regular, Nunito_700Bold });
   const [screen, setScreen] = useState<Screen>('home');
@@ -33,6 +38,16 @@ export default function App() {
     [fromId, toId, avoidStairs],
   );
   const steps = useMemo(() => (route ? directions(route) : []), [route]);
+
+  useEffect(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      const back = BACK[screen];
+      if (!back) return false; // let the phone close the app
+      setScreen(back);
+      return true;
+    });
+    return () => sub.remove();
+  }, [screen]);
 
   // Dev only: open the app at /#style on web to see the building blocks. Remove before we ship.
   if (Platform.OS === 'web' && typeof window !== 'undefined' && window.location.hash === '#style') return <StyleCheck />;

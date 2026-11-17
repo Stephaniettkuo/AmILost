@@ -26,6 +26,8 @@ export default function PlaceSearch({ graph, value, onChangeText, onChoose, plac
         autoCapitalize="none"
         autoCorrect={false}
         autoFocus={autoFocus}
+        returnKeyType="go"
+        onSubmitEditing={() => matches[0] && onChoose(matches[0].id)}
         style={[styles.input, shadow]}
       />
       {matches.map((n) => (
