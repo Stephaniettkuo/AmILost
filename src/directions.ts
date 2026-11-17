@@ -134,3 +134,26 @@ export function directions(route: Route): Step[] {
   });
   return steps;
 }
+
+export const WALK_FT_PER_MIN = 250; // about 3 mph
+
+// How far a step walks, in plan pixels (0 for a step between floors).
+export function stepDistancePx(route: Route, step: Step): number {
+  let total = 0;
+  for (let i = step.from; i < step.to; i++) {
+    const a = route.nodes[i], b = route.nodes[i + 1];
+    if (a.floor === b.floor) total += Math.hypot(b.x - a.x, b.y - a.y);
+  }
+  return total;
+}
+
+// "6 steps · about 3 min · floors 2 → 3" (floors only when the route changes floor)
+export function routeSummary(route: Route, steps: Step[]): string {
+  const minutes = Math.max(1, Math.round(route.cost / PX_PER_FOOT / WALK_FT_PER_MIN));
+  const floors = route.nodes.map((n) => n.floor).filter((f, i, all) => f !== all[i - 1]).map((f) => f.replace('GDC-', ''));
+  return [
+    `${steps.length} step${steps.length === 1 ? '' : 's'}`,
+    `about ${minutes} min`,
+    ...(floors.length > 1 ? [`floors ${floors.join(' → ')}`] : []),
+  ].join(' · ');
+}

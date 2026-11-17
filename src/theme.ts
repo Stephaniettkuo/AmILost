@@ -39,3 +39,6 @@ export const minTouch = 48; // smallest tappable height
 
 // How tall the puffy button's darker "bottom edge" is.
 export const buttonEdge = 4;
+
+// Screens are a phone-width column, centered on wider windows (web).
+export const MAX_WIDTH = 480;

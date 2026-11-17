@@ -17,3 +17,14 @@ export function placeName(n: MapNode): string {
 export function searchText(n: MapNode): string {
   return [shortId(n.id), n.label ?? '', ...(n.aliases ?? []), n.kind].join(' ').toLowerCase();
 }
+
+// "GDC-2" -> "Floor 2"
+export function floorLabel(floorId: string): string {
+  return floorId.replace(/^GDC-/, 'Floor ');
+}
+
+// Places matching what was typed (hallway points are never offered). At most `limit`.
+export function searchPlaces(nodes: MapNode[], query: string, limit = 6): MapNode[] {
+  const q = query.trim().toLowerCase();
+  return q ? nodes.filter((n) => n.kind !== 'hall' && searchText(n).includes(q)).slice(0, limit) : [];
+}

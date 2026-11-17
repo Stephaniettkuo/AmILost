@@ -47,8 +47,7 @@ Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-g
 | `src/editGraph.ts` | Pure editing functions used by the editor (move, detach, attach, snap, add, remove, rename). |
 | `src/data/exportGraph.ts` | Writes the edited graph back out as the full text of `gdc.ts`. |
 | `src/MapDataOverlay.tsx` | Draws nodes/edges over the floor plan in the editor. |
-| `src/RouteOverlay.tsx` | Draws a route (line, start/end pins, floor-change labels). |
-| `src/PlacePicker.tsx`, `src/names.ts` | Search box and how places are named/searched. |
+| `src/names.ts` | How places are named, and `searchPlaces` (used by the search box). |
 | `NOTES.md`, `PLAN.md` | Decision/debugging log for the slides; checklist and timeline. |
 
 ## Screens

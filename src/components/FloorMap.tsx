@@ -5,7 +5,7 @@ import { Image, StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Circle, Polyline } from 'react-native-svg';
 import { floorImages, gdcFloors } from '../data/floors';
 import { Point } from '../editGraph';
-import { colors, radii, shadow, spacing } from '../theme';
+import { MAX_WIDTH, colors, radii, shadow, spacing } from '../theme';
 import { Route } from '../types';
 
 type Props = {
@@ -13,6 +13,8 @@ type Props = {
   route?: Route | null;
   focus?: Point[];                              // zoom to these points
   highlight?: { from: number; to: number };     // route indexes (inclusive) to draw bright
+  pin?: Point;                                  // a destination pin (when there is no route)
+  you?: Point;                                  // the "you are here" dot
   width?: number;
   height?: number;
 };
@@ -36,10 +38,10 @@ function viewRect(floor: { width: number; height: number }, aspect: number, focu
   return { x: clamp(cx - w / 2, 0, floor.width - w), y: clamp(cy - h / 2, 0, floor.height - h), w, h };
 }
 
-export default function FloorMap({ floorId, route, focus, highlight, width, height }: Props) {
+export default function FloorMap({ floorId, route, focus, highlight, pin, you, width, height }: Props) {
   const window = useWindowDimensions();
   const floor = gdcFloors.find((f) => f.id === floorId)!;
-  const w = Math.max(width ?? window.width - 2 * spacing.md, 100); // window can report 0 for a moment on web
+  const w = Math.max(width ?? Math.min(window.width, MAX_WIDTH) - 2 * spacing.md, 100); // window can report 0 for a moment on web
   const h = height ?? Math.round(w * 0.7);
   const view = viewRect(floor, w / h, focus);
   const s = w / view.w;             // screen pixels per plan pixel
@@ -81,6 +83,12 @@ export default function FloorMap({ floorId, route, focus, highlight, width, heig
           {lifts.map((n) => (
             <Circle key={n.id + n.floor} cx={n.x} cy={n.y} r={px(8)} fill={colors.white} stroke={colors.orange} strokeWidth={px(4)} />
           ))}
+          {pin && (
+            <>
+              <Circle cx={pin.x} cy={pin.y} r={px(12)} fill={colors.deepOrange} stroke={colors.white} strokeWidth={px(4)} />
+              <Circle cx={pin.x} cy={pin.y} r={px(4)} fill={colors.white} />
+            </>
+          )}
           {start?.floor === floorId && (
             <Circle cx={start.x} cy={start.y} r={px(10)} fill={colors.mint} stroke={colors.white} strokeWidth={px(4)} />
           )}
@@ -88,6 +96,12 @@ export default function FloorMap({ floorId, route, focus, highlight, width, heig
             <>
               <Circle cx={end.x} cy={end.y} r={px(12)} fill={colors.deepOrange} stroke={colors.white} strokeWidth={px(4)} />
               <Circle cx={end.x} cy={end.y} r={px(4)} fill={colors.white} />
+            </>
+          )}
+          {you && (
+            <>
+              <Circle cx={you.x} cy={you.y} r={px(16)} fill={colors.peach} opacity={0.7} />
+              <Circle cx={you.x} cy={you.y} r={px(8)} fill={colors.cocoa} stroke={colors.white} strokeWidth={px(3)} />
             </>
           )}
         </Svg>

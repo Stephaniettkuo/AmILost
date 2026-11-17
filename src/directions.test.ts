@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { PX_PER_FOOT, directions, distanceText } from './directions';
+import { PX_PER_FOOT, Step, directions, distanceText, routeSummary, stepDistancePx } from './directions';
 import { gdcGraph } from './data/gdc';
 import { findRoute } from './routing';
 import { MapNode, NodeKind, Route } from './types';
@@ -153,6 +153,35 @@ describe('distanceText', () => {
     expect(distanceText(180)).toBe('about 60 ft'); // 180 / 3 = 60
     expect(distanceText(100)).toBe('about 35 ft'); // 33.3 -> 35
     expect(distanceText(3)).toBe('about 5 ft');    // 1 ft -> 5
+  });
+});
+
+describe('stepDistancePx and routeSummary', () => {
+  test('step distance adds up the straight segments inside the step', () => {
+    // (0,0) -> (300,0) -> (300,400) -> (300,500): a step covering points 0..2 is 300 + 400 = 700 px.
+    const r = route(start, pt('B', F1, 300, 0), pt('C', F1, 300, 400), pt('D', F1, 300, 500));
+    const walk: Step = { arrow: 'straight', text: '', floor: F1, from: 0, to: 2 };
+    expect(stepDistancePx(r, walk)).toBe(700);
+    // A step between floors has no walking distance, even if the two points were far apart on the plans
+    // (here 300 px across and 400 px down would be 500 px if the code wrongly counted it).
+    const lift = route(pt('L1', F1, 0, 0, 'stairs'), pt('L2', F2, 300, 400, 'stairs'));
+    expect(stepDistancePx(lift, { arrow: 'stairsUp', text: '', floor: F1, from: 0, to: 1 })).toBe(0);
+  });
+
+  test('summary: steps, minutes (250 ft per minute), floors when they change', () => {
+    // cost 1500 px = 500 ft (3 px per ft) = 2 minutes. A straight 4-point route is 2 steps (head, arrive).
+    const flat = { nodes: [start, pt('B', F1, 100, 0), pt('C', F1, 200, 0), pt('D', F1, 280, 0, 'room', 'Library')], cost: 1500 };
+    expect(routeSummary(flat, directions(flat))).toBe('2 steps · about 2 min');
+    // With stairs: head, take stairs, arrive = 3 steps, and the floors are listed in order visited.
+    const up = {
+      nodes: [pt('A', F1, 0, 0, 'room', 'Start'), pt('L1', F1, 100, 0, 'stairs', 'Stairs 1X'),
+        pt('L2', F2, 100, 0, 'stairs', 'Stairs 2X'), pt('R', F2, 200, 0, 'room', 'Lab')],
+      cost: 1500,
+    };
+    expect(routeSummary(up, directions(up))).toBe('3 steps · about 2 min · floors 1 → 2');
+    // Very short walks still say 1 min (never 0), and one step is "1 step".
+    const tiny = { nodes: [start, pt('B', F1, 50, 0, 'room', 'Cafe')], cost: 100 };
+    expect(routeSummary(tiny, directions(tiny))).toBe('1 step · about 1 min');
   });
 });
 
