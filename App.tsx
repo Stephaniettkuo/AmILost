@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import {
-  GestureResponderEvent, Image, Pressable, ScrollView,
+  GestureResponderEvent, Platform, Image, Pressable, ScrollView,
   StyleSheet, Text, TextInput, View, useWindowDimensions,
 } from 'react-native';
 import Svg from 'react-native-svg';
@@ -9,6 +9,7 @@ import { gdcGraph, needsCheck } from './src/data/gdc';
 import { graphToFile } from './src/data/exportGraph';
 import MapDataOverlay from './src/MapDataOverlay';
 import PlacePicker from './src/PlacePicker';
+import StyleCheck from './src/StyleCheck';
 import RouteOverlay from './src/RouteOverlay';
 import { findRoute } from './src/routing';
 import { shortId } from './src/names';
@@ -29,7 +30,13 @@ const kinds: NodeKind[] = ['room', 'hall', 'stairs', 'elevator', 'entrance', 'ou
 // The Edit panel's fields.
 type Form = { id: string; kind: NodeKind; label: string; aliases: string };
 
+// Dev only: open the app at /#style on web to see the new building blocks.
 export default function App() {
+  const styleCheck = Platform.OS === 'web' && typeof window !== 'undefined' && window.location.hash === '#style';
+  return styleCheck ? <StyleCheck /> : <MainApp />;
+}
+
+function MainApp() {
   // navigate: pick From/To and see the route · edit: the map editor
   const [screen, setScreen] = useState<'navigate' | 'edit'>('navigate');
   const [fromId, setFromId] = useState<string | null>('GDC-2-entrance-main');
