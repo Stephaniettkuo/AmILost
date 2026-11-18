@@ -23,6 +23,40 @@ test('detach joins the two old neighbors so the hallway stays connected', () => 
   expect(pairs(detach(g, 'R'))).toEqual(['A-B', 'B-C']);
 });
 
+// An elevator on a top floor:  A ---- E   (floor F)
+//                                      |  cost 250, between floors
+//                                      D   (floor G, the floor below)
+// This is the shape that broke floor 4 (4.6E1: one hallway line + one link down).
+const lift: MapGraph = {
+  floors: [{ id: 'F', name: 'F', width: 100, height: 100 }, { id: 'G', name: 'G', width: 100, height: 100 }],
+  nodes: [
+    { id: 'A', kind: 'hall', floor: 'F', x: 0, y: 0 },
+    { id: 'B', kind: 'hall', floor: 'F', x: 100, y: 0 },
+    { id: 'E', kind: 'elevator', floor: 'F', x: 50, y: 0 },
+    { id: 'D', kind: 'elevator', floor: 'G', x: 50, y: 0 },
+  ],
+  edges: [{ from: 'A', to: 'E' }, { from: 'E', to: 'D', cost: 250 }],
+};
+
+test('detach keeps the link to another floor and never joins across floors', () => {
+  // By hand: E's hallway line A-E goes; the floor link E-D (cost 250) stays, so moving the
+  // elevator can't lose it. A and D must NOT be joined (that made the bad 4.600 - 3.6E1 line).
+  const out = detach(lift, 'E');
+  expect(pairs(out)).toEqual(['D-E']);
+  expect(out.edges[0].cost).toBe(250);
+});
+
+test('detach still joins the two hallway neighbors of an elevator with a floor link', () => {
+  // By hand: A - E - B on floor F plus E-D down. Leaving the hallway joins A-B; E-D stays.
+  const m: MapGraph = { ...lift, edges: [...lift.edges, { from: 'E', to: 'B' }] };
+  expect(pairs(detach(m, 'E'))).toEqual(['A-B', 'D-E']);
+});
+
+test('removeNode on an elevator drops its floor link instead of joining across floors', () => {
+  // By hand: E is gone, so both of its lines go, and nothing new is added.
+  expect(pairs(removeNode(lift, 'E'))).toEqual([]);
+});
+
 test('attachToEdge moves the room onto the other hallway and splits it', () => {
   const out = attachToEdge(g, 'R', { from: 'B', to: 'C' }, { x: 90, y: 40 });
   expect(pairs(out)).toEqual(['A-B', 'B-R', 'C-R']);
