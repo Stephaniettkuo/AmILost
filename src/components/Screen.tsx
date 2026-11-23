@@ -3,24 +3,26 @@
 import { Ionicons } from '@expo/vector-icons';
 import { ReactNode } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { wc } from '../watercolor';
 import { MAX_WIDTH, colors, fonts, minTouch, radii, shadow, spacing } from '../theme';
 
-type Props = { children: ReactNode; title?: string; onBack?: () => void; right?: ReactNode };
+type Props = { children: ReactNode; title?: string; onBack?: () => void; left?: ReactNode; right?: ReactNode };
 
-export default function Screen({ children, title, onBack, right }: Props) {
+export default function Screen({ children, title, onBack, left, right }: Props) {
   return (
     <View style={styles.page}>
-      {/* The paper texture (made by scripts/make_paper.py) stays put while the content scrolls. */}
-      <Image source={require('../../assets/paper.jpg')} style={StyleSheet.absoluteFill} resizeMode="cover" />
+      {/* The watercolor paper (from the asset kit) stays put while the content scrolls. */}
+      <Image source={wc.paper} style={StyleSheet.absoluteFill} resizeMode="cover" />
       <ScrollView style={styles.scroll} contentContainerStyle={styles.content}>
         <View style={styles.column}>
-          {(onBack || title || right) && (
+          {(onBack || title || left || right) && (
             <View style={styles.header}>
               {onBack && (
                 <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={onBack} style={[styles.round, shadow]}>
                   <Ionicons name="chevron-back" size={24} color={colors.ink} />
                 </Pressable>
               )}
+              {!onBack && left}
               <Text style={styles.title} numberOfLines={1}>{title ?? ''}</Text>
               {right}
             </View>
