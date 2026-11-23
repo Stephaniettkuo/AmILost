@@ -2,8 +2,8 @@
 // (Vibe: an old, tea-stained map and postal ephemera. See "Design system" in CLAUDE.md.)
 
 export const colors = {
-  paper: '#E8D8B8',     // app background (tea-stained paper)
-  parchment: '#F2E6CC', // cards, sheets
+  paper: '#F3E7CC',     // app background (under the paper picture)
+  parchment: '#F8F0DC', // cards, sheets, inputs
   wash: '#DCC59A',      // soft fills: selected chips, highlights
   brass: '#B8893A',     // secondary accents, route casing
   rust: '#9A5B2E',      // primary buttons, route line, arrows
@@ -37,6 +37,7 @@ export const fonts = {
   body: 'CormorantGaramond_600SemiBold',
   bodyBold: 'CormorantGaramond_700Bold',
   label: 'SpecialElite_400Regular',
+  script: 'PinyonScript_400Regular', // big headings only (no numbers)
 };
 
 export const minTouch = 48; // smallest tappable height

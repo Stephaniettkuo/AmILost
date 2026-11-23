@@ -6,6 +6,7 @@ import Chip from '../components/Chip';
 import FloorMap from '../components/FloorMap';
 import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';
+import WcIcon from '../components/WcIcon';
 import { Step, routeSummary } from '../directions';
 import { floorLabel } from '../names';
 import { colors, fonts, spacing } from '../theme';
@@ -43,9 +44,12 @@ export default function PreviewScreen({ route, steps, avoidStairs, onAvoidStairs
     return (
       <Screen onBack={onBack} title="No way there yet">
         <Card>
-          <Text style={styles.body}>
-            We can't find a path between these two places{avoidStairs ? ' without stairs' : ''}.
-          </Text>
+          <View style={styles.row}>
+            <WcIcon name="compass" size={56} />
+            <Text style={[styles.body, styles.flex]}>
+              We can't find a path between these two places{avoidStairs ? ' without stairs' : ''}.
+            </Text>
+          </View>
         </Card>
         {toggle}
       </Screen>
@@ -64,7 +68,10 @@ export default function PreviewScreen({ route, steps, avoidStairs, onAvoidStairs
 
   return (
     <Screen onBack={onBack} title="Your route">
-      <Text style={styles.summary}>{routeSummary(route, steps)}</Text>
+      <View style={styles.row}>
+        <WcIcon name="hourglass" size={44} />
+        <Text style={[styles.summary, styles.flex]}>{routeSummary(route, steps)}</Text>
+      </View>
       {floors.length > 1 && (
         <View style={styles.row}>
           {floors.map((f) => <Chip key={f} label={floorLabel(f)} selected={f === shown} onPress={() => setFloor(f)} />)}
@@ -79,7 +86,8 @@ export default function PreviewScreen({ route, steps, avoidStairs, onAvoidStairs
 
 const styles = StyleSheet.create({
   summary: { fontFamily: fonts.bodyBold, fontSize: 22, color: colors.ink },
-  row: { flexDirection: 'row', gap: spacing.sm },
+  row: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  flex: { flex: 1 },
   body: { fontFamily: fonts.body, fontSize: 20, color: colors.ink },
   switchRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.md },
   switchLabel: { flex: 1, fontFamily: fonts.bodyBold, fontSize: 20, color: colors.ink },

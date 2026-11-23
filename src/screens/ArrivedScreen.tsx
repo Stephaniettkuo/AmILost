@@ -36,6 +36,6 @@ export default function ArrivedScreen({ place, onDone, onDirectionsBack }: Props
 
 const styles = StyleSheet.create({
   hero: { alignItems: 'center', justifyContent: 'center', gap: spacing.md, paddingVertical: spacing.lg },
-  big: { fontFamily: fonts.title, fontSize: 44, color: colors.ink, textAlign: 'center' },
+  big: { fontFamily: fonts.script, fontSize: 60, lineHeight: 76, color: colors.ink, textAlign: 'center' },
   place: { fontFamily: fonts.label, fontSize: 18, letterSpacing: 1, color: colors.rustDark, textAlign: 'center' },
 });

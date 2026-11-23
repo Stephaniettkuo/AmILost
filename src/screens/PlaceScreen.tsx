@@ -5,6 +5,7 @@ import Chip from '../components/Chip';
 import FloorMap from '../components/FloorMap';
 import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';
+import WcIcon from '../components/WcIcon';
 import { floorLabel, placeName } from '../names';
 import { colors, fonts, spacing } from '../theme';
 import { MapNode } from '../types';
@@ -15,7 +16,10 @@ export default function PlaceScreen({ place, onBack, onDirections }: Props) {
   return (
     <Screen onBack={onBack}>
       <Card>
-        <Text style={styles.name}>{placeName(place)}</Text>
+        <View style={styles.titleRow}>
+          <WcIcon name="room" size={56} />
+          <Text style={[styles.name, styles.flex]}>{placeName(place)}</Text>
+        </View>
         <View style={styles.row}>
           <Chip label={floorLabel(place.floor)} />
           <Chip label={place.kind} />
@@ -31,6 +35,8 @@ export default function PlaceScreen({ place, onBack, onDirections }: Props) {
 }
 
 const styles = StyleSheet.create({
+  titleRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  flex: { flex: 1 },
   name: { fontFamily: fonts.title, fontSize: 38, color: colors.ink },
   row: { flexDirection: 'row', gap: spacing.sm, marginTop: spacing.sm },
   also: { fontFamily: fonts.body, fontSize: 19, color: colors.fadedInk, marginTop: spacing.sm },
