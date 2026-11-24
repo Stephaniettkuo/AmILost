@@ -1,9 +1,8 @@
-// One event in a list: title, time, the group (if any), and the room (or "Room not listed").
+// One event in a list: title, time, the org, a "Members only" badge, and the room (or the place text).
 import { Pressable, StyleSheet, View } from 'react-native';
 import Chip from './Chip';
 import Text from './Text';
 import { Item, formatTime } from '../calendar/events';
-import { groups } from '../data/groups';
 import { floorLabel, placeTitle } from '../names';
 import { colors, fonts, radii, spacing } from '../theme';
 import { MapGraph } from '../types';
@@ -18,15 +17,14 @@ export function roomText(item: Item, graph: MapGraph): string {
 type Props = { item: Item; graph: MapGraph; onPress: () => void };
 
 export default function EventCard({ item, graph, onPress }: Props) {
-  const group = groups.find((g) => g.id === item.groupId);
   const listed = !!item.room;
   return (
     <Pressable accessibilityRole="button" accessibilityLabel={item.title} onPress={onPress} style={styles.card}>
       <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
       <Text style={styles.time}>{formatTime(item)}</Text>
       <View style={styles.row}>
-        {group && <Chip label={group.name} small />}
-        {item.local && <Chip label="Posted by you" small />}
+        {!!item.orgName && <Chip label={item.orgName} small />}
+        {item.visibility === 'members' && <Chip label="Members only" small />}
         <Text style={[styles.room, !listed && styles.faded]} numberOfLines={1}>{roomText(item, graph)}</Text>
       </View>
     </Pressable>

@@ -1,40 +1,41 @@
-// Events: search, a Day / Week / Month switch with a date strip, a "Following" filter, and the
-// events grouped by day.
+// Find events: search (event or org name), a Day / Week / Month switch with a date strip, a "My orgs"
+// filter, and the events grouped by day.
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import Chip from '../components/Chip';
 import EventCard from '../components/EventCard';
 import Screen from '../components/Screen';
 import StampButton from '../components/StampButton';
 import Text from '../components/Text';
-import { Item, Range, forGroups, groupByDay, inRange, rangeLabel, search, shiftDate } from '../calendar/events';
+import { Item, Range, forOrgs, groupByDay, inRange, rangeLabel, search, shiftDate } from '../calendar/events';
 import { austinNow } from '../calendar/time';
 import { colors, fonts, minTouch, spacing } from '../theme';
 import { MapGraph } from '../types';
 
 // What the screen is showing. App keeps it, so coming back from an event keeps your place.
-export type EventsView = { query: string; range: Range; date: Date; onlyFollowing: boolean };
+export type EventsView = { query: string; range: Range; date: Date; onlyMine: boolean };
 
 type Props = {
   items: Item[];
   graph: MapGraph;
-  followed: string[];
+  myOrgIds: string[];               // orgs I belong to
+  signedIn: boolean;
   view: EventsView;
   onView: (view: EventsView) => void;
   sourceText: string;               // "Live", "Saved Nov 24" or "Offline snapshot"
   refreshing: boolean;
   onRefresh: () => void;
   onOpen: (item: Item) => void;
-  onGroups: () => void;
+  onOrgs: () => void;
   onBack: () => void;
 };
 
 const RANGES: { range: Range; label: string }[] = [{ range: 'day', label: 'Day' }, { range: 'week', label: 'Week' }, { range: 'month', label: 'Month' }];
 
-export default function EventsScreen({ items, graph, followed, view, onView, sourceText, refreshing, onRefresh, onOpen, onGroups, onBack }: Props) {
+export default function EventsScreen({ items, graph, myOrgIds, signedIn, view, onView, sourceText, refreshing, onRefresh, onOpen, onOrgs, onBack }: Props) {
   const now = austinNow();
   const typed = view.query.trim() !== '';
 
-  const pool = view.onlyFollowing ? forGroups(items, followed) : items;
+  const pool = view.onlyMine ? forOrgs(items, myOrgIds) : items;
   // Searching looks at everything still to come (so "lecture" finds next week's lecture even in Week view).
   const shown = typed
     ? search(pool.filter((i) => i.end.getTime() > now.getTime()), view.query)
@@ -43,29 +44,30 @@ export default function EventsScreen({ items, graph, followed, view, onView, sou
 
   const word = view.range;
   const empty = typed ? 'No matches'
-    : view.onlyFollowing && followed.length === 0 ? 'Follow a group to see its events here'
-    : view.onlyFollowing ? `None from your groups this ${word}`
+    : view.onlyMine && !signedIn ? 'Sign in and join an organization to see its events here'
+    : view.onlyMine && myOrgIds.length === 0 ? 'Join an organization to see its events here'
+    : view.onlyMine ? `None from your organizations this ${word}`
     : `No events this ${word}`;
 
   return (
-    <Screen title="Events" onBack={onBack} refresh={{ refreshing, onRefresh }}>
+    <Screen title="Find events" onBack={onBack} refresh={{ refreshing, onRefresh }}>
       <TextInput
         value={view.query}
         onChangeText={(query) => onView({ ...view, query })}
-        placeholder="Search events or groups"
+        placeholder="Search events or organizations"
         placeholderTextColor={colors.fadedInk}
-        accessibilityLabel="Search events or groups"
+        accessibilityLabel="Search events or organizations"
         autoCapitalize="none"
         autoCorrect={false}
         returnKeyType="search"
         style={styles.input}
       />
 
-      <View style={styles.row}>
+      <View style={styles.chipRow}>
         {RANGES.map((r) => (
           <Chip key={r.range} label={r.label} selected={r.range === view.range} onPress={() => onView({ ...view, range: r.range })} style={styles.grow} />
         ))}
-        <Chip label="Following" selected={view.onlyFollowing} onPress={() => onView({ ...view, onlyFollowing: !view.onlyFollowing })} />
+        <Chip label="My orgs" selected={view.onlyMine} onPress={() => onView({ ...view, onlyMine: !view.onlyMine })} />
       </View>
 
       {typed ? (
@@ -92,8 +94,8 @@ export default function EventsScreen({ items, graph, followed, view, onView, sou
       ))}
       {days.length === 0 && <Text style={styles.empty}>{empty}</Text>}
 
-      <Text style={styles.source}>Calendar: {sourceText}</Text>
-      <StampButton label="Groups" variant="secondary" onPress={onGroups} />
+      <Text style={styles.source}>UT CS calendar: {sourceText}</Text>
+      <StampButton label="Organizations" variant="secondary" onPress={onOrgs} />
     </Screen>
   );
 }
@@ -104,7 +106,8 @@ const styles = StyleSheet.create({
     fontFamily: fonts.body, fontSize: 17, color: colors.ink, backgroundColor: colors.paper,
   },
   row: { flexDirection: 'row', gap: spacing.sm, alignItems: 'center' },
-  grow: { flex: 1, alignItems: 'center', paddingHorizontal: 6 },
+  chipRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, alignItems: 'center' }, // wraps on 320 px phones
+  grow: { flexGrow: 1, minWidth: 64, alignItems: 'center', paddingHorizontal: 6 },
   stripRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   stripLabel: { flex: 1, minHeight: minTouch, justifyContent: 'center' },
   strip: { fontFamily: fonts.title, fontSize: 24, color: colors.ink, textAlign: 'center' },

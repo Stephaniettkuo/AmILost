@@ -66,6 +66,9 @@ export function groupFor(title: string, description: string): Group | null {
   );
 }
 
+// What a UTCS-feed event shows as its "organization" when no group matches.
+export const FEED_ORG = 'UT CS calendar';
+
 // ---------- Building the list ----------
 
 const byStart = (a: Item, b: Item) => a.start.getTime() - b.start.getTime() || a.title.localeCompare(b.title);
@@ -85,6 +88,7 @@ export function makeItems(events: CalEvent[], from: Date, to: Date, graph: MapGr
         room: roomFor(event.location, graph, event.description),
         groupId: groupFor(event.title, event.description)?.id ?? null,
         url: event.url,
+        orgName: groupFor(event.title, event.description)?.name ?? FEED_ORG,
       });
     }
   }
@@ -98,14 +102,14 @@ export function mergeItems(...lists: Item[][]): Item[] {
 
 // ---------- Searching and filtering ----------
 
-// Items whose title, description or group name contains the query (capitals don't matter).
+// Items whose title, description, organization or place contains the query (capitals don't matter).
 // An empty query matches everything.
 export function search(list: Item[], query: string): Item[] {
   const q = query.trim().toLowerCase();
   if (!q) return list;
   return list.filter((item) => {
     const group = groups.find((g) => g.id === item.groupId);
-    return [item.title, item.description, group?.name ?? ''].some((text) => text.toLowerCase().includes(q));
+    return [item.title, item.description, item.orgName ?? '', group?.name ?? '', item.location].some((text) => text.toLowerCase().includes(q));
   });
 }
 
@@ -174,18 +178,11 @@ export function formatWhen(item: Item): string {
   return `${WEEKDAYS[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()} · ${formatTime(item)}`;
 }
 
-// ---------- Following groups, and the date strip ----------
+// ---------- My orgs, and the date strip ----------
 
-// Items that belong to one of these groups.
-export function forGroups(list: Item[], groupIds: string[]): Item[] {
-  return list.filter((i) => i.groupId !== null && groupIds.includes(i.groupId));
-}
-
-// How many items each group has: { larg: 5, amrl: 1 }.
-export function countByGroup(list: Item[]): Record<string, number> {
-  const counts: Record<string, number> = {};
-  for (const i of list) if (i.groupId) counts[i.groupId] = (counts[i.groupId] ?? 0) + 1;
-  return counts;
+// Items from these orgs (the "My orgs" filter). Feed events have no org id, so they are never "mine".
+export function forOrgs(list: Item[], orgIds: string[]): Item[] {
+  return list.filter((i) => i.orgId !== undefined && orgIds.includes(i.orgId));
 }
 
 // The date after pressing the arrows: a day, a week, or a month earlier (-1) or later (+1).

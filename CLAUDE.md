@@ -63,9 +63,10 @@ Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-g
 ## Screens
 App flow: **Home → Place → Route preview → Directions → Arrived**, plus **Settings** and the
 **Map editor** (team-only, opened from Settings). Screen = a piece of state in `App.tsx`
-(`'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor' | 'events' | 'event' | 'groups' | 'group'`);
-**Events** (opened from the card on Home) lists the UTCS calendar; an **Event** page has Directions (into Route preview) when we know the room;
-**Groups** / a **Group** page follow groups (saved on the phone). `App.tsx` remembers where Back goes from `event`, `group` and `preview`. Each screen is a
+(`'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor' | 'events' | 'event' | 'auth' | 'account' | 'orgs' | 'org' | 'orgAdmin' | 'postEvent' | 'import'`);
+**Find events** (the Home card) lists org events (Firebase) plus the UTCS feed, with search, Day/Week/Month and a **My orgs** filter; an **Event** page
+has Directions (into Route preview) when the room is on the map, else the place text and "Not on our map yet". **Organizations** → **Org** page
+(join, invite code, "I'm an officer") → **Admin tools** → **Post event** / **Import calendar**. `App.tsx` remembers where Back goes from `event`, `org`, `orgs` and `preview`. Each screen is a
 component in `src/screens/`. Shared UI pieces live in `src/components/`. Full spec:
 `docs/tasks/arrows-and-redesign.md`.
 

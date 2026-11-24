@@ -3,7 +3,7 @@ import { gdcGraph } from '../data/gdc';
 import { groups } from '../data/groups';
 import { MapGraph } from '../types';
 import {
-  Item, countByGroup, dayLabel, forGroups, formatTime, formatWhen, groupByDay, groupFor, inRange, makeItems, mergeItems,
+  FEED_ORG, Item, dayLabel, forOrgs, formatTime, formatWhen, groupByDay, groupFor, inRange, makeItems, mergeItems,
   rangeBounds, rangeLabel, roomFor, search, shiftDate,
 } from './events';
 import { parseIcs } from './ics';
@@ -291,18 +291,36 @@ describe('formatTime and formatWhen', () => {
   });
 });
 
-describe('forGroups and countByGroup', () => {
-  const list = makeItems(feed, wall(2026, 11, 24), wall(2027, 1, 1), gdcGraph); // Nov 24 - Dec 31
-  test('counts per group in that window (worked out by hand)', () => {
-    // LARG Dec 2, 9, 16, 23, 30 (5) · AMRL Dec 4 (1) · NLL Nov 27 (1) · RobIn Fridays Nov 27, Dec 4, 11, 18 (4)
-    // AMAZE Nov 26, 30, Dec 3, 7, 10 (5) · Texas Convergent Mondays Nov 30, Dec 7, 14, 21, 28 (5)
-    // DiRP: Phil.AI Dec 3 + LLM Reasoning Dec 2, 9 (3) · FoCS Dec 8 (1)
-    expect(countByGroup(list)).toEqual({ larg: 5, amrl: 1, nll: 1, robin: 4, amaze: 5, convergent: 5, dirp: 3, focs: 1 });
+describe('forOrgs (the "My orgs" filter)', () => {
+  // Three made-up items: two from org "acm", one from "wics"; plus one feed item (no org id).
+  const mk = (title: string, orgId?: string): Item => ({ ...item(wall(2026, 12, 2, 10), wall(2026, 12, 2, 11)), title, orgId });
+  const list = [mk('a1', 'acm'), mk('a2', 'acm'), mk('w1', 'wics'), mk('feed')];
+  test('keeps only items of my orgs', () => {
+    expect(titles(forOrgs(list, ['acm']))).toEqual(['a1', 'a2']);
+    expect(titles(forOrgs(list, ['acm', 'wics']))).toEqual(['a1', 'a2', 'w1']);
   });
-  test('forGroups keeps only items of the followed groups (and none for no groups)', () => {
-    expect(forGroups(list, ['amrl', 'focs'])).toHaveLength(2);
-    expect(titles(forGroups(list, ['focs']))).toEqual(['FoCS: Finals Fuel Stop with Dante']);
-    expect(forGroups(list, [])).toEqual([]);
+  test('no orgs -> nothing; feed items are never "mine"', () => {
+    expect(forOrgs(list, [])).toEqual([]);
+    expect(titles(forOrgs(list, ['acm', 'wics']))).not.toContain('feed');
+  });
+});
+
+describe('search also looks at the organization and the place', () => {
+  const base = item(wall(2026, 12, 2, 10), wall(2026, 12, 2, 11));
+  const list: Item[] = [
+    { ...base, title: 'Pizza', orgName: 'WiCS', location: '' },
+    { ...base, title: 'Talk', orgName: 'ACM', location: 'Welch Patio' },
+  ];
+  test('by org name (any capitals)', () => expect(titles(search(list, 'wics'))).toEqual(['Pizza']));
+  test('by the place text', () => expect(titles(search(list, 'patio'))).toEqual(['Talk']));
+});
+
+describe('feed events get an organization name', () => {
+  test('a group name when one matches, "UT CS calendar" otherwise', () => {
+    const list = makeItems(feed, wall(2026, 11, 24), wall(2027, 1, 1), gdcGraph);
+    const by = (title: string) => list.find((i) => i.title === title)!;
+    expect(by('AMRL Lab Meeting').orgName).toBe('AMRL');
+    expect(by('FarmBrain Sync').orgName).toBe(FEED_ORG);
   });
 });
 
