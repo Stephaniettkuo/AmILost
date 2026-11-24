@@ -21,6 +21,12 @@ What lives where (details in `docs/tasks/events.md` and the comments in `firesto
 - `secrets/` is gitignored. `secrets/firebase-admin.json` (the admin key) is used **only** by the seed script.
   Never commit it, paste it anywhere, or put it in the app.
 
+### One-time setup of the live project (Firebase console)
+
+1. **Build → Firestore Database → Create database** (production mode). Until this is done, every org screen fails: the Cloud Firestore API is off for the project.
+2. **Build → Authentication → Sign-in method → Email/Password** on.
+3. Publish the rules and fill in the data (commands below): `npx firebase deploy --only firestore:rules --project amilost`, then `npm run seed:live`.
+
 ### Run the app against the live project
 
 `npx expo start`, open Settings → "Sign in or create account". (The Email/Password sign-in method must be turned
@@ -45,7 +51,7 @@ On a phone, tell the app where your laptop is: `EXPO_PUBLIC_EMULATOR_HOST=192.16
 | Officer account (runs ACM) | `demo-admin@example.com` / `demo1234` |
 | Student account (member of nothing) | `demo-student@example.com` / `demo1234` |
 | Invite code for the private "Demo Study Group" | `DEMO42` |
-| Claim codes (become an officer) | `ACM-CLAIM`, `WICS-CLAIM`, `HACS-CLAIM`, `FOCS-CLAIM`, `UTCS-CLAIM`, `DEMO-CLAIM` |
+| Claim codes (become an officer) | `<ORG>-CLAIM`: `ACM-CLAIM`, `WICS-CLAIM`, `HACS-CLAIM`, `FOCS-CLAIM`, `UTCS-CLAIM`, `AMAZE-CLAIM`, `CONVERGENT-CLAIM`, `NLL-CLAIM`, `LARG-CLAIM`, `AMRL-CLAIM`, `ROBIN-CLAIM`, `DIRP-CLAIM`, `DEMO-CLAIM` |
 
 Try it: sign in as the student → Organizations → Demo Study Group → join with `DEMO42` → Find events shows its
 members-only event. Sign in as the officer → ACM → Admin tools → post a members-only event.
@@ -80,18 +86,3 @@ npx firebase deploy --only firestore:rules --project amilost   # publishes fires
   iCal format", previews, and imports. Importing again updates events instead of adding copies.
 - **Files in `data/`** (`acm-cal.ics`, `hacs.ics`, `wics.ics`) are only the seed's starting data. Replace the file and
   run the seed again to refresh it.
-
-## UTCS events feed
-
-Find events also lists the UTCS iCal feed (the "iCal" button on https://apps.cs.utexas.edu/calendar).
-We only use that feed, never the calendar's web pages (their robots.txt disallows scraping). When the
-feed can't be reached (no internet, or on the web, where the browser blocks it) the app uses the last
-copy it saved, and finally a snapshot that ships with the app.
-
-To refresh the snapshot: download the feed to `data/cs-calendar.ics`, then run
-
-```bash
-node scripts/snapshot-calendar.mjs
-```
-
-which rewrites `src/data/calendarSnapshot.ts` (the app's bundler can't import `.ics` files).

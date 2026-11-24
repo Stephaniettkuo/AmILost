@@ -21,7 +21,8 @@ type Props = {
   signedIn: boolean;
   view: EventsView;
   onView: (view: EventsView) => void;
-  sourceText: string;               // "Live", "Saved Nov 24" or "Offline snapshot"
+  problem: string | null;           // why the events could not load (shown instead of "No events")
+  loaded: boolean;                  // the first load has finished
   refreshing: boolean;
   onRefresh: () => void;
   onOpen: (item: Item) => void;
@@ -31,7 +32,7 @@ type Props = {
 
 const RANGES: { range: Range; label: string }[] = [{ range: 'day', label: 'Day' }, { range: 'week', label: 'Week' }, { range: 'month', label: 'Month' }];
 
-export default function EventsScreen({ items, graph, myOrgIds, signedIn, view, onView, sourceText, refreshing, onRefresh, onOpen, onOrgs, onBack }: Props) {
+export default function EventsScreen({ items, graph, myOrgIds, signedIn, view, onView, problem, loaded, refreshing, onRefresh, onOpen, onOrgs, onBack }: Props) {
   const now = austinNow();
   const typed = view.query.trim() !== '';
 
@@ -92,9 +93,9 @@ export default function EventsScreen({ items, graph, myOrgIds, signedIn, view, o
           {day.items.map((item) => <EventCard key={item.id} item={item} graph={graph} onPress={() => onOpen(item)} />)}
         </View>
       ))}
-      {days.length === 0 && <Text style={styles.empty}>{empty}</Text>}
+      {days.length === 0 && !problem && <Text style={styles.empty}>{loaded ? empty : 'Loading…'}</Text>}
 
-      <Text style={styles.source}>UT CS calendar: {sourceText}</Text>
+      {!!problem && <Text style={styles.source} accessibilityRole="alert">{problem}</Text>}
       <StampButton label="Organizations" variant="secondary" onPress={onOrgs} />
     </Screen>
   );

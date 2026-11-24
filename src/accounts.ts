@@ -5,7 +5,7 @@ import {
   User, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword,
   signOut, updateProfile,
 } from 'firebase/auth';
-import { collection, doc, getDoc, getDocs, serverTimestamp, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocFromServer, getDocsFromServer, serverTimestamp, setDoc } from 'firebase/firestore';
 import { auth, db } from './firebase';
 
 export type MyOrg = { id: string; name: string; short: string; role: 'member' | 'admin' };
@@ -34,10 +34,10 @@ export function signOutUser(): Promise<void> {
 
 // The orgs this person belongs to. Orgs are public to read, and you may read your OWN member
 // document, so: list the orgs, then check each one for "my" membership document.
-export async function loadMyOrgs(uid: string): Promise<MyOrg[]> {
-  const orgs = await getDocs(collection(db, 'orgs'));
+async function loadMyOrgsImpl(uid: string): Promise<MyOrg[]> {
+  const orgs = await getDocsFromServer(collection(db, 'orgs'));
   const checks = await Promise.all(orgs.docs.map(async (org) => {
-    const member = await getDoc(doc(db, 'orgs', org.id, 'members', uid));
+    const member = await getDocFromServer(doc(db, 'orgs', org.id, 'members', uid));
     if (!member.exists()) return null;
     const data = org.data();
     return {
@@ -46,4 +46,12 @@ export async function loadMyOrgs(uid: string): Promise<MyOrg[]> {
     } as MyOrg;
   }));
   return checks.filter((o): o is MyOrg => o !== null).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+// Gives up after 10 seconds, like the org calls (see orgData.ts).
+export function loadMyOrgs(uid: string): Promise<MyOrg[]> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(Object.assign(new Error('timed out'), { code: 'unavailable' })), 10000);
+    loadMyOrgsImpl(uid).then(resolve, reject).finally(() => clearTimeout(timer));
+  });
 }

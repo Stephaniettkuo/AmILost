@@ -8,10 +8,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { User } from 'firebase/auth';
 import { BackHandler, View } from 'react-native';
 import { signOutUser, watchUser } from './src/accounts';
-import { Item, inRange, makeItems, mergeItems } from './src/calendar/events';
-import { CalEvent } from './src/calendar/ics';
-import { Source, loadEvents, sourceLabel } from './src/calendar/source';
-import { addDays, austinNow, startOfDay } from './src/calendar/time';
+import { Item, inRange } from './src/calendar/events';
+import { austinNow } from './src/calendar/time';
 import { gdcGraph } from './src/data/gdc';
 import { groups } from './src/data/groups';
 import { directions } from './src/directions';
@@ -29,10 +27,10 @@ import OrgAdminScreen from './src/screens/OrgAdminScreen';
 import OrgScreen from './src/screens/OrgScreen';
 import OrgsScreen from './src/screens/OrgsScreen';
 import PostEventScreen from './src/screens/PostEventScreen';
-import { itemsFromOrgEvents, worthShowing } from './src/orgs/eventItems';
+import { itemsFromOrgEvents } from './src/orgs/eventItems';
 import { FindData, loadFindEvents } from './src/orgs/findEvents';
 import { getOrg } from './src/orgs/orgData';
-import { Org } from './src/orgs/orgRules';
+import { Org, friendlyDbError } from './src/orgs/orgRules';
 import EventsScreen, { EventsView } from './src/screens/EventsScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import PlaceScreen from './src/screens/PlaceScreen';
@@ -66,18 +64,13 @@ function Screens() {
   const [stepIndex, setStepIndex] = useState(0);
 
   // ---- Events ----
-  const [calendar, setCalendar] = useState<{ events: CalEvent[]; source: Source } | null>(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [eventsProblem, setEventsProblem] = useState<string | null>(null); // why the org events could not load
   const [eventsView, setEventsView] = useState<EventsView>(() => ({ query: '', range: 'week', date: austinNow(), onlyMine: false }));
   const [eventItem, setEventItem] = useState<Item | null>(null);   // the event being looked at
   const [eventBack, setEventBack] = useState<Screen>('events');    // where Back goes from an event
   const [previewBack, setPreviewBack] = useState<'place' | 'event'>('place'); // where Back goes from Route preview
 
-  const reloadCalendar = useCallback(async () => {
-    setRefreshing(true);
-    setCalendar(await loadEvents());
-    setRefreshing(false);
-  }, []);
   // Orgs: which one is open, the org being administered, the event being edited, and where Back goes from an org page.
   const [orgId, setOrgId] = useState<string | null>(null);
   const [adminOrg, setAdminOrg] = useState<Org | null>(null);
@@ -95,22 +88,17 @@ function Screens() {
   const [findData, setFindData] = useState<FindData | null>(null);
   const uid = user?.uid ?? null;
   const reloadOrgEvents = useCallback(async () => {
-    try { setFindData(await loadFindEvents(uid)); } catch { /* offline or Firebase down: no org events */ }
+    setRefreshing(true);
+    try { setFindData(await loadFindEvents(uid)); setEventsProblem(null); }
+    catch (error) { setEventsProblem(friendlyDbError(error)); } // offline or Firebase down: no org events
+    setRefreshing(false);
   }, [uid]);
   // Reload when the person changes, and each time Find events opens (they may have just joined an org).
   useEffect(() => { reloadOrgEvents(); }, [reloadOrgEvents]);
   useEffect(() => { if (screen === 'events') reloadOrgEvents(); }, [screen, reloadOrgEvents]);
-  useEffect(() => { reloadCalendar(); }, [reloadCalendar]);
-  const refreshEvents = useCallback(async () => { await Promise.all([reloadCalendar(), reloadOrgEvents()]); }, [reloadCalendar, reloadOrgEvents]);
 
-  // Every event from 30 days ago to a year ahead, repeats expanded (rebuilt when the calendar reloads).
-  const items = useMemo(() => {
-    if (!calendar) return [];
-    const today = startOfDay(austinNow());
-    return makeItems(calendar.events, addDays(today, -30), addDays(today, 365), gdcGraph).filter(worthShowing);
-  }, [calendar]);
-  const orgItems = useMemo(() => (findData ? itemsFromOrgEvents(findData.events, findData.orgs) : []), [findData]);
-  const allItems = useMemo(() => mergeItems(items, orgItems), [items, orgItems]);
+  // Events from organizations only (the UTCS feed is gone).
+  const allItems = useMemo(() => (findData ? itemsFromOrgEvents(findData.events, findData.orgs) : []), [findData]);
   const upcoming = useMemo(() => { const now = austinNow(); return allItems.filter((i) => i.end.getTime() > now.getTime()); }, [allItems]);
   const eventsToday = useMemo(() => {
     const now = austinNow();
@@ -230,7 +218,7 @@ function Screens() {
       return (
         <EventsScreen
           items={allItems} graph={gdcGraph} myOrgIds={findData?.myOrgIds ?? []} signedIn={!!user} view={eventsView} onView={setEventsView}
-          sourceText={calendar ? sourceLabel(calendar.source) : 'Loading…'} refreshing={refreshing} onRefresh={refreshEvents}
+          problem={eventsProblem} loaded={findData !== null} refreshing={refreshing} onRefresh={reloadOrgEvents}
           onOpen={(item) => { setEventItem(item); setEventBack('events'); setScreen('event'); }}
           onOrgs={() => { setOrgsBack('events'); setScreen('orgs'); }} onBack={() => setScreen('home')}
         />

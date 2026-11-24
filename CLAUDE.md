@@ -32,7 +32,7 @@ Expo SDK 58, React Native 0.88, TypeScript, react-native-svg, react-native-web, 
 Animations use React Native's built-in `Animated` API (no Reanimated).
 Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-google-fonts/im-fell-english`,
 `@expo-google-fonts/libre-franklin`, `@expo-google-fonts/pinyon-script`, `@expo/vector-icons`, `expo-status-bar`, `react-native-safe-area-context`, `@react-native-async-storage/async-storage` (for the events task). Ask before adding anything else.
-**Events calendar: only use the UTCS iCal feed (see `docs/tasks/events.md`). Never scrape the calendar's web pages: their robots.txt disallows it.**
+**Events come from org calendars (Firebase). We dropped the UTCS iCal feed. Never scrape web pages for events: robots.txt disallows it.**
 
 ## Files
 | File | What it is |
@@ -57,15 +57,15 @@ Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-g
 | `src/data/exportGraph.ts` | Writes the edited graph back out as the full text of `gdc.ts`. |
 | `src/MapDataOverlay.tsx` | Draws nodes/edges over the floor plan in the editor. |
 | `src/names.ts` | How places are named, and `searchPlaces` (used by the search box). |
-| `src/calendar/` | The events calendar, no screens: `ics.ts` reads the UTCS iCal feed and expands weekly repeats, `events.ts` finds rooms and groups and does search / day-week-month / "Today, Tomorrow" headings, `source.ts` loads live feed → saved copy → snapshot, `time.ts` is Austin wall-clock time. |
-| `src/data/groups.ts`, `src/data/calendarSnapshot.ts`, `data/cs-calendar.ics`, `scripts/snapshot-calendar.mjs` | The hand-made group table; the snapshot of the feed (generated from `data/cs-calendar.ics` by the script; how to refresh is in the README). |
+| `src/calendar/` | Calendar logic, no screens: `ics.ts` reads iCal files and expands weekly repeats (and moved meetings), `events.ts` finds rooms and does search / day-week-month / headings, `time.ts` is Austin wall-clock time and Austin → UTC. Used by org calendar imports. |
+| `data/*.ics`, `data/cs-calendar.ics` | The org calendars the seed script imports (ACM, WiCS, HACS), and an old UTCS feed copy kept only as a test fixture. `src/data/groups.ts` is the old keyword table (tests only). |
 | `NOTES.md`, `PLAN.md` | Decision/debugging log for the slides; checklist and timeline. |
 
 ## Screens
 App flow: **Home → Place → Route preview → Directions → Arrived**, plus **Settings** and the
 **Map editor** (team-only, opened from Settings). Screen = a piece of state in `App.tsx`
 (`'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor' | 'events' | 'event' | 'auth' | 'account' | 'orgs' | 'org' | 'orgAdmin' | 'postEvent' | 'import'`);
-**Find events** (the Home card) lists org events (Firebase) plus the UTCS feed, with search, Day/Week/Month and a **My orgs** filter; an **Event** page
+**Find events** (the Home card) lists org events (Firebase) only, with search, Day/Week/Month and a **My orgs** filter; an **Event** page
 has Directions (into Route preview) when the room is on the map, else the place text and "Not on our map yet". **Organizations** → **Org** page
 (join, invite code, "I'm an officer") → **Admin tools** → **Post event** / **Import calendar**. `App.tsx` remembers where Back goes from `event`, `org`, `orgs` and `preview`. Each screen is a
 component in `src/screens/`. Shared UI pieces live in `src/components/`. Full spec:

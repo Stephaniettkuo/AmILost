@@ -33,6 +33,15 @@ const ORGS = [
   { id: 'hacs', name: 'HACS', short: 'Hispanic Association for Computer Science', description: 'HACS meetings, company nights and community events.', file: 'data/hacs.ics', demoClaim: 'HACS-CLAIM' },
   { id: 'focs', name: 'Friends of Computer Science (FoCS)', short: 'Friends of Computer Science', description: 'FoCS events in the Department of Computer Science.', demoClaim: 'FOCS-CLAIM' },
   { id: 'utcs', name: 'Department of Computer Science', short: 'UT Austin Department of Computer Science', description: 'Department events and seminars.', demoClaim: 'UTCS-CLAIM' },
+  // Research groups and teams that appeared on the UTCS calendar. Add more here (id, name, short, description,
+  // demoClaim) and run the seed again; each gets its own claim code. Officers can then post events or import a calendar.
+  { id: 'amaze', name: 'Project AMAZE', short: 'Project AMAZE (ECLAIR) meetings', description: 'Project AMAZE (ECLAIR) meetings.', demoClaim: 'AMAZE-CLAIM' },
+  { id: 'convergent', name: 'Texas Convergent', short: 'Texas Convergent team', description: 'Texas Convergent team meetings.', demoClaim: 'CONVERGENT-CLAIM' },
+  { id: 'nll', name: 'NLL', short: 'Natural language learning group', description: 'The NLL reading group and meetings.', demoClaim: 'NLL-CLAIM' },
+  { id: 'larg', name: 'LARG', short: 'LARG meetings', description: 'LARG meetings.', demoClaim: 'LARG-CLAIM' },
+  { id: 'amrl', name: 'AMRL', short: 'Autonomous Mobile Robotics Laboratory', description: 'AMRL lab meetings.', demoClaim: 'AMRL-CLAIM' },
+  { id: 'robin', name: 'RobIn', short: 'RobIn lab', description: 'RobIn lab meetings.', demoClaim: 'ROBIN-CLAIM' },
+  { id: 'dirp', name: 'Directed Reading Program (DiRP)', short: 'Directed Reading Program', description: 'Directed Reading Program (DiRP) sessions and reading groups.', demoClaim: 'DIRP-CLAIM' },
   { id: 'demo-study-group', name: 'Demo Study Group', short: 'A made-up private org to try invite codes', description: 'Private: you need an invite code to join.', isPrivate: true, demoClaim: 'DEMO-CLAIM', demoInvite: 'DEMO42', demoEvent: true },
 ];
 
