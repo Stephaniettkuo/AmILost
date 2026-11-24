@@ -48,6 +48,7 @@ Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-g
 | `public/index.html` | The web page around the app; asks browsers and dark-mode extensions not to recolor it. |
 | `src/art.ts`, `assets/kit/`, `assets/photos/` | Painted pictures (cut from our team's watercolor asset kit) and GDC photos, and the list that names them. |
 | `src/directions.ts` | Turns a `Route` into turn-by-turn steps (arrows + text). |
+| `src/lost.ts` | "I'm lost": `nearbyPlaces` (places near the current step) and `reroute` (new route from the place you pick). Tested by hand-worked cases. |
 | `src/types.ts` | Shared types: `MapNode`, `MapEdge`, `Floor`, `MapGraph`, `Route`. Change together, not alone. |
 | `src/data/gdc.ts` | All map data: nodes and edges for floors 1–3, plus `needsCheck` (agent guesses to review). |
 | `src/data/floors.ts` | Floor list, image sizes, image files (`assets/gdc-1.png` …). |
@@ -74,9 +75,11 @@ component in `src/screens/`. Shared UI pieces live in `src/components/`. Full sp
 Spec: `docs/tasks/events.md`. **Navigation never depends on Firebase** (signed out, offline, Firebase down: maps and
 directions still work). `src/firebase.ts` sets up Auth + Firestore (emulator when `EXPO_PUBLIC_USE_EMULATOR=1`);
 `src/accounts.ts` talks to Firebase; `src/accountRules.ts` is the pure part (form checks, friendly errors, tested).
+`src/orgs/`: `orgData.ts` (all Firestore calls for orgs, members, codes, events), `orgRules.ts` (search, codes, event checks, friendly errors), `importIcs.ts` (org calendar file → events), `eventItems.ts` (org events → list items, hides empty all-day entries), `findEvents.ts` (what Find events loads). Logic goes in the pure files, with tests; `orgData.ts` stays thin.
+`scripts/seed.mjs` (orgs + events + claim codes; `--dry-run`, `--emulator`), `scripts/emulators.mjs` (`npm run emulators`, needs Java 21+), `src/rules/firestore.rules.test.ts` (`npm run test:rules`, needs the emulator; not part of `npm test`). Commands and demo codes: README.
 Screens: `'auth'` (sign in / create account) and `'account'` (name, my orgs, sign out), both reached from Settings.
 **Don't loosen `firestore.rules` without asking. Never read, print or commit anything in `secrets/`.**
-Approved packages for this task: `firebase`; dev: `firebase-admin`, `firebase-tools`, `@firebase/rules-unit-testing`.
+Approved packages for this task: `firebase`; dev: `firebase-admin`, `firebase-tools`, `@firebase/rules-unit-testing` (an `overrides` entry in `package.json` lets it use our `firebase` 13; don't install with `--legacy-peer-deps`, it drops a Jest preset).
 
 ## Design system (follow this for every UI change)
 Vibe: **white torn paper, brown ink, burnt orange**, with a few small watercolor pictures. Simple and

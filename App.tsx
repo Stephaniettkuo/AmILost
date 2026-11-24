@@ -15,6 +15,7 @@ import { addDays, austinNow, startOfDay } from './src/calendar/time';
 import { gdcGraph } from './src/data/gdc';
 import { groups } from './src/data/groups';
 import { directions } from './src/directions';
+import { reroute } from './src/lost';
 import { placeTitle } from './src/names';
 import { findRoute } from './src/routing';
 import ArrivedScreen from './src/screens/ArrivedScreen';
@@ -155,6 +156,14 @@ function Screens() {
         <DirectionsScreen
           route={route} steps={steps} toName={placeTitle(route.nodes[route.nodes.length - 1])} index={Math.min(stepIndex, steps.length - 1)} onIndex={setStepIndex}
           onBack={() => setScreen('preview')} onArrive={() => setScreen('arrived')}
+          graph={gdcGraph}
+          onLost={(pickedId) => {
+            // "I'm lost": the picked place becomes the new start, same destination, same Elevator-only setting.
+            const result = reroute(gdcGraph, route, pickedId, avoidStairs);
+            if (result.kind === 'route') { setFromId(pickedId); setStepIndex(0); return 'route'; }
+            if (result.kind === 'arrived') { setScreen('arrived'); return 'arrived'; }
+            return 'none';
+          }}
         />
       );
     case 'arrived':
