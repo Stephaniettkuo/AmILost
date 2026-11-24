@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals';
-import { floorLabel, placeName, searchPlaces, searchText } from './names';
+import { floorLabel, placeName, placeTitle, searchPlaces, searchText } from './names';
 
 test('names people see', () => {
   const base = { kind: 'room' as const, floor: 'GDC-2', x: 0, y: 0 };
@@ -7,6 +7,14 @@ test('names people see', () => {
   expect(placeName({ ...base, id: 'GDC-2.702', label: 'Front office' })).toBe('2.702 · Front office');
   expect(placeName({ ...base, id: 'GDC-2.1S1', kind: 'stairs', label: 'Stairs 2.1S1' })).toBe('Stairs 2.1S1');
   expect(placeName({ ...base, id: 'GDC-2-entrance-main', kind: 'entrance', label: 'Main entrance' })).toBe('Main entrance');
+});
+
+test('a bare room number gets the word Room; names and other kinds stay as they are', () => {
+  const base = { kind: 'room' as const, floor: 'GDC-2', x: 0, y: 0 };
+  expect(placeTitle({ ...base, id: 'GDC-2.316' })).toBe('Room 2.316');
+  expect(placeTitle({ ...base, id: 'GDC-2.710B' })).toBe('Room 2.710B');
+  expect(placeTitle({ ...base, id: 'GDC-2.702', label: 'Front office' })).toBe('2.702 · Front office');
+  expect(placeTitle({ ...base, id: 'GDC-2.1S1', kind: 'stairs', label: 'Stairs 2.1S1' })).toBe('Stairs 2.1S1');
 });
 
 test('search matches number, name, and other names', () => {

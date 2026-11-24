@@ -147,13 +147,10 @@ export function stepDistancePx(route: Route, step: Step): number {
   return total;
 }
 
-// "6 steps · about 3 min · floors 2 → 3" (floors only when the route changes floor)
-export function routeSummary(route: Route, steps: Step[]): string {
+// The short facts under the route: ["about 2 min", "Floors 1 to 2"] (or ["about 1 min", "Floor 2"]).
+export function routeFacts(route: Route): string[] {
   const minutes = Math.max(1, Math.round(route.cost / PX_PER_FOOT / WALK_FT_PER_MIN));
-  const floors = route.nodes.map((n) => n.floor).filter((f, i, all) => f !== all[i - 1]).map((f) => f.replace('GDC-', ''));
-  return [
-    `${steps.length} step${steps.length === 1 ? '' : 's'}`,
-    `about ${minutes} min`,
-    ...(floors.length > 1 ? [`floors ${floors.join(' → ')}`] : []),
-  ].join(' · ');
+  const floors = route.nodes.map((n) => n.floor.replace('GDC-', ''));
+  const first = floors[0], last = floors[floors.length - 1];
+  return [`about ${minutes} min`, first === last ? `Floor ${first}` : `Floors ${first} to ${last}`];
 }

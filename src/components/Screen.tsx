@@ -1,48 +1,68 @@
-// The frame every screen uses: tea-stained paper behind everything, a phone-width column,
-// and an optional header with a back arrow and a title.
+// The frames every screen uses.
+// Page: a phone-width white column that fills the window, with the burnt orange line on top.
+// Screen: a Page with a torn header (back arrow + title) over scrolling content.
 import { Ionicons } from '@expo/vector-icons';
 import { ReactNode } from 'react';
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { wc } from '../watercolor';
-import { MAX_WIDTH, colors, fonts, minTouch, radii, shadow, spacing } from '../theme';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import Text from './Text';
+import Picture from './Picture';
+import { art } from '../art';
+import { useEdges } from '../safeArea';
+import { MAX_WIDTH, colors, fonts, minTouch, spacing } from '../theme';
+import Torn from './Torn';
 
-type Props = { children: ReactNode; title?: string; onBack?: () => void; left?: ReactNode; right?: ReactNode };
-
-export default function Screen({ children, title, onBack, left, right }: Props) {
+export function Page({ children }: { children: ReactNode }) {
   return (
     <View style={styles.page}>
-      {/* The watercolor paper (from the asset kit) stays put while the content scrolls. */}
-      <Image source={wc.paper} style={StyleSheet.absoluteFill} resizeMode="cover" />
-      <ScrollView style={styles.scroll} contentContainerStyle={styles.content}>
-        <View style={styles.column}>
-          {(onBack || title || left || right) && (
-            <View style={styles.header}>
-              {onBack && (
-                <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={onBack} style={[styles.round, shadow]}>
-                  <Ionicons name="chevron-back" size={24} color={colors.ink} />
-                </Pressable>
-              )}
-              {!onBack && left}
-              <Text style={styles.title} numberOfLines={1}>{title ?? ''}</Text>
-              {right}
-            </View>
-          )}
-          {children}
-        </View>
-      </ScrollView>
+      <View style={styles.column}>
+        {children}
+        <View pointerEvents="none" style={styles.topLine} />
+      </View>
     </View>
+  );
+}
+
+export function IconButton({ icon, label, onPress }: { icon: 'chevron-back' | 'close'; label: string; onPress: () => void }) {
+  return (
+    <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={onPress} style={styles.icon}>
+      <Ionicons name={icon} size={30} color={colors.ink} />
+    </Pressable>
+  );
+}
+
+export function Header({ title, onBack }: { title?: string; onBack?: () => void }) {
+  const { top } = useEdges();
+  return (
+    <Torn bottom style={[styles.header, { paddingTop: top, height: top + 62 }]}>
+      {onBack && <IconButton icon="chevron-back" label="Back" onPress={onBack} />}
+      <Text style={styles.title} numberOfLines={1}>{title ?? ''}</Text>
+      <Picture source={art.horns} style={styles.horns} resizeMode="contain" />
+    </Torn>
+  );
+}
+
+type Props = { children: ReactNode; title?: string; onBack?: () => void };
+
+export default function Screen({ children, title, onBack }: Props) {
+  const { bottom } = useEdges();
+  return (
+    <Page>
+      <Header title={title} onBack={onBack} />
+      <ScrollView contentContainerStyle={[styles.content, { paddingBottom: bottom + 12 }]}>{children}</ScrollView>
+    </Page>
   );
 }
 
 const styles = StyleSheet.create({
   page: { flex: 1, backgroundColor: colors.paper },
-  scroll: { flex: 1, backgroundColor: 'transparent' },
-  content: { paddingTop: 50, paddingBottom: spacing.xl },
-  column: { width: '100%', maxWidth: MAX_WIDTH, alignSelf: 'center', paddingHorizontal: spacing.md, gap: spacing.md },
-  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, minHeight: minTouch },
-  title: { flex: 1, fontFamily: fonts.title, fontSize: 30, color: colors.ink },
-  round: {
-    width: minTouch, height: minTouch, borderRadius: radii.pill, backgroundColor: colors.parchment,
-    borderWidth: 1, borderColor: colors.line, alignItems: 'center', justifyContent: 'center',
+  column: { flex: 1, width: '100%', maxWidth: MAX_WIDTH, alignSelf: 'center', backgroundColor: colors.paper, overflow: 'hidden' },
+  topLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 6, backgroundColor: colors.orange, zIndex: 5 },
+  header: {
+    paddingHorizontal: 20, paddingBottom: spacing.sm, flexDirection: 'row',
+    alignItems: 'center', zIndex: 2, marginBottom: -6,
   },
+  title: { flex: 1, fontFamily: fonts.title, fontSize: 30, color: colors.ink },
+  horns: { width: 100, height: 24 },
+  icon: { width: minTouch, height: minTouch, marginLeft: -14, alignItems: 'center', justifyContent: 'center' },
+  content: { padding: 20, paddingTop: spacing.lg, gap: spacing.md },
 });

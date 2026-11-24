@@ -30,17 +30,22 @@ Expo SDK 58, React Native 0.88, TypeScript, react-native-svg, react-native-web, 
 **`AGENTS.md` came with the Expo template.** Its Expo tips are useful, but ignore its
 "use Expo Router" rule: we switch screens with simple state in `App.tsx` (see "Screens").
 Animations use React Native's built-in `Animated` API (no Reanimated).
-Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-google-fonts/cormorant-garamond`,
-`@expo-google-fonts/special-elite`, `@expo/vector-icons`. Ask before adding anything else.
+Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-google-fonts/im-fell-english`,
+`@expo-google-fonts/libre-franklin`, `@expo-google-fonts/pinyon-script`, `@expo/vector-icons`, `expo-status-bar`, `react-native-safe-area-context`. Ask before adding anything else.
 
 ## Files
 | File | What it is |
 |---|---|
-| `App.tsx` | Loads fonts, holds the current screen + chosen From/To, switches screens. (Before the redesign it held Navigate + the editor directly.) |
+| `App.tsx` | Sets up safe areas and the status bar, loads fonts, holds the current screen + chosen From/To, switches screens. (Before the redesign it held Navigate + the editor directly.) |
 | `src/theme.ts`, `src/fonts.ts` | Design tokens (colors, spacing, radii, shadows, font names) and the list of fonts to load. |
 | `scripts/` | `make_clear_plans.py` makes the sepia, transparent floor plans. Run with `python3`; the pictures it makes are committed. |
-| `src/watercolor.ts`, `assets/watercolor/` | The watercolor pictures and icons from our asset kit (and a README on what is used). |
-| `src/screens/`, `src/components/` | One file per screen; shared UI pieces (stamp button, card, chip, arrow, map view, arrival stamp). |
+| `src/watercolor.ts`, `assets/watercolor/`, `WcIcon.tsx` | The earlier watercolor theme's pictures (with a README). Not used by the app since the white redesign; `src/art.ts` is. |
+| `src/screens/`, `src/components/` | One file per screen; shared UI pieces (torn paper, painted button, arrow, map view, floor picker, slideshow, confetti, arrival stamp). |
+| `src/components/Picture.tsx`, `Picture.web.tsx` | Every picture goes through `Picture`: React Native's `Image` on phones, a real `<img>` on the web. |
+| `src/components/Text.tsx` | Our `Text`: follows the phone's text size, but only up to 1.2x. |
+| `src/safeArea.ts` | `useEdges()`: how far to stay from the notch / Dynamic Island / home bar, and the app's real size. |
+| `public/index.html` | The web page around the app; asks browsers and dark-mode extensions not to recolor it. |
+| `src/art.ts`, `assets/kit/`, `assets/photos/` | Painted pictures (cut from our team's watercolor asset kit) and GDC photos, and the list that names them. |
 | `src/directions.ts` | Turns a `Route` into turn-by-turn steps (arrows + text). |
 | `src/types.ts` | Shared types: `MapNode`, `MapEdge`, `Floor`, `MapGraph`, `Route`. Change together, not alone. |
 | `src/data/gdc.ts` | All map data: nodes and edges for floors 1–3, plus `needsCheck` (agent guesses to review). |
@@ -60,48 +65,43 @@ component in `src/screens/`. Shared UI pieces live in `src/components/`. Full sp
 `docs/tasks/arrows-and-redesign.md`.
 
 ## Design system (follow this for every UI change)
-Vibe: **old and warm** — tea-stained parchment, sepia ink, antique brass, postmarks and old survey
-maps. Calm and uncluttered: few things on screen at once, plenty of space, serious but friendly.
+Vibe: **white torn paper, brown ink, burnt orange**, with a few small watercolor pictures. Simple and
+easy to read: one main thing per screen, few decorations.
 - **All colors, sizes, radii, shadows and fonts come from `src/theme.ts`.** Never hard-code a color in a screen.
-- Palette (paper, ink, brass):
+- Palette:
 
   | Token | Hex | Use |
   |---|---|---|
-  | `paper` | `#F3E7CC` | app background (under the paper picture) |
-  | `parchment` | `#F8F0DC` | cards, sheets, inputs |
-  | `wash` | `#DCC59A` | soft fills, selected chips |
-  | `brass` | `#B8893A` | secondary accents, route casing |
-  | `rust` | `#9A5B2E` | primary buttons, route line, arrows |
-  | `rustDark` | `#6E3E1C` | pressed state, button borders |
-  | `ink` | `#3B2A1E` | main text and drawn lines |
-  | `fadedInk` | `#6B5439` | secondary text, hints |
-  | `line` | `#A68A5E` | thin borders on cards and chips |
-  | `light` | `#FBF5E6` | text on rust, highlights |
-  | `sage` | `#8A9A78` | start pin, success accents (sparingly) |
-  | `seal` | `#8E3B2E` | wax-seal red: destination pin, arrival stamp |
+  | `paper` | `#FFFFFF` | app background, torn panels |
+  | `map` / `mapInk` | `#EADBBB` / `#2E1D10` | tan behind floor plans / plan lines |
+  | `wash` | `#FBE0CC` | selected chip |
+  | `orange` | `#BF5700` | line at the top of every screen, small accents |
+  | `rust` | `#AE4600` | route line and route dots, switches |
+  | `rustDark` | `#8A3D10` | text buttons, floor label, handwriting |
+  | `ink` / `fadedInk` | `#4A3322` / `#5F564F` | text / hints |
+  | `line` | `#CFCAC6` | dividers |
+  | `light` | `#FFFBF0` | text on the painted button |
+  | `seal` | `#8A3D20` | selected floor, arrival stamp |
 
-- **Paper shapes:** small corners (cards 10, buttons and chips 6–8), thin 1 px borders in `line`,
-  a soft sepia shadow (`#4A2F14`, opacity ~0.22, y-offset 3, blur 7). Buttons are brass-plate /
-  rubber-stamp style: a double border, no candy "bottom edge".
-- **Pictures:** every screen sits on the watercolor paper in `assets/watercolor/` (from our asset kit; see
-  the README there for what is used and what is deliberately left out, e.g. the UT Longhorn/Tower marks).
-  New pictures go through `src/watercolor.ts`. Don't copy photos from the internet.
-- **Fonts:** `Cormorant Garamond` (titles and reading text), `Special Elite` (a typewriter face
-  for small labels, buttons, chips, stamps) and `Pinyon Script` (the big script headings, never with numbers). Load with `expo-font` (list in `src/fonts.ts`); show the
-  plain paper color until fonts are ready.
-- **Icons/arrows:** drawn with `react-native-svg` (round line caps and joins) or
-  `@expo/vector-icons` (Ionicons).
-- **Motion (built-in `Animated`):** gentle, like paper settling: buttons press in (scale ~0.97);
-  cards settle up when they appear; the direction arrow gently bobs and **springs/rotates** to the
-  new direction on each step; the map glides between steps; arrival stamps down an "ARRIVED" postmark
-  and wax seal. Keep animations short (150–400 ms). If the phone has "Reduce Motion" on
-  (`AccessibilityInfo.isReduceMotionEnabled`), skip the bobbing and the stamp animation.
-- **The floor plan** is shown as sepia ink on transparent paper (`assets/gdc-N-clear.png`, made by
-  `scripts/make_clear_plans.py`, same pixel size as the originals so coordinates still line up),
-  inside a parchment card, with the rust route on top. The original black-and-white plans stay in
-  `assets/` for the map editor.
-- Text: short and friendly ("Where to?", "Turn left at the restrooms", "You made it!"). Touch
-  targets at least 48 px tall. Must look right on a phone first, then web.
+- **Panels:** white with torn edges (`Torn`), a faint shadow. Screens use `Page`, `Header` or `Screen` from `Screen.tsx`.
+- **Buttons:** `StampButton` — primary is the dark painted swash, secondary is plain `rustDark` text.
+- **Fonts:** `IM Fell English` (titles, places, buttons), `Libre Franklin` (everything small or read while
+  walking), `Pinyon Script` (at most one short line per screen). List in `src/fonts.ts`.
+- **Pictures:** only from `src/art.ts`. Don't use UT's logo or longhorn silhouette. Color changes are saved
+  into the PNG (image filters don't work the same on phones).
+- **Photos** need permission or a license. Ajay Suresh's photo is CC BY 4.0: keep its credit in Settings.
+- **The floor plan** is `assets/gdc-N-clear.png` tinted `mapInk` on tan. Route overview: solid line with a thin white
+  edge. Directions: solid line for this step, dots for the rest, same color, nothing behind them. The map editor
+  uses the original black-and-white plans.
+- **Don't show step counts** ("Step 2 of 6"). Time and distance are fine.
+- **Motion (built-in `Animated`):** buttons press in (~0.97), the arrow bobs gently and springs to the new
+  direction, the map glides between steps, photos crossfade, the arrival stamp presses down. 150–400 ms
+  (photos 1 s). With Reduce Motion on: no bobbing, turning, gliding,
+  stamping or automatic photos. Confetti is one burst (~4 s) on Arrived; with Reduce Motion it falls straight
+  down, no spin or sway.
+- Text: short and friendly. Touch targets at least 48 px tall (44 wide is OK). Phone first, then web.
+- **Every phone:** use `useEdges()` for top and bottom spacing (never a fixed status-bar height), `Text` from
+  `src/components/Text.tsx`, and check 320, 360, 390 and 440 px wide. Home uses smaller lettering under 376 px.
 
 ## Map data rules
 - Coordinates are **pixels on that floor's plan image** (images are ~2420×1520). Never resize or replace a floor image — all its coordinates would be wrong.
@@ -129,3 +129,9 @@ Modes: **Add** (kind + name, connects to nearest hallway), **Move** (hallway dot
 - Anything that appears/disappears above the map **shifts the map under the cursor**. Keep a fixed-height slot (see the message line, `minHeight`).
 - Tapping near a short line can hit a dot instead; Delete uses a smaller dot radius (`reach / 2`).
 - Deleting a line must remove **one** copy, not every match.
+- Use `Picture`, not React Native's `Image`. On the web `Image` is a CSS background, and something in one of our browsers (probably a dark-mode extension) rewrote backgrounds and blew every picture up.
+- iPhone crash "Cannot read property 'forEach' of null": a style's `transform` must not go from a value to `undefined`. Use `?? []`.
+- On phones a `'100%'` width inside a padded box leaves out the padding (the web includes it). To fill a box, put the picture in a `StyleSheet.absoluteFill` view.
+- An absolutely placed layer needs its own width **and height**; our first confetti layer had height 0 and hid everything.
+- "It doesn't animate on my phone" is usually Reduce Motion (iPhone: Settings → Accessibility → Motion).
+- The browser hides phone-only bugs. Try changes in Expo Go before calling them done.

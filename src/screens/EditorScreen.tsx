@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import {
-  GestureResponderEvent, Image, Pressable, ScrollView,
+  GestureResponderEvent, Pressable, ScrollView,
   StyleSheet, Text, TextInput, View, useWindowDimensions,
 } from 'react-native';
+import Picture from '../components/Picture';
 import Svg from 'react-native-svg';
 import { floorImages, gdcFloors } from '../data/floors';
 import { gdcGraph, needsCheck } from '../data/gdc';
@@ -416,7 +417,7 @@ export default function EditorScreen({ onBack }: { onBack: () => void }) {
         onResponderRelease={onRelease}
         style={{ width, height: shownHeight }}
       >
-        <Image source={floorImages[floor.id]} style={{ width, height: shownHeight }} />
+        <Picture source={floorImages[floor.id]} style={{ width, height: shownHeight }} />
         {/* Drawn in image pixels; viewBox scales them to the screen. */}
         <View style={StyleSheet.absoluteFill} pointerEvents="none">
           <Svg width={width} height={shownHeight} viewBox={`0 0 ${floor.width} ${floor.height}`}>

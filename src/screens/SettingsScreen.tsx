@@ -1,11 +1,13 @@
 // Settings: the elevator-only default, About, and the team-only map editor.
-import { Image, StyleSheet, Switch, Text, View } from 'react-native';
+import { StyleSheet, Switch, View } from 'react-native';
+import Text from '../components/Text';
 import Card from '../components/Card';
 import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';
-import WcIcon from '../components/WcIcon';
 import { colors, fonts, spacing } from '../theme';
-import { wc } from '../watercolor';
+
+// On the web the switch's "on" knob color is a separate, web-only prop.
+const webThumb = { activeThumbColor: colors.paper } as object;
 
 type Props = {
   avoidStairs: boolean;
@@ -26,36 +28,30 @@ export default function SettingsScreen({ avoidStairs, onAvoidStairs, onBack, onE
           <Switch
             value={avoidStairs}
             onValueChange={onAvoidStairs}
-            trackColor={{ false: colors.wash, true: colors.rust }}
-            thumbColor={colors.light}
+            trackColor={{ false: colors.line, true: colors.rust }}
+            thumbColor={colors.paper}
+            {...webThumb}
           />
         </View>
       </Card>
 
-      <Image source={wc.divider} accessible={false} style={styles.divider} resizeMode="contain" />
-
       <Card>
-        <Image source={wc.compassRose} accessible={false} style={styles.rose} />
         <Text style={styles.label}>About AmILost</Text>
         <Text style={styles.small}>
           Room-level directions inside UT Austin's Gates Dell Complex (GDC). Built by Stephanie and
           Cienna for C S 378, Agentic Software Engineering. The floor plans belong to UT.
         </Text>
+        <Text style={styles.small}>Building photo by Ajay Suresh (Wikimedia Commons, CC BY 4.0), cropped and faded.</Text>
       </Card>
 
-      <StampButton
-        label="Map editor (team only)" variant="secondary" onPress={onEditor}
-        icon={<WcIcon name="floorPlan" size={30} />}
-      />
+      <StampButton label="Map editor (team only)" variant="secondary" onPress={onEditor} />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  divider: { width: '100%', height: 24, opacity: 0.9 },
-  rose: { position: 'absolute', top: spacing.sm, right: spacing.sm, width: 64, height: 64, opacity: 0.85 },
   switchRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   flex: { flex: 1 },
   label: { fontFamily: fonts.title, fontSize: 26, color: colors.ink },
-  small: { fontFamily: fonts.body, fontSize: 19, color: colors.fadedInk, marginTop: spacing.xs },
+  small: { fontFamily: fonts.body, fontSize: 16, lineHeight: 23, color: colors.fadedInk, marginTop: spacing.xs },
 });
