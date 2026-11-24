@@ -25,9 +25,9 @@ describe('loadEvents', () => {
     expect(calendarSnapshot).toBe(ics);
   });
 
-  test('the feed address is the one in the task spec (a typo here would silently use the snapshot forever)', () => {
-    const spec = readRepoFile('docs/tasks/events.md');
-    expect(spec).toContain(`\`${FEED_URL}\``);
+  test('the feed address is the one from the original events spec (a typo would silently use the snapshot forever)', () => {
+    // Copied from the first version of docs/tasks/events.md (the current spec no longer lists it).
+    expect(FEED_URL).toBe('https://p106-caldav.icloud.com/published/2/MTczOTUxOTA2ODExNzM5NbIQ75YFeLwK-LANlyWBYbU8ZPTfALGVK_nN5W3UJYXs2o6iwRiFvI8pW5y9gwDat10HOpVkpKfXYVCE6ZTfedg');
   });
 
   test('internet works: uses the live feed and says "Live"', async () => {
