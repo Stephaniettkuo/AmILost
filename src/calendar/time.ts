@@ -48,3 +48,12 @@ export function austinWallFromUtc(ms: number): Date {
 
 // "Now" as Austin wall-clock time, in the same form as the event times.
 export const austinNow = (nowMs: number = Date.now()) => austinWallFromUtc(nowMs);
+
+// The other way: an Austin wall-clock time -> the real moment (milliseconds, UTC). Used when we SAVE a
+// time we typed in ("Dec 2, 4:00 PM in Austin"), because the database stores real moments.
+// During the one repeated hour in November, the first (daylight-time) one is used.
+export function utcFromAustinWall(w: Date): number {
+  const asUtc = Date.UTC(w.getFullYear(), w.getMonth(), w.getDate(), w.getHours(), w.getMinutes(), w.getSeconds());
+  const daylight = asUtc + 5 * 3600 * 1000;
+  return wallMinutes(austinWallFromUtc(daylight), w) === 0 ? daylight : asUtc + 6 * 3600 * 1000;
+}

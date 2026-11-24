@@ -20,6 +20,40 @@ const item = (start: Date, end: Date, title = 'x'): Item => ({
   id: `${title}@${start.getTime()}`, title, description: '', start, end, location: '', room: null, groupId: null, url: '',
 });
 
+describe('roomFor: the patterns found in the org calendars (data/acm-cal.ics, hacs.ics, wics.ics)', () => {
+  // Each answer was read off the calendars and the map data (rooms 3.314, 2.506, 5.302, 1.304, 2.100 exist;
+  // 2.902 is not on the map; "UTC 1.118" is another building).
+  test('a room with a note after it', () => {
+    expect(roomFor('GDC 3.314 (ACM Office)', gdcGraph)).toBe('GDC-3.314');
+    expect(roomFor('GDC 2.506 (Teaching Lab)', gdcGraph)).toBe('GDC-2.506');
+  });
+  test('no building written (old ACM entries): assume GDC', () => {
+    expect(roomFor('5.302', gdcGraph)).toBe('GDC-5.302');
+    expect(roomFor(' 1.304 ', gdcGraph)).toBe('GDC-1.304');
+  });
+  test('"GDC Atrium" is room 2.100 (also with other capitals)', () => {
+    expect(roomFor('GDC Atrium', gdcGraph)).toBe('GDC-2.100');
+    expect(roomFor('gdc atrium', gdcGraph)).toBe('GDC-2.100');
+  });
+  test('empty location: the room written in the description is used', () => {
+    expect(roomFor('', gdcGraph, 'Join us at GDC 1.304 for pizza')).toBe('GDC-1.304');
+    expect(roomFor('', gdcGraph, 'room: gdc 1.304.')).toBe('GDC-1.304');
+  });
+  test('the description is NOT used when there is a location (even a non-GDC one)', () => {
+    expect(roomFor('Welch Patio', gdcGraph, 'also GDC 1.304')).toBeNull();
+  });
+  test('not GDC, not on the map, or not a room -> null (the screens show the text)', () => {
+    expect(roomFor('UTC 1.118', gdcGraph)).toBeNull();
+    expect(roomFor('Welch Patio', gdcGraph)).toBeNull();
+    expect(roomFor('Texas Union', gdcGraph)).toBeNull();
+    expect(roomFor('https://utexas.zoom.us/j/99602011660', gdcGraph)).toBeNull();
+    expect(roomFor('Gates Dell Complex, 2317 Speedway, Austin, TX 78712, USA', gdcGraph)).toBeNull();
+    expect(roomFor('GDC 6th Floor Bridge', gdcGraph)).toBeNull();
+    expect(roomFor('GDC 2.902', gdcGraph)).toBeNull();
+    expect(roomFor('', gdcGraph, 'We meet in UTC 1.118')).toBeNull();
+  });
+});
+
 describe('roomFor', () => {
   test('the 4 real locations of the feed map to points that exist on our map', () => {
     expect(roomFor('GDC 2.100 (Atrium)', gdcGraph)).toBe('GDC-2.100'); // the "(Atrium)" part is ignored

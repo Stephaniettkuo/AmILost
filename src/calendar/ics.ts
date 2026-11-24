@@ -21,6 +21,7 @@ export type CalEvent = {
   end: Date;
   rule: Rule | null;         // null = happens once (also when the repeat rule is one we don't support)
   exdates: Date[];           // skipped occurrences
+  recurrenceId?: Date;       // set when this event REPLACES one occurrence of a repeating event with the same uid (a moved or renamed meeting)
 };
 
 export type Occurrence = { event: CalEvent; start: Date; end: Date };
@@ -101,6 +102,13 @@ export function parseIcs(text: string): CalEvent[] {
     const parsed = splitLine(line);
     if (parsed) fields.push(parsed);
   }
+  // A moved or edited meeting is written as a second event with the same uid and a RECURRENCE-ID
+  // (the original time). The repeating event must skip that original time, or the meeting shows twice.
+  for (const o of events) {
+    if (!o.recurrenceId) continue;
+    const base = events.find((e) => e.uid === o.uid && e.rule);
+    if (base) base.exdates.push(o.recurrenceId);
+  }
   return events;
 }
 
@@ -113,7 +121,10 @@ function buildEvent(fields: { name: string; params: string; value: string }[]): 
   const endValue = first('DTEND');
   const end = (endValue && parseDateTime(endValue)) || new Date(start.getFullYear(), start.getMonth(), start.getDate(), start.getHours(), start.getMinutes() + 60);
   const rule = first('RRULE');
+  const recurrence = first('RECURRENCE-ID');
+  const recurrenceId = recurrence ? parseDateTime(recurrence) : null;
   return {
+    ...(recurrenceId ? { recurrenceId } : {}),
     uid: first('UID') ?? '',
     title: unescapeText(first('SUMMARY') ?? '').trim(),
     description: unescapeText(first('DESCRIPTION') ?? ''),

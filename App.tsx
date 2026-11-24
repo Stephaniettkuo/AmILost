@@ -24,6 +24,13 @@ import EditorScreen from './src/screens/EditorScreen';
 import EventDetailScreen from './src/screens/EventDetailScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import AuthScreen from './src/screens/AuthScreen';
+import ImportScreen from './src/screens/ImportScreen';
+import OrgAdminScreen from './src/screens/OrgAdminScreen';
+import OrgScreen from './src/screens/OrgScreen';
+import OrgsScreen from './src/screens/OrgsScreen';
+import PostEventScreen from './src/screens/PostEventScreen';
+import { getOrg } from './src/orgs/orgData';
+import { Org } from './src/orgs/orgRules';
 import EventsScreen, { EventsView } from './src/screens/EventsScreen';
 import GroupScreen from './src/screens/GroupScreen';
 import GroupsScreen from './src/screens/GroupsScreen';
@@ -33,11 +40,11 @@ import PreviewScreen from './src/screens/PreviewScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import { colors } from './src/theme';
 
-type Screen = 'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor' | 'events' | 'event' | 'groups' | 'group' | 'auth' | 'account';
+type Screen = 'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor' | 'events' | 'event' | 'groups' | 'group' | 'auth' | 'account' | 'orgs' | 'org' | 'orgAdmin' | 'postEvent' | 'import';
 
 // Where the phone's back button goes from each screen (Home has none: the app closes).
 const BACK: Partial<Record<Screen, Screen>> = {
-  place: 'home', preview: 'place', directions: 'preview', arrived: 'directions', settings: 'home', editor: 'settings', auth: 'settings', account: 'settings',
+  place: 'home', preview: 'place', directions: 'preview', arrived: 'directions', settings: 'home', editor: 'settings', auth: 'settings', account: 'settings', orgs: 'account', orgAdmin: 'org', postEvent: 'orgAdmin', import: 'orgAdmin',
   events: 'home', groups: 'events',   // 'event', 'group' and 'preview' depend on how you got there
 };
 
@@ -75,6 +82,11 @@ function Screens() {
     setCalendar(await loadEvents());
     setRefreshing(false);
   }, []);
+  // Orgs: which one is open, the org being administered, the event being edited, and where Back goes from an org page.
+  const [orgId, setOrgId] = useState<string | null>(null);
+  const [adminOrg, setAdminOrg] = useState<Org | null>(null);
+  const [editing, setEditing] = useState<Item | null>(null);
+  const [orgBack, setOrgBack] = useState<Screen>('orgs');
   // Who is signed in (null = nobody). Signing in is optional; nothing else waits for this.
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
@@ -117,7 +129,7 @@ function Screens() {
 
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      const back = screen === 'event' ? eventBack : screen === 'group' ? groupBack : screen === 'preview' ? previewBack : BACK[screen];
+      const back = screen === 'org' ? orgBack : screen === 'event' ? eventBack : screen === 'group' ? groupBack : screen === 'preview' ? previewBack : BACK[screen];
       if (!back) return false; // let the phone close the app
       setScreen(back);
       return true;
@@ -175,9 +187,39 @@ function Screens() {
       return (
         <AccountScreen
           name={user.displayName ?? ''} email={user.email ?? ''} uid={user.uid} onBack={() => setScreen('settings')}
+          onOrgs={() => setScreen('orgs')}
+          onOpenOrg={(id) => { setOrgId(id); setOrgBack('account'); setScreen('org'); }}
           onSignOut={async () => { try { await signOutUser(); } catch { /* still signed in; stay here */ return; } setScreen('settings'); }}
         />
       );
+    case 'orgs':
+      return <OrgsScreen onBack={() => setScreen('account')} onOpen={(o) => { setOrgId(o.id); setOrgBack('orgs'); setScreen('org'); }} />;
+    case 'org':
+      if (!orgId) break;
+      return (
+        <OrgScreen
+          key={orgId} orgId={orgId} uid={user?.uid ?? null} graph={gdcGraph} onBack={() => setScreen(orgBack)}
+          onSignIn={() => setScreen('auth')}
+          onAdmin={(o) => { setAdminOrg(o); setScreen('orgAdmin'); }}
+          onOpenEvent={(item) => { setEventItem(item); setEventBack('org'); setScreen('event'); }}
+        />
+      );
+    case 'orgAdmin':
+      if (!adminOrg) break;
+      return (
+        <OrgAdminScreen
+          org={adminOrg} graph={gdcGraph} onBack={() => setScreen('org')}
+          onChanged={() => { getOrg(adminOrg.id).then((o) => o && setAdminOrg(o)).catch(() => {}); }}
+          onPostEvent={(item) => { setEditing(item); setScreen('postEvent'); }}
+          onImport={() => setScreen('import')}
+        />
+      );
+    case 'postEvent':
+      if (!adminOrg || !user) break;
+      return <PostEventScreen org={adminOrg} uid={user.uid} graph={gdcGraph} editing={editing} onBack={() => setScreen('orgAdmin')} onDone={() => setScreen('orgAdmin')} />;
+    case 'import':
+      if (!adminOrg || !user) break;
+      return <ImportScreen org={adminOrg} uid={user.uid} graph={gdcGraph} onBack={() => setScreen('orgAdmin')} onDone={() => {}} />;
     case 'editor':
       return <EditorScreen onBack={() => setScreen('settings')} />;
     case 'events':

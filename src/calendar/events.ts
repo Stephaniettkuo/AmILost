@@ -16,19 +16,39 @@ export type Item = {
   room: string | null;       // the map point (e.g. "GDC-2.216") when we know the room, else null
   groupId: string | null;
   url: string;               // the event's UTCS page ("" for events posted on this phone)
-  local?: boolean;           // posted on this phone (Part 3)
+  local?: boolean;           // (old) posted on this phone
+  // Set for events that come from an organization (Firestore):
+  orgId?: string;
+  orgName?: string;
+  visibility?: 'public' | 'members';
+  docId?: string;            // the Firestore document id (to edit or delete it)
+  createdBy?: string;
+  source?: 'manual' | 'import';
 };
 
 // ---------- Room and group ----------
 
-// "GDC 2.100 (Atrium)" -> "GDC-2.100", but only if that point is on our map and isn't a hallway point.
-// Other buildings ("PAI 3.02"), "Zoom", empty text, rooms we haven't mapped -> null.
-export function roomFor(location: string, graph: MapGraph): string | null {
-  const m = location.match(/^\s*GDC\s+(\d)\.([0-9A-Za-z]+)/i);
-  if (!m) return null;
-  const id = `GDC-${m[1]}.${m[2].toUpperCase()}`;
-  const node = graph.nodes.find((n) => n.id === id);
-  return node && node.kind !== 'hall' ? id : null;
+// Which map point is this place text? Checked by hand against the org calendars (data/*.ics):
+//   "GDC 6.302", "gdc 6.302" (any capitals), "GDC 3.314 (ACM Office)", "GDC 2.506 (Teaching Lab)" -> that room
+//   "5.302" (no building: old ACM entries) -> assume GDC
+//   "GDC Atrium" -> GDC-2.100
+//   an empty location -> look for "GDC 1.304" in the description (HACS often writes it there)
+// Other buildings ("UTC 1.118"), "Welch Patio", Zoom links, addresses, rooms we haven't mapped -> null,
+// and the screens show the text instead. Hallway points are never rooms.
+export function roomFor(location: string, graph: MapGraph, description = ''): string | null {
+  const text = location.trim() ? location : description;
+  const idFor = (floor: string, room: string) => {
+    const id = `GDC-${floor}.${room.toUpperCase()}`;
+    const node = graph.nodes.find((n) => n.id === id);
+    return node && node.kind !== 'hall' ? id : null;
+  };
+  if (!location.trim()) {
+    const m = description.match(/(?:^|[^A-Za-z0-9])GDC\s+(\d)\.([0-9]+[A-Za-z]?)(?![0-9A-Za-z])/i);
+    return m ? idFor(m[1], m[2]) : null;
+  }
+  if (/^\s*GDC\s+Atrium\b/i.test(text)) return idFor('2', '100');
+  const m = text.match(/^\s*(?:GDC\s+)?(\d)\.([0-9]+[A-Za-z]?)(?![0-9A-Za-z])/i);
+  return m ? idFor(m[1], m[2]) : null;
 }
 
 // Does `text` contain `keyword` as a whole word or phrase? ("LARG" is not in "Calarge".)
@@ -62,7 +82,7 @@ export function makeItems(events: CalEvent[], from: Date, to: Date, graph: MapGr
         start: o.start,
         end: o.end,
         location: event.location,
-        room: roomFor(event.location, graph),
+        room: roomFor(event.location, graph, event.description),
         groupId: groupFor(event.title, event.description)?.id ?? null,
         url: event.url,
       });
@@ -112,12 +132,15 @@ export function inRange(list: Item[], range: Range, date: Date): Item[] {
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+// "Fri, Dec 4"
+export const dayName = (day: Date) => `${WEEKDAYS[day.getDay()]}, ${MONTHS[day.getMonth()]} ${day.getDate()}`;
+
 // "Today", "Tomorrow", or "Fri, Dec 4": counted in calendar days.
 export function dayLabel(day: Date, now: Date): string {
   const apart = Math.round((startOfDay(day).getTime() - startOfDay(now).getTime()) / 86400000);
   if (apart === 0) return 'Today';
   if (apart === 1) return 'Tomorrow';
-  return `${WEEKDAYS[day.getDay()]}, ${MONTHS[day.getMonth()]} ${day.getDate()}`;
+  return dayName(day);
 }
 
 export type DayGroup = { label: string; day: Date; items: Item[] };

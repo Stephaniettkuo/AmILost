@@ -1,6 +1,6 @@
 // Account: who you are, the orgs you belong to, and Sign out.
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet } from 'react-native';
 import Card from '../components/Card';
 import Chip from '../components/Chip';
 import Screen from '../components/Screen';
@@ -9,9 +9,12 @@ import Text from '../components/Text';
 import { MyOrg, loadMyOrgs } from '../accounts';
 import { colors, fonts, spacing } from '../theme';
 
-type Props = { name: string; email: string; uid: string; onBack: () => void; onSignOut: () => void };
+type Props = {
+  name: string; email: string; uid: string; onBack: () => void; onSignOut: () => void;
+  onOrgs: () => void; onOpenOrg: (orgId: string) => void;
+};
 
-export default function AccountScreen({ name, email, uid, onBack, onSignOut }: Props) {
+export default function AccountScreen({ name, email, uid, onBack, onSignOut, onOrgs, onOpenOrg }: Props) {
   const [orgs, setOrgs] = useState<MyOrg[] | null>(null); // null = still loading
   const [failed, setFailed] = useState(false);
 
@@ -34,16 +37,17 @@ export default function AccountScreen({ name, email, uid, onBack, onSignOut }: P
         <Text style={styles.heading}>My organizations</Text>
         {orgs === null && <ActivityIndicator color={colors.rustDark} />}
         {orgs?.map((org) => (
-          <View key={org.id} style={styles.orgRow}>
+          <Pressable key={org.id} accessibilityRole="button" accessibilityLabel={org.name} onPress={() => onOpenOrg(org.id)} style={styles.orgRow}>
             <Text style={styles.orgName}>{org.name}</Text>
             {org.role === 'admin' && <Chip label="Officer" small />}
-          </View>
+          </Pressable>
         ))}
         {orgs?.length === 0 && (
           <Text style={styles.small}>
             {failed ? "Couldn't load your organizations. Check your internet and come back." : "You haven't joined any organizations yet."}
           </Text>
         )}
+        <StampButton label="Browse organizations" variant="secondary" onPress={onOrgs} />
       </Card>
 
       <StampButton label="Sign out" variant="secondary" onPress={onSignOut} />
