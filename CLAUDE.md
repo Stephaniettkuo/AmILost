@@ -31,15 +31,19 @@ Expo SDK 58, React Native 0.88, TypeScript, react-native-svg, react-native-web, 
 "use Expo Router" rule: we switch screens with simple state in `App.tsx` (see "Screens").
 Animations use React Native's built-in `Animated` API (no Reanimated).
 Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-google-fonts/im-fell-english`,
-`@expo-google-fonts/libre-franklin`, `@expo-google-fonts/pinyon-script`, `@expo/vector-icons`. Ask before adding anything else.
+`@expo-google-fonts/libre-franklin`, `@expo-google-fonts/pinyon-script`, `@expo/vector-icons`, `expo-status-bar`, `react-native-safe-area-context`. Ask before adding anything else.
 
 ## Files
 | File | What it is |
 |---|---|
-| `App.tsx` | Loads fonts, holds the current screen + chosen From/To, switches screens. (Before the redesign it held Navigate + the editor directly.) |
+| `App.tsx` | Sets up safe areas and the status bar, loads fonts, holds the current screen + chosen From/To, switches screens. (Before the redesign it held Navigate + the editor directly.) |
 | `src/theme.ts`, `src/fonts.ts` | Design tokens (colors, spacing, radii, shadows, font names) and the list of fonts to load. |
-| `scripts/` | `make_paper.py` (paper texture) and `make_clear_plans.py` (sepia, transparent floor plans). Run with `python3`; the pictures they make are committed. |
-| `src/screens/`, `src/components/` | One file per screen; shared UI pieces (torn paper, painted button, arrow, map view, floor picker, slideshow, arrival stamp). |
+| `scripts/` | `make_paper.py` (paper texture, not used by the app since the redesign) and `make_clear_plans.py` (sepia, transparent floor plans). Run with `python3`; the pictures they make are committed. |
+| `src/screens/`, `src/components/` | One file per screen; shared UI pieces (torn paper, painted button, arrow, map view, floor picker, slideshow, confetti, arrival stamp). |
+| `src/components/Picture.tsx`, `Picture.web.tsx` | Every picture goes through `Picture`: React Native's `Image` on phones, a real `<img>` on the web. |
+| `src/components/Text.tsx` | Our `Text`: follows the phone's text size, but only up to 1.2x. |
+| `src/safeArea.ts` | `useEdges()`: how far to stay from the notch / Dynamic Island / home bar, and the app's real size. |
+| `public/index.html` | The web page around the app; asks browsers and dark-mode extensions not to recolor it. |
 | `src/art.ts`, `assets/kit/`, `assets/photos/` | Painted pictures (cut from our team's watercolor asset kit) and GDC photos, and the list that names them. |
 | `src/directions.ts` | Turns a `Route` into turn-by-turn steps (arrows + text). |
 | `src/types.ts` | Shared types: `MapNode`, `MapEdge`, `Floor`, `MapGraph`, `Route`. Change together, not alone. |
@@ -91,8 +95,12 @@ easy to read: one main thing per screen, few decorations.
 - **Don't show step counts** ("Step 2 of 6"). Time and distance are fine.
 - **Motion (built-in `Animated`):** buttons press in (~0.97), the arrow bobs gently and springs to the new
   direction, the map glides between steps, photos crossfade, the arrival stamp presses down. 150–400 ms
-  (photos 1 s). With Reduce Motion on: no bobbing, stamping or automatic photos.
+  (photos 1 s). With Reduce Motion on: no bobbing, turning, gliding,
+  stamping or automatic photos. Confetti is one burst (~4 s) on Arrived; with Reduce Motion it falls straight
+  down, no spin or sway.
 - Text: short and friendly. Touch targets at least 48 px tall (44 wide is OK). Phone first, then web.
+- **Every phone:** use `useEdges()` for top and bottom spacing (never a fixed status-bar height), `Text` from
+  `src/components/Text.tsx`, and check 320, 360, 390 and 440 px wide. Home uses smaller lettering under 376 px.
 
 ## Map data rules
 - Coordinates are **pixels on that floor's plan image** (images are ~2420×1520). Never resize or replace a floor image — all its coordinates would be wrong.
@@ -120,3 +128,9 @@ Modes: **Add** (kind + name, connects to nearest hallway), **Move** (hallway dot
 - Anything that appears/disappears above the map **shifts the map under the cursor**. Keep a fixed-height slot (see the message line, `minHeight`).
 - Tapping near a short line can hit a dot instead; Delete uses a smaller dot radius (`reach / 2`).
 - Deleting a line must remove **one** copy, not every match.
+- Use `Picture`, not React Native's `Image`. On the web `Image` is a CSS background, and something in one of our browsers (probably a dark-mode extension) rewrote backgrounds and blew every picture up.
+- iPhone crash "Cannot read property 'forEach' of null": a style's `transform` must not go from a value to `undefined`. Use `?? []`.
+- On phones a `'100%'` width inside a padded box leaves out the padding (the web includes it). To fill a box, put the picture in a `StyleSheet.absoluteFill` view.
+- An absolutely placed layer needs its own width **and height**; our first confetti layer had height 0 and hid everything.
+- "It doesn't animate on my phone" is usually Reduce Motion (iPhone: Settings → Accessibility → Motion).
+- The browser hides phone-only bugs. Try changes in Expo Go before calling them done.
