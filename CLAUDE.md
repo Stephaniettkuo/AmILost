@@ -63,7 +63,9 @@ Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-g
 ## Screens
 App flow: **Home → Place → Route preview → Directions → Arrived**, plus **Settings** and the
 **Map editor** (team-only, opened from Settings). Screen = a piece of state in `App.tsx`
-(`'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor'`); each screen is a
+(`'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor' | 'events' | 'event' | 'groups' | 'group'`);
+**Events** (opened from the card on Home) lists the UTCS calendar; an **Event** page has Directions (into Route preview) when we know the room;
+**Groups** / a **Group** page follow groups (saved on the phone). `App.tsx` remembers where Back goes from `event`, `group` and `preview`. Each screen is a
 component in `src/screens/`. Shared UI pieces live in `src/components/`. Full spec:
 `docs/tasks/arrows-and-redesign.md`.
 

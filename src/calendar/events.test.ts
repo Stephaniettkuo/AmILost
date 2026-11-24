@@ -2,7 +2,10 @@ import { describe, expect, test } from '@jest/globals';
 import { gdcGraph } from '../data/gdc';
 import { groups } from '../data/groups';
 import { MapGraph } from '../types';
-import { Item, dayLabel, groupByDay, groupFor, inRange, makeItems, mergeItems, rangeBounds, roomFor, search } from './events';
+import {
+  Item, countByGroup, dayLabel, forGroups, formatTime, formatWhen, groupByDay, groupFor, inRange, makeItems, mergeItems,
+  rangeBounds, rangeLabel, roomFor, search, shiftDate,
+} from './events';
 import { parseIcs } from './ics';
 import { readRepoFile } from './readRepoFile';
 import { wall } from './time';
@@ -233,5 +236,65 @@ describe('mergeItems', () => {
     const a = [item(wall(2026, 11, 24, 9, 0), wall(2026, 11, 24, 10, 0), 'b'), item(wall(2026, 11, 24, 12, 0), wall(2026, 11, 24, 13, 0), 'd')];
     const b = [item(wall(2026, 11, 24, 9, 0), wall(2026, 11, 24, 10, 0), 'a'), item(wall(2026, 11, 24, 11, 0), wall(2026, 11, 24, 12, 0), 'c')];
     expect(titles(mergeItems(a, b))).toEqual(['a', 'b', 'c', 'd']);
+  });
+});
+
+describe('formatTime and formatWhen', () => {
+  const at = (h1: number, m1: number, h2: number, m2: number, day = 4) => item(wall(2026, 12, day, h1, m1), wall(2026, 12, day + (h2 < h1 ? 1 : 0), h2, m2));
+  test('AM/PM is shown once when start and end agree', () => {
+    expect(formatTime(at(15, 0, 16, 30))).toBe('3:00–4:30 PM');
+    expect(formatTime(at(9, 0, 10, 0))).toBe('9:00–10:00 AM');
+  });
+  test('and twice when the event crosses noon or midnight', () => {
+    expect(formatTime(at(11, 30, 13, 0))).toBe('11:30 AM–1:00 PM');
+    expect(formatTime(at(23, 30, 0, 30))).toBe('11:30 PM–12:30 AM');
+  });
+  test('noon is 12 PM', () => {
+    expect(formatTime(at(12, 0, 13, 0))).toBe('12:00–1:00 PM');
+  });
+  test('with the day: Wed Dec 9, 4:00-5:15 PM', () => {
+    expect(formatWhen(item(wall(2026, 12, 9, 16, 0), wall(2026, 12, 9, 17, 15)))).toBe('Wed, Dec 9 · 4:00–5:15 PM');
+  });
+});
+
+describe('forGroups and countByGroup', () => {
+  const list = makeItems(feed, wall(2026, 11, 24), wall(2027, 1, 1), gdcGraph); // Nov 24 - Dec 31
+  test('counts per group in that window (worked out by hand)', () => {
+    // LARG Dec 2, 9, 16, 23, 30 (5) · AMRL Dec 4 (1) · NLL Nov 27 (1) · RobIn Fridays Nov 27, Dec 4, 11, 18 (4)
+    // AMAZE Nov 26, 30, Dec 3, 7, 10 (5) · Texas Convergent Mondays Nov 30, Dec 7, 14, 21, 28 (5)
+    // DiRP: Phil.AI Dec 3 + LLM Reasoning Dec 2, 9 (3) · FoCS Dec 8 (1)
+    expect(countByGroup(list)).toEqual({ larg: 5, amrl: 1, nll: 1, robin: 4, amaze: 5, convergent: 5, dirp: 3, focs: 1 });
+  });
+  test('forGroups keeps only items of the followed groups (and none for no groups)', () => {
+    expect(forGroups(list, ['amrl', 'focs'])).toHaveLength(2);
+    expect(titles(forGroups(list, ['focs']))).toEqual(['FoCS: Finals Fuel Stop with Dante']);
+    expect(forGroups(list, [])).toEqual([]);
+  });
+});
+
+describe('shiftDate and rangeLabel (the date strip)', () => {
+  const ymd = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  test('arrows move by a day, a week or a month', () => {
+    expect(ymd(shiftDate(wall(2026, 11, 30), 'day', 1))).toBe('2026-12-1');
+    expect(ymd(shiftDate(wall(2026, 11, 30), 'day', -1))).toBe('2026-11-29');
+    expect(ymd(shiftDate(wall(2026, 11, 25), 'week', 1))).toBe('2026-12-2');
+    expect(ymd(shiftDate(wall(2026, 11, 25), 'week', -1))).toBe('2026-11-18');
+    expect(ymd(shiftDate(wall(2026, 12, 15), 'month', 1))).toBe('2027-1-15');   // across the new year
+    expect(ymd(shiftDate(wall(2026, 12, 15), 'month', -1))).toBe('2026-11-15');
+  });
+  test('a month arrow keeps the last day when the next month is shorter', () => {
+    expect(ymd(shiftDate(wall(2027, 1, 31), 'month', 1))).toBe('2027-2-28');    // February 2027 has 28 days
+    expect(ymd(shiftDate(wall(2027, 3, 31), 'month', -1))).toBe('2027-2-28');
+    expect(ymd(shiftDate(wall(2026, 11, 30), 'month', 1))).toBe('2026-12-30');
+  });
+  test('labels (now = Tue Nov 24, 2026)', () => {
+    const now = wall(2026, 11, 24, 10, 0);
+    expect(rangeLabel('day', wall(2026, 11, 24), now)).toBe('Today');
+    expect(rangeLabel('day', wall(2026, 11, 25), now)).toBe('Tomorrow');
+    expect(rangeLabel('day', wall(2026, 12, 4), now)).toBe('Fri, Dec 4');
+    expect(rangeLabel('week', wall(2026, 11, 25), now)).toBe('Nov 22 – 28');        // Sunday Nov 22 to Saturday Nov 28
+    expect(rangeLabel('week', wall(2026, 12, 1), now)).toBe('Nov 29 – Dec 5');      // a week that crosses two months
+    expect(rangeLabel('month', wall(2026, 11, 24), now)).toBe('November 2026');
+    expect(rangeLabel('month', wall(2027, 1, 5), now)).toBe('January 2027');
   });
 });

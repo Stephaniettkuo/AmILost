@@ -24,6 +24,8 @@ type Props = {
   onChooseTo: (id: string) => void;
   onChangeFrom: (id: string) => void;
   onSettings: () => void;
+  eventsToday: number;          // events still to come today (the Events card on the slideshow)
+  onEvents: () => void;
 };
 
 // The four chips, their picture, and which places they mean.
@@ -39,7 +41,7 @@ const SUGGESTED = ['GDC-1.304', 'GDC-2.216', 'GDC-2.100', 'GDC-2.302', 'GDC-3.30
 const FLOORS = gdcFloors.map((f) => f.id);
 const SHEET = 274; // height of the sheet at rest
 
-export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, onSettings }: Props) {
+export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, onSettings, eventsToday, onEvents }: Props) {
   const { top, width, height: appHeight } = useEdges();
   const narrow = width < 376; // small phones: smaller lettering
   const headerHeight = top + 66;
@@ -96,6 +98,13 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
           <Slideshow bottom={26} narrow={narrow} />
         )}
         {!showMap && <StampButton label="View map" small onPress={() => setShowMap(true)} style={styles.viewMap} />}
+        {!showMap && (
+          <Pressable accessibilityRole="button" accessibilityLabel="Find events" onPress={onEvents} style={styles.eventsCard}>
+            <Torn top bottom style={styles.eventsPaper}>
+              <Text style={styles.eventsText}>Find events</Text>
+            </Torn>
+          </Pressable>
+        )}
       </View>
 
       <Torn bottom style={[styles.header, { height: headerHeight, paddingTop: top - 4 }]}>
@@ -204,6 +213,9 @@ const styles = StyleSheet.create({
   tan: { backgroundColor: colors.map },
   map: { flex: 1, marginTop: 168, marginBottom: 62 }, // between the chips and the floor buttons
   viewMap: { position: 'absolute', right: 16, bottom: 22, width: 138 },
+  eventsCard: { position: 'absolute', left: 16, right: 164, bottom: 22 },
+  eventsPaper: { minHeight: 56, paddingHorizontal: 14, paddingVertical: 6, justifyContent: 'center' },
+  eventsText: { fontFamily: fonts.bodyBold, fontSize: 17, lineHeight: 20, color: colors.ink },
   header: {
     paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'flex-end', gap: 8,
   },

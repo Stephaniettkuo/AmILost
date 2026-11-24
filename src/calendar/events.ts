@@ -133,3 +133,55 @@ export function groupByDay(list: Item[], now: Date): DayGroup[] {
   }
   return result;
 }
+
+// ---------- Describing items ----------
+
+const clock = (d: Date) => `${d.getHours() % 12 || 12}:${String(d.getMinutes()).padStart(2, '0')}`;
+const meridiem = (d: Date) => (d.getHours() < 12 ? 'AM' : 'PM');
+
+// "3:00–4:30 PM" (AM/PM shown once when start and end agree, otherwise twice: "11:30 AM–1:00 PM").
+export function formatTime(item: Item): string {
+  const same = meridiem(item.start) === meridiem(item.end);
+  return `${clock(item.start)}${same ? '' : ` ${meridiem(item.start)}`}–${clock(item.end)} ${meridiem(item.end)}`;
+}
+
+// "Wed, Dec 9 · 4:00–5:15 PM"
+export function formatWhen(item: Item): string {
+  const d = item.start;
+  return `${WEEKDAYS[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()} · ${formatTime(item)}`;
+}
+
+// ---------- Following groups, and the date strip ----------
+
+// Items that belong to one of these groups.
+export function forGroups(list: Item[], groupIds: string[]): Item[] {
+  return list.filter((i) => i.groupId !== null && groupIds.includes(i.groupId));
+}
+
+// How many items each group has: { larg: 5, amrl: 1 }.
+export function countByGroup(list: Item[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const i of list) if (i.groupId) counts[i.groupId] = (counts[i.groupId] ?? 0) + 1;
+  return counts;
+}
+
+// The date after pressing the arrows: a day, a week, or a month earlier (-1) or later (+1).
+// Moving by a month keeps the day number, or the month's last day if it has fewer days (Jan 31 -> Feb 28).
+export function shiftDate(date: Date, range: Range, direction: 1 | -1): Date {
+  if (range === 'day') return addDays(startOfDay(date), direction);
+  if (range === 'week') return addDays(startOfDay(date), 7 * direction);
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + direction + 1, 0).getDate();
+  return new Date(date.getFullYear(), date.getMonth() + direction, Math.min(date.getDate(), lastDay));
+}
+
+const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// The title of the date strip: "Today", "Nov 22 – 28", "Nov 29 – Dec 5" or "November 2026".
+export function rangeLabel(range: Range, date: Date, now: Date): string {
+  if (range === 'day') return dayLabel(date, now);
+  if (range === 'month') return `${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
+  const first = startOfWeek(date, 0);
+  const last = addDays(first, 6);
+  const start = `${MONTHS[first.getMonth()]} ${first.getDate()}`;
+  return first.getMonth() === last.getMonth() ? `${start} – ${last.getDate()}` : `${start} – ${MONTHS[last.getMonth()]} ${last.getDate()}`;
+}

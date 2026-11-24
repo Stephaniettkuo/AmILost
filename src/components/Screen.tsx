@@ -3,7 +3,7 @@
 // Screen: a Page with a torn header (back arrow + title) over scrolling content.
 import { Ionicons } from '@expo/vector-icons';
 import { ReactNode } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
 import Text from './Text';
 import Picture from './Picture';
 import { art } from '../art';
@@ -41,14 +41,22 @@ export function Header({ title, onBack }: { title?: string; onBack?: () => void 
   );
 }
 
-type Props = { children: ReactNode; title?: string; onBack?: () => void };
+type Props = {
+  children: ReactNode; title?: string; onBack?: () => void;
+  refresh?: { refreshing: boolean; onRefresh: () => void };   // pull down to refresh (phones)
+};
 
-export default function Screen({ children, title, onBack }: Props) {
+export default function Screen({ children, title, onBack, refresh }: Props) {
   const { bottom } = useEdges();
   return (
     <Page>
       <Header title={title} onBack={onBack} />
-      <ScrollView contentContainerStyle={[styles.content, { paddingBottom: bottom + 12 }]}>{children}</ScrollView>
+      <ScrollView
+        contentContainerStyle={[styles.content, { paddingBottom: bottom + 12 }]}
+        refreshControl={refresh ? <RefreshControl refreshing={refresh.refreshing} onRefresh={refresh.onRefresh} tintColor={colors.rustDark} /> : undefined}
+      >
+        {children}
+      </ScrollView>
     </Page>
   );
 }
