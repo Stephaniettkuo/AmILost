@@ -13,6 +13,12 @@ export function placeName(n: MapNode): string {
   return /^\d/.test(short) ? `${short} · ${n.label}` : n.label;
 }
 
+// Like placeName, but a bare room number gets the word Room: "3.304" -> "Room 3.304"
+export function placeTitle(n: MapNode): string {
+  const name = placeName(n);
+  return n.kind === 'room' && /^\d[\d.A-Z]*$/.test(name) ? `Room ${name}` : name;
+}
+
 // Everything a search box should match for this point, lowercased.
 export function searchText(n: MapNode): string {
   return [shortId(n.id), n.label ?? '', ...(n.aliases ?? []), n.kind].join(' ').toLowerCase();

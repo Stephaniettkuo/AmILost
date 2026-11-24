@@ -3,9 +3,10 @@
 import { useFonts } from 'expo-font';
 import { appFonts } from './src/fonts';
 import { useEffect, useMemo, useState } from 'react';
-import { BackHandler, Platform, View } from 'react-native';
+import { BackHandler, View } from 'react-native';
 import { gdcGraph } from './src/data/gdc';
 import { directions } from './src/directions';
+import { placeTitle } from './src/names';
 import { findRoute } from './src/routing';
 import ArrivedScreen from './src/screens/ArrivedScreen';
 import DirectionsScreen from './src/screens/DirectionsScreen';
@@ -14,7 +15,6 @@ import HomeScreen from './src/screens/HomeScreen';
 import PlaceScreen from './src/screens/PlaceScreen';
 import PreviewScreen from './src/screens/PreviewScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
-import StyleCheck from './src/StyleCheck';
 import { colors } from './src/theme';
 
 type Screen = 'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor';
@@ -48,20 +48,20 @@ export default function App() {
     return () => sub.remove();
   }, [screen]);
 
-  // Dev only: open the app at /#style on web to see the building blocks. Remove before we ship.
-  if (Platform.OS === 'web' && typeof window !== 'undefined' && window.location.hash === '#style') return <StyleCheck />;
-  if (!loaded) return <View style={{ flex: 1, backgroundColor: colors.paper }} />; // cream until fonts are ready
+  if (!loaded) return <View style={{ flex: 1, backgroundColor: colors.paper }} />; // plain white until fonts are ready
 
+  const from = gdcGraph.nodes.find((n) => n.id === fromId);
   const place = toId ? gdcGraph.nodes.find((n) => n.id === toId) : undefined;
 
   switch (screen) {
     case 'place':
       if (!place) break;
-      return <PlaceScreen place={place} onBack={() => setScreen('home')} onDirections={() => setScreen('preview')} />;
+      return <PlaceScreen place={place} from={from} onBack={() => setScreen('home')} onDirections={() => setScreen('preview')} />;
     case 'preview':
+      if (!place) break;
       return (
         <PreviewScreen
-          route={route} steps={steps} avoidStairs={avoidStairs} onAvoidStairs={setAvoidStairs}
+          route={route} place={place} from={from} avoidStairs={avoidStairs} onAvoidStairs={setAvoidStairs}
           onBack={() => setScreen('place')} onStart={() => { setStepIndex(0); setScreen('directions'); }}
         />
       );
@@ -69,7 +69,7 @@ export default function App() {
       if (!route || steps.length === 0) break;
       return (
         <DirectionsScreen
-          route={route} steps={steps} index={Math.min(stepIndex, steps.length - 1)} onIndex={setStepIndex}
+          route={route} steps={steps} toName={placeTitle(route.nodes[route.nodes.length - 1])} index={Math.min(stepIndex, steps.length - 1)} onIndex={setStepIndex}
           onBack={() => setScreen('preview')} onArrive={() => setScreen('arrived')}
         />
       );

@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { PX_PER_FOOT, Step, directions, distanceText, routeSummary, stepDistancePx } from './directions';
+import { PX_PER_FOOT, Step, directions, distanceText, routeFacts, stepDistancePx } from './directions';
 import { gdcGraph } from './data/gdc';
 import { findRoute } from './routing';
 import { MapNode, NodeKind, Route } from './types';
@@ -156,7 +156,7 @@ describe('distanceText', () => {
   });
 });
 
-describe('stepDistancePx and routeSummary', () => {
+describe('stepDistancePx and routeFacts', () => {
   test('step distance adds up the straight segments inside the step', () => {
     // (0,0) -> (300,0) -> (300,400) -> (300,500): a step covering points 0..2 is 300 + 400 = 700 px.
     const r = route(start, pt('B', F1, 300, 0), pt('C', F1, 300, 400), pt('D', F1, 300, 500));
@@ -168,20 +168,20 @@ describe('stepDistancePx and routeSummary', () => {
     expect(stepDistancePx(lift, { arrow: 'stairsUp', text: '', floor: F1, from: 0, to: 1 })).toBe(0);
   });
 
-  test('summary: steps, minutes (250 ft per minute), floors when they change', () => {
-    // cost 1500 px = 500 ft (3 px per ft) = 2 minutes. A straight 4-point route is 2 steps (head, arrive).
+  test('facts: minutes (250 ft per minute) and the floor or floors', () => {
+    // cost 1500 px = 500 ft (3 px per ft) = 2 minutes.
     const flat = { nodes: [start, pt('B', F1, 100, 0), pt('C', F1, 200, 0), pt('D', F1, 280, 0, 'room', 'Library')], cost: 1500 };
-    expect(routeSummary(flat, directions(flat))).toBe('2 steps · about 2 min');
-    // With stairs: head, take stairs, arrive = 3 steps, and the floors are listed in order visited.
+    expect(routeFacts(flat)).toEqual(['about 2 min', 'Floor 1']);
+    // Starts on floor 1 and ends on floor 2.
     const up = {
       nodes: [pt('A', F1, 0, 0, 'room', 'Start'), pt('L1', F1, 100, 0, 'stairs', 'Stairs 1X'),
         pt('L2', F2, 100, 0, 'stairs', 'Stairs 2X'), pt('R', F2, 200, 0, 'room', 'Lab')],
       cost: 1500,
     };
-    expect(routeSummary(up, directions(up))).toBe('3 steps · about 2 min · floors 1 → 2');
-    // Very short walks still say 1 min (never 0), and one step is "1 step".
+    expect(routeFacts(up)).toEqual(['about 2 min', 'Floors 1 to 2']);
+    // Very short walks still say 1 min (never 0).
     const tiny = { nodes: [start, pt('B', F1, 50, 0, 'room', 'Cafe')], cost: 100 };
-    expect(routeSummary(tiny, directions(tiny))).toBe('1 step · about 1 min');
+    expect(routeFacts(tiny)).toEqual(['about 1 min', 'Floor 1']);
   });
 });
 
@@ -213,32 +213,23 @@ describe('directions: real GDC routes (worked out from the floor plan)', () => {
     ]);
   });
 
-  test("men's room 2.202 -> 2.816: around the stairwell, down past the elevator, east (7 steps)", () => {
+  test("men's room 2.202 -> 2.816: straight through the Atrium and past the elevator, then east (3 steps)", () => {
     // Route (already checked in routing.test.ts) with points (x,y):
-    //   0 2.202 (975,522)  1 2.204  2 hall-G  3 hall-N (975,705)  4 hall-O (1035,712)  5 hall-S (1090,821)
-    //   6 hall-U (975,950)  7 Elevator 2.6E1 (975,975)  8 hall-T (978,1151)
-    //   9..16 = 2.802 ... 2.816, all along y=1150 (x from 1048 to 1200)
-    // Turns (cross product; negative = left, positive = right, y points down):
-    //   2.204, hall-G: straight south
-    //   hall-N: south (0,100) -> east (60,7): cross = -6000, 83 degrees -> LEFT (facing south, east is on your left)
-    //   hall-O: (60,7) -> (55,109): cross = +6155, 57 degrees -> SLIGHT RIGHT
-    //   hall-S: (55,109) -> (-115,129): cross = +19630, 68 degrees -> RIGHT
-    //   hall-U: (-115,129) -> (0,25): cross = -2875, 42 degrees -> SLIGHT LEFT
-    //   6E1: (0,25) -> (3,176): 1 degree -> straight
-    //   hall-T: south (3,176) -> east (70,-1): cross = -12323, 90 degrees -> LEFT
+    //   0 2.202 (975,522)  1 2.204  2 hall-G  3 hall-N (975,705)  4 2.100 Atrium (985,842)
+    //   5 hall-U (975,950)  6 Elevator 2.6E1 (975,975)  7 hall-T (978,1151)
+    //   8..15 = 2.802 ... 2.816, all along y=1150 (x from 1048 to 1200)
+    // Bends (under 25 degrees is not a turn):
+    //   hall-N: (0,100) -> (10,137): 4 degrees.  2.100: (10,137) -> (-10,108): 4 + 5 = 9 degrees.
+    //   hall-U: (-10,108) -> (0,25): 5 degrees.  6E1: (0,25) -> (3,176): 1 degree.  So all one straight step.
+    //   hall-T: south (3,176) -> east (70,-1): cross = 3*(-1) - 176*70 = -12323, 90 degrees -> LEFT
     //   2.802 ... 2.814: straight east, and the last hop to 2.816 is too -> "just ahead"
-    // Names (landmark within 120 px, never a hall point, never the start):
-    //   N: 2.204 is 143 px away -> none.  O: 2.204 is 161 px -> none.  S: the elevator is 192 px -> none.
-    //   U: Elevator 2.6E1 is 25 px away -> named.  T: 2.802 is 70 px away (the closest) -> named.
+    // Names: the first step ends at hall-T, where 2.802 is 70 px away (within 120) -> "Head toward 2.802",
+    // and the turn there is "at 2.802".
     const r = findRoute(gdcGraph, 'GDC-2.202', 'GDC-2.816')!;
     expect(directions(r)).toEqual([
-      { arrow: 'straight', text: 'Head straight', floor: 'GDC-2', from: 0, to: 3 },
-      { arrow: 'left', text: 'Turn left', floor: 'GDC-2', from: 3, to: 4 },
-      { arrow: 'slightRight', text: 'Turn slightly right', floor: 'GDC-2', from: 4, to: 5 },
-      { arrow: 'right', text: 'Turn right', floor: 'GDC-2', from: 5, to: 6 },
-      { arrow: 'slightLeft', text: 'Turn slightly left at Elevator 2.6E1', floor: 'GDC-2', from: 6, to: 8 },
-      { arrow: 'left', text: 'Turn left at 2.802', floor: 'GDC-2', from: 8, to: 15 },
-      { arrow: 'arrive', text: '2.816 is just ahead', floor: 'GDC-2', from: 15, to: 16 },
+      { arrow: 'straight', text: 'Head toward 2.802', floor: 'GDC-2', from: 0, to: 7 },
+      { arrow: 'left', text: 'Turn left at 2.802', floor: 'GDC-2', from: 7, to: 14 },
+      { arrow: 'arrive', text: '2.816 is just ahead', floor: 'GDC-2', from: 14, to: 15 },
     ]);
   });
 });

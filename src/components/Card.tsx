@@ -1,4 +1,4 @@
-// A parchment card with a thin ink border and a soft shadow. Settles into place when it appears.
+// A white card with a thin ink border and a soft shadow. Settles into place when it appears.
 import { ReactNode, useEffect, useRef } from 'react';
 import { Animated, StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import { nativeDriver, useReduceMotion } from '../motion';
@@ -27,7 +27,7 @@ export default function Card({ children, style }: { children: ReactNode; style?:
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.parchment, borderRadius: radii.card, padding: spacing.lg,
+    backgroundColor: colors.paper, borderRadius: radii.card, padding: spacing.lg,
     borderWidth: 1, borderColor: colors.line,
   },
 });

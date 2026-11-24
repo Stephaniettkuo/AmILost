@@ -77,14 +77,16 @@ describe('GDC floor 2 (checked against the floor plan)', () => {
     expect(r?.cost).toBeCloseTo(367.4, 0);
   });
 
-  test("men's restroom 2.202 -> 2.816: around stairwell 2.1S1, down past 2.6E1, east", () => {
-    // The 2.1S1 stair block is in the way straight south of hall-N (975,705), so go around it:
-    //   east: N -> O (1035,712) -> S (1090,821) -> U (975,950):  ~60 + 122 + 173 = ~355 px
-    //   west: N -> AC -> M -> Q -> Z -> U:  ~76 + 84 + 108 + 123 + 119 = ~510 px
-    // East is shorter and crosses open atrium floor. Then down past 6E1 to the south
-    // hallway (hall-T, 978,1151) and east along it to 2.816.
+  test("men's restroom 2.202 -> 2.816: past the east end of stairs 2.1S1, through the Atrium, down past 2.6E1, east", () => {
+    // 2026-11-23: we confirmed you can walk from hall-N and from hall-O straight into the Atrium (2.100),
+    // so there are four ways from hall-N (975,705) to hall-U (975,950):
+    //   straight:  N -> 2.100 (985,842) -> U:                 137.4 + 108.5 = ~246 px
+    //   by hall-O: N -> O (1035,712) -> 2.100 -> U:    60.4 + 139.3 + 108.5 = ~308 px
+    //   east:      N -> O -> S (1090,821) -> U:         60.4 + 122.1 + 172.8 = ~355 px
+    //   west:      around 2.1S1 by hall-Q and hall-Z:                         = ~510 px
+    // Straight is shortest. Then down past 6E1 to the south hallway (hall-T, 978,1151) and east to 2.816.
     expect(ids(findRoute(gdcGraph, 'GDC-2.202', 'GDC-2.816'))).toEqual([
-      '.202', '.204', '-hall-G', '-hall-N', '-hall-O', '-hall-S',
+      '.202', '.204', '-hall-G', '-hall-N', '.100',
       '-hall-U', '.6E1', '-hall-T',
       '.802', '.804', '.806', '.808', '.810', '.812', '.814', '.816',
     ]);

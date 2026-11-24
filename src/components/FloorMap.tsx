@@ -1,13 +1,15 @@
-// A floor plan in a rounded card: faded plan + the orange route on top.
+// A floor plan on tan, dark plan lines, with the burnt orange route on top. Fills the space it is given.
 // `focus` zooms and centers on a set of points (image pixels); without it the whole
-// plan is shown. `highlight` makes one stretch of the route bright and fades the rest.
+// plan is shown. `highlight` draws one stretch of the route as a solid line and the rest as dots.
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Image, StyleSheet, View, useWindowDimensions } from 'react-native';
-import Svg, { Circle, Polyline } from 'react-native-svg';
+import { Animated, Easing, LayoutChangeEvent, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import Picture from './Picture';
+import Svg, { Polyline } from 'react-native-svg';
+import { art } from '../art';
 import { floorImagesClear, gdcFloors } from '../data/floors';
 import { Point } from '../editGraph';
 import { useReduceMotion } from '../motion';
-import { MAX_WIDTH, colors, radii, shadow, spacing } from '../theme';
+import { colors } from '../theme';
 import { Route } from '../types';
 
 type Props = {
@@ -17,12 +19,14 @@ type Props = {
   highlight?: { from: number; to: number };     // route indexes (inclusive) to draw bright
   pin?: Point;                                  // a destination pin (when there is no route)
   you?: Point;                                  // the "you are here" dot
-  width?: number;
-  height?: number;
+  marks?: Point[];                              // places to mark with a pin (e.g. every restroom on this floor)
+  style?: StyleProp<ViewStyle>;                 // how big the map is, e.g. { flex: 1 }
 };
 
-const MIN_VIEW_PX = 600;  // never zoom in closer than this many plan pixels across
-const FOCUS_PAD_PX = 150; // breathing room around the focus points
+const MIN_VIEW_PX = 360;  // never zoom in closer than this many plan pixels across
+const FOCUS_PAD_PX = 90;  // breathing room around the focus points
+
+type Rect = { x: number; y: number; w: number; h: number };
 
 // Which part of the plan (image pixels) to show in a box with this width/height ratio.
 function viewRect(floor: { width: number; height: number }, aspect: number, focus?: Point[]) {
@@ -40,18 +44,28 @@ function viewRect(floor: { width: number; height: number }, aspect: number, focu
   return { x: clamp(cx - w / 2, 0, floor.width - w), y: clamp(cy - h / 2, 0, floor.height - h), w, h };
 }
 
-type Rect = { x: number; y: number; w: number; h: number };
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const lerpRect = (a: Rect, b: Rect, t: number): Rect =>
   ({ x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t), w: lerp(a.w, b.w, t), h: lerp(a.h, b.h, t) });
 const lerpPoint = (a: Point | undefined, b: Point | undefined, t: number): Point | undefined =>
   a && b ? { x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t) } : b;
 
-export default function FloorMap({ floorId, route, focus, highlight, pin, you, width, height }: Props) {
-  const window = useWindowDimensions();
+// Measures the space it has, then draws the map at exactly that size.
+export default function FloorMap({ style, ...map }: Props) {
+  const [size, setSize] = useState({ w: 0, h: 0 });
+  const onLayout = (e: LayoutChangeEvent) => {
+    const { width, height } = e.nativeEvent.layout;
+    setSize((s) => (s.w === width && s.h === height ? s : { w: width, h: height }));
+  };
+  return (
+    <View style={[styles.box, style]} onLayout={onLayout}>
+      {size.w > 0 && size.h > 0 && <SizedMap {...map} w={size.w} h={size.h} />}
+    </View>
+  );
+}
+
+function SizedMap({ floorId, route, focus, highlight, pin, you, marks, w, h }: Omit<Props, 'style'> & { w: number; h: number }) {
   const floor = gdcFloors.find((f) => f.id === floorId)!;
-  const w = Math.max(width ?? Math.min(window.width, MAX_WIDTH) - 2 * spacing.md, 100); // window can report 0 for a moment on web
-  const h = height ?? Math.round(w * 0.7);
   // When the focus changes on the same floor, the view glides over (and the "you are here" dot
   // slides with it) instead of jumping. On another floor, or with Reduce Motion, it just switches.
   const reduce = useReduceMotion();
@@ -90,67 +104,52 @@ export default function FloorMap({ floorId, route, focus, highlight, pin, you, w
     ? runs.map((run) => run.filter((p) => p.i >= highlight.from && p.i <= highlight.to)).filter((r) => r.length > 1)
     : runs;
   const start = nodes[0], end = nodes[nodes.length - 1];
-  // Where the route leaves or arrives on this floor (stairs/elevator): a small ring.
-  const lifts = nodes.filter((n, i) => n.floor === floorId &&
-    ((nodes[i + 1] && nodes[i + 1].floor !== floorId) || (i > 0 && nodes[i - 1].floor !== floorId)));
+  const youAt = cur.you ?? (start?.floor === floorId ? start : undefined);
+  const pinAt = pin ?? (end?.floor === floorId ? end : undefined);
+  const screen = (p: Point) => ({ x: (p.x - view.x) * s, y: (p.y - view.y) * s }); // plan point -> screen point
 
   return (
-    <View style={[styles.shadowBox, shadow, { width: w, height: h }]}>
-      <View style={styles.clip}>
-        <Image
-          source={floorImagesClear[floorId]}
-          style={{ position: 'absolute', left: -view.x * s, top: -view.y * s, width: floor.width * s, height: floor.height * s, opacity: 0.9 }}
-        />
-        <Svg width={w} height={h} viewBox={`${view.x} ${view.y} ${view.w} ${view.h}`} style={StyleSheet.absoluteFill}>
-          {/* With a highlight, the whole route is drawn thin and faded under the bright stretch. */}
-          {highlight && runs.map((run, i) => (
-            <Polyline key={`f${i}`} points={pts(run)} fill="none" stroke={colors.brass} opacity={0.45}
-              strokeWidth={px(5)} strokeLinecap="round" strokeLinejoin="round" />
-          ))}
-          {bright.map((run, i) => (
-            <RouteLine key={`b${i}`} points={pts(run)} casing={px(12)} line={px(7)} />
-          ))}
-          {lifts.map((n) => (
-            <Circle key={n.id + n.floor} cx={n.x} cy={n.y} r={px(8)} fill={colors.light} stroke={colors.rust} strokeWidth={px(4)} />
-          ))}
-          {pin && (
-            <>
-              <Circle cx={pin.x} cy={pin.y} r={px(12)} fill={colors.seal} stroke={colors.light} strokeWidth={px(4)} />
-              <Circle cx={pin.x} cy={pin.y} r={px(4)} fill={colors.light} />
-            </>
-          )}
-          {start?.floor === floorId && (
-            <Circle cx={start.x} cy={start.y} r={px(10)} fill={colors.sage} stroke={colors.light} strokeWidth={px(4)} />
-          )}
-          {end?.floor === floorId && (
-            <>
-              <Circle cx={end.x} cy={end.y} r={px(12)} fill={colors.seal} stroke={colors.light} strokeWidth={px(4)} />
-              <Circle cx={end.x} cy={end.y} r={px(4)} fill={colors.light} />
-            </>
-          )}
-          {cur.you && (
-            <>
-              <Circle cx={cur.you.x} cy={cur.you.y} r={px(16)} fill={colors.brass} opacity={0.35} />
-              <Circle cx={cur.you.x} cy={cur.you.y} r={px(8)} fill={colors.ink} stroke={colors.light} strokeWidth={px(3)} />
-            </>
-          )}
-        </Svg>
-      </View>
-    </View>
+    <>
+      <Picture
+        source={floorImagesClear[floorId]}
+        tint={colors.mapInk}
+        style={{ position: 'absolute', left: -view.x * s, top: -view.y * s, width: floor.width * s, height: floor.height * s }}
+      />
+      <Svg width={w} height={h} viewBox={`${view.x} ${view.y} ${view.w} ${view.h}`} style={StyleSheet.absoluteFill}>
+        {/* With a highlight, the whole route is dots under the solid stretch. */}
+        {highlight && runs.map((run, i) => (
+          <Polyline key={`f${i}`} points={pts(run)} fill="none" stroke={colors.rust} strokeWidth={px(11)}
+            strokeDasharray={[0.1, px(20)]} strokeLinecap="round" strokeLinejoin="round" />
+        ))}
+        {bright.map((run, i) => (
+          <RouteLine key={`b${i}`} points={pts(run)} line={px(highlight ? 13 : 10)} casing={highlight ? 0 : px(17)} />
+        ))}
+      </Svg>
+      {marks?.map((p, i) => {
+        const at = screen(p);
+        return <Picture key={i} source={art.pin} style={[styles.mark, { left: at.x - 18, top: at.y - 47 }]} />;
+      })}
+      {youAt && <Picture source={art.you} style={[styles.you, { left: screen(youAt).x - 30, top: screen(youAt).y - 29 }]} />}
+      {pinAt && <Picture source={art.pin} style={[styles.pin, { left: screen(pinAt).x - 23, top: screen(pinAt).y - 61 }]} />}
+    </>
   );
 }
 
-// A bright route stretch: apricot casing under an orange line.
+// A solid route stretch; on the route overview it also gets a thin white edge (casing).
 function RouteLine({ points, casing, line }: { points: string; casing: number; line: number }) {
   return (
     <>
-      <Polyline points={points} fill="none" stroke={colors.brass} strokeWidth={casing} strokeLinecap="round" strokeLinejoin="round" />
+      {casing > 0 && (
+        <Polyline points={points} fill="none" stroke={colors.paper} strokeWidth={casing} strokeLinecap="round" strokeLinejoin="round" />
+      )}
       <Polyline points={points} fill="none" stroke={colors.rust} strokeWidth={line} strokeLinecap="round" strokeLinejoin="round" />
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  shadowBox: { borderRadius: radii.card, backgroundColor: colors.parchment },
-  clip: { flex: 1, borderRadius: radii.card, overflow: 'hidden', borderWidth: 1, borderColor: colors.line },
+  box: { backgroundColor: colors.map, overflow: 'hidden' },
+  you: { position: 'absolute', width: 60, height: 59 },
+  pin: { position: 'absolute', width: 46, height: 63 },
+  mark: { position: 'absolute', width: 36, height: 49 },
 });

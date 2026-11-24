@@ -1,9 +1,11 @@
 // The fonts the app loads (App.tsx and the style-check page share this list).
+import { IMFellEnglish_400Regular } from '@expo-google-fonts/im-fell-english';
 import {
-  CormorantGaramond_500Medium, CormorantGaramond_600SemiBold, CormorantGaramond_700Bold,
-} from '@expo-google-fonts/cormorant-garamond';
-import { SpecialElite_400Regular } from '@expo-google-fonts/special-elite';
+  LibreFranklin_400Regular, LibreFranklin_500Medium, LibreFranklin_600SemiBold,
+} from '@expo-google-fonts/libre-franklin';
+import { PinyonScript_400Regular } from '@expo-google-fonts/pinyon-script';
 
 export const appFonts = {
-  CormorantGaramond_500Medium, CormorantGaramond_600SemiBold, CormorantGaramond_700Bold, SpecialElite_400Regular,
+  IMFellEnglish_400Regular, LibreFranklin_400Regular, LibreFranklin_500Medium, LibreFranklin_600SemiBold,
+  PinyonScript_400Regular,
 };
