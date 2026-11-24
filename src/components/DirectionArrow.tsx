@@ -73,7 +73,7 @@ export default function DirectionArrow({ arrow, size = 120 }: { arrow: Arrow; si
         ],
       }}
     >
-      <Picture source={PICTURE[arrow].source} resizeMode="contain" style={{ width: size, height: size, transform: PICTURE[arrow].transform }} />
+      <Picture source={PICTURE[arrow].source} resizeMode="contain" style={{ width: size, height: size, transform: PICTURE[arrow].transform ?? [] }} />
     </Animated.View>
   );
 }

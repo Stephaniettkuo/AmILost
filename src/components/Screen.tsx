@@ -3,9 +3,11 @@
 // Screen: a Page with a torn header (back arrow + title) over scrolling content.
 import { Ionicons } from '@expo/vector-icons';
 import { ReactNode } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import Text from './Text';
 import Picture from './Picture';
 import { art } from '../art';
+import { useEdges } from '../safeArea';
 import { MAX_WIDTH, colors, fonts, minTouch, spacing } from '../theme';
 import Torn from './Torn';
 
@@ -29,8 +31,9 @@ export function IconButton({ icon, label, onPress }: { icon: 'chevron-back' | 'c
 }
 
 export function Header({ title, onBack }: { title?: string; onBack?: () => void }) {
+  const { top } = useEdges();
   return (
-    <Torn bottom style={styles.header}>
+    <Torn bottom style={[styles.header, { paddingTop: top, height: top + 62 }]}>
       {onBack && <IconButton icon="chevron-back" label="Back" onPress={onBack} />}
       <Text style={styles.title} numberOfLines={1}>{title ?? ''}</Text>
       <Picture source={art.horns} style={styles.horns} resizeMode="contain" />
@@ -41,10 +44,11 @@ export function Header({ title, onBack }: { title?: string; onBack?: () => void 
 type Props = { children: ReactNode; title?: string; onBack?: () => void };
 
 export default function Screen({ children, title, onBack }: Props) {
+  const { bottom } = useEdges();
   return (
     <Page>
       <Header title={title} onBack={onBack} />
-      <ScrollView contentContainerStyle={styles.content}>{children}</ScrollView>
+      <ScrollView contentContainerStyle={[styles.content, { paddingBottom: bottom + 12 }]}>{children}</ScrollView>
     </Page>
   );
 }
@@ -54,7 +58,7 @@ const styles = StyleSheet.create({
   column: { flex: 1, width: '100%', maxWidth: MAX_WIDTH, alignSelf: 'center', backgroundColor: colors.paper, overflow: 'hidden' },
   topLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 6, backgroundColor: colors.orange, zIndex: 5 },
   header: {
-    height: 108, paddingTop: 40, paddingHorizontal: 20, paddingBottom: spacing.sm, flexDirection: 'row',
+    paddingHorizontal: 20, paddingBottom: spacing.sm, flexDirection: 'row',
     alignItems: 'center', zIndex: 2, marginBottom: -6,
   },
   title: { flex: 1, fontFamily: fonts.title, fontSize: 30, color: colors.ink },

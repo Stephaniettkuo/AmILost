@@ -1,7 +1,8 @@
 // Home: "Where to?" over a slideshow of GDC. Tapping a chip or "View map" shows the floor plan
 // instead. The white sheet at the bottom lists places and slides up for searching.
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Pressable, ScrollView, StyleSheet, Text, TextInput, View, useWindowDimensions } from 'react-native';
+import { Animated, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import Text from '../components/Text';
 import Picture from '../components/Picture';
 import { art } from '../art';
 import FloorMap from '../components/FloorMap';
@@ -13,6 +14,7 @@ import Torn from '../components/Torn';
 import { gdcFloors } from '../data/floors';
 import { useReduceMotion } from '../motion';
 import { floorLabel, placeTitle, searchPlaces } from '../names';
+import { useEdges } from '../safeArea';
 import { colors, fonts, minTouch, spacing } from '../theme';
 import { MapGraph, MapNode } from '../types';
 
@@ -38,7 +40,10 @@ const FLOORS = gdcFloors.map((f) => f.id);
 const SHEET = 274; // height of the sheet at rest
 
 export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, onSettings }: Props) {
-  const window = useWindowDimensions();
+  const { top, width, height: appHeight } = useEdges();
+  const narrow = width < 376; // small phones: smaller lettering
+  const headerHeight = top + 66;
+  const sheetHeight = Math.min(SHEET, Math.round(appHeight * 0.36)); // a bit shorter on short phones
   const reduce = useReduceMotion();
   const from = graph.nodes.find((n) => n.id === fromId);
   const [query, setQuery] = useState('');
@@ -53,6 +58,8 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
     () => (chip ? graph.nodes.filter((n) => n.floor === floor && chip.has(n)) : []),
     [chip, floor, graph],
   );
+  // With no chip picked, show the building itself (not the blank edges of the plan image).
+  const wholeFloor = useMemo(() => graph.nodes.filter((n) => n.floor === floor), [floor, graph]);
   const typed = query.trim() !== '';
   const list = typed ? searchPlaces(graph.nodes, query, 12)
     : chip ? onFloor
@@ -60,8 +67,8 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
   const heading = picking ? 'Where are you now?' : typed ? 'Results' : chip ? `${chip.name} on ${floorLabel(floor).toLowerCase()}` : 'Places in GDC';
 
   // The sheet slides between its two heights.
-  const height = useRef(new Animated.Value(SHEET)).current;
-  const target = open ? Math.max(SHEET, window.height - 190) : SHEET;
+  const height = useRef(new Animated.Value(sheetHeight)).current;
+  const target = open ? Math.max(sheetHeight, appHeight - headerHeight - 84) : sheetHeight;
   useEffect(() => {
     Animated.timing(height, { toValue: target, duration: reduce ? 0 : 250, useNativeDriver: false }).start();
   }, [height, reduce, target]);
@@ -81,22 +88,22 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
 
   return (
     <Page>
-      <View style={[styles.back, showMap && styles.tan]}>
+      <View style={[styles.back, { top: headerHeight - 10, bottom: sheetHeight - 8 }, showMap && styles.tan]}>
         {showMap ? (
-          <FloorMap floorId={floor} focus={onFloor.length > 0 ? onFloor : undefined} marks={onFloor}
+          <FloorMap floorId={floor} focus={onFloor.length > 0 ? onFloor : wholeFloor} marks={onFloor}
             you={from?.floor === floor ? from : undefined} style={styles.map} />
         ) : (
-          <Slideshow bottom={26} />
+          <Slideshow bottom={26} narrow={narrow} />
         )}
         {!showMap && <StampButton label="View map" small onPress={() => setShowMap(true)} style={styles.viewMap} />}
       </View>
 
-      <Torn bottom style={styles.header}>
+      <Torn bottom style={[styles.header, { height: headerHeight, paddingTop: top - 4 }]}>
         <View style={styles.flex}>
           <Text style={styles.script}>find your way in</Text>
-          <Text style={styles.title} numberOfLines={1} adjustsFontSizeToFit>Gates Dell Complex</Text>
+          <Text style={[styles.title, narrow && styles.titleNarrow]} numberOfLines={1} adjustsFontSizeToFit>Gates Dell Complex</Text>
         </View>
-        <Picture source={art.horns} style={styles.horns} resizeMode="contain" />
+        <Picture source={art.horns} style={[styles.horns, narrow && styles.hornsNarrow]} resizeMode="contain" />
       </Torn>
 
       <Torn top bottom style={styles.search}>
@@ -130,7 +137,7 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
             >
               <Torn top bottom fill={c.name === category ? colors.wash : colors.paper} style={styles.chip}>
                 <Picture source={c.picture} style={styles.chipIcon} resizeMode="contain" />
-                <Text style={styles.chipText} numberOfLines={1} adjustsFontSizeToFit>{c.name}</Text>
+                <Text style={[styles.chipText, narrow && styles.chipNarrow]} numberOfLines={1} adjustsFontSizeToFit>{c.name}</Text>
               </Torn>
             </Pressable>
           ))}
@@ -139,10 +146,10 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
 
       {showMap && !open && (
         <>
-          <Pressable accessibilityRole="button" accessibilityLabel="Close map" onPress={closeMap} style={styles.closeMap}>
+          <Pressable accessibilityRole="button" accessibilityLabel="Close map" onPress={closeMap} style={[styles.closeMap, { top: headerHeight + 166 }]}>
             <Torn top bottom style={styles.closeBox}><Text style={styles.link}>Close map</Text></Torn>
           </Pressable>
-          <FloorPicker floors={FLOORS} selected={floor} onSelect={setFloor} row style={styles.picker} />
+          <FloorPicker floors={FLOORS} selected={floor} onSelect={setFloor} row style={[styles.picker, { bottom: sheetHeight + 4, width: Math.min(344, width - 16) }]} />
         </>
       )}
 
@@ -165,12 +172,12 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
           </View>
           <View style={styles.headingRow}>
             <View style={styles.flex}>
-              <Text style={styles.heading} numberOfLines={1} adjustsFontSizeToFit>{heading}</Text>
+              <Text style={[styles.heading, narrow && styles.headingNarrow]} numberOfLines={1} adjustsFontSizeToFit>{heading}</Text>
               <View style={styles.rule} />
             </View>
             <Picture source={art.guide} style={styles.guide} resizeMode="contain" />
           </View>
-          <ScrollView style={styles.flex} keyboardShouldPersistTaps="handled">
+          <ScrollView style={styles.flex} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets>
             {list.map((n) => (
               <Pressable key={n.id} accessibilityRole="button" onPress={() => choose(n.id)} style={styles.row}>
                 <Text style={styles.name} numberOfLines={1}>{placeTitle(n)}</Text>
@@ -193,12 +200,12 @@ export default function HomeScreen({ graph, fromId, onChooseTo, onChangeFrom, on
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  back: { position: 'absolute', left: 0, right: 0, top: 94, bottom: SHEET - 8, backgroundColor: colors.paper },
+  back: { position: 'absolute', left: 0, right: 0, backgroundColor: colors.paper },
   tan: { backgroundColor: colors.map },
-  map: { flex: 1, marginTop: 172 }, // below the search box and chips
+  map: { flex: 1, marginTop: 168, marginBottom: 62 }, // between the chips and the floor buttons
   viewMap: { position: 'absolute', right: 16, bottom: 22, width: 138 },
   header: {
-    height: 104, paddingTop: 22, paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'flex-end', gap: 8,
+    paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'flex-end', gap: 8,
   },
   script: { fontFamily: fonts.script, fontSize: 24, lineHeight: 28, color: colors.rustDark, paddingLeft: 4 },
   title: { fontFamily: fonts.title, fontSize: 27, lineHeight: 32, color: colors.ink },
@@ -211,10 +218,14 @@ const styles = StyleSheet.create({
   chips: { marginTop: 10, marginHorizontal: 16, flexDirection: 'row', gap: 6 },
   chip: { height: 80, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 2, gap: 2 },
   chipIcon: { width: 50, height: 48 },
+  titleNarrow: { fontSize: 23 },
+  hornsNarrow: { width: 70 },
+  chipNarrow: { fontSize: 13.5 },
+  headingNarrow: { fontSize: 21 },
   chipText: { fontFamily: fonts.title, fontSize: 16, color: colors.ink },
-  closeMap: { position: 'absolute', left: 16, top: 270 },
+  closeMap: { position: 'absolute', left: 16 },
   closeBox: { height: minTouch, paddingHorizontal: 14, justifyContent: 'center' },
-  picker: { position: 'absolute', alignSelf: 'center', bottom: SHEET + 8 },
+  picker: { position: 'absolute', alignSelf: 'center' },
   sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 3 },
   sheetPaper: { flex: 1, paddingHorizontal: 20 },
   handle: { height: 32, alignItems: 'center', justifyContent: 'center' },

@@ -1,6 +1,7 @@
 // Route preview: the route on the map, a couple of facts, the elevator-only switch, and Start.
 import { useState } from 'react';
-import { StyleSheet, Switch, Text, View } from 'react-native';
+import { StyleSheet, Switch, View } from 'react-native';
+import Text from '../components/Text';
 import Picture from '../components/Picture';
 import { art } from '../art';
 import FloorMap from '../components/FloorMap';
@@ -10,6 +11,7 @@ import StampButton from '../components/StampButton';
 import Torn from '../components/Torn';
 import { routeFacts } from '../directions';
 import { placeTitle } from '../names';
+import { useEdges } from '../safeArea';
 import { colors, fonts, spacing } from '../theme';
 import { MapNode, Route } from '../types';
 
@@ -27,6 +29,7 @@ type Props = {
 };
 
 export default function PreviewScreen({ route, place, from, avoidStairs, onAvoidStairs, onBack, onStart }: Props) {
+  const { bottom } = useEdges();
   const floors = route ? [...new Set(route.nodes.map((n) => n.floor))] : [];
   const [floor, setFloor] = useState<string | null>(null);
   const shown = floor && floors.includes(floor) ? floor : floors[0];
@@ -50,7 +53,7 @@ export default function PreviewScreen({ route, place, from, avoidStairs, onAvoid
           </Text>
         </View>
       )}
-      <Torn top style={styles.sheet}>
+      <Torn top style={[styles.sheet, { paddingBottom: bottom + 6 }]}>
         <View>
           <Text style={styles.name} numberOfLines={2} adjustsFontSizeToFit>{placeTitle(place)}</Text>
           {from && <Text style={styles.text}>From {placeTitle(from)}</Text>}
@@ -83,7 +86,7 @@ const styles = StyleSheet.create({
   none: { alignItems: 'center', justifyContent: 'center', padding: spacing.lg, gap: spacing.md },
   calf: { width: 200, height: 151 },
   noneText: { fontFamily: fonts.title, fontSize: 24, color: colors.ink, textAlign: 'center' },
-  sheet: { marginTop: -6, paddingHorizontal: 20, paddingTop: 24, paddingBottom: 24, gap: 14 },
+  sheet: { marginTop: -6, paddingHorizontal: 20, paddingTop: 24, gap: 14 },
   name: { fontFamily: fonts.title, fontSize: 38, color: colors.ink },
   text: { fontFamily: fonts.body, fontSize: 16, color: colors.ink },
   facts: { flexDirection: 'row', justifyContent: 'space-between' },

@@ -12,7 +12,7 @@ import Torn from './Torn';
 const SECONDS = 5;
 const FADED = 0.68; // how strong the photos are over white
 
-export default function Slideshow({ bottom }: { bottom: number }) {
+export default function Slideshow({ bottom, narrow }: { bottom: number; narrow: boolean }) {
   const reduce = useReduceMotion();
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
@@ -42,7 +42,7 @@ export default function Slideshow({ bottom }: { bottom: number }) {
       <Torn top bottom style={[styles.controls, { bottom }]}>
         <Pressable
           accessibilityRole="button" accessibilityLabel={playing ? 'Pause photos' : 'Play photos'}
-          onPress={() => setPlaying(!playing)} style={styles.button}
+          onPress={() => setPlaying(!playing)} style={[styles.button, narrow && styles.narrow]}
         >
           <Ionicons name={playing ? 'pause' : 'play'} size={20} color={colors.ink} />
         </Pressable>
@@ -50,7 +50,7 @@ export default function Slideshow({ bottom }: { bottom: number }) {
           <Pressable
             key={p.label} accessibilityRole="button" accessibilityLabel={`Photo ${i + 1}`}
             accessibilityState={{ selected: i === index }}
-            onPress={() => { setIndex(i); setPlaying(false); }} style={styles.button}
+            onPress={() => { setIndex(i); setPlaying(false); }} style={[styles.button, narrow && styles.narrow]}
           >
             <View style={[styles.bar, i === index && styles.barOn]} />
           </Pressable>
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   photo: { width: '100%', height: '100%' },
   controls: { position: 'absolute', left: 16, flexDirection: 'row' },
   button: { width: minTouch - 4, height: minTouch, alignItems: 'center', justifyContent: 'center' },
+  narrow: { width: 34 }, // very small phones
   bar: { width: 26, height: 4, backgroundColor: colors.fadedInk },
   barOn: { backgroundColor: colors.orange },
 });

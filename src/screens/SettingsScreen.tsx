@@ -1,5 +1,6 @@
 // Settings: the elevator-only default, About, and the team-only map editor.
-import { StyleSheet, Switch, Text, View } from 'react-native';
+import { StyleSheet, Switch, View } from 'react-native';
+import Text from '../components/Text';
 import Card from '../components/Card';
 import StampButton from '../components/StampButton';
 import Screen from '../components/Screen';

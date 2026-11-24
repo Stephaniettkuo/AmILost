@@ -104,6 +104,7 @@ function SizedMap({ floorId, route, focus, highlight, pin, you, marks, w, h }: O
     ? runs.map((run) => run.filter((p) => p.i >= highlight.from && p.i <= highlight.to)).filter((r) => r.length > 1)
     : runs;
   const start = nodes[0], end = nodes[nodes.length - 1];
+  const mark = Math.max(0.55, Math.min(1, s / 0.7)); // markers shrink when the map is zoomed out
   const youAt = cur.you ?? (start?.floor === floorId ? start : undefined);
   const pinAt = pin ?? (end?.floor === floorId ? end : undefined);
   const screen = (p: Point) => ({ x: (p.x - view.x) * s, y: (p.y - view.y) * s }); // plan point -> screen point
@@ -127,9 +128,9 @@ function SizedMap({ floorId, route, focus, highlight, pin, you, marks, w, h }: O
       </Svg>
       {marks?.map((p, i) => {
         const at = screen(p);
-        return <Picture key={i} source={art.pin} style={[styles.mark, { left: at.x - 18, top: at.y - 47 }]} />;
+        return <Picture key={i} source={art.pin} style={[styles.mark, { left: at.x - 18 * mark, top: at.y - 47 * mark, width: 36 * mark, height: 49 * mark }]} />;
       })}
-      {youAt && <Picture source={art.you} style={[styles.you, { left: screen(youAt).x - 30, top: screen(youAt).y - 29 }]} />}
+      {youAt && <Picture source={art.you} style={[styles.you, { left: screen(youAt).x - 30 * mark, top: screen(youAt).y - 29 * mark, width: 60 * mark, height: 59 * mark }]} />}
       {pinAt && <Picture source={art.pin} style={[styles.pin, { left: screen(pinAt).x - 23, top: screen(pinAt).y - 61 }]} />}
     </>
   );
@@ -149,7 +150,7 @@ function RouteLine({ points, casing, line }: { points: string; casing: number; l
 
 const styles = StyleSheet.create({
   box: { backgroundColor: colors.map, overflow: 'hidden' },
-  you: { position: 'absolute', width: 60, height: 59 },
+  you: { position: 'absolute' },
   pin: { position: 'absolute', width: 46, height: 63 },
-  mark: { position: 'absolute', width: 36, height: 49 },
+  mark: { position: 'absolute' },
 });

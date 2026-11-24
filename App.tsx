@@ -1,6 +1,8 @@
 // The app shell: loads fonts, holds the current screen and the chosen From / To / options,
 // and switches screens. Each screen is a file in src/screens/.
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import { appFonts } from './src/fonts';
 import { useEffect, useMemo, useState } from 'react';
 import { BackHandler, View } from 'react-native';
@@ -25,6 +27,15 @@ const BACK: Partial<Record<Screen, Screen>> = {
 };
 
 export default function App() {
+  return (
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <StatusBar style="dark" />
+      <Screens />
+    </SafeAreaProvider>
+  );
+}
+
+function Screens() {
   const [loaded] = useFonts(appFonts);
   const [screen, setScreen] = useState<Screen>('home');
   const [fromId, setFromId] = useState('GDC-2-entrance-main');

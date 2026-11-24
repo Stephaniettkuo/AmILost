@@ -1,7 +1,8 @@
 // Directions: one arrow and one instruction on top, the map zoomed to this step in the middle,
 // Back / Next at the bottom. The top and bottom never change height, so the map never jumps.
 import { useEffect, useRef } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Animated, StyleSheet, View } from 'react-native';
+import Text from '../components/Text';
 import DirectionArrow from '../components/DirectionArrow';
 import FloorMap from '../components/FloorMap';
 import { IconButton, Page } from '../components/Screen';
@@ -10,6 +11,7 @@ import Torn from '../components/Torn';
 import { Step, distanceText, stepDistancePx } from '../directions';
 import { floorLabel } from '../names';
 import { nativeDriver, useReduceMotion } from '../motion';
+import { useEdges } from '../safeArea';
 import { colors, fonts } from '../theme';
 import { Route } from '../types';
 
@@ -24,6 +26,7 @@ type Props = {
 };
 
 export default function DirectionsScreen({ route, steps, toName, index, onIndex, onBack, onArrive }: Props) {
+  const { top, bottom } = useEdges();
   const reduce = useReduceMotion();
   const step = steps[index];
   const nodes = route.nodes;
@@ -47,7 +50,7 @@ export default function DirectionsScreen({ route, steps, toName, index, onIndex,
 
   return (
     <Page>
-      <Torn bottom style={styles.top}>
+      <Torn bottom style={[styles.top, { paddingTop: top, height: top + 214 }]}>
         <View style={styles.bar}>
           <IconButton icon="close" label="Leave directions" onPress={onBack} />
           <Text style={styles.to} numberOfLines={1}>To <Text style={styles.bold}>{toName}</Text></Text>
@@ -69,7 +72,7 @@ export default function DirectionsScreen({ route, steps, toName, index, onIndex,
         highlight={{ from: step.from, to: step.to }} style={styles.map}
       />
 
-      <Torn top style={styles.bottom}>
+      <Torn top style={[styles.bottom, { height: 96 + bottom }]}>
         <StampButton
           label="Back" variant="secondary" style={styles.back}
           onPress={() => (index === 0 ? onBack() : onIndex(index - 1))}
@@ -84,7 +87,7 @@ export default function DirectionsScreen({ route, steps, toName, index, onIndex,
 }
 
 const styles = StyleSheet.create({
-  top: { height: 254, paddingTop: 40, paddingHorizontal: 20, zIndex: 2, marginBottom: -6 },
+  top: { paddingHorizontal: 20, zIndex: 2, marginBottom: -6 },
   bar: { height: 48, flexDirection: 'row', alignItems: 'center', gap: 8 },
   to: { flex: 1, textAlign: 'center', fontFamily: fonts.body, fontSize: 16, color: colors.ink },
   bold: { fontFamily: fonts.bodyBold },
@@ -94,7 +97,7 @@ const styles = StyleSheet.create({
   text: { fontFamily: fonts.title, fontSize: 32, lineHeight: 35, color: colors.ink },
   distance: { fontFamily: fonts.label, fontSize: 17, color: colors.ink },
   map: { flex: 1 },
-  bottom: { height: 116, marginTop: -6, paddingTop: 22, paddingHorizontal: 20, flexDirection: 'row', gap: 12, zIndex: 2 },
+  bottom: { marginTop: -6, paddingTop: 22, paddingHorizontal: 20, flexDirection: 'row', gap: 12, zIndex: 2 },
   back: { width: 104 },
   next: { flex: 1 },
 });
