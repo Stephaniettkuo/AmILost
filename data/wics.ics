@@ -1,0 +1,5204 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:WiCS Events
+X-WR-TIMEZONE:America/Chicago
+X-WR-CALDESC:Upcoming WiCS member events
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+X-LIC-LOCATION:America/Chicago
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+TZNAME:CDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+TZNAME:CST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20220903
+DTEND;VALUE=DATE:20220904
+DTSTAMP:20261124T203117Z
+UID:6opjicppc5i64bb5corm8b9kcdh30b9p6cqmcb9nc5h3ec36cdgm2e1k6g@google.com
+CREATED:20220901T124645Z
+LAST-MODIFIED:20220902T140037Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Grad Mentorship Sign Up Due
+TRANSP:TRANSPARENT
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT15H
+X-WR-ALARMUID:25DA685F-D6D9-47BD-8A4A-37AD0D46883C
+UID:25DA685F-D6D9-47BD-8A4A-37AD0D46883C
+ATTACH;VALUE=URI:Chord
+X-APPLE-DEFAULT-ALARM:TRUE
+ACKNOWLEDGED:20220902T140037Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221019T140000Z
+DTEND:20221019T160000Z
+DTSTAMP:20261124T203117Z
+UID:45k6s03507ej1t4qadlsdi5o2r@google.com
+CREATED:20220919T231652Z
+DESCRIPTION:Swing by and chat with Expedia Group recruiters and engineers a
+ nd enjoy some donuts and bagels for a midterms break! They are underclassma
+ n friendly!
+LAST-MODIFIED:20221016T190225Z
+LOCATION:GDC 6th Floor Bridge
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Expedia Group Breakfast Break
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200214T160000Z
+DTEND:20200214T180000Z
+DTSTAMP:20261124T203117Z
+UID:bju0njle972qho398noc0np5vo@google.com
+CREATED:20200210T211034Z
+LAST-MODIFIED:20200210T211034Z
+LOCATION:GDC 4th floor bridge
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS+Tableau: Coffee Chats
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261008T230000Z
+DTEND:20261009T003000Z
+DTSTAMP:20261124T203117Z
+UID:4lobclj4glah20fq1o7r7hb9p2@google.com
+CREATED:20260901T174803Z
+LAST-MODIFIED:20260901T174829Z
+LOCATION:gdc 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bloomberg Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191016T230000Z
+DTEND:20191017T010000Z
+DTSTAMP:20261124T203117Z
+UID:21mrk9kbqa3k6tktgp4s3qn8ag@google.com
+CREATED:20191015T004438Z
+LAST-MODIFIED:20191015T004450Z
+LOCATION:GDC 1.406
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Collaborative Coding Challenge Practice
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210909T000000Z
+DTEND:20210909T013000Z
+DTSTAMP:20261124T203117Z
+UID:211CFBB8-64D2-4B8D-ADE7-B8EB98B35A54
+CREATED:20210811T225921Z
+LAST-MODIFIED:20210908T171457Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:[Bloomberg + WiCS] Technical Interview Workshop
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240203
+DTEND;VALUE=DATE:20240205
+DTSTAMP:20261124T203117Z
+UID:6r5fcimst0u5b3c6h6rejhn7jp@google.com
+CREATED:20240126T223232Z
+LAST-MODIFIED:20240126T223232Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201012T220000Z
+DTEND:20201012T230000Z
+DTSTAMP:20261124T203117Z
+UID:416ls1lfsgtr48sfhu33e77jeh@google.com
+CREATED:20201008T183413Z
+DESCRIPTION:<p>Come learn about DraftKings software engineering opportuniti
+ es and why Director of Engineering\, Carli Hairston joined DraftKings! She 
+ will share her story of how she ended up at the company and what challenges
+  she gets to tackle. DraftKings will also be sharing their recruiting proce
+ ss and would love to hear questions from members on what they want to learn
+  about DraftKings!<u></u><u></u></p><p>Register for the Event: <a href="htt
+ ps://ripplematch.com/event/draftkings/8810dadb" target="_blank">https://rip
+ plematch.com/event/draftkings/8810dadb</a></p><p>Zoom Meeting Info: <a href
+ ="https://draftkings.zoom.us/j/92986726261?pwd=MHh4VHpPdHB1dDl2UE5IWkdlZnBw
+ UT09" target="_blank">https://draftkings.zoom.us/j/92986726261?pwd=MHh4VHpP
+ dHB1dDl2UE5IWkdlZnBwUT09</a></p><p><br></p><p>Application Links:</p><p>Soft
+ ware engineering Full Time: <a href="https://jobs.lever.co/draftkings/f8bb7
+ 7f3-d353-4974-b34e-d7716273557c" target="_blank">https://jobs.lever.co/<u><
+ /u>draftkings/f8bb77f3-d353-4974-<u></u>b34e-d7716273557c</a><u></u><u></u>
+ </p><p>Software Engineering Internship: <a href="https://jobs.lever.co/draf
+ tkings/c163d0ab-ab4a-459c-a1ab-549363692e5a" target="_blank">https://jobs.l
+ ever.co/<u></u>draftkings/c163d0ab-ab4a-459c-<u></u>a1ab-549363692e5a</a></
+ p>
+LAST-MODIFIED:20201008T183413Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DraftKings + Div Orgs
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201030T230000Z
+DTEND:20201031T010000Z
+DTSTAMP:20261124T203117Z
+UID:0dfnbum0fo7edb27n2rc40u2sq@google.com
+CREATED:20201029T140811Z
+DESCRIPTION:Come on out for a night of spooks\, games\, and hanging! There 
+ will be a costume contest\, and plenty of ways to earn prizes so make sure 
+ to join!<br><br>Join the zoom call here :)<br><a href="https://utexas.zoom.
+ us/j/99247885399">https://utexas.zoom.us/j/99247885399</a>&nbsp\;&nbsp\;
+LAST-MODIFIED:20201029T140838Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Div Org Halloween Spooktacular!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251120T010000Z
+DTEND:20251120T020000Z
+DTSTAMP:20261124T203117Z
+UID:5n4uopg7537o7n1k9todft5hl8@google.com
+CREATED:20251116T084434Z
+DESCRIPTION:Join us for the Nell Dale Fall Social! Unwind with cookie decor
+ ating\, hot chocolate\, and Mandola's dinner. Mingle with mentors and mente
+ es as we celebrate fall together!\n*Please note: this event is only open to
+  current mentors and mentees*\n\nLocation: GDC 5.302
+LAST-MODIFIED:20251116T084434Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nell Dale Cookie Decorating Fall Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250415T230000Z
+DTEND:20250416T000000Z
+DTSTAMP:20261124T203117Z
+UID:2b1o0374rpjtv56bu2o8ookhb3@google.com
+CREATED:20250412T095559Z
+DESCRIPTION:Capital One is excited to host a Case Workshop to learn more ab
+ out their interview process and get ready for the recruiting season next fa
+ ll!<br>RSVP link: <a href="https://capitalone.eightfold.ai/events/candidate
+ ?plannedEventId=6zZGYk8P">https://capitalone.eightfold.ai/events/candidate?
+ plannedEventId=6zZGYk8P</a><br><br>Location: <span>GDC 4.302</span>
+LAST-MODIFIED:20260426T075817Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Capital One x WiCS
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230202T230000Z
+DTEND:20230203T003000Z
+DTSTAMP:20261124T203117Z
+UID:37fs7io7o0uadqqpr8r89fpqqb@google.com
+CREATED:20230119T184659Z
+DESCRIPTION:Want to learn more about backend web development? Curious about
+  how to navigate GitHub? Come join us at this workshop to sharpen your skil
+ ls!\n\nWe will also raffle off prizes at this workshop!
+LAST-MODIFIED:20230202T045652Z
+LOCATION:Zoom
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Backend + Intro to Git Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250910T230000Z
+DTEND:20250911T000000Z
+DTSTAMP:20261124T203117Z
+UID:724lmirt5rtd8b6r8hvk5vdq1g@google.com
+CREATED:20250908T182116Z
+DESCRIPTION:The Trade Desk is hosting their first event this semester! They
+  will be talking about How to Ace your Technical Interviews and giving more
+  information about their internship and full time opportunities.\nFood will
+  also be provided! \nRSVP here: https://forms.gle/Xm1aGN1dSxtdcYmU9
+LAST-MODIFIED:20250908T182116Z
+LOCATION:GDC 2.210
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:The Trade Desk x WiCS
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200131T160000Z
+DTEND:20200131T194500Z
+DTSTAMP:20261124T203117Z
+UID:4i56bnlgl7qdcmqrqkp8unckf5@google.com
+CREATED:20200127T042002Z
+LAST-MODIFIED:20200127T042002Z
+LOCATION:GDC Atrium (2nd Floor)
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks Tabling
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/Chicago:20210909T113000
+DTEND;TZID=America/Chicago:20210909T133000
+DTSTAMP:20261124T203117Z
+UID:661p981iihu5fda9450f36dcve@google.com
+RECURRENCE-ID;TZID=America/Chicago:20210906T113000
+CREATED:20210906T000024Z
+DESCRIPTION:<a href="http://tinyurl.com/wicschevronlunches" id="ow700" __is
+ _owner="true">Sign Up's Here</a>
+LAST-MODIFIED:20220614T195826Z
+SEQUENCE:3
+STATUS:CONFIRMED
+SUMMARY:Chevron Corporate Lunches
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230308T003000Z
+DTEND:20230308T013000Z
+DTSTAMP:20261124T203117Z
+UID:6p1sc7scn4a5o97v3nr2meul8q@google.com
+CREATED:20230303T021221Z
+DESCRIPTION:Nordstrom is excited to host a Game Night with gift card prizes
+ ! Take a break from studying and come get to know recruiters and engineers 
+ from Nordstrom. Nordstrom hires both underclassmen and upperclassmen for in
+ ternships &amp\; full-time positions. As always\, we'll have yummy food and
+  Nordstrom swag!<br><br>RSVP: <a href="https://tinyurl.com/WicsxNordstrom">
+ https://tinyurl.com/WicsxNordstrom</a>
+LAST-MODIFIED:20230303T021221Z
+LOCATION:GDC 1.406
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nordstrom Game Night
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180828T170000Z
+DTEND:20180828T200000Z
+DTSTAMP:20261124T203117Z
+UID:102diofvtuno9072akfabulm9p@google.com
+CREATED:20180817T074824Z
+LAST-MODIFIED:20180817T074824Z
+LOCATION:GDC Atrium
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS Open House Tabling
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191009T000000Z
+DTEND:20191009T010000Z
+DTSTAMP:20261124T203117Z
+UID:0jvihelsnet21g91ct8bfcklod@google.com
+CREATED:20190924T163128Z
+LAST-MODIFIED:20190924T163129Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Mentorship Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251113T003000Z
+DTEND:20251113T023000Z
+DTSTAMP:20261124T203117Z
+UID:3fseushtvbducaf4tgb49rmg1v@google.com
+CREATED:20251111T220919Z
+LAST-MODIFIED:20251112T002439Z
+LOCATION:GDC 2.216
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:UTPC x WiCS Contest
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230907T213000Z
+DTEND:20230907T230000Z
+DTSTAMP:20261124T203117Z
+UID:4tm4kjcjqc5gh57dm69lgg3b18@google.com
+CREATED:20230829T151120Z
+DESCRIPTION:Chevron is excited to host a resume review workshop! Come get y
+ our resume reviewed and get tips on what companies are looking for in a res
+ ume.
+LAST-MODIFIED:20230906T225832Z
+LOCATION:GDC 2.210
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Chevron Resume Reviews/Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220914T160000Z
+DTEND:20220914T180000Z
+DTSTAMP:20261124T203117Z
+UID:22mhsgmquavi1mbrfh6mldel81@google.com
+CREATED:20220910T183035Z
+DESCRIPTION:<html-blob>Stop by to chat with representatives and engineers f
+ rom Goldman Sachs! You will have the opportunity to network with a panel of
+  engineers and ask any questions you have about hiring opportunities. Food 
+ and swag provided\, see you there!</html-blob><br><html-blob><br>RSVP link 
+ will be sent on Discord.</html-blob>
+LAST-MODIFIED:20220910T183046Z
+LOCATION:GDC 4th floor atrium (4.100)
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Goldman Sachs Lunch & Learn
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220927T000000Z
+DTEND:20220927T020000Z
+DTSTAMP:20261124T203117Z
+UID:6jnhonkq70e3c60u66ipdlkc8v@google.com
+CREATED:20220919T170155Z
+DESCRIPTION:Only open to those who have received an email confirmation for 
+ their spot!
+LAST-MODIFIED:20220919T170155Z
+LOCATION:Quadrangle Room\, TX Union
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Networking Reception
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260220T181500Z
+DTEND:20260220T191500Z
+DTSTAMP:20261124T203117Z
+UID:45cs3gs8o0jmi7k3iksf61jhmr@google.com
+CREATED:20260210T045249Z
+DESCRIPTION:Airtable is collaborating with WiCS\, HACS\, SWE\, and Q++ to h
+ ost a Tech Talk focused on Airtable's work\, engineering teams\, culture\, 
+ and New Grad opportunities! Seniors are especially encouraged to attend\, b
+ ut students of all years are welcome. Lunch will be provided.
+LAST-MODIFIED:20260210T045249Z
+LOCATION:GDC 2.216
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Airtable Lunch Tech Talk
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260129T000000Z
+DTEND:20260129T010000Z
+DTSTAMP:20261124T203117Z
+UID:19r20dviaan42pibgrf63v4v9u@google.com
+CREATED:20260128T200500Z
+DESCRIPTION:Join us for the first workshop\, co-hosted with ACM\, in our Ha
+ ckathon series! We'll be going over everything you need to know to particip
+ ate and have fun at a hackathon. Great regardless of whether the upcoming W
+ iCS Hackathon will be your first or fifth time. Tiff's Treats will be provi
+ ded!
+LAST-MODIFIED:20260128T200501Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:How to Hackathon w/ ACM
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181101T230000Z
+DTEND:20181102T000000Z
+DTSTAMP:20261124T203117Z
+UID:3na67g40pa7fmpgl3hnhpo6vsg@google.com
+CREATED:20181017T193050Z
+LAST-MODIFIED:20181023T005600Z
+LOCATION:GDC 6.202
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:HEB Social Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181026T150000Z
+DTEND:20181026T183000Z
+DTSTAMP:20261124T203117Z
+UID:776mk6o77q0at44ipmbhmpmec5@google.com
+CREATED:20181015T230126Z
+LAST-MODIFIED:20181015T230126Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:State Street Company Tour
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181206T003000Z
+DTEND:20181206T020000Z
+DTSTAMP:20261124T203117Z
+UID:5nu3ggq58epi6j1hpbufktdk8t@google.com
+CREATED:20181113T213327Z
+LAST-MODIFIED:20181113T213327Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Holiday Party
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230829T234500Z
+DTEND:20230830T004500Z
+DTSTAMP:20261124T203117Z
+UID:7cn1tep1009s2ol71l6k53qo2h@google.com
+CREATED:20230820T200308Z
+DESCRIPTION:Gain advice on how to succeed in each class + Q/A panel with TA
+ s + Tiff’s Treats!\n\nCS312 @ 6:45 - 7:15 PM\nCS314 @ 7:15 - 7:45 PM
+LAST-MODIFIED:20230821T213953Z
+LOCATION:GDC 4.302
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Intro to CS Workshops (CS312/CS314)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180830T000000Z
+DTEND:20180830T010000Z
+DTSTAMP:20261124T203117Z
+UID:0ksk13aoegtbs4okv85m9qogif@google.com
+CREATED:20180731T012708Z
+LAST-MODIFIED:20180829T232232Z
+LOCATION:GDC 1.304
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS Freshmen Kickoff
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181009T000000Z
+DTEND:20181009T013000Z
+DTSTAMP:20261124T203117Z
+UID:5usi25knklac8tqe2deq2k0fq2@google.com
+CREATED:20180929T173243Z
+LAST-MODIFIED:20181008T202134Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Corporate Reception!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260910T000000Z
+DTEND:20260910T010000Z
+DTSTAMP:20261124T203117Z
+UID:4uk6jt38v1c30sd0fel41rudbp@google.com
+CREATED:20260831T144536Z
+LAST-MODIFIED:20260831T144802Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Virtual Tech Talk with Pinterest
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200210T233000Z
+DTEND:20200211T010000Z
+DTSTAMP:20261124T203117Z
+UID:1606jrn88o6lj7vpvm54qmg60l@google.com
+CREATED:20200126T202019Z
+LAST-MODIFIED:20200126T202019Z
+LOCATION:GDC Courtyard (next to Qualcomm Cafe)
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Microsoft: Tiny Tails Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221005T230000Z
+DTEND:20221006T000000Z
+DTSTAMP:20261124T203117Z
+UID:18jj030piifu46rssi7iseh948@google.com
+CREATED:20220919T231641Z
+DESCRIPTION:Starting out in your career after college has many challenges\,
+  not least of which is money management. Join current Capital One Associate
+ s as they share details about tips and tricks to demystify some of these ch
+ allenges and share things that have worked in their lives. Capital One will
+  host a Q&A after the workshop to address your questions and concerns! Food
+  and swag provided!
+LAST-MODIFIED:20221003T155129Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Capital One Money Matters Budgeting Workshop
+TRANSP:OPAQUE
+ATTACH;FILENAME=10_5 WiCS- Money Matters.pptx.jpg;FMTTYPE=image/jpeg:https:
+ //drive.google.com/open?id=1F2S_0LcMmRxQ5sIW1PiAoKub5-Wx3US2&authuser=0
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230112T233000Z
+DTEND:20230113T003000Z
+DTSTAMP:20261124T203117Z
+UID:72bt5a0q1hn5v1j0v328n294o4@google.com
+CREATED:20230108T204027Z
+DESCRIPTION:Stop by our Introduction to CS 312/314 and CS 429/439 workshops
+  on Thursday January 12th to hear an overview on the class structure and ti
+ ps. TA’s will be there to share advice about these classes and answer any q
+ uestions. We will have Tiffs Treats!<br />
+LAST-MODIFIED:20230108T204134Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to CS Workshops (CS312 & CS314)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250925T230000Z
+DTEND:20250926T000000Z
+DTSTAMP:20261124T203117Z
+UID:2lsn7tmq239ast74ahhf70m9h0@google.com
+CREATED:20250917T054658Z
+DESCRIPTION:<p>This is a fantastic opportunity to learn how to navigate Ado
+ be's internship process and get insider tips on how to stand out as a star 
+ Software Engineering candidate. Whether you're just starting your journey o
+ r looking to take the next step in your career\, this event is designed to 
+ equip you with the knowledge and inspiration you need to succeed.</p><p>RSV
+ P link: <a href="https://careers.adobe.com/us/en/event/68bcb659ec983d52afda
+ 50d2/Adobe-x-UT-Austin-Your-Path-to-an-Internship-Fall-2025">https://career
+ s.adobe.com/us/en/event/68bcb659ec983d52afda50d2/Adobe-x-UT-Austin-Your-Pat
+ h-to-an-Internship-Fall-2025</a></p>
+LAST-MODIFIED:20250917T054659Z
+LOCATION:GDC 2.216
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Adobe x UT Austin
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240125T004500Z
+DTEND:20240125T013000Z
+DTSTAMP:20261124T203117Z
+UID:6g388paifh4loapphopmlv9qfj@google.com
+CREATED:20240117T203950Z
+LAST-MODIFIED:20240124T235243Z
+LOCATION:GDC 1.304
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS Spring Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210306T000000Z
+DTEND:20210306T010000Z
+DTSTAMP:20261124T203117Z
+UID:70pmcopkcli6cbb2c4p6ab9kcgoj8bb171gjib9n6gsm8e1k6oojiphj6c@google.com
+CREATED:20210301T153429Z
+LAST-MODIFIED:20210302T004142Z
+LOCATION:https://utexas.zoom.us/j/9172429643
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Web Development
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231016T170000Z
+DTEND:20231016T180000Z
+DTSTAMP:20261124T203117Z
+UID:0qseuouas1kibqo3pfno6mmql0@google.com
+CREATED:20231012T044927Z
+DESCRIPTION:Join us for our Fall Faculty Lunches and get the opportunity to
+  talk industry\, research\, and classes with UTCS professors! Cabo Bob's wi
+ ll be provided.<br><br>RSVP Link: <a href="https://forms.gle/1BKhKZQBvySEcL
+ t88"><u>https://forms.gle/1BKhKZQBvySEcLt88</u></a>
+LAST-MODIFIED:20231012T045033Z
+LOCATION:GDC 6.302
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:Faculty Lunches
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221026T233000Z
+DTEND:20221027T003000Z
+DTSTAMP:20261124T203117Z
+UID:74jae4i9e3imem071m44kg5rt4@google.com
+CREATED:20221019T011235Z
+DESCRIPTION:Interested in transferring to computer science? Come learn more
+  with GWC and CSTS! We will have a Q&A panel with internal and external tra
+ nsfer students!
+LAST-MODIFIED:20221019T011235Z
+LOCATION: GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + GWC + CSTS Transfer Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250528T200000Z
+DTEND:20250528T210000Z
+DTSTAMP:20261124T203117Z
+UID:0d0re7ofsdfckhjo8ej7ps024r@google.com
+CREATED:20250523T034254Z
+LAST-MODIFIED:20250523T034254Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Events Calendar Test
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180924T230000Z
+DTEND:20180925T010000Z
+DTSTAMP:20261124T203117Z
+UID:7pffh2bkcpip3dm906bftu07ns@google.com
+CREATED:20180821T152805Z
+DESCRIPTION:RSVP LINK:\n\nhttps://airbnbwicsdinnerdiy.splashthat.com
+LAST-MODIFIED:20180925T004056Z
+LOCATION:3112 Lafayette Ave\, Austin\, TX 78722\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Airbnb: Dinner & Watercolors
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;ACKNOWLEDGED=20180925T004050Z:AUTOMATIC
+BEGIN:VALARM
+ACTION:NONE
+TRIGGER;VALUE=DATE-TIME:19760401T005545Z
+X-WR-ALARMUID:7BE362EC-EE41-47A8-B545-EE62234B65B7
+UID:7BE362EC-EE41-47A8-B545-EE62234B65B7
+ACKNOWLEDGED:20180925T004050Z
+X-APPLE-DEFAULT-ALARM:TRUE
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230418T220000Z
+DTEND:20230418T230000Z
+DTSTAMP:20261124T203117Z
+UID:1tvoi7ils1nvnn9l369nbdlel1@google.com
+CREATED:20230418T034325Z
+DESCRIPTION:Join us to hear engineers from Chevron explain foundational dat
+ a science concepts\, including Large Language Models (what ChatGPT is). Thi
+ s event is perfect for anyone trying to dip their feet into Data Science/AI
+ . We’ll have Amy’s Ice Cream!
+LAST-MODIFIED:20230418T034325Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Chevron Talk: Foundations of Data Science
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191119T010000Z
+DTEND:20191119T030000Z
+DTSTAMP:20261124T203117Z
+UID:4lfc20bdklqbkmjlpmjlvie858@google.com
+CREATED:20191112T223403Z
+DESCRIPTION:Join us for a co-hosted beginner CTF ("Capture the Flag") on Mo
+ nday\, November 18th. Learn about security concepts\, compete\, and eat piz
+ za! Hosted by ISSS\, WiCS\, HACS\, ABCS\, and Q++.&nbsp\;<a href="https://w
+ ww.facebook.com/events/2210730929219975/">https://www.facebook.com/events/2
+ 210730929219975/</a>&nbsp\;&nbsp\;
+LAST-MODIFIED:20191112T223403Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Beginner CTF
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260123T000000Z
+DTEND:20260123T010000Z
+DTSTAMP:20261124T203117Z
+UID:1d2tchr3iv8mv8qjtj2reuqdk4@google.com
+CREATED:20260116T095659Z
+DESCRIPTION:We’ll be announcing events for this semester\, handing out merc
+ h\, and raffling off prizes so you don’t want to miss it! Dinner will be pr
+ ovided!<br><br><b>Location: </b>GDC 2.216
+LAST-MODIFIED:20260116T095659Z
+LOCATION:GDC 2.216
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Spring Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240325T163000Z
+DTEND:20240325T173000Z
+DTSTAMP:20261124T203117Z
+UID:24dbn8sjd09l65ugvtob7nbr45@google.com
+CREATED:20240320T235051Z
+DESCRIPTION:<p>Join us for our Spring Faculty Lunches and get the opportuni
+ ty to talk to UTCS professors about industry\, academia\, and research! Fil
+ l out the RSVP form to confirm your attendance!<br></p><p>RSVP: tinyurl.com
+ /wicsxfacultylunches</p>
+LAST-MODIFIED:20240320T235051Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Faculty Lunches
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230920T230000Z
+DTEND:20230921T000000Z
+DTSTAMP:20261124T203117Z
+UID:0kgvpaddujn163aca205dmv0jp@google.com
+CREATED:20230913T185653Z
+DESCRIPTION:The Nell Dale Kickoff is going to take place on September 20th 
+ from 6-7pm at 5.302! During the Kickoff\, members will be introduced to the
+  amazing new mentors for this year as well as enjoy Domino’s Pizza with the
+ m! At the end of the meeting\, the Nell Dale Mentee application will be rel
+ eased. The application will close after the first 40 applicants apply.
+LAST-MODIFIED:20230913T193132Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nell Dale Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201105T233000Z
+DTEND:20201106T010000Z
+DTSTAMP:20261124T203117Z
+UID:64l677h0m2mt8dgg82oi5loiho@google.com
+CREATED:20201102T003054Z
+LAST-MODIFIED:20201102T003134Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Freshman Speed-Friending
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250419T000000Z
+DTEND:20250419T020000Z
+DTSTAMP:20261124T203117Z
+UID:3hihs4kgmh3cf9upujjskr9lki@google.com
+CREATED:20250403T172045Z
+DESCRIPTION:Join us for pizza\, ice cream\, and a movie to decompress durin
+ g finals season! <br>🍕🍦🎞️<br><br><b>Location: </b>GDC 2.216
+LAST-MODIFIED:20260426T075817Z
+LOCATION:GDC 2.216
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Girls Who Code x WiCS Movie Night
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240405T223000Z
+DTEND:20240406T010000Z
+DTSTAMP:20261124T203117Z
+UID:223lnneimgq5b498httcuk1ldf@google.com
+CREATED:20240329T040958Z
+DESCRIPTION:Join WiCS in collaboration with UTPC for a beginner-friendly wo
+ men’s programming contest! Enter the contest for Torchy’s and a chance to w
+ in prizes! Teams must be 2-4 people with at least 50% women/non-binary memb
+ ers. You do NOT need a team to RSVP as we will also provide help with team 
+ matching!
+LAST-MODIFIED:20240329T040958Z
+LOCATION:GDC Auditorium
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x UTPC Programming Contest
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230407
+DTEND;VALUE=DATE:20230408
+DTSTAMP:20261124T203117Z
+UID:3unalb6sjn8ppg20pquf97va8g@google.com
+CREATED:20230330T012625Z
+LAST-MODIFIED:20230330T012625Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Officer Applications Due
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20190209
+DTEND;VALUE=DATE:20190210
+DTSTAMP:20261124T203117Z
+UID:54rv00epdlqpq7djbb3i99ibtl@google.com
+CREATED:20190111T213436Z
+LAST-MODIFIED:20190208T170633Z
+LOCATION:Gates-Dell Complex\, 2317 Speedway\, Austin\, TX 78712\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks 2019!
+TRANSP:TRANSPARENT
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT15H
+X-WR-ALARMUID:00418015-9E45-4468-AE7D-82140B995F4E
+UID:00418015-9E45-4468-AE7D-82140B995F4E
+ATTACH;VALUE=URI:Basso
+X-APPLE-DEFAULT-ALARM:TRUE
+ACKNOWLEDGED:20190208T170625Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230113T003000Z
+DTEND:20230113T013000Z
+DTSTAMP:20261124T203117Z
+UID:7qk9slu0p3kf98hokje3aau4df@google.com
+CREATED:20230108T204055Z
+DESCRIPTION:Stop by our Introduction to CS 312/314 and CS 429/439 workshops
+  on Thursday January 12th to hear an overview on the class structure and ti
+ ps. TA’s will be there to share advice about these classes and answer any q
+ uestions. We will have Tiffs Treats!<br />
+LAST-MODIFIED:20230108T204140Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to CS Workshops (CS429 & CS439)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230330T150000Z
+DTEND:20230330T200000Z
+DTSTAMP:20261124T203117Z
+UID:j9dccr8t8r1dc45tmgpou2cggs@google.com
+CLASS:PUBLIC
+CREATED:20230324T183818Z
+DESCRIPTION:HRT (Hudson River Trading) is sending a recruiter to campus nex
+ t Thursday\, March 30th to have 1:1 Coffee Chats with WiCS members! Limited
+  spots available so sign up fast! You may only sign up for one time slot an
+ d please NOT remove/move anyone else's name from the sheet!\n\nSign-up shee
+ t:\nhttps://tinyurl.com/HRTCoffee\n\n15 min time slots from 10am-3pm
+LAST-MODIFIED:20230324T183818Z
+LOCATION:TBD Find on sign up sheet
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:HRT Coffee Chats
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190829T000000Z
+DTEND:20190829T010000Z
+DTSTAMP:20261124T203117Z
+UID:72rti5od2gpersa0el9b7ugcuk@google.com
+CREATED:20190722T061015Z
+DESCRIPTION:Join WiCS at our fall kickoff to learn about our different prog
+ rams and events. Freebirds will be served for dinner!
+LAST-MODIFIED:20190826T035132Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Fall Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231030T230000Z
+DTEND:20231031T010000Z
+DTSTAMP:20261124T203117Z
+UID:4kornstco2pqb3batekc07mqu9@google.com
+CREATED:20231025T232410Z
+DESCRIPTION:<span>Come join Q++\, HACS\, ABCS\, and WiCS for a Halloween so
+ cial on Monday\, October 30th at 6-8pm in GDC 6.302! We will have mask-pain
+ ting\, Halloween goodie bags\, a spooky photobooth\, and mask-painting! Tor
+ chy’s Tacos will also be provided for dinner. Come in costume to compete in
+  our costume contests!</span><br><br><a href="https://tinyurl.com/wics-hall
+ oween">https://tinyurl.com/wics-halloween</a>
+LAST-MODIFIED:20231025T232410Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x DivOrgs Halloween Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240910T230000Z
+DTEND:20240911T003000Z
+DTSTAMP:20261124T203117Z
+UID:2sf9flel5v3al70tq57plirhd2@google.com
+CREATED:20240903T221811Z
+LAST-MODIFIED:20240903T221811Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ABCS x WICS x Turing Scholars Resume Review with Bloomberg
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190131T170000Z
+DTEND:20190131T190000Z
+DTSTAMP:20261124T203117Z
+UID:6sarg9s5c74pvmhnnrju801o3b@google.com
+CREATED:20190125T170552Z
+DESCRIPTION:Register for WiCS Hacks or to volunteer! We can answer any ques
+ tions you have about the hackathon.
+LAST-MODIFIED:20190125T170552Z
+LOCATION:GDC Atrium
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks Tabling
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200213T213000Z
+DTEND:20200213T233000Z
+DTSTAMP:20261124T203117Z
+UID:2v59v0mgqj259cg1usie309liv@google.com
+CREATED:20200211T193158Z
+LAST-MODIFIED:20200211T193158Z
+LOCATION:GDC Atrium
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Rice Wics Meetup
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231020T223000Z
+DTEND:20231021T010000Z
+DTSTAMP:20261124T203117Z
+UID:4d9jbg8jk9p5annr65vo3b9v15@google.com
+CREATED:20231009T052750Z
+DESCRIPTION:Join WiCS in collaboration with UTPC for a beginner-friendly wo
+ men’s programming contest! Enter the contest for <b>Torchy’s</b> and a chan
+ ce to win <b>prizes</b>! Teams must be 2-4 people with at least 50% women/n
+ on-binary members. You do NOT need a team to RSVP as we will also provide h
+ elp with team matching! Contest will have both beginner and advanced divisi
+ ons.<br><br><i>Note: If you are part of the Nell-Dale program\, you can par
+ ticipate in a team with your mentor/mentee for an extra 5 points and Nell-D
+ ale meetup credit!</i><br><i><br></i>RSVP: <a href="https://forms.gle/4ypp4
+ APqjZBS5JzG8">https://forms.gle/4ypp4APqjZBS5JzG8</a>
+LAST-MODIFIED:20231016T204820Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x UTPC Programming Contest
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250409T230000Z
+DTEND:20250410T000000Z
+DTSTAMP:20261124T203117Z
+UID:1ibicb2qimv0c910kic0kiqu7u@google.com
+CREATED:20250403T172544Z
+DESCRIPTION:<p>Curious about what the Women in Computer Science organizatio
+ n has to offer? Come meet our members during our "All About WiCS" CS Week e
+ vent. This is a fantastic opportunity to learn more about our community\, n
+ etwork with like-minded individuals\, and have a chance to win some excitin
+ g prizes. Don't miss out on the fun and the chance to be part of something 
+ special!</p><p>For updates and more information about CS Week\, please foll
+ ow <a href="https://www.instagram.com/utcsweek?igsh=MW5weDU3NHlkMzVwbA==">@
+ UTCSWeek</a> on Instagram. </p>
+LAST-MODIFIED:20250403T172622Z
+LOCATION:GDC 2.210
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS Week: All About WiCS
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191021T233000Z
+DTEND:20191022T010000Z
+DTSTAMP:20261124T203117Z
+UID:3j45iravu9p56sq2a7hiqaqi28@google.com
+CREATED:20191011T215815Z
+LAST-MODIFIED:20191011T215815Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + ABCS + Tableau: Halloween Cookie Decorating!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230406T220000Z
+DTEND:20230406T233000Z
+DTSTAMP:20261124T203117Z
+UID:7bnrluksa19qhuudutj71ql1qg@google.com
+CREATED:20230403T043452Z
+DESCRIPTION:Want to be an officer but not sure what it entails? Come to our
+  officer social at Gong Cha! We’ll have some of our officers there for y’al
+ l to get to know and ask any questions you may have. You don’t have to be t
+ here the entire time\, just stop by at any time! :)
+LAST-MODIFIED:20230403T044026Z
+LOCATION:Gong cha\, 2021 Guadalupe St\, Austin\, TX 78705\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Officer Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181002T233000Z
+DTEND:20181003T010000Z
+DTSTAMP:20261124T203117Z
+UID:4qdvcp9njcbnktcs42hcu440fr@google.com
+CREATED:20180820T162041Z
+LAST-MODIFIED:20180929T173101Z
+LOCATION:GDC 5.302
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Goldman Sachs Tech Talk
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260824T130000Z
+DTEND:20260824T140000Z
+DTSTAMP:20261124T203117Z
+UID:6opohlhd7k180gmsdu3ueb00l2@google.com
+CREATED:20260818T163947Z
+LAST-MODIFIED:20260818T163947Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:First Day of School!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191024T230000Z
+DTEND:20191025T003000Z
+DTSTAMP:20261124T203117Z
+UID:73aooif7aab1esjjro2b98sgei@google.com
+CREATED:20191011T220244Z
+LAST-MODIFIED:20191017T214336Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Amazon: Technical Interview Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200305T010000Z
+DTEND:20200305T020000Z
+DTSTAMP:20261124T203117Z
+UID:5atutvqkoh7vg44hiier9gfq38@google.com
+CREATED:20190528T054456Z
+DESCRIPTION:Come learn about the basics of game dev using Unity through thi
+ s technical workshop hosted by EGaDS x WiCS x HACS x ABCS x Q++!
+LAST-MODIFIED:20200225T014509Z
+LOCATION:GDC 4.302
+SEQUENCE:3
+STATUS:CONFIRMED
+SUMMARY:Unity Workshop EGaDS x WiCS x HACS x ABCS x Q++
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201026T213000Z
+DTEND:20201026T223000Z
+DTSTAMP:20261124T203117Z
+UID:05gj2q3rqsqo8glhfu2u2kokq0@google.com
+CREATED:20201019T230142Z
+DESCRIPTION:Join Zoom Meeting<br><a href="https://utexas.zoom.us/j/97920726
+ 257">https://utexas.zoom.us/j/97920726257</a><br><br>Meeting ID: 979 2072 6
+ 257<br>One tap mobile<br>+13462487799\,\,97920726257# US (Houston)<br>+1669
+ 9006833\,\,97920726257# US (San Jose)<br><br>Dial by your location<br>&nbsp
+ \;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;+1 346 248 7799 US (Hous
+ ton)<br>&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;+1 669 900 
+ 6833 US (San Jose)<br>&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbs
+ p\;+1 253 215 8782 US (Tacoma)<br>&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\
+ ;&nbsp\;&nbsp\;+1 312 626 6799 US (Chicago)<br>&nbsp\;&nbsp\;&nbsp\;&nbsp\;
+ &nbsp\;&nbsp\;&nbsp\;&nbsp\;+1 929 205 6099 US (New York)<br>&nbsp\;&nbsp\;
+ &nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;+1 301 715 8592 US (Germantown)<b
+ r>Meeting ID: 979 2072 6257<br>Find your local number: <a href="https://ute
+ xas.zoom.us/u/aA4biRyiv">https://utexas.zoom.us/u/aA4biRyiv</a><br><br>Join
+  by SIP<br><a href="mailto:97920726257@zoomcrc.com">97920726257@zoomcrc.com
+ </a><br><br>Join by H.323<br>162.255.37.11 (US West)<br>162.255.36.11 (US E
+ ast)<br>115.114.131.7 (India Mumbai)<br>115.114.115.7 (India Hyderabad)<br>
+ 213.19.144.110 (Amsterdam Netherlands)<br>213.244.140.110 (Germany)<br>103.
+ 122.166.55 (Australia)<br>209.9.211.110 (Hong Kong SAR)<br>64.211.144.160 (
+ Brazil)<br>69.174.57.160 (Canada)<br>207.226.132.110 (Japan)<br>Meeting ID:
+  979 2072 6257
+LAST-MODIFIED:20201024T032952Z
+LOCATION:https://utexas.zoom.us/j/97920726257
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Linux and Git Workshop
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240918T233000Z
+DTEND:20240919T003000Z
+DTSTAMP:20261124T203117Z
+UID:0f6vceua5v1dd3r2kc7j8fch57@google.com
+CREATED:20240903T191504Z
+DESCRIPTION:<br>Join us at our annual <b>Nell Dale Kickoff</b> to connect w
+ ith other members and have the chance to be introduced to our new mentors f
+ or this year! The mentee application will be released towards the end of th
+ e meeting\, so attendees will have priority! <b>Dinner will be provided!</b
+ ><br><b>Points + Food: </b>10 points\, Cabo Bob's
+LAST-MODIFIED:20240903T191606Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nell Dale Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230323T223000Z
+DTEND:20230324T000000Z
+DTSTAMP:20261124T203117Z
+UID:08nisqhtlend1i9rjss2almru0@google.com
+CREATED:20230318T130811Z
+DESCRIPTION:<p>Come join Girls Who Code and Women in CS for a tote bag pain
+ ting social! Paint and tote bags provided.<br></p><p>RSVP: tinyurl.com/wics
+ -totebag</p>
+LAST-MODIFIED:20230318T130811Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:GWC & WiCS Tote Bag Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250209T140000Z
+DTEND:20250210T010000Z
+DTSTAMP:20261124T203117Z
+UID:0sp72lffcfo8a1e3nfs0cp7rrj@google.com
+CREATED:20250107T014240Z
+DESCRIPTION:<br>Register now:<br><a target="_blank" href="https://forms.gle
+ /KeRDAFFKCZu9chaE9"><u><u>https://forms.gle/KeRDAFFKCZu9chaE9</u></u></a>
+LAST-MODIFIED:20250107T014428Z
+LOCATION:Gates Dell Complex\, 2317 Speedway\, Austin\, TX 78712\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hack 2025 Day 2
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201105T203000Z
+DTEND:20201105T213000Z
+DTSTAMP:20261124T203117Z
+UID:7mpntsug747sdpp9m5o8hugaio@google.com
+CREATED:20201102T105825Z
+DESCRIPTION:<span>Join Disney for an interactive tech talk panel and Q&amp\
+ ;A with the UTCS div. orgs!<br>RSVP Here: <a href="https://forms.gle/nZTUvW
+ ryaGUM21D76">https://forms.gle/nZTUvWryaGUM21D76</a><br>Join in via Zoom:&n
+ bsp\;<a href="https://disney.zoom.us/j/96905519655" id="ow768" __is_owner="
+ true">https://disney.zoom.us/j/96905519655</a></span>
+LAST-MODIFIED:20201102T105825Z
+LOCATION:https://disney.zoom.us/j/96905519655
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Disney + Div Orgs
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200928T210000Z
+DTEND:20200928T220000Z
+DTSTAMP:20261124T203117Z
+UID:4b43cc70cs4gd2up99uhfk2n4g@google.com
+CREATED:20200928T195754Z
+DESCRIPTION:<span>We're so excited to partner with WiCS at UT Austin for an
+  Interview Workshop<b>&nbsp\;</b>that will take place virtually on&nbsp\;<b
+ >September 28th\, at 2:00PM PST</b>.&nbsp\;<br><br>You can find more detail
+ s on what will&nbsp\;be covered during the workshop and info about our repr
+ esentatives via this&nbsp\;<a href="https://jst.me/jyjm">invite</a>.&nbsp\;
+ <br><br><br>We ask that you please share this&nbsp\;<a href="https://jst.me
+ /jyjm">invite</a>&nbsp\;with your members to RSVP for the event. Please als
+ o encourage them to create a Jumpstart profile and add their resumes to the
+ ir profile. After the event\, I will be raffling&nbsp\;off swag to 3 attend
+ ees and will be in touch with them for their mailing&nbsp\;addresses within
+  a few days after the event.</span>
+LAST-MODIFIED:20200928T195754Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Interview Workshop with Dropbox
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210129T230000Z
+DTEND:20210130T000000Z
+DTSTAMP:20261124T203117Z
+UID:6kojgcpn65hm2b9g6srj8b9k64p30bb264rmab9gc4p3ae1j75ijie346s@google.com
+CREATED:20210122T162558Z
+DESCRIPTION:https://utexas.zoom.us/j/93224718537\n\nMeeting ID: 932 2471 85
+ 37\n\n
+LAST-MODIFIED:20210125T215818Z
+LOCATION:https://utexas.zoom.us/j/93224718537
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20210306
+DTEND;VALUE=DATE:20210308
+DTSTAMP:20261124T203117Z
+UID:6so3adj66sp66b9j6lh62b9kcpijeb9o6sqm8bb6c9i3cp9jcgsm4pb6cg@google.com
+CREATED:20210301T152422Z
+LAST-MODIFIED:20210305T171948Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks!
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT15H
+X-WR-ALARMUID:C87C3062-00DD-4A6E-B8BF-5495624DFDC2
+UID:C87C3062-00DD-4A6E-B8BF-5495624DFDC2
+ATTACH;VALUE=URI:Chord
+X-APPLE-DEFAULT-ALARM:TRUE
+ACKNOWLEDGED:20210305T171946Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240202T000000Z
+DTEND:20240202T010000Z
+DTSTAMP:20261124T203117Z
+UID:307ne6d9prvkb4helq95k7v6jv@google.com
+CREATED:20240129T000835Z
+DESCRIPTION:Come join WiCS and Girls Who Code on an intro to mobile develop
+ ment and React! Learn how to navigate creating user interfaces with React!
+LAST-MODIFIED:20240129T000841Z
+LOCATION:1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Mobile Development + React with GWC
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201012T200000Z
+DTEND:20201012T220000Z
+DTSTAMP:20261124T203117Z
+UID:63ncq1nqkk7pb3j0qk8r604o70@google.com
+CREATED:20201006T162507Z
+DESCRIPTION:Join us to learn about Dell Digital/IT. Hear about the differen
+ t software developer intern and full-time roles* we have to offer and netwo
+ rk with team members!<br><br>*Through our Dell Digital/IT University Progra
+ ms\, we only hire undergrad candidates who do not require sponsorship. If y
+ ou do not meet these qualifications\, please apply directly for opportuniti
+ es at <a href="http://jobs.dell.com/students" target="_blank">jobs.dell.com
+ /students</a><br><br>Sign Up Here:<br><a href="http://dell2.avature.net/dig
+ italisut" target="_blank">http://dell2.avature.net/digitalisut</a><br><br><
+ p>Zoom Link:<a href="https://dell.zoom.us/j/93445203536?pwd=UStDaXRZNVpYWC8
+ zTmE0RjFIaFcxQT09" target="_blank"><br>https://dell.zoom.us/j/<u></u>934452
+ 03536?pwd=<u></u>UStDaXRZNVpYWC8zTmE0RjFIaFcxQT<u></u>09</a><u></u><u></u><
+ /p><p><u></u>Password: 165157</p>
+LAST-MODIFIED:20201011T162330Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS <> Q++ <> Dell
+TRANSP:OPAQUE
+ATTACH;FILENAME=An Afternoon with Dell Digital Invite.pdf:https://drive.goo
+ gle.com/file/d/1UK6GFgIboQ5g2Fystc5Ld8ULFFS3MLCz/view?usp=drive_web
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210924T223000Z
+DTEND:20210925T000000Z
+DTSTAMP:20261124T203117Z
+UID:1pc1hugp03ldmih0et99tbudik@google.com
+CREATED:20210916T221251Z
+LAST-MODIFIED:20230128T091810Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Virtual Speed Friending
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20241025T223000Z
+DTEND:20241026T010000Z
+DTSTAMP:20261124T203117Z
+UID:ovnp4ubjfptd22jpqlhgek3j74@google.com
+CREATED:20241018T235917Z
+DESCRIPTION:This team contest will have the following requirement: \nQuads:
+  Up to 4-Person Teams (2 and 3-Person Teams allowed) \nMixed: Teams must be
+  50% or more Women and Non-binary individuals. \nThere will be one division
+ \, and we will also have free food (Torchys!) for participants joining from
+  the GDC 2.216!
+LAST-MODIFIED:20241021T181936Z
+LOCATION:GDC 2.216
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:UTPC x WiCS Contest
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230217T230000Z
+DTEND:20230218T000000Z
+DTSTAMP:20261124T203117Z
+UID:731d0sgpdsd9nlm4rcv4020kqr@google.com
+CREATED:20230214T215753Z
+DESCRIPTION:Sweatshirt pickup for those that participated in the hackathon 
+ but were not able to demo! This is FIRST COME FIRST SERVE since we have a l
+ imited number.
+LAST-MODIFIED:20230214T215753Z
+LOCATION:GDC Atrium
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Hackathon Sweatshirt Pickup
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20211007T233000Z
+DTEND:20211008T010000Z
+DTSTAMP:20261124T203117Z
+UID:2u1rsitlsi8uoq52kqjk1mjc4l@google.com
+CREATED:20211006T162741Z
+DESCRIPTION:RSVP: tinyurl.com/wics-thdpanel<br>Panelists' Information: tiny
+ url.com/thd-rep-info<br><br><br><br>Priyanka Barve is inviting you to a sch
+ eduled Zoom meeting.<br>Topic: WiCS + Home Depot Career Panel<br>Time: Oct 
+ 7\, 2021 06:30 PM Central Time (US and Canada)<br>Join Zoom Meeting<br><a h
+ ref="https://utexas.zoom.us/j/98686044916?pwd=emtLejBtMmQrcDZFeU1pSjNIZnV1Q
+ T09">https://utexas.zoom.us/j/98686044916?pwd=emtLejBtMmQrcDZFeU1pSjNIZnV1Q
+ T09</a><br>Meeting ID: 986 8604 4916<br>Passcode: 673848<br>One tap mobile<
+ br>+13462487799\,\,98686044916# US (Houston)<br>+12532158782\,\,98686044916
+ # US (Tacoma)<br>Dial by your location<br>&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp
+ \;&nbsp\;&nbsp\;&nbsp\;+1 346 248 7799 US (Houston)<br>&nbsp\;&nbsp\;&nbsp\
+ ;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;+1 253 215 8782 US (Tacoma)<br>&nbsp\;&
+ nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;+1 669 900 6833 US (San Jos
+ e)<br>&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;+1 929 205 60
+ 99 US (New York)<br>&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\
+ ;+1 301 715 8592 US (Washington DC)<br>&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&
+ nbsp\;&nbsp\;&nbsp\;+1 312 626 6799 US (Chicago)<br>Meeting ID: 986 8604 49
+ 16<br>Find your local number: <a href="https://utexas.zoom.us/u/awtZ0TOmW">
+ https://utexas.zoom.us/u/awtZ0TOmW</a><br>Join by SIP<br><a href="mailto:98
+ 686044916@zoomcrc.com">98686044916@zoomcrc.com</a><br>Join by H.323<br>162.
+ 255.37.11 (US West)<br>162.255.36.11 (US East)<br>115.114.131.7 (India Mumb
+ ai)<br>115.114.115.7 (India Hyderabad)<br>213.19.144.110 (Amsterdam Netherl
+ ands)<br>213.244.140.110 (Germany)<br>103.122.166.55 (Australia Sydney)<br>
+ 103.122.167.55 (Australia Melbourne)<br>209.9.211.110 (Hong Kong SAR)<br>64
+ .211.144.160 (Brazil)<br>69.174.57.160 (Canada Toronto)<br>65.39.152.160 (C
+ anada Vancouver)<br>207.226.132.110 (Japan Tokyo)<br>149.137.24.110 (Japan 
+ Osaka)<br>Meeting ID: 986 8604 4916
+LAST-MODIFIED:20211006T162844Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Home Depot Career Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231101T230000Z
+DTEND:20231102T000000Z
+DTSTAMP:20261124T203117Z
+UID:45v3ja6f24lngf5ug1q7oiad1r@google.com
+CREATED:20231027T201842Z
+DESCRIPTION:<b>Join us for our second general meeting + insider information
+  about courses + pizza</b><b>!</b>
+LAST-MODIFIED:20231027T201842Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:November General Meeting + Registration Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/Chicago:20210906T113000
+DTEND;TZID=America/Chicago:20210906T133000
+RRULE:FREQ=DAILY;COUNT=3
+DTSTAMP:20261124T203117Z
+UID:661p981iihu5fda9450f36dcve@google.com
+CREATED:20210906T000024Z
+DESCRIPTION:<a href="http://tinyurl.com/wicschevronlunches" id="ow700" __is
+ _owner="true">Sign Up's Here</a>
+LAST-MODIFIED:20210906T000108Z
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:Chevron Corporate Lunches
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231011T230000Z
+DTEND:20231012T003000Z
+DTSTAMP:20261124T203117Z
+UID:7esv4vgfe5svbh1dp8ds9ivkhi@google.com
+CREATED:20231007T045533Z
+DESCRIPTION:We are excited to host a WiCS x The Trade Desk<b> </b>event whe
+ re WiCS members will have the opportunity to network with professionals and
+  learn more about programmatic advertising. Feel free to pop by on Wednesda
+ y October 11th during 6:30pm-7:30pm to enjoy some Halal Bros.
+LAST-MODIFIED:20231007T045542Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:The Trade Desk Networking and Dinner
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250208T140000Z
+DTEND:20250209T040000Z
+DTSTAMP:20261124T203117Z
+UID:472e6qe4sjs6f9cackjrh7iman@google.com
+CREATED:20250107T014217Z
+DESCRIPTION:WiCS is so excited to host our ninth annual hackathon! We will 
+ be having both beginner and intermediate technical workshops leading up to 
+ our 24-hour hackathon starting on Saturday. You’ll have the opportunity to 
+ attend company talks\, meets sponsors one on one\, play games\, and WIN PRI
+ ZES!! WiCS Hacks is open to all women and non-binary students in high schoo
+ l or college. All skills levels are welcome and we are beginner friendly! <
+ br>Register now:<br><a href="https://forms.gle/KeRDAFFKCZu9chaE9" target="_
+ blank"><u>https://forms.gle/KeRDAFFKCZu9chaE9</u></a>
+LAST-MODIFIED:20250128T010959Z
+LOCATION:Gates-Dell Complex\, 2317 Speedway\, Austin\, TX 78712\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks 2025 Day 1
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201001T230000Z
+DTEND:20201002T000000Z
+DTSTAMP:20261124T203117Z
+UID:5opbnir5mnm0kl9dbohk01e2n3@google.com
+CREATED:20200924T153810Z
+DESCRIPTION:Join our Chevron recruiters for a virtual game night! You’ll ge
+ t the chance to hear about opportunities in Chevron technology\, ask questi
+ ons\, and play some fun games!<br><br><br><a href="https://teams.microsoft.
+ com/l/meetup-join/19%3ameeting_M2QzMGIxOTUtZjgyMS00ZGM2LWFhM2UtODY0NDljNzQw
+ OGY2%40thread.v2/0?context=%7b%22Tid%22%3a%22fd799da1-bfc1-4234-a91c-72b3a1
+ cb9e26%22%2c%22Oid%22%3a%22a7168d97-ee03-4b72-88b3-e0576a4a590d%22%7d" targ
+ et="_blank">MS Teams Meeting Link</a><br><br>Sign-in Form:  <a href="https:
+ //forms.gle/ZkZPCY3eqJUiwD6i6" target="_blank">https://forms.gle/<u></u>ZkZ
+ PCY3eqJUiwD6i6</a><br><br>Application Links:  <a href="http://bit.ly/Chevro
+ nTechUT" target="_blank">bit.ly/ChevronTechUT</a>
+LAST-MODIFIED:20200924T153810Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Chevron + WiCS + ABCS Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260413T123000Z
+DTEND:20260413T190000Z
+DTSTAMP:20261124T203117Z
+UID:4s9v1qnh4kqoai2msa722hrs0v@google.com
+CREATED:20260330T025413Z
+LAST-MODIFIED:20260330T025414Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Follow the Leader
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220929T230000Z
+DTEND:20220930T010000Z
+DTSTAMP:20261124T203117Z
+UID:5svm8nkcgmibjdfge83n3k412m@google.com
+CREATED:20220927T164103Z
+LAST-MODIFIED:20220927T164103Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Palantir Trivia Night
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230413T223000Z
+DTEND:20230413T233000Z
+DTSTAMP:20261124T203117Z
+UID:5f0d9o9904nr5nh8l8tvbmuoav@google.com
+CREATED:20230409T185804Z
+DESCRIPTION:Interested in what it’s like after you graduate college and hea
+ d out to the real world? Come listen to members of Lockheed Martin talk abo
+ ut their transition and learn from their experiences! The event will be on 
+ Zoom but we will also be serving food and projecting the Zoom on the big sc
+ reen at GDC 2.210.<br><br>Zoom Link:<br><a href="https://lmco.zoomgov.com/j
+ /1609728562?pwd=YlVES1BUVDV1RVRvbENaL0lCUW4wQT09">https://lmco.zoomgov.com/
+ j/1609728562?pwd=YlVES1BUVDV1RVRvbENaL0lCUW4wQT09</a>
+LAST-MODIFIED:20230409T185909Z
+LOCATION:GDC 2.210
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Lockheed Martin College to Work Transition [HYBRID]
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221103T230000Z
+DTEND:20221104T000000Z
+DTSTAMP:20261124T203117Z
+UID:3u1877rfi2ifdbj7drqjeklv63@google.com
+CREATED:20221030T233637Z
+DESCRIPTION:Have you wondered what a product management career can look lik
+ e? Come hear from Atlassian product leaders how our APM team drives innovat
+ ion and seeks creative solutions to tough problems. Atlassian is actively h
+ iring for SWE/PM internships and full-time positions and have special appli
+ cation links just for WiCS members. Tacos and swag for all attendees!\n\nRS
+ VP: tinyurl.com/WicsxAtlassian
+LAST-MODIFIED:20221030T233637Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:A Day in the Life of an APM at Atlassian
+TRANSP:OPAQUE
+ATTACH;FILENAME=Atlassian WiCS Event Flyer.pdf;FMTTYPE=application/pdf:http
+ s://drive.google.com/open?id=1-TzEq56UzyzUe3O_695sAx3ohYlcige2&authuser=0
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181128T003000Z
+DTEND:20181128T020000Z
+DTSTAMP:20261124T203117Z
+UID:38mffvjd70st35dpkq2q3p0msb@google.com
+CREATED:20181119T231445Z
+LAST-MODIFIED:20181119T231445Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nell dale social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250420T180000Z
+DTEND:20250420T193000Z
+DTSTAMP:20261124T203117Z
+UID:0fjd6f1123rsi05ko0l10735br@google.com
+CREATED:20250403T172821Z
+DESCRIPTION:Join us to celebrate WiCS as we hand out senior cords\, points 
+ prizes\, and have lunch together. All attendees will also receive our new W
+ iCS t-shirt! (maybe some Hackathon sweatshirts are also going to be distrib
+ uted \;)) \n\nDue to limited space\, the RSVP does not guarantee a spot\, s
+ o please make sure to fill it out ASAP. If you are confirmed a spot\, you w
+ ill receive a confirmation email. Please only RSVP if you will for sure att
+ end\, and contact Rachel/Reyva on Discord if you can no longer attend: http
+ s://docs.google.com/forms/d/e/1FAIpQLScQkPmuqNV2rbkC8luRTtRKkQS62HAYFiuTtLU
+ 1rd-4ShgpKw/viewform
+LAST-MODIFIED:20260426T075817Z
+LOCATION:WCP Ballroom
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS End of Year Banquet
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180907T000000Z
+DTEND:20180907T010000Z
+DTSTAMP:20261124T203117Z
+UID:6td1ff9pt6o1r6lkkucvle11hh@google.com
+CREATED:20180817T074856Z
+LAST-MODIFIED:20180817T074856Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Kickoff [All Members]
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190423T223000Z
+DTEND:20190423T233000Z
+DTSTAMP:20261124T203117Z
+UID:7rp1iq6qiailn23kfavesc8hen@google.com
+CREATED:20190401T222731Z
+LAST-MODIFIED:20190401T222731Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Internship Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200123T010000Z
+DTEND:20200123T020000Z
+DTSTAMP:20261124T203117Z
+UID:0fdj5p5c3upum7jupoc3qu5cai@google.com
+CREATED:20200106T222251Z
+DESCRIPTION:Come celebrate with us as WiCS kicks off for the Spring 2020 se
+ mester!
+LAST-MODIFIED:20200106T222251Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Spring Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210304T000000Z
+DTEND:20210304T010000Z
+DTSTAMP:20261124T203117Z
+UID:c9ijcc3474s38bb174p3gb9k6cqj6b9p65im2bb175hjgo9k6cr32phick@google.com
+CREATED:20210301T153427Z
+LAST-MODIFIED:20210304T001331Z
+LOCATION:https://utexas.zoom.us/my/shristic
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Flutter
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230112T000000Z
+DTEND:20230112T010000Z
+DTSTAMP:20261124T203117Z
+UID:7ahv9e5bjgva6bf1eb1mft83oq@google.com
+CREATED:20230108T204128Z
+DESCRIPTION:Welcome back\, everyone! Join WiCS for our spring kickoff on We
+ dnesday\, January 11th from 6-7 PM @ GDC 1.304! We will be handing out this
+  year’s STICKERS\, our annual t-shirt (if you haven’t grabbed one already)\
+ , and Freebirds!<br />
+LAST-MODIFIED:20230108T204846Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Spring Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250903T230000Z
+DTEND:20250904T000000Z
+DTSTAMP:20261124T203117Z
+UID:19088s2j13ag6r728gjjuja8lo@google.com
+CREATED:20250902T203619Z
+DESCRIPTION:Learn about how to succeed in CS312 and CS314 and have a Q/A se
+ ssion with TAs from both classes!<br><br>Free Tiff's Treats Provided :)<br>
+ <b>Location: </b>GDC 1.406
+LAST-MODIFIED:20250902T203625Z
+LOCATION:GDC 1.406
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to CS 312/314 Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221011T230000Z
+DTEND:20221012T003000Z
+DTSTAMP:20261124T203117Z
+UID:1d0fc8deb1l51cj3csi5t6an6a@google.com
+CREATED:20220919T231646Z
+DESCRIPTION:Come find out all about The Home Depot and their digital depart
+ ment and play Jeopardy with some THD engineers! Food and swag will be provi
+ ded!
+LAST-MODIFIED:20221005T180312Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Home Depot Jeopardy Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200128T170000Z
+DTEND:20200128T190000Z
+DTSTAMP:20261124T203117Z
+UID:3905f6tcipv139c48jduqvp4ng@google.com
+CREATED:20200127T041912Z
+LAST-MODIFIED:20200127T041912Z
+LOCATION:GDC Atrium (2nd Floor)
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks Tabling
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180921T000000Z
+DTEND:20180921T010000Z
+DTSTAMP:20261124T203117Z
+UID:6oo3gd1h6tim8b9kcdijab9k6gojib9p6sp3ab9m60q68phpcphj2phpco@google.com
+CREATED:20180920T234237Z
+LAST-MODIFIED:20180920T234237Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Career Fair Destress
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200918T233000Z
+DTEND:20200919T003000Z
+DTSTAMP:20261124T203117Z
+UID:7be8qag54g9169rb4tg2cinmj1@google.com
+CREATED:20200918T200454Z
+DESCRIPTION:\nHear about working at Tableau from WiCS members and alumni!\n
+ \nhttps://utexas.zoom.us/j/92877340495\nMeeting ID: 928 7734 0495
+LAST-MODIFIED:20200918T200454Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x Tableau
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240131T000000Z
+DTEND:20240131T010000Z
+DTSTAMP:20261124T203117Z
+UID:2cpg6flmakvrm4vk0j7f4r70qr@google.com
+CREATED:20240129T000644Z
+DESCRIPTION:Join WiCS and TPEO on an intro to web development! Learn more a
+ bout the front-end and back-end technologies needed to create an amazing we
+ bsite!
+LAST-MODIFIED:20240129T000702Z
+LOCATION:1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Web Development with TPEO
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190425T220000Z
+DTEND:20190425T230000Z
+DTSTAMP:20261124T203117Z
+UID:75dsic1lrvd6k2q0g7kdd9r0k3@google.com
+CREATED:20190408T042817Z
+DESCRIPTION:Join WiCS in creating a finals care package for yourself!
+LAST-MODIFIED:20190408T042817Z
+LOCATION:GDC 6.202
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Finals Care Package Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181017T230000Z
+DTEND:20181018T000000Z
+DTSTAMP:20261124T203117Z
+UID:3tfn7g4jjd6dhn3kjhfrg36bk9@google.com
+CREATED:20180820T162223Z
+LAST-MODIFIED:20181017T193113Z
+LOCATION:GDC 4.302
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Google Women Engineer Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240912T230000Z
+DTEND:20240913T010000Z
+DTSTAMP:20261124T203117Z
+UID:1qj7r4l13pf3akd14t7v5ok201@google.com
+CREATED:20240903T191711Z
+DESCRIPTION:<br>WiCS is hosting our annual Networking Reception\, an opport
+ unity for members of WiCS to meet with numerous representatives from our wo
+ nderful sponsors in a more intimate setting. This event is networking style
+ \, and the attire is snappy/business casual. <b>Dinner + dessert will be pr
+ ovided</b>\, and we'd love to see you there! Please RSVP <a href="https://f
+ orms.gle/eVdQ4YgW2f5nmjhR7" target="_blank">here</a>. <br><br>Due to limite
+ d space\, the RSVP does not guarantee a spot\, so please make sure to fill 
+ it out ASAP. If you are confirmed a spot\, you will receive a confirmation 
+ email. <br><br><b>Points + Food: </b>15 points\, Mandola's
+LAST-MODIFIED:20250914T111150Z
+LOCATION:WCP Ballroom
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Networking Reception
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210326T000000Z
+DTEND:20210326T010000Z
+DTSTAMP:20261124T203117Z
+UID:1svc8cub9arhmu3ocget6kb5ce@google.com
+CREATED:20210325T191150Z
+DESCRIPTION:<br><a href="https://utexas.zoom.us/j/94222097553">https://utex
+ as.zoom.us/j/<wbr>94222097553</a><br>Meeting ID: 942 2209 7553
+LAST-MODIFIED:20210325T191158Z
+LOCATION:https://utexas.zoom.us/j/94222097553
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS + Cisco: Women in Tech
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251002T173000Z
+DTEND:20251002T183000Z
+DTSTAMP:20261124T203117Z
+UID:052a2r2oluntsqptg6g5a3kne6@google.com
+CREATED:20250922T221757Z
+DESCRIPTION:<br><br><br><p>Hear from female Roblox employees and get a behi
+ nd-the-scenes look into how they applied\, interviewed\, and joined Roblox!
+  You’ll hear firsthand about their journeys to Roblox\, previous experience
+ \, and what makes working at Roblox so special. Don’t miss this opportunity
+  to get an insider’s view into what it’s like to work at Roblox as a softwa
+ re engineer! </p><p>RSVP: <a href="https://2025utaustinwomenintechxroblox.s
+ plashthat.com/">https://2025utaustinwomenintechxroblox.splashthat.com/</a><
+ /p>
+LAST-MODIFIED:20250929T002017Z
+LOCATION:RLP 1.104
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Roblox Women in Tech Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200826T220000Z
+DTEND:20200826T230000Z
+DTSTAMP:20261124T203117Z
+UID:4sl4v5fm22qm356gp2sgamg5m2@google.com
+CREATED:20200821T171645Z
+DESCRIPTION:<span>https://utexas.zoom.us/j/93224718537<br><br>Meeting ID: 9
+ 32 2471 8537<br><br></span>
+LAST-MODIFIED:20200821T171645Z
+LOCATION:https://utexas.zoom.us/j/93224718537
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200904T220000Z
+DTEND:20200905T000000Z
+DTSTAMP:20261124T203117Z
+UID:5qjins043kv7r41l8ukcdlgonn@google.com
+CREATED:20200831T223941Z
+DESCRIPTION:Tejna Dasari is inviting you to a scheduled Zoom meeting.Topic:
+  WiCS Annual Puzzle Hunt #1<br>Time: Sep 4\, 2020 05:00 PM Central Time (US
+  and Canada)Join Zoom Meeting<br><a href="https://utexas.zoom.us/j/94308636
+ 499">https://utexas.zoom.us/j/94308636499</a>Meeting ID: 943 0863 6499<br>O
+ ne tap mobile<br><a>+13462487799\,\,94308636499#</a>&nbsp\;US (Houston)<br>
+ <a>+16699006833\,\,94308636499#</a>&nbsp\;US (San Jose)
+LAST-MODIFIED:20200831T223941Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Annual Puzzle Hunt
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181130T000000Z
+DTEND:20181130T011500Z
+DTSTAMP:20261124T203117Z
+UID:7ed2dsj15d3aghpo7uumrnhnjc@google.com
+CREATED:20181128T181947Z
+LAST-MODIFIED:20181128T181947Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:makers event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240917T230000Z
+DTEND:20240918T000000Z
+DTSTAMP:20261124T203117Z
+UID:4e0d9j4b1sm87iucv0mvf3sh2p@google.com
+CREATED:20240914T011209Z
+DESCRIPTION:Join us for this exciting session and learn more about Adobe's 
+ Summer Internship program!
+LAST-MODIFIED:20240914T011209Z
+LOCATION:GDC 2.216
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Adobe x WiCS x ABCS x HACS x NSBE
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230823T233000Z
+DTEND:20230824T003000Z
+DTSTAMP:20261124T203117Z
+UID:5erumrlrhgnvo3pj71t1kgfvd8@google.com
+CREATED:20230815T210007Z
+DESCRIPTION:Welcome back\, or welcome to UT! Join us for our kickoff as we 
+ announce our events and programs for the year and enjoy some delicious dinn
+ er! 🌯 There will also be games and raffle prizes. All majors and gender id
+ entities are welcome!
+LAST-MODIFIED:20230822T163611Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Fall Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201208T010000Z
+DTEND:20201208T020000Z
+DTSTAMP:20261124T203117Z
+UID:5tjd1hqef5c3gmb5ackpf8u32a@google.com
+CREATED:20201207T193932Z
+DESCRIPTION:Celebrate the end of the semester with WiCS! We'll have games a
+ nd prizes :)  <a href="http://utexas.zoom.us/j/91566592014">utexas.zoom.us/
+ j/91566592014</a>
+LAST-MODIFIED:20201207T193932Z
+LOCATION:utexas.zoom.us/j/91566592014
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS End of Semester Reception
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250131T000000Z
+DTEND:20250131T010000Z
+DTSTAMP:20261124T203117Z
+UID:2d67ihdp3fpfmgotp020o43318@google.com
+CREATED:20250128T010728Z
+DESCRIPTION:Join us for our second workshop in the WiCS Hackathon workshop 
+ series with TPEO! We will be going over the basics of web and full stack de
+ velopment! Snacks will be provided. See you guys there!<br><br>Location<b>:
+  </b>GDC 5.304
+LAST-MODIFIED:20250128T010838Z
+LOCATION: GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hackathon: Intro to Web Dev with TPEO
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220824T223000Z
+DTEND:20220824T233000Z
+DTSTAMP:20261124T203117Z
+UID:3pipauk17s0qif1d08e27rmpsh@google.com
+CREATED:20220831T043646Z
+LAST-MODIFIED:20220831T043646Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Fall Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240410T230000Z
+DTEND:20240411T000000Z
+DTSTAMP:20261124T203117Z
+UID:08dvl37opmldaosfuhkdsnkahl@google.com
+CREATED:20240402T021634Z
+DESCRIPTION:Interested in applying for an officer position for WiCS? Join u
+ s at Gong Cha to chat with some of the officers to learn more about the rol
+ es!
+LAST-MODIFIED:20240402T021633Z
+LOCATION:Gong cha @ UT Campus\, 232\, above Target\, 2021 Guadalupe St\, Au
+ stin\, TX 78705\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Officer Meet + Greet
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201014T170000Z
+DTEND:20201014T180000Z
+DTSTAMP:20261124T203117Z
+UID:00sfkqphl31jeh3121rdd8rgf6@google.com
+CREATED:20201008T184125Z
+DESCRIPTION:The Home Depot isn&#39\;t just hammers and nails - we employ ~5
+ k technologists and build 90% of our code in-house! From Software Engineeri
+ ng to UX and Cybersecurity\, come learn about the variety of tech careers t
+ hat are possible within one of the most innovative retailers in the game.<b
+ r><ul><li>Panel<br><ul><li>Noosh Prljaca - Staff UX Designer<br></li><li>Ka
+ ndyce Knight - Sr. Product Manager<br></li><li>Dominique Price - Staff Syst
+ ems Engineer (Systems and Program Mgmt)<br></li><li>Diane Egede-Nissen - So
+ ftware Engineer Principal<br></li><li>Jason Holbrook - Systems Engineer Man
+ ager (Cybersecurity)<br></li></ul></li></ul><br>Registration Link: <a href=
+ "https://forms.office.com/Pages/ResponsePage.aspx?id=EWd--xm2vk-v5vg7EmczI9
+ dkvdpE_LlHrl8YIaUqSCZUNjZOOFhIMUY4MEFLTFA2NjhVNjNYQkxEOC4u" target="_blank"
+ >https://forms.office.com/Pages/ResponsePage.aspx?id=EWd--xm2vk-v5vg7EmczI9
+ dkvdpE_LlHrl8YIaUqSCZUNjZOOFhIMUY4MEFLTFA2NjhVNjNYQkxEOC4u</a><br>Join Zoom
+  Meeting<br><a href="https://utexas.zoom.us/j/97572138865" target="_blank">
+ https://utexas.zoom.us/j/97572138865</a><br><br>Meeting ID: 975 7213 8865<b
+ r><br>Application Link:<br><a href="https://careers.homedepot.com/campus-co
+ nnect/" target="_blank">https://careers.homedepot.com/campus-connect/</a>
+LAST-MODIFIED:20201008T184125Z
+LOCATION:https://utexas.zoom.us/j/97572138865
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Home Depot + Div Orgs
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210921T000000Z
+DTEND:20210921T010000Z
+DTSTAMP:20261124T203117Z
+UID:1r1nhjtjco3i6j8njm5mpbe8on@google.com
+CREATED:20210902T041125Z
+LAST-MODIFIED:20210913T172446Z
+SEQUENCE:3
+STATUS:CONFIRMED
+SUMMARY:Technical Interview Prep 
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190301T003000Z
+DTEND:20190301T020000Z
+DTSTAMP:20261124T203117Z
+UID:5c6ujf527er6n46u5fp1f6stmg@google.com
+CREATED:20190212T203020Z
+LAST-MODIFIED:20190212T203020Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + EOG Tech Talk
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231012T220000Z
+DTEND:20231013T000000Z
+DTSTAMP:20261124T203117Z
+UID:571amo0cmjmr7qt7e0kdejfge3@google.com
+CREATED:20230828T185716Z
+DESCRIPTION:Join Google to learn more about life in Tech! This event will i
+ nclude an info session and panel discussion with former interns and Googler
+ s\, where students can learn more about the program and ask questions.
+LAST-MODIFIED:20231009T181952Z
+SEQUENCE:4
+STATUS:CONFIRMED
+SUMMARY:Google Event - DivOrgs
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260326T230000Z
+DTEND:20260327T000000Z
+DTSTAMP:20261124T203117Z
+UID:6sks35mlbuqbakcjk5qqhbslvg@google.com
+CREATED:20260326T215750Z
+DESCRIPTION:This is a fantastic opportunity to learn how to navigate Adobe'
+ s internship process and get insider tips on how to stand out as a star Sof
+ tware Engineering candidate. Whether you're just starting your journey or l
+ ooking to take the next step in your career\, this event is designed to equ
+ ip you with the knowledge and inspiration you need to succeed.\n\nBut that'
+ s not all! Come for the insights and stay for the fun – we'll have exciting
+  networking opportunities\, awesome giveaways\, and delicious free food.\n\
+ nRSVP link: https://careers.adobe.com/us/en/event/69a9ff34c1f311f82688cfd4/
+ Adobe-x-UT-Austin-Code-Your-Future-Spring-2026
+LAST-MODIFIED:20260326T215829Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Adobe x UT Austin
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220504T220000Z
+DTEND:20220504T223000Z
+DTSTAMP:20261124T203117Z
+ORGANIZER;CN=c_fpfnr1pov8e37selhkikanuroo@group.calendar.google.com:mailto:
+ c_fpfnr1pov8e37selhkikanuroo@group.calendar.google.com
+UID:F07095B2-74D1-45C1-8CC2-CF3689181525
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=WiCS E
+ vents;X-NUM-GUESTS=0:mailto:k06u9ic0ke0bgoq3n7im2sibsc@group.calendar.googl
+ e.com
+CREATED:20220504T205326Z
+LAST-MODIFIED:20220505T213849Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Jose + Priya
+TRANSP:TRANSPARENT
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221014T220000Z
+DTEND:20221014T230000Z
+DTSTAMP:20261124T203117Z
+UID:405oa45bdt7b1n5hsd68ssd4un@google.com
+CREATED:20221014T020150Z
+DESCRIPTION:Join WiCS + GWC for our first GUEST SPEAKER! Hear from the Depa
+ rtment of Homeland Security's Chief Privacy Officer Lynn Parker Dupree and 
+ expand your awareness of privacy issues among young people developing the t
+ ools of tomorrow! 
+LAST-MODIFIED:20221014T215113Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Guest Speaker: Lynn Dupree\, Department of Homeland Security
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231010T233000Z
+DTEND:20231011T010000Z
+DTSTAMP:20261124T203117Z
+UID:6r5qlr60b8cisqvodhlfsn3bgh@google.com
+CREATED:20230925T153705Z
+DESCRIPTION:WiCS\, GWC\, and CSTS are collaborating to host a transfer work
+ shop for students trying to transfer into UTCS! Workshop will feature appli
+ cation information and a Q&A panel from successful transfers as well cookie
+ s from Tiff’s Treats!
+LAST-MODIFIED:20230925T153717Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x GWC x CSTS Transfer Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191107T000000Z
+DTEND:20191107T010000Z
+DTSTAMP:20261124T203117Z
+UID:2gnbood1vij6ial38jsb9th0l3@google.com
+CREATED:20191027T205302Z
+LAST-MODIFIED:20191027T205302Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Front-End with FactSet!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190220T003000Z
+DTEND:20190220T020000Z
+DTSTAMP:20261124T203117Z
+UID:338rvu1j6vlsidp7eskamo6056@google.com
+CREATED:20190125T201727Z
+LAST-MODIFIED:20190214T235253Z
+LOCATION:GDC 1.406
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Capital One: Canvas Painting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190925T160000Z
+DTEND:20190925T180000Z
+DTSTAMP:20261124T203117Z
+UID:6bmjkvqkj4e6dlqik8bvvj0nip@google.com
+CREATED:20190912T203428Z
+LAST-MODIFIED:20190912T203434Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:The Home Depot + WiCS Mock Interviews
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220928T233000Z
+DTEND:20220929T010000Z
+DTSTAMP:20261124T203117Z
+UID:6r0ihbh7jmhnklrp07utcna9kt@google.com
+CREATED:20220923T190501Z
+DESCRIPTION:<a href="http://tinyurl.com/googlexWICS" id="ow789" __is_owner=
+ "true">RSVP Link</a>
+LAST-MODIFIED:20220923T190501Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Google Alumni Panel and Meet & Greet
+TRANSP:OPAQUE
+ATTACH;FILENAME=9.28 UT Event RSVP.pdf;FMTTYPE=application/pdf:https://driv
+ e.google.com/open?id=1_QbAOubbidZ4yphVhQdzoNRQ-q0t_bcd&authuser=0
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200929T230000Z
+DTEND:20200930T000000Z
+DTSTAMP:20261124T203117Z
+UID:3qdpejifu1juisjdibo5p18n7t@google.com
+CREATED:20200925T053342Z
+DESCRIPTION:Zoom Link:&nbsp\;<a href="https://stripe.zoom.us/j/95143255698"
+ >https://stripe.<u></u>zoom.us/j/95143255698</a><br><br>Stripe Representati
+ ves: Eilis Kennedy (Recruiter)\,&nbsp\;<a href="https://www.linkedin.com/in
+ /rachel-rosalia-a02a9079/">Rachel Rosalia&nbsp\;</a>&nbsp\;(Engineer)\,&nbs
+ p\;<a href="https://www.linkedin.com/in/rdiamon1/">Rachel Diamond</a>&nbsp\
+ ;(Engineer)\,&nbsp\;and&nbsp\;<a href="https://www.linkedin.com/in/annieqiu
+ 26/">Annie Qiu</a>&nbsp\;(Engineer)<br><br>Special Link to Apply:&nbsp\;<a 
+ href="https://grnh.se/3d2e08791us">https://grnh.se/<u></u>3d2e08791us</a><b
+ r>(Anyone that applies this week\, will be reviewed within 24 hours.)<br><b
+ r>Event Description: Attendees will breakout into groups of 3 with one of t
+ he Stripe engineers. Here\, you can ask questions about interview tips\, ga
+ ining work experience\, and career advice.
+LAST-MODIFIED:20200925T053517Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Stripe
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250205T000000Z
+DTEND:20250205T010000Z
+DTSTAMP:20261124T203117Z
+UID:3srh0on9469egb4pjfl501k5r3@google.com
+CREATED:20250128T010827Z
+DESCRIPTION:Join us for our third workshop in the WiCS Hackathon workshop s
+ eries with GWC! We will be going over the basics of Git\, GitHub\, and Vers
+ ion Control! Snacks will be provided. See you guys there!<br><br>Location<b
+ >: </b>GDC 5.304
+LAST-MODIFIED:20250128T010827Z
+LOCATION: GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hackathon: Intro to Git Workshop with GWC
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190401T230000Z
+DTEND:20190402T000000Z
+DTSTAMP:20261124T203117Z
+UID:7bmnh0n6f7kt7pavpe74dvmbm4@google.com
+CREATED:20190326T011852Z
+LAST-MODIFIED:20190326T011912Z
+LOCATION:GDC 6.202
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + General Motors: Women in Engineering Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191106T010000Z
+DTEND:20191106T030000Z
+DTSTAMP:20261124T203117Z
+UID:7dfpqf5f2el7jooqjc7b04cfo1@google.com
+CREATED:20191030T011910Z
+DESCRIPTION:Come review for Exam 2 with some of the TAs! Tiff's Treats will
+  be provided.
+LAST-MODIFIED:20191030T011910Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS CS 314 Exam 2 Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191024T000000Z
+DTEND:20191024T020000Z
+DTSTAMP:20261124T203117Z
+UID:5ivkro6lu6rgqp80cab4fbtksq@google.com
+CREATED:20191007T213738Z
+LAST-MODIFIED:20191007T213738Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Registration Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250924T230000Z
+DTEND:20250925T000000Z
+DTSTAMP:20261124T203117Z
+UID:63mu28imkpug5aves59c6vu0oc@google.com
+CREATED:20250917T054417Z
+DESCRIPTION:Bloomberg will be hosting a Mock Interview Event! \nBe sure to 
+ RSVP:\nhttps://bloomberg.avature.net/events/EventDetailsPage?jobId=13994#
+LAST-MODIFIED:20250917T183422Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bloomberg x WiCS - Mock Interview Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240402T230000Z
+DTEND:20240403T000000Z
+DTSTAMP:20261124T203117Z
+UID:2lfqjbotgvciinagh8bih5t15f@google.com
+CREATED:20240321T134651Z
+DESCRIPTION:Want to learn more about cybersecurity? Join us and Women in Cy
+ bersecurity to learn more about the basics!
+LAST-MODIFIED:20240322T135618Z
+LOCATION:GDC 2.502
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x WiCys Intro to Cybersecurity Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260213T000000Z
+DTEND:20260213T013000Z
+DTSTAMP:20261124T203117Z
+UID:6llg79u1sv78t9b86jqct4dd4n@google.com
+CREATED:20260207T052755Z
+DESCRIPTION:The UTCS transfer application has opened! WiCS\, Girls Who Code
+ \, and CS Transfer Society are hosting an event to help prospective transfe
+ rs with application tips\, advice from successful transfers\, and personali
+ zed resume and essay reviews. Anyone interested in transferring into comput
+ er science at UT is welcome!
+LAST-MODIFIED:20260207T052803Z
+LOCATION:GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:UTCS Transfer Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260924T230000Z
+DTEND:20260925T000000Z
+DTSTAMP:20261124T203117Z
+UID:6d9gp2utucd610ls0h3muu80is@google.com
+CREATED:20260831T144735Z
+LAST-MODIFIED:20260916T211049Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Bumble
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251015T233000Z
+DTEND:20251016T003000Z
+DTSTAMP:20261124T203117Z
+UID:n2gsagdesgjiinfk5ohaimtbvc@google.com
+CREATED:20251007T174345Z
+DESCRIPTION:Join us at our annual Nell Dale Kickoff in GDC 1.304! \nConnect
+  with other members and have the chance to be introduced to our new mentors
+  for this year. Light hors d'oeuvres from Mandola's will be provided\, and 
+ the Nell Dale mentee application will be released to meeting participants f
+ irst!
+LAST-MODIFIED:20251008T210325Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nell-Dale Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231002T220000Z
+DTEND:20231002T233000Z
+DTSTAMP:20261124T203117Z
+UID:347brnefl8b39gdjl7ph38862k@google.com
+CREATED:20230816T194418Z
+DESCRIPTION:We are excited to host a WiCS x Deloitte Consulting Coffee Tab<
+ b> </b>event where WiCS members will have the opportunity to network and me
+ et Deloitte professionals. Feel free to pop by on Monday October 2nd during
+  5pm-6:30pm for a free 16oz coffee + pastry!<br><br>RSVP: <a href="https://
+ tinyurl.com/wics-deloitte">https://tinyurl.com/wics-deloitte</a>
+LAST-MODIFIED:20231002T030352Z
+LOCATION:Lucky Lab Coffee Co.\, 2421 San Antonio St\, Austin\, TX 78705\, U
+ SA
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS x Deloitte Consulting Coffee Tab
+TRANSP:TRANSPARENT
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-MAPKIT-HANDLE=CAESswII2TIaEgn
+ P0IlO4Ek+QBEZp8bwfW9YwCKeAQoNVW5pdGVkIFN0YXRlcxICVVMaBVRleGFzIgJUWCoNVHJhdm
+ lzIENvdW50eTIGQXVzdGluOgU3ODcwNUIIVGhlIERyYWdSDlNhbiBBbnRvbmlvIFN0WgQyNDIxY
+ hMyNDIxIFNhbiBBbnRvbmlvIFN0igEIVGhlIERyYWeKAQtXZXN0IENhbXB1c4oBEVVuaXZlcnNp
+ dHkgQ2FtcHVzKhMyNDIxIFNhbiBBbnRvbmlvIFN0MhMyNDIxIFNhbiBBbnRvbmlvIFN0MhFBdXN
+ 0aW4sIFRYICA3ODcwNTINVW5pdGVkIFN0YXRlczg5QABQAVonCiUSEgnP0IlO4Ek+QBEZp8bwfW
+ 9YwBjZMiComMLy58WM2LsBkAMB;X-APPLE-RADIUS=70.58728950699671;X-APPLE-REFEREN
+ CEFRAME=1;X-TITLE="Lucky Lab Coffee Co., 2421 San Antonio St, Austin, TX 78
+ 705, USA":geo:30.288579,-97.742062
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210928T220000Z
+DTEND:20210928T230000Z
+DTSTAMP:20261124T203117Z
+UID:0c5rh5uhujcegpch6f0kc9mmct@google.com
+CREATED:20210906T001849Z
+LAST-MODIFIED:20210906T001918Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:314 Exam Review Session
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260414T230000Z
+DTEND:20260415T000000Z
+DTSTAMP:20261124T203117Z
+UID:9td8vlaga105e7ed1t0deomv6g@google.com
+CREATED:20260413T150751Z
+DESCRIPTION:Get to meet your WiCS officer board and ask us any questions yo
+ u may have before you submit your officer applications!!
+LAST-MODIFIED:20260413T150758Z
+LOCATION:Gong cha @ UT Campus\, 232\, above Target\, 2021 Guadalupe St\, Au
+ stin\, TX 78705\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Officer Meet & Greet
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200218T230000Z
+DTEND:20200219T010000Z
+DTSTAMP:20261124T203117Z
+UID:7im84csp7c9j2uj5e2h90ae44u@google.com
+CREATED:20200217T025916Z
+LAST-MODIFIED:20200217T025916Z
+LOCATION:GDC 6.302\, 
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:GWC College Loop Kickoff
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200901T213000Z
+DTEND:20200901T230000Z
+DTSTAMP:20261124T203117Z
+UID:6vaq94pj7le4i58r3257jspfk4@google.com
+CREATED:20200826T133052Z
+DESCRIPTION:<a href="https://utexas.zoom.us/j/93802839775" id="ow523" __is_
+ owner="true">https://utexas.zoom.us/j/93802839775</a>
+LAST-MODIFIED:20200831T223348Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Technical Interview workshop w/ Bloomberg
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251016T223000Z
+DTEND:20251017T000000Z
+DTSTAMP:20261124T203117Z
+UID:7saovl0q4o7qub44v4c3dkil9d@google.com
+CREATED:20251008T210509Z
+DESCRIPTION:WiCS is going to be hosting a general workshop to go over every
+ thing recruiting related – from what to put on your resume and how to prese
+ nt yourself at networking events\, to advice for success on technical and b
+ ehavioral interviews!\nJoin us for some recruiting tips\, Tiff's Treats\, a
+ nd headshots at the end.
+LAST-MODIFIED:20251008T210509Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:How to Recruit (w/ Headshots!)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260130T000000Z
+DTEND:20260130T010000Z
+DTSTAMP:20261124T203117Z
+UID:v2na5cdnevt0ekjpmeq551akog@google.com
+CREATED:20260129T215004Z
+DESCRIPTION:WiCS and TPEO are cohosting a workshop to go over all things we
+ b-development related – from what languages and tools are helpful to how to
+  start your own project! Come join us for the 2nd workshop in our workshop 
+ series leading up to our hackathon in February! Tiff's Treats will be provi
+ ded.
+LAST-MODIFIED:20260129T215004Z
+LOCATION:GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Web Development w/ TPEO
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190928T180000Z
+DTEND:20190928T200000Z
+DTSTAMP:20261124T203117Z
+UID:74r62p9l6kq38b9hchi3gb9k68pm2bb174p68b9m69hjacphc4pj6pb1cg@google.com
+CREATED:20190913T232528Z
+DESCRIPTION:We will be meeting at LBJ lawn! Join us for snacks\, a bouncy h
+ ouse\, water balloon toss\, and more!
+LAST-MODIFIED:20190913T232528Z
+LOCATION:LBJ Presidential Library\, 2313 Red River St\, Austin\, TX 78712\,
+  USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Nell Dale Family Field Day
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221102T230000Z
+DTEND:20221103T000000Z
+DTSTAMP:20261124T203117Z
+UID:3iakb07tut0do5c2ija3l4bs1m@google.com
+CREATED:20221027T234857Z
+DESCRIPTION:<html-blob>**EVENT HAS BEEN CHANGED TO ONLY REGISTRATION REVIEW
+ ***<br></html-blob><br><html-blob><u></u>Come enjoy pizza with us as we wil
+ l be holding a workshop alongside Girls Who Code to prepare you for class r
+ egistration for the spring!<br><br><br><u></u></html-blob>
+LAST-MODIFIED:20221102T023047Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Registration Review with Girls Who Code
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230130T230000Z
+DTEND:20230131T000000Z
+DTSTAMP:20261124T203117Z
+UID:2ept8j5ekfmd48fu4olqsfi7le@google.com
+CREATED:20230118T160150Z
+DESCRIPTION:Join WiCS and ACM to learn the basics of how to hackathon on Mo
+ nday\, Jan. 30. If it’s your first hackathon or you’d like some help gettin
+ g start or want to know how to navigate WiCS Hacks\, this is for you!\n\nWe
+  will also raffle off prizes at this workshop!
+LAST-MODIFIED:20230131T181502Z
+LOCATION:Zoom
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:How to Hackathon? with WiCS and ACM
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201015T223000Z
+DTEND:20201015T233000Z
+DTSTAMP:20261124T203117Z
+UID:2a52nshbi7utfls84p2jf5095s@google.com
+CREATED:20201011T162654Z
+DESCRIPTION:<p><b><span>Citadel</span> and <span>Citadel</span> Securities 
+ Info Session w/ Diversity @ Texas</b></p><p>Thursday\, October 15<sup>th</s
+ up> </p><p>5:30 – 6:30 p.m. CT</p><p><a href="https://piazza.com/rsvp/citad
+ el/ev2_kg1eueh9nd37ih">RSVP HERE</a><br><br></p><p>In Partnership with WiCS
+ \, ABCS\, and HACS</p><p>&nbsp\;</p><p>Join us in an overview of <span>Cita
+ del</span> and <span>Citadel</span> Securities followed by a Q&amp\;A with 
+ our U.T. Recruiter and members of our Software Engineering \, Quantitative 
+ Research\, and Trading teams. Come learn a little more about who we are and
+  what cool technical problems we are solving at <span>Citadel</span> and <s
+ pan>Citadel</span> Securities! You will also have the opportunity to learn 
+ about our upcoming internships and full time roles.<br><br></p><p>• <span>C
+ itadel</span> and <span>Citadel</span> Securities Recruiting Presentation</
+ p><p>• Q&amp\;A Panel </p><p>• Swag + Food Coupon Codes to Attendees!<br><b
+ r><a href="https://citadel.zoom.us/j/91643550758?pwd=ZTdsR1RzVWVkSDU1dGE3Uj
+ ZxOEc5QT09">Zoom Link</a><br>Meeting ID: 916 4355 0758<br>Password: 102458<
+ /p>
+LAST-MODIFIED:20201011T162720Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Div Orgs + Citadel
+TRANSP:TRANSPARENT
+ATTACH;FILENAME=Citadel and Citadel Securities - Diversity @ Texas Info Ses
+ sion Flyer.pdf;FMTTYPE=application/pdf:https://drive.google.com/file/d/1Rkn
+ iVRdDyKyhhbl1wwAjAqmKswoLILPS/view?usp=drive_web
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250408T230000Z
+DTEND:20250409T000000Z
+DTSTAMP:20261124T203117Z
+UID:0hhfvvsjsqiqnonmvhk1iamir1@google.com
+CREATED:20250403T173134Z
+DESCRIPTION:If you're interested in applying to be a WiCS officer\, come me
+ et us at Gong Cha to ask questions about roles\, logistics\, etc!
+LAST-MODIFIED:20250403T173134Z
+LOCATION:Gong Cha @ Dobie
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Officer Meet and Greet
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201108T200000Z
+DTEND:20201108T210000Z
+DTSTAMP:20261124T203117Z
+UID:4rdk8447e2sv9ouec664h57df2@google.com
+CREATED:20201102T231352Z
+LAST-MODIFIED:20201102T231352Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Social!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240417T233000Z
+DTEND:20240418T010000Z
+DTSTAMP:20261124T203117Z
+UID:6mud3vja5d5op9von4h9vi4nr9@google.com
+CREATED:20231109T173122Z
+LAST-MODIFIED:20240408T215156Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS Spring Banquet
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210401T130000Z
+DTEND:20210401T140000Z
+DTSTAMP:20261124T203117Z
+UID:5ko60uf1s3i64j24ksrulviltl@google.com
+CREATED:20210330T170601Z
+DESCRIPTION:https://forms.gle/ubd2aLUZDfG3FcXG9
+LAST-MODIFIED:20210330T170601Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS April Meetups Form Opens
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251118T180000Z
+DTEND:20251118T190000Z
+DTSTAMP:20261124T203117Z
+UID:01jmm7hltgf7g3ge5tmq0nqpj0@google.com
+CREATED:20251116T084526Z
+DESCRIPTION:Join us for the WiCS Faculty Networking Panel on November 18th 
+ from 12–1 PM to connect with UTCS professors\, hear about their experiences
+ \, and get advice on research\, grad school\, and life after undergrad!<br>
+ <b><br></b><br>Location: GDC 6.302
+LAST-MODIFIED:20251116T084527Z
+LOCATION: GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Fall Faculty Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251027T220000Z
+DTEND:20251027T230000Z
+DTSTAMP:20261124T203117Z
+UID:0n5sejbd68ofkr7pcv6o7rv9g0@google.com
+CREATED:20251024T191328Z
+DESCRIPTION:Learn more about Coinbase and their internship opportunities + 
+ get to hear from Coinbase engineering panelists! Pizza will be provided 🍕<
+ br><br>Location: ETC 2.132 or join via Zoom <a target="_blank" href="https:
+ //utexas.zoom.us/j/83000229572">https://utexas.zoom.us/j/83000229572</a>
+LAST-MODIFIED:20251024T191336Z
+LOCATION:ETC 2.132
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Coinbase x WiCS x SWE Info Session + Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191101T230000Z
+DTEND:20191102T010000Z
+DTSTAMP:20261124T203117Z
+UID:1vo33p4vi7ja4hj3e5ivkb2148@google.com
+CREATED:20191024T213749Z
+LAST-MODIFIED:20191102T003819Z
+LOCATION:Clay Pit\, 1601 Guadalupe St\, Austin\, TX 78701\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Corporate Networking Reception
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;ACKNOWLEDGED=20191102T003817Z:AUTOMATIC
+BEGIN:VALARM
+ACTION:NONE
+TRIGGER;VALUE=DATE-TIME:19760401T005545Z
+X-WR-ALARMUID:B90DD4B6-2509-46C0-9C3A-40BFD459FE26
+UID:B90DD4B6-2509-46C0-9C3A-40BFD459FE26
+ACKNOWLEDGED:20191102T003817Z
+X-APPLE-DEFAULT-ALARM:TRUE
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220908T000000Z
+DTEND:20220908T010000Z
+DTSTAMP:20261124T203117Z
+UID:174jo3mijvf2022ouogtodlsvs@google.com
+CREATED:20220903T153250Z
+LAST-MODIFIED:20220903T153250Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:PEAK6 Technical Interview Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20241001T233000Z
+DTEND:20241002T003000Z
+DTSTAMP:20261124T203117Z
+UID:12cvv6fp5032brpkkg6rgk7l5c@google.com
+CREATED:20240929T220005Z
+DESCRIPTION:Come join us to get to know more about upcoming events for WiCS
+ ! We’ll have some activities and food\, so please come by!
+LAST-MODIFIED:20240929T220005Z
+LOCATION:GDC 2.216
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:October General Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191112T010000Z
+DTEND:20191112T030000Z
+DTSTAMP:20261124T203117Z
+UID:5nucvkvl7t8jfvig9i5kgt18m6@google.com
+CREATED:20191030T011928Z
+DESCRIPTION:Come review for Exam 2 with some of the TAs. Tiff's Treats will
+  be provided!
+LAST-MODIFIED:20191030T011928Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS CS 312 Exam 2 Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251030T230000Z
+DTEND:20251031T010000Z
+DTSTAMP:20261124T203117Z
+UID:7ht5625n6mvsdhpis6no3li09h@google.com
+CREATED:20251029T032705Z
+DESCRIPTION:Join us for our annual div org Halloween social! Come in costum
+ e to compete in our costume contest\, there will also be food and activitie
+ s!\n\nRSVP Link: https://docs.google.com/forms/d/13tOr6y27utoK-DZfau9LBCqV5
+ NHXQpVZTRtrPWqilIc/viewform?edit_requested=true
+LAST-MODIFIED:20251030T170148Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Div Orgs Halloween Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181009T213000Z
+DTEND:20181009T233000Z
+DTSTAMP:20261124T203117Z
+UID:4uihqns5pank2d4s9kjdchv8k9@google.com
+CREATED:20181001T151117Z
+DESCRIPTION:If you have filled out the industry mentorship application come
+  to this event! This is your chance to meet your mentor for the first time 
+ in person. 
+LAST-MODIFIED:20181001T151117Z
+LOCATION:GDC 2.210
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Corporate Mentorship Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220920T220000Z
+DTEND:20220920T230000Z
+DTSTAMP:20261124T203117Z
+UID:3ghovadrcjlnh0j2921ilrmi58@google.com
+CREATED:20220921T040156Z
+LAST-MODIFIED:20220921T040156Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS312 Review Session 
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221019T230000Z
+DTEND:20221020T003000Z
+DTSTAMP:20261124T203117Z
+UID:14frdit8trdcs4td7e2pnsk9l9@google.com
+CREATED:20220919T231657Z
+DESCRIPTION:<br><b>&nbsp\;</b>Come join Stripe engineers\, your UT Austin u
+ niversity recruiter\, and fellow members of ABCS\, HACS\, WiCS and Q++ at f
+ or a fun evening of trivia\, learning about the important and impactful wor
+ k that's being done at Stripe\, and learn more about our internship program
+ !At our Trivia Night\, you will:<ul><li>Hear an overview of Stripe and the 
+ work we do</li><li>Compete in a Engineer led Stripe Trivia session for priz
+ es</li><li>Learn about our internship program and interview process</li><li
+ >Food and swag for all attendees!</li></ul><br>RSVP Link:&nbsp\;<a href="ht
+ tps://jst.me/arsu" style="background-color: var(--textfield-surface)\;"><u>
+ https://jst.me/arsu</u></a>
+LAST-MODIFIED:20221013T210559Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Stripe Trivia Night
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201025T010000Z
+DTEND:20201025T020000Z
+DTSTAMP:20261124T203117Z
+UID:sbaifbvdtgd5ro7apdsbkhgd40@google.com
+CREATED:20201018T053047Z
+DESCRIPTION:<a href="https://utexas.zoom.us/j/91358534173" id="ow234" __is_
+ owner="true">https://utexas.zoom.us/j/91358534173</a><br><br>Meeting ID: 91
+ 3 5853 4173
+LAST-MODIFIED:20201019T043218Z
+LOCATION:https://utexas.zoom.us/j/91358534173
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Nell Dale Halloween Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201023T000000Z
+DTEND:20201023T010000Z
+DTSTAMP:20261124T203117Z
+UID:23r7krril65hqoqkd1rpsj42m0@google.com
+CREATED:20201021T164240Z
+DESCRIPTION:<span>Interested to learn more about grad school but not even s
+ ure what it really is or what to expect? Come to our intro to grad school (
+ both Masters and PhD) where we will talk about what grad school is\, the ov
+ erall application process\, debunking some common myths\, and ending with a
+  Q&amp\;A! Featuring professor Vouga</span>
+LAST-MODIFIED:20201021T164331Z
+LOCATION:https://utexas.zoom.us/j/93240371486
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:Grad School Series - Intro Event - All Div Orgs
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191015T233000Z
+DTEND:20191016T010000Z
+DTSTAMP:20261124T203117Z
+UID:322uhlupi6adusgvsjtevh0fe9@google.com
+CREATED:20191007T163928Z
+DESCRIPTION:Come join WiCS and Capital One and plant some cute succulents w
+ hile networking with Capital One engineers! Bring your resumes :)
+LAST-MODIFIED:20191010T022554Z
+LOCATION:GDC 6.202
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:WiCS + ABCS + Capital One: Succulent Planting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230831T234500Z
+DTEND:20230901T004500Z
+DTSTAMP:20261124T203117Z
+UID:4dsb0321lus69l5i7aelrfo7eu@google.com
+CREATED:20230820T200425Z
+DESCRIPTION:<b>Gain advice on how to succeed in each class + Q/A panel with
+  TAs + Tiff’s Treats</b><b>!</b><br><b><br></b><br>CS429 @ 6:45 - 7:15 PM<b
+ r>CS439 @ 7:15 - 7:45 PM<b><br></b>
+LAST-MODIFIED:20230821T214000Z
+LOCATION:GDC 4.302
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Intro to CS Workshops (CS429/CS439)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191010T003000Z
+DTEND:20191010T013000Z
+DTSTAMP:20261124T203117Z
+UID:7g4grluu3jl9cct5cmdr43e1c4@google.com
+CREATED:20191004T042112Z
+DESCRIPTION:You must RSVP: goo.gle/ut-wics-f19-game
+LAST-MODIFIED:20191004T042158Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Google + WiCS Game Night!
+TRANSP:OPAQUE
+ATTACH;FILENAME=UT WiCS Game Night 10_9.pdf:https://drive.google.com/a/utex
+ as.edu/file/d/1es2DxQdv9-X6OLGBbfo1U108gF72rGWJ/view?usp=drive_web
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201008T223000Z
+DTEND:20201009T000000Z
+DTSTAMP:20261124T203117Z
+UID:2nlnddui5dt2pvh5rk078hrq1k@google.com
+CREATED:20200928T231419Z
+LAST-MODIFIED:20260410T173755Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Freshman Speed-Friending Event!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190829T234500Z
+DTEND:20190830T010000Z
+DTSTAMP:20261124T203117Z
+UID:1d37g2fsrqps3405okdqltkfeh@google.com
+CREATED:20190803T032734Z
+DESCRIPTION:Join WiCS and ACM at our How to Be an Ally Event! Dr. Alison No
+ rman and Dr. Calvin Lin will discuss microaggressions and inclusion within 
+ the tech industry. Cabo Bob's will be served for dinner!
+LAST-MODIFIED:20190826T035113Z
+LOCATION:JGB 2.324
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS + ACM How to Be an Ally
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251023T220000Z
+DTEND:20251023T230000Z
+DTSTAMP:20261124T203117Z
+UID:le6gmafce2h9ciebcjq6kn5ml8@google.com
+CREATED:20251022T035331Z
+DESCRIPTION:Join us for an event with Palo Alto Networks! Get to know more 
+ about their internship and full time opportunities as well as a chance to n
+ etwork with engineers\, recruiters\, and past interns. Snacks will be provi
+ ded!
+LAST-MODIFIED:20251022T185410Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Palo Alto Networks Info Session
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20200217
+DTEND;VALUE=DATE:20200218
+DTSTAMP:20261124T203117Z
+UID:3pvbpbbljv5naeil52omvto5cc@google.com
+CREATED:20200212T204944Z
+DESCRIPTION:Date: Monday\, February 17th\, 2020\n\nDeadline to Sign up: Thu
+ rsday\, February 13th\, 11:59 pm\nhttps://forms.gle/MB5GwA2aFuX8DW47A\n\nOv
+ erview: You will allow a prospective UTCS student to shadow you for the day
+ ! You will meet them in the morning and show them around campus\, go to you
+ r classes\, take them to lunch (we will provide lunch cards for y'all!)\, a
+ nd then once you finish classes they will go home!\n\nRequirements: \n\n- A
+  member of WiCS\, HACS or ABCS\n\n- Enrolled in a Computer Science class th
+ at meets on Mondays
+LAST-MODIFIED:20200216T202317Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Follow the Leader
+TRANSP:TRANSPARENT
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT15H
+X-WR-ALARMUID:5D367D5E-C8DE-445A-8D97-57193639EFAE
+UID:5D367D5E-C8DE-445A-8D97-57193639EFAE
+ATTACH;VALUE=URI:Chord
+X-APPLE-DEFAULT-ALARM:TRUE
+ACKNOWLEDGED:20200216T200831Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240619T190000Z
+DTEND:20240619T200000Z
+DTSTAMP:20261124T203117Z
+UID:7spp4aqb8u34l8v9h4rjl3dsv1@google.com
+CREATED:20240612T171818Z
+LAST-MODIFIED:20240612T171818Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WICS Events Test
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190214T003000Z
+DTEND:20190214T020000Z
+DTSTAMP:20261124T203117Z
+UID:6sfpmjkf0vqsjlhlnti1pj9jo1@google.com
+CREATED:20190111T220241Z
+LAST-MODIFIED:20190111T220241Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Amazon Preview Night
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220909T213000Z
+DTEND:20220909T223000Z
+DTSTAMP:20261124T203117Z
+UID:0lc3cn8456jlqqoa5ua9eshr9k@google.com
+CREATED:20220906T163210Z
+DESCRIPTION:GDC 1.304
+LAST-MODIFIED:20220906T163210Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bloomberg Philanthropy Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190923T230000Z
+DTEND:20190924T003000Z
+DTSTAMP:20261124T203117Z
+UID:76ta6ljt0r0kou34uj7dep6kr0@google.com
+CREATED:20190827T043050Z
+DESCRIPTION:\nRSVP LINK:  http://tinyurl.com/y4tyx7rl \nCome join Salesforc
+ e recruiters and engineers for an evening of networking\, BBQ food\, and vo
+ lunteering :) This will be a casual event that provides the opportunity to 
+ get to know more about Salesforce in an open and friendly environment. We w
+ ill also be partnering with the SAFE Alliance to create Hygiene Kits for th
+ ose in need. Information on the SAFE Alliance below. 
+LAST-MODIFIED:20190910T205426Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + TX Convergent + Salesforce
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221028T220000Z
+DTEND:20221029T000000Z
+DTSTAMP:20261124T203117Z
+UID:vq0oh6e6k80ia3o431t3qd13is@google.com
+CREATED:20221026T130201Z
+DESCRIPTION:Come join Q++\, HACS\, ABCS\, and WiCS for a Halloween social o
+ n Friday\, October 28th at 5-7pm in GDC 6.302! We will be painting mini pum
+ pkins and Torchy’s Tacos will be provided. Come in costume to compete in ou
+ r costume contests!\n\nRSVP: tinyurl.com/wicshalloween
+LAST-MODIFIED:20221026T130201Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DivOrg Halloween Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191206T000000Z
+DTEND:20191206T020000Z
+DTSTAMP:20261124T203117Z
+UID:4qdodeaocuj01dla6ivg1bftan@google.com
+CREATED:20191122T084436Z
+LAST-MODIFIED:20191122T101310Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Holiday Party
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221109T000000Z
+DTEND:20221109T010000Z
+DTSTAMP:20261124T203117Z
+UID:0av0r0j0aa03jbg7kvg76a9d9p@google.com
+CREATED:20221105T064224Z
+DESCRIPTION:Feeling burnt out balancing school and life? If so\, join recru
+ iters and engineers from Reddit to learn how to balance work/life! Reddit i
+ s home to thousands of communities\, conversations\, and connections so the
+ re is definitely a place for you! Reddit is actively hiring for SWE\, PM\, 
+ Data Science\, and Design internships and full-time positions. Food and mer
+ ch for all attendees!\n\nRSVP: tinyurl.com/WicsxReddit
+LAST-MODIFIED:20221105T064224Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Work/Life Balance with Reddit
+TRANSP:OPAQUE
+ATTACH;FILENAME=UT WiCS Flyer.pdf;FMTTYPE=application/pdf:https://drive.goo
+ gle.com/open?id=1Ml3580Jihzgp3bTdTWcf6t_EXhSLXjHs&authuser=0
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250331T123000Z
+DTEND:20250331T190000Z
+DTSTAMP:20261124T203117Z
+UID:11kuiahrphji88l9dl5dto6hfq@google.com
+CREATED:20250224T214137Z
+DESCRIPTION:Help an incoming UTCS student learn what it’s like to be in col
+ lege! Volunteers will be given food
+LAST-MODIFIED:20260412T085330Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Follow the Leader
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220929T220000Z
+DTEND:20220929T230000Z
+DTSTAMP:20261124T203117Z
+UID:3qggp1k3lpg8glkeksfuf7lmbk@google.com
+CREATED:20220925T201923Z
+DESCRIPTION:<html-blob>5-5:30 PM - How to Recruit: Day 2<br>5:30-6 PM - Hea
+ dshots<u></u></html-blob>
+LAST-MODIFIED:20220926T173342Z
+LOCATION: GDC 1.406
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:How to Recruit: Day 2 (Behavioral/Technical Interview Process + Hea
+ dshots)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210302T230000Z
+DTEND:20210303T000000Z
+DTSTAMP:20261124T203117Z
+UID:69gjgc9gcgp36bb161gjeb9k6dj34bb16gqjab9i6osm6chjccrjac9k6o@google.com
+CREATED:20210301T152432Z
+LAST-MODIFIED:20210301T153427Z
+LOCATION:https://utexas.zoom.us/j/9172429643
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Android
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231129T230000Z
+DTEND:20231130T003000Z
+DTSTAMP:20261124T203117Z
+UID:6b9ifa69os5nmuddr00jj7lhha@google.com
+CREATED:20231120T175841Z
+DESCRIPTION:Come join us for a gingerbread house contest to earn a cute pri
+ ze while enjoying food from Chilantro! The top 10 members with the most poi
+ nts will also be able to receive some prizes for their attendance this seme
+ ster!
+LAST-MODIFIED:20231120T175841Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Holiday Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260207T140000Z
+DTEND:20260209T000000Z
+DTSTAMP:20261124T203117Z
+UID:34t3il343m4s3vc675dsubi128@google.com
+CREATED:20251125T053546Z
+LAST-MODIFIED:20260108T011822Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks 2026 
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260205T000000Z
+DTEND:20260205T020000Z
+DTSTAMP:20261124T203117Z
+UID:3dl7alsc7b8trqkdh1a0ept1h4@google.com
+CREATED:20260202T202912Z
+DESCRIPTION:Along with EGaDS\, we are hosting a workshop to provide an intr
+ oduction to game programming and 3D modeling. Come join us to get an overvi
+ ew of both the technical and artistic aspects of game development to create
+  an engaging and unique Hackathon project! We will also provide a treat!
+LAST-MODIFIED:20260202T203027Z
+LOCATION:GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Game Programming and 3D Modeling w/ EGaDS
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220831T230000Z
+DTEND:20220901T000000Z
+DTSTAMP:20261124T203117Z
+UID:1svg2sakohr42kmdp63s16o95q@google.com
+CREATED:20220831T043625Z
+LAST-MODIFIED:20220831T053014Z
+LOCATION:GDC 1.304
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:Nell-Dale Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260414T220000Z
+DTEND:20260414T230000Z
+DTSTAMP:20261124T203117Z
+UID:72384l8jj8vas90ln1179jaq4u@google.com
+CREATED:20260413T080156Z
+DESCRIPTION:WiCS Trivia Night is a fun\, low-pressure social event where yo
+ u can team up with friends\, meet other women in tech\, and compete in a mi
+ x of general + tech-themed trivia for prizes. Join us for a great time!
+LAST-MODIFIED:20260413T080156Z
+LOCATION:GDC 2.210
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Trivia Night (CS Week)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201006T000000Z
+DTEND:20201006T010000Z
+DTSTAMP:20261124T203117Z
+UID:2crsse30ec2rj17rk28qkgctu6@google.com
+CREATED:20201005T100302Z
+DESCRIPTION:Come learn about what it’s like to be a Software Engineer at H-
+ E-B Digital! We will kick off the evening with a game of Kahoot (Favor Deli
+ very gift cards included for winners!)\, followed by an “Ask Me Anything” P
+ anel featuring a few H-E-B Software Engineers. To conclude the evening\, a 
+ Recruiter will share about available internship and full-time opportunities
+  and answer any questions about the recruiting process. We hope to see you 
+ there!<br><br>Link for event: <a href="https://utexas.us2.list-manage.com/t
+ rack/click?u=7fe935c0282a98ce0e83916c4&amp\;id=5f01f71871&amp\;e=089583d139
+ " id="ow1675" __is_owner="true">https://heb.zoom.us/j/<wbr>92693174146?pwd=
+ <wbr>U1VGRUV3SWlac1I3Y0RmZ0NIT1dPdz<wbr>09</a><br>RSVP form: <a href="https
+ ://utexas.us2.list-manage.com/track/click?u=7fe935c0282a98ce0e83916c4&amp\;
+ id=287336e4b3&amp\;e=089583d139">https://forms.gle/<wbr>3aPWPHnHm5w473Tw6</
+ a>
+LAST-MODIFIED:20201005T100302Z
+LOCATION:https://heb.zoom.us/j/92693174146?pwd=U1VGRUV3SWlac1I3Y0RmZ0NIT1dP
+ dz09
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:HEB + WiCS
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230608T000000Z
+DTEND:20230608T010000Z
+DTSTAMP:20261124T203117Z
+UID:11p9cm36836shq4dojkrpndstf@google.com
+CREATED:20230601T035625Z
+LAST-MODIFIED:20230601T035625Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Event Test
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250915T230000Z
+DTEND:20250916T010000Z
+DTSTAMP:20261124T203117Z
+UID:702h9hjbolar4577i26ecaiqkp@google.com
+CREATED:20250908T192418Z
+DESCRIPTION:Link to the networking reception RSVP form: https://forms.gle/3
+ DfECjxdsB2q2whC8
+LAST-MODIFIED:20250908T192428Z
+LOCATION:WCP Ballroom
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Networking Reception\, RSVP Only
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230919T000000Z
+DTEND:20230919T020000Z
+DTSTAMP:20261124T203117Z
+UID:3o4rmnt3g4l81c9hl6phj0l2f4@google.com
+CREATED:20230829T151355Z
+DESCRIPTION:Open to those who RSVP'd and were emailed that their spot is co
+ nfirmed!
+LAST-MODIFIED:20230912T161019Z
+LOCATION:WCP Ballroom
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Networking Reception
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201016T210000Z
+DTEND:20201016T230000Z
+DTSTAMP:20261124T203117Z
+UID:1lh67k6vb77et4o88u6jgth8hj@google.com
+CREATED:20201005T095358Z
+DESCRIPTION:<br>The WiCS corporate reception is an opportunity to thank our
+  sponsors and learn about the opportunities they offer! The virtual recepti
+ on will consist of 15-minute chats in small groups with representatives fro
+ m 7 of our sponsoring companies. Sign up at <a href="http://tinyurl.com/wic
+ scorporate20">tinyurl.com/wicscorporate20</a><b>. </b>We'll send a list of 
+ sessions you're assigned to your email the day before the event.<br><span><
+ span>Signups close at 4pm on Thursday\, October 15th.</span></span><b></b><
+ br><br><b></b>
+LAST-MODIFIED:20201011T163705Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Corporate Reception
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230201T230000Z
+DTEND:20230202T000000Z
+DTSTAMP:20261124T203117Z
+UID:4e58agd65e65iohooq9frtnkkc@google.com
+CREATED:20230118T160241Z
+DESCRIPTION:Come join WiCS and Girls Who Code on an introduction to mobile 
+ development and React! Learn how to navigate creating apps and coding user 
+ interfaces with React! There will be a hybrid option on Zoom.\n\nWe will al
+ so raffle off prizes at this workshop!
+LAST-MODIFIED:20230202T045645Z
+LOCATION:Zoom
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Mobile Development + React with GWC
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230915T000000Z
+DTEND:20230915T010000Z
+DTSTAMP:20261124T203117Z
+UID:272tgl6ilena30naahrk0r9eqn@google.com
+CREATED:20230829T151340Z
+DESCRIPTION:A Roblox engineering manager and recruiter will share their hel
+ pful interviewing tips and have an AMA! Food and swag will be provided :)<b
+ r><br>RSVP: <a href="https://tinyurl.com/wics-roblox">https://tinyurl.com/w
+ ics-roblox</a>
+LAST-MODIFIED:20230910T042153Z
+LOCATION:EER 3.646
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Cracking the Code with Roblox
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250207T000000Z
+DTEND:20250207T010000Z
+DTSTAMP:20261124T203117Z
+UID:6bgjpd8tf6kaerdlabse1fqadv@google.com
+CREATED:20250128T010923Z
+DESCRIPTION:Join us for our final workshop in the WiCS Hackathon workshop s
+ eries with ECLAIR! We will be going over the basics of AI and ML\, and how 
+ you can use it in your hackathon projects! Snacks will be provided. See you
+  guys there!<br><b><br></b><br>Location<b>: </b>GDC 5.304
+LAST-MODIFIED:20250128T010930Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hackathon: Intro to AI/ML Workshop with ECLAIR
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191023T000000Z
+DTEND:20191023T010000Z
+DTSTAMP:20261124T203117Z
+UID:0snf5mh0vok19b13hlbtebuniu@google.com
+CREATED:20191020T024150Z
+LAST-MODIFIED:20191020T024150Z
+LOCATION:GDC 2.100
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Corporate Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20241205T003000Z
+DTEND:20241205T020000Z
+DTSTAMP:20261124T203117Z
+UID:5neb8a6hikc5c8466as7ldnc25@google.com
+CREATED:20241203T052825Z
+DESCRIPTION:Come join us to decorate gingerbread cookies and enjoy a hot co
+ coa bar with a variety of treats from Lucky Lab! Top three cookies receive 
+ a small surprise!
+LAST-MODIFIED:20241203T060636Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Holiday Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250222T160000Z
+DTEND:20250222T230000Z
+DTSTAMP:20261124T203117Z
+UID:60fo24q59obpjds59dvlsgm0ae@google.com
+CREATED:20250127T153503Z
+LAST-MODIFIED:20250127T153503Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:UT STEM Girl Day Volunteering
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230912T233000Z
+DTEND:20230913T010000Z
+DTSTAMP:20261124T203117Z
+UID:4hkbcb6ntm5nvi4i1l2bj8k692@google.com
+CREATED:20230831T183122Z
+DESCRIPTION:Learn about how to navigate the internship & job recruiting pro
+ cess and tips and tricks to succeed. Professional headshots + Coco’s Cafe f
+ or all attendees!
+LAST-MODIFIED:20230831T183130Z
+LOCATION:GDC 1.304
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS How to Recruit & Headshots
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240904T220000Z
+DTEND:20240904T233000Z
+DTSTAMP:20261124T203117Z
+UID:3tm7bt7lufvhh0jq3hqrt35b2v@google.com
+CREATED:20240903T191347Z
+DESCRIPTION:<br>Worried about OS? Not sure who you'll be working with this 
+ semester? Join ACM + WiCS for a 439 mixer and TA Panel to make new friends 
+ and have all your questions answered! <b>Snacks will be provided!</b><br><b
+ r><b>Points + Food: </b>10 points\, Cookie + Fruit Trays
+LAST-MODIFIED:20240903T191347Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x ACM CS439 Mixer
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200203T233000Z
+DTEND:20200204T023000Z
+DTSTAMP:20261124T203117Z
+UID:2mrt07j1daf14hvdr46fnjo5s6@google.com
+CREATED:20200126T202321Z
+LAST-MODIFIED:20200126T202321Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + ABCS + HACS + Indeed: Programming Competition
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190411T230000Z
+DTEND:20190412T003000Z
+DTSTAMP:20261124T203117Z
+UID:063fnv65cin45cjctlqvqn9qno@google.com
+CREATED:20190404T213916Z
+LAST-MODIFIED:20190404T213916Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Nutanix: How to Succeed in Your Internship/ Full Time Role
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200305T230000Z
+DTEND:20200306T010000Z
+DTSTAMP:20261124T203117Z
+UID:dg15galjh2p4t2ci39b2iisp0g@google.com
+CREATED:20200303T150655Z
+DESCRIPTION:Hang out with your family and get a free drink from coco’s!
+LAST-MODIFIED:20200305T223815Z
+LOCATION:CoCo's Cafe\, 1910 Guadalupe St\, Austin\, TX 78705\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Coco’s Tab Nell Dale Social
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;ACKNOWLEDGED=20200305T223815Z:AUTOMATIC
+BEGIN:VALARM
+ACTION:NONE
+TRIGGER;VALUE=DATE-TIME:19760401T005545Z
+X-WR-ALARMUID:9EAE4F7C-5BEE-4820-8453-F4CCFE30865A
+UID:9EAE4F7C-5BEE-4820-8453-F4CCFE30865A
+ACKNOWLEDGED:20200305T223815Z
+X-APPLE-DEFAULT-ALARM:TRUE
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210126T230000Z
+DTEND:20210127T000000Z
+DTSTAMP:20261124T203117Z
+UID:1hbv75pga4encv2riu3joakgaj@google.com
+CREATED:20210125T160731Z
+LAST-MODIFIED:20210126T223446Z
+LOCATION:https://utexas.zoom.us/j/96011214903
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WorldQuant Tech Talk
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230308T230000Z
+DTEND:20230309T000000Z
+DTSTAMP:20261124T203117Z
+UID:2pjpv4ns94904un6epjppohph7@google.com
+CREATED:20230301T152032Z
+DESCRIPTION:Join us for our WiCS March general meeting on Wednesday\, March
+  8th from 5-6PM @ GDC 5.302! We will be handing out corporate swag and pizz
+ a as we reveal exciting news and events for the rest of the semester!
+LAST-MODIFIED:20230306T001051Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:March General Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251014T230000Z
+DTEND:20251015T000000Z
+DTSTAMP:20261124T203117Z
+UID:5aeve61d4ok9ci5rci009qttbm@google.com
+CREATED:20251012T200738Z
+DESCRIPTION:Join us at our October general meeting! We will be going over o
+ ur upcoming WiCS events and doing a fun activity! Dinner will be provided!<
+ br><br>Location<b>: </b>GDC 6.302
+LAST-MODIFIED:20251012T200738Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS October General Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240325T220000Z
+DTEND:20240325T233000Z
+DTSTAMP:20261124T203117Z
+UID:2da2mpf32c37hb2kfcebh2fmn6@google.com
+CREATED:20240320T162618Z
+DESCRIPTION:Join WiCS and Girls Who Code in painting tote bags and decorati
+ ng them with charms!
+LAST-MODIFIED:20240320T162618Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x GWC Tote Bag Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230131T230000Z
+DTEND:20230201T000000Z
+DTSTAMP:20261124T203117Z
+UID:75a4liepiviudq2g3bfuaeg661@google.com
+CREATED:20230118T160507Z
+DESCRIPTION:Curious about how to build your first website? Wondering how to
+  make it look on the front end or where to store a website on the back end?
+  Then this event is for you! WiCS is partnering with <a href="https://www.i
+ nstagram.com/txproduct/">@txproduct</a> to teach you the skills that you ne
+ ed to create your dream website or project!<br><br>We will also raffle off 
+ prizes at this workshop!
+LAST-MODIFIED:20230131T181454Z
+LOCATION:Zoom
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Web Development with TPEO
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210302T020000Z
+DTEND:20210302T030000Z
+DTSTAMP:20261124T203117Z
+UID:6cp64opi68oj0b9ic4sjeb9k6kq3gb9p6dj32bb671gjcopn6tj6cc31cg@google.com
+CREATED:20210301T153428Z
+LAST-MODIFIED:20210301T153428Z
+LOCATION:https://utexas.zoom.us/j/9172429643
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:How To Hackathon + Team Formation
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231017T170000Z
+DTEND:20231017T180000Z
+DTSTAMP:20261124T203117Z
+UID:2grt4048ihqeqo47v3k27r0ub8@google.com
+CREATED:20231012T044953Z
+DESCRIPTION:Join us for our Fall Faculty Lunches and get the opportunity to
+  talk industry\, research\, and classes with UTCS professors! Cabo Bob's wi
+ ll be provided.<br><br>RSVP Link: <a href="https://forms.gle/1BKhKZQBvySEcL
+ t88"><u>https://forms.gle/1BKhKZQBvySEcLt88</u></a>
+LAST-MODIFIED:20231012T045042Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Faculty Lunches Day 2
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250214T003000Z
+DTEND:20250214T020000Z
+DTSTAMP:20261124T203117Z
+UID:2maudb8c5bh3kegi5t5s3lh1am@google.com
+CREATED:20250213T171857Z
+DESCRIPTION:The CNS computer science transfer application opens soon! To he
+ lp you prepare\, WiCS is hosting a workshop with the Computer Science Trans
+ fers’ Society and Girls Who Code with tips from previous transfer students\
+ , along with personal essay and resume reviews. Come polish your applicatio
+ n!
+LAST-MODIFIED:20250213T171857Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:UTCS Transfer Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231025T230000Z
+DTEND:20231026T003000Z
+DTSTAMP:20261124T203117Z
+UID:3d7hr6vg8jm3eec25k6jhah40b@google.com
+CREATED:20230908T155208Z
+LAST-MODIFIED:20230925T183159Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Two Sigma - DivOrgs
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221004T233000Z
+DTEND:20221005T003000Z
+DTSTAMP:20261124T203117Z
+UID:42e8590td81dtsro6dke1hl1oa@google.com
+CREATED:20220930T173828Z
+DESCRIPTION:Come hear all about HEB and their digital department\, a day in
+  the life of some engineers\, and about different roles within HEB! They ha
+ ve internship positions available for all years but they are VERY *<b>fresh
+ man friendly</b>* so be sure to come out and meet with HEB recruiters and e
+ ngineers! Food and swag provided!
+LAST-MODIFIED:20221002T013443Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Cookies & Coding with HEB
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240214T230000Z
+DTEND:20240215T000000Z
+DTSTAMP:20261124T203117Z
+UID:6n5pgbl2051fu184vcmb0vndu8@google.com
+CREATED:20240213T203740Z
+LAST-MODIFIED:20240213T203750Z
+LOCATION:GDC Atrium
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks Sweatshirt Pickup
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200903T230000Z
+DTEND:20200904T000000Z
+DTSTAMP:20261124T203117Z
+UID:miejfin7deevihuue1v8eevi30@google.com
+CREATED:20200826T193510Z
+DESCRIPTION:Tejna Dasari is inviting you to a scheduled Zoom meeting.Topic:
+  WiCS Nell-Dale Kickoff<br>Time: Sep 3\, 2020 06:00 PM Central Time (US and
+  Canada)Join Zoom Meeting<br><a href="https://utexas.zoom.us/j/9172429643">
+ https://utexas.zoom.us/j/9172429643</a>Meeting ID:&nbsp\;<a>917 242 9643</a
+ ><br>One tap mobile<br><a>+13462487799\,\,9172429643#</a>&nbsp\;US (Houston
+ )<br><a>+16699006833\,\,9172429643#</a>&nbsp\;US (San Jose)
+LAST-MODIFIED:20200831T223837Z
+LOCATION:https://utexas.zoom.us/j/91641529361
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nell Dale Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260206T010000Z
+DTEND:20260206T020000Z
+DTSTAMP:20261124T203117Z
+UID:22sasjn020u6il2l2tr59q85fr@google.com
+CREATED:20260202T203013Z
+DESCRIPTION:Join us for our fifth Hackathon workshop with Eclair on Thursda
+ y\, Feb 5th\, from 7-8 pm to learn about the basics of ML and AI and how yo
+ u can incorporate it in your Hackathon projects! Snacks will be provided.
+LAST-MODIFIED:20260202T203013Z
+LOCATION:GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to ML/AI w/ Eclair
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250324T170000Z
+DTEND:20250324T180000Z
+DTSTAMP:20261124T203117Z
+UID:2nt7v2jt8se4juau5577fes1o6@google.com
+CREATED:20250314T182123Z
+DESCRIPTION:WiCS is hosting our Spring 2025 faculty lunches! Students will 
+ have the opportunity to chat with professors about all things industry\, ac
+ ademia\, and research! Professors coming are involved in systems\, game-the
+ ory\, software engineering fields\, and more. Food will be provided!<br><b>
+ Date/Time: </b>3/24/25 12-1 PM &amp\; 3/25/25 12-1pm<br><b>Location: </b>GD
+ C 6.302<br><b>Link to RSVP Form: </b><a target="_blank" href="https://forms
+ .gle/PiwmWJG3EsZVnabj7">https://forms.gle/PiwmWJG3EsZVnabj7</a>
+LAST-MODIFIED:20250314T182149Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Faculty Lunches
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200130T160000Z
+DTEND:20200130T190000Z
+DTSTAMP:20261124T203117Z
+UID:12cflulnlujl2ql0fceonpng5r@google.com
+CREATED:20200127T041943Z
+LAST-MODIFIED:20200127T041943Z
+LOCATION:GDC Atrium (2nd Floor)
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks Tabling
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210916T230000Z
+DTEND:20210917T000000Z
+DTSTAMP:20261124T203117Z
+UID:24abe9phqp7gv25tu2fte0pifc@google.com
+CREATED:20210904T204453Z
+LAST-MODIFIED:20210916T193343Z
+LOCATION:GDC 4.304
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Corporate Mentorship Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200220T000000Z
+DTEND:20200220T010000Z
+DTSTAMP:20261124T203117Z
+UID:23647nj6nq3r2fmmsg0b3s2t4o@google.com
+CREATED:20200115T195906Z
+LAST-MODIFIED:20200115T195906Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Chevron Social Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200219T010000Z
+DTEND:20200219T030000Z
+DTSTAMP:20261124T203117Z
+UID:7j5fu47vogmfth6cq27cob7a4a@google.com
+CREATED:20200212T053731Z
+LAST-MODIFIED:20200212T053731Z
+LOCATION:GDC 4.304\, 
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS CS 314 Exam 1 Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210911T170000Z
+DTEND:20210911T210000Z
+DTSTAMP:20261124T203117Z
+UID:5jahs1cj4c9cb6c18bmi4belge@google.com
+CREATED:20210905T233435Z
+LAST-MODIFIED:20210905T233435Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS LinkedIn Headshots
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250403T230000Z
+DTEND:20250404T000000Z
+DTSTAMP:20261124T203117Z
+UID:gpjs2tfufekr23n1qfqmtd5rhs@google.com
+CREATED:20250402T230907Z
+DESCRIPTION:Join us for this exciting session and learn more about Adobe's 
+ Summer\nInternship program!\n• Learn about their 2026 Summer internship rec
+ ruitment process and tips on how to be a star Software Engineering candidat
+ e\n• Get an inside look at Adobe's culture and learn about our benefits\n• 
+ Join us for networking\, cool giveaways and free food!\n\nPlease register h
+ ere: https://careers.adobe.com/us/en/event/67d0a8ee51de5d6324978453/Adobe-x
+ -UTA-ABCS-HACS-NSBE-WiCS-Spring-2025
+LAST-MODIFIED:20250402T230908Z
+LOCATION:GDC 2.216
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Adobe x UTA ABCS\, NSBE\, HACS & WiCS
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181018T230000Z
+DTEND:20181019T013000Z
+DTSTAMP:20261124T203117Z
+UID:3a77r1476ah026db865mop9co6@google.com
+CREATED:20180820T162110Z
+LAST-MODIFIED:20181008T202349Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Quora Jeopardy + Dinner
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180914T000000Z
+DTEND:20180914T010000Z
+DTSTAMP:20261124T203117Z
+UID:2ci2bb7f8f0ijennjva7o52ens@google.com
+CREATED:20180820T162013Z
+LAST-MODIFIED:20180820T162013Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Succulent Planting with Palantir!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181002T000000Z
+DTEND:20181002T020000Z
+DTSTAMP:20261124T203117Z
+UID:7mo8casngrk6uamj8bje5ugalo@google.com
+CREATED:20181001T150815Z
+LAST-MODIFIED:20181001T150816Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:312 Exam Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240923T230000Z
+DTEND:20240924T000000Z
+DTSTAMP:20261124T203117Z
+UID:581qjkklfv339gl1i2k08gups7@google.com
+CREATED:20240922T134630Z
+DESCRIPTION:The Roblox team is excited to host a tech talk about building S
+ ocial Networks and accessibility and search optimization on their platform 
+ and share tips for acing their assessments! Dinner and swag will be provide
+ d.<br><br><b>Date/Time: </b>Monday\, September 23\, 2024\, 6:00PM - 7:00PM 
+ CST<br><b>Location: </b>CPE 2.212<br><b>Link to RSVP Form: </b><a target="_
+ blank" href="https://www.gem.com/lp/roblox/WiCStalk">https://www.gem.com/lp
+ /roblox/WiCStalk</a>
+LAST-MODIFIED:20240922T134630Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Roblox x SWE x WiCS Tech Talk
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260225T000000Z
+DTEND:20260225T013000Z
+DTSTAMP:20261124T203117Z
+UID:2rqv1qgrq4kl6itsq57uhamht8@google.com
+CREATED:20260223T203004Z
+DESCRIPTION:The Trade Desk is collaborating with WiCS and HACS to host a Te
+ ch Talk focused on the Trade Desk's work\, engineering teams\, interviews\,
+  and internship opportunities! Food will be provided.
+LAST-MODIFIED:20260223T203004Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Interview Workshop with The Trade Desk
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190416T220000Z
+DTEND:20190416T230000Z
+DTSTAMP:20261124T203117Z
+UID:2is6v0n6brk23ugou7ap390jum@google.com
+CREATED:20190412T195018Z
+LAST-MODIFIED:20190412T195018Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Grad School Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210305T010000Z
+DTEND:20210305T020000Z
+DTSTAMP:20261124T203117Z
+UID:61hm2c34cgrjabb1clh64b9k60o3ibb274pmcb9h6hh68dj26krjce9i64@google.com
+CREATED:20210301T152425Z
+DESCRIPTION:https://utexas.zoom.us/j/9172429643
+LAST-MODIFIED:20210301T153426Z
+LOCATION:https://utexas.zoom.us/j/9172429643
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:How To Be an Ally
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260203T000000Z
+DTEND:20260203T010000Z
+DTSTAMP:20261124T203117Z
+UID:8kjqjk8ai3afkkpjdfs29olfd0@google.com
+CREATED:20260130T034028Z
+DESCRIPTION:Event Name:\nDescription/Caption: Join us for our next Hackatho
+ n workshop with our sister org\, Girls Who Code\, on Monday\, Feb 2nd\, fro
+ m 6-7 pm to learn about Git and Version Control and how you can apply it in
+  your hackathon projects! Snacks will be provided.\nDate/Time: February 2nd
+ \, 2026 from 6-7 pm\nLocation: GDC 5.304\nPhotographer Needed (Camera\, pho
+ ne\, or no help needed): N/A\nLink to RSVP Form (Optional):\nPublicity Dead
+ line: 1/29/2026\nOther specifications: N/A
+LAST-MODIFIED:20260130T034028Z
+LOCATION:GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to Git/Version Control w/ Girls Who Code
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210925T200000Z
+DTEND:20210925T210000Z
+DTSTAMP:20261124T203117Z
+UID:4nr3nbg29t935nv150qiboo7j6@google.com
+CREATED:20210906T001601Z
+LAST-MODIFIED:20210906T001601Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:312 Exam Review Session
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240328T163000Z
+DTEND:20240328T173000Z
+DTSTAMP:20261124T203117Z
+UID:60421dusk32d2g8okq7b96ffqr@google.com
+CREATED:20240320T235118Z
+DESCRIPTION:<p>Join us for our Spring Faculty Lunches and get the opportuni
+ ty to talk to UTCS professors about industry\, academia\, and research! Fil
+ l out the RSVP form to confirm your attendance!<br></p><p>RSVP: <a href="ht
+ tps://www.google.com/url?q=http://tinyurl.com/wicsxfacultylunches&amp\;sa=D
+ &amp\;source=calendar&amp\;usd=2&amp\;usg=AOvVaw1k0Q0nfH-ceTj2EnsFXDlP" tar
+ get="_blank">tinyurl.com/wicsxfacultylunches</a></p>
+LAST-MODIFIED:20240320T235118Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Faculty Lunches
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190920T153000Z
+DTEND:20190920T170000Z
+DTSTAMP:20261124T203117Z
+UID:3cfm30kcnl4298ua5seuj3qunj@google.com
+CREATED:20190904T163708Z
+LAST-MODIFIED:20190904T163708Z
+LOCATION:GDC 4th Floor Bridge
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Stripe
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250310T220000Z
+DTEND:20250310T230000Z
+DTSTAMP:20261124T203117Z
+UID:6q7hltbinl8eo5tv7q2bm55609@google.com
+CREATED:20250301T102722Z
+DESCRIPTION:Join WiCS &amp\; Trash2Treasure for a volunteering social! Earn
+  10 points while helping sort inventory for upcoming thrift sales\, and sup
+ port sustainable fashion while hanging out with fellow members! <br><br>Lim
+ ited spots—RSVP by Thursday\, March 6!<br><a target="_blank" href="https://
+ tinyurl.com/thriftingiscool"><u>https://tinyurl.com/thriftingiscool</u></a>
+ <br><br>Location<b>: </b>UA9 3.114 (building behind SSB)
+LAST-MODIFIED:20250301T103356Z
+LOCATION:UA9 3.114 
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x Trash2Treasure Volunteering Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250129T000000Z
+DTEND:20250129T010000Z
+DTSTAMP:20261124T203117Z
+UID:lkik35cme2s9sl7l0dobflhapo@google.com
+CREATED:20250126T143110Z
+DESCRIPTION:Join us for our first workshop in the WiCS Hackathon workshop s
+ eries! We will be going over the basics of hackathons\, what to expect from
+  a hackathon\, and how to best succeed! Snacks will be provided. See you gu
+ ys there!\n\nLocation: GDC 5.304
+LAST-MODIFIED:20250126T143110Z
+LOCATION:GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hackathon: How to Hack Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191002T000000Z
+DTEND:20191002T020000Z
+DTSTAMP:20261124T203117Z
+UID:31ajgafm3i9f27tnaaneoq576o@google.com
+CREATED:20190918T224743Z
+DESCRIPTION:CS 314 Exam 1 Review led by some of the TAs and organized by Wi
+ CS!
+LAST-MODIFIED:20190929T180027Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS CS 314 Exam 1 Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190502T233000Z
+DTEND:20190503T003000Z
+DTSTAMP:20261124T203117Z
+UID:2vj6aeuk7td676u0s8oponb53i@google.com
+CREATED:20190411T052350Z
+LAST-MODIFIED:20190411T052350Z
+LOCATION:GDC 2.502
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Makers Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230406T143000Z
+DTEND:20230406T163000Z
+DTSTAMP:20261124T203117Z
+UID:go06qmtaei94pfqnm19of1vq70@google.com
+CLASS:PUBLIC
+CREATED:20230404T013353Z
+DESCRIPTION:Swing by and chat with Citadel recruiters and engineers and enj
+ oy some breakfast and Citadel merch! They are underclassman friendly but op
+ en to all years.\n\nRSVP: tinyurl.com/wicsxcitadel
+LAST-MODIFIED:20230404T013353Z
+LOCATION:GDC 5th Floor Bridge
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Breakfast Break with Citadel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180913T000000Z
+DTEND:20180913T010000Z
+DTSTAMP:20261124T203117Z
+UID:3cm8b0022qetpvn2ct0t4t7god@google.com
+CREATED:20180831T180021Z
+LAST-MODIFIED:20180831T180021Z
+LOCATION:POB 2.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:NDMP Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191105T230000Z
+DTEND:20191106T000000Z
+DTSTAMP:20261124T203117Z
+UID:09jufcn7gsiv9d5gi3gr8v16af@google.com
+CREATED:20190828T163906Z
+LAST-MODIFIED:20190828T163906Z
+LOCATION:GDC 1.406
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Facebook Drop-in Office Hours
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180913T160000Z
+DTEND:20180913T170000Z
+DTSTAMP:20261124T203117Z
+UID:68p32dr1cdhjeb9pccp68b9k6hj3ebb274rm8bb46di66o9n6krj0phm6c@google.com
+CREATED:20180914T030140Z
+LAST-MODIFIED:20180914T030141Z
+LOCATION:Wics office
+SEQUENCE:1
+STATUS:TENTATIVE
+SUMMARY:WiCS Office Hours
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190131T003000Z
+DTEND:20190131T020000Z
+DTSTAMP:20261124T203117Z
+UID:2n5b5p537bpmflp8a8kbn5pka3@google.com
+CREATED:20190111T213349Z
+LAST-MODIFIED:20190111T213449Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Home Depot Wood Serving Tray Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210929T000000Z
+DTEND:20210929T013000Z
+DTSTAMP:20261124T203117Z
+UID:F827FB97-DCED-4785-8705-B9195A0DF3BA
+CREATED:20210913T161449Z
+LAST-MODIFIED:20210913T162705Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + HACS + ABCS Google Career Panel
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231107T000000Z
+DTEND:20231107T010000Z
+DTSTAMP:20261124T203117Z
+UID:3es3hmb1kvr1pe5cavvg1nd74i@google.com
+CREATED:20231026T201550Z
+DESCRIPTION:Join us for an info session with D.E. Shaw for an overview abou
+ t resume/interview prep and learn about opportunities at the firm!\nRSVP: t
+ inyurl.com/wics-deshaw
+LAST-MODIFIED:20231104T000404Z
+LOCATION:GDC 6.302
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:D.E. Shaw Event x DivOrgs
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190129T000000Z
+DTEND:20190129T010000Z
+DTSTAMP:20261124T203117Z
+UID:6ks3go9o6gs3gb9p6thmab9k6pi36bb1c5gjab9kc5ijioj370rj2cpock@google.com
+CREATED:20190124T181528Z
+LAST-MODIFIED:20190124T181528Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Spring Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260402T230000Z
+DTEND:20260403T000000Z
+DTSTAMP:20261124T203117Z
+UID:02jgevtau7vt64opoeeidgnif2@google.com
+CREATED:20260330T025338Z
+DESCRIPTION:Come learn about what WiCS has planned for the rest of the seme
+ ster\, including information about our upcoming events and officer applicat
+ ions! Dinner provided!
+LAST-MODIFIED:20260330T044503Z
+LOCATION:GDC 2.216
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:WiCS General Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181025T233000Z
+DTEND:20181026T003000Z
+DTSTAMP:20261124T203117Z
+UID:3n59dl7mfarnfjaorfhpa5o7nd@google.com
+CREATED:20181020T101318Z
+LAST-MODIFIED:20181024T165735Z
+LOCATION:GDC 4.302
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS Bull Session
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210305T220000Z
+DTEND:20210305T230000Z
+DTSTAMP:20261124T203117Z
+UID:6orjedpkcgsj2b9l6dj3ib9k6ti66bb168rmabb3coo3ad1h74ojidr26c@google.com
+CREATED:20210305T162103Z
+LAST-MODIFIED:20210305T162104Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Wics run through 
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181030T003000Z
+DTEND:20181030T023000Z
+DTSTAMP:20261124T203117Z
+UID:471jin0divm50kq5siklvkma8t@google.com
+CREATED:20181024T165826Z
+LAST-MODIFIED:20181024T165827Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:312 Review Exam 2
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231005T233000Z
+DTEND:20231006T003000Z
+DTSTAMP:20261124T203117Z
+UID:7aoaoqjt12ofarvql4pgfvlo38@google.com
+CREATED:20230925T154845Z
+DESCRIPTION:We are excited to host a WiCS x H-E-B<b> </b>event where WiCS m
+ embers will have the opportunity to network and meet H-E-B professionals. F
+ eel free to pop by on Thursday October 5th during 6:30pm-7:30pm to enjoy so
+ me s'mores
+LAST-MODIFIED:20231002T155223Z
+LOCATION:GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:H-E-B : Coding and S'mores
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20241025T223000Z
+DTEND:20241026T003000Z
+DTSTAMP:20261124T203117Z
+UID:7dml13mir85s7oi0vh6kb4laul@google.com
+CREATED:20241021T181441Z
+DESCRIPTION:Come join Q++\, HACS\, ABCS\, and WiCS for a Halloween social o
+ n Friday\, October 25th at 5:30-7:30pm in GDC 6.302! We will have mask-pain
+ ting\, Halloween candy\, and a costume contest! Pluckers will also be provi
+ ded for dinner. Come in costume and join us in the fun!! <br>RSVP: <a targe
+ t="_blank" href="https://forms.gle/i1PLT7Wn5xByaGCz7"><u>https://forms.gle/
+ i1PLT7Wn5xByaGCz7</u></a>
+LAST-MODIFIED:20241021T181448Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x Div Orgs Halloween Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251006T180000Z
+DTEND:20251006T193000Z
+DTSTAMP:20261124T203117Z
+UID:3p2foh7glh4jovtk26ta46uvsa@google.com
+CREATED:20250912T134753Z
+DESCRIPTION:WiCS x Texas Roadshow is teaching 3rd–5th graders coding with M
+ icro:Bits! No Micro:Bits experience? No worries — we’ve got training materi
+ als + demo videos to get you ready. \n\nThis is a great way to gain mentors
+ hip + teaching experience\, earn 10 points\, and make a real impact. We’re 
+ looking for 20 volunteers — RSVP by Sept. 26 @ 11:59 PM!\n\nLocation: Travi
+ s Heights Elementary School\nLink to RSVP Form: https://docs.google.com/for
+ ms/d/e/1FAIpQLSdfWphL_gBpvXNtda1fVtd-tAumuDWE3smG3v9y2KKZDLcWLg/viewform?us
+ p=sharing&ouid=101582754157381205809
+LAST-MODIFIED:20250918T145907Z
+LOCATION:Travis Heights Elementary School\, 2010 Alameda Dr\, Austin\, TX 7
+ 8704\, USA
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS x TX Roadshow Volunteering Event
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201006T230000Z
+DTEND:20201007T000000Z
+DTSTAMP:20261124T203117Z
+UID:5luo5jnbvrq4fpkieb9dvbt945@google.com
+CREATED:20200924T154220Z
+DESCRIPTION:Come hear from some of ExpediaGroup’s Women in Tech about how U
+ T prepared them for industry success. They’ll share key learnings they’ve p
+ icked up along the way. Register <a href="https://pages.beamery.com/lifeate
+ xpedia/page/wics-+-expedia-group-alumnae-panel-pogsfwi_j">HERE</a>!<br><br>
+ Zoom Link:<br><a href="https://utexas.zoom.us/j/93342740071" id="ow525" __i
+ s_owner="true">https://utexas.zoom.us/j/93342740071</a><br>Meeting ID: 933 
+ 4274 0071&nbsp\;&nbsp\;
+LAST-MODIFIED:20201004T002820Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Expedia Group
+TRANSP:OPAQUE
+ATTACH;FILENAME=Expedia_Flyer.pdf:https://drive.google.com/file/d/113e4oqBX
+ WRu7ICwXr51XprDiXcm19Hqj/view?usp=drive_web
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20251113T230000Z
+DTEND:20251114T003000Z
+DTSTAMP:20261124T203117Z
+UID:2qta430mogdiairo0e7l0cfd49@google.com
+CREATED:20251103T205302Z
+DESCRIPTION:Thinking about transferring into UT Computer Science? WiCS\, CS
+  Transfer Society\, and Girls Who Code are hosting a Transfer Application W
+ orkshop to help you strengthen your application. Join us for a resume revie
+ w session led by previous transfer students\, a Q&amp\;A panel\, and practi
+ cal tips to help you stand out. Cookies will be provided—everyone intereste
+ d in transferring is welcome\, so invite your friends who are thinking abou
+ t applying!<br><br><b>Location: </b><b> </b>GDC 4.302
+LAST-MODIFIED:20251103T205303Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS Transfer Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190418T000000Z
+DTEND:20190418T010000Z
+DTSTAMP:20261124T203117Z
+UID:63lhg5lol5e5v62laq30rr3kjp@google.com
+CREATED:20190414T211554Z
+LAST-MODIFIED:20190414T211554Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bull Session
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190507T000000Z
+DTEND:20190507T010000Z
+DTSTAMP:20261124T203117Z
+UID:3mro5l2hkje8qialies7tq33sl@google.com
+CREATED:20190413T173402Z
+DESCRIPTION:Join WiCS in celebrating the end of the semester with desserts!
+LAST-MODIFIED:20190413T173402Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Dessert Reception
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250904T230000Z
+DTEND:20250905T023000Z
+DTSTAMP:20261124T203117Z
+UID:3ii2c6tq91suv2dai2e6od36n9@google.com
+CREATED:20250902T203705Z
+DESCRIPTION:Join the team at NorthMark Strategies for a fun and engaging co
+ ding challenge and to learn more about their intern and graduate opportunit
+ ies in Dallas!<br><br><b>Location: </b>GDC 6.302
+LAST-MODIFIED:20250902T203705Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:NorthMark Strategies x WiCS x UTCS Coding Challenge
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221101T230000Z
+DTEND:20221102T003000Z
+DTSTAMP:20261124T203117Z
+UID:01ns4b6u6iq34agnin25stcprk@google.com
+CREATED:20220919T231744Z
+DESCRIPTION:Qualtrics is excited to host a Bowling Night with lots of fun a
+ nd food! Take a break from studying and come bowl with the recruiters and e
+ ngineers from Qualtrics and fellow members from the DivOrgs.\n\nRSVP Link: 
+ tinyurl.com/WicsBowlingRSVP
+LAST-MODIFIED:20221027T234919Z
+LOCATION:Texas Union Underground Bowling Alleys
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Qualtrics Bowling Night w/ Div Orgs
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191030T223000Z
+DTEND:20191031T020000Z
+DTSTAMP:20261124T203117Z
+UID:3clu90qkinpuhmcpi12oo2vj9m@google.com
+CREATED:20191024T213730Z
+LAST-MODIFIED:20191028T222008Z
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:WHAU Programming Contest
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200831T223000Z
+DTEND:20200831T233000Z
+DTSTAMP:20261124T203117Z
+UID:7qv2tt24r8a1auv2n63kfkv4ds@google.com
+CREATED:20200825T154041Z
+DESCRIPTION:<a href="https://utexas.zoom.us/j/99136699973" id="ow332" __is_
+ owner="true">https://utexas.zoom.us/j/99136699973</a>
+LAST-MODIFIED:20200831T222936Z
+LOCATION:https://utexas.zoom.us/j/99136699973
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to CS Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231009T230000Z
+DTEND:20231010T000000Z
+DTSTAMP:20261124T203117Z
+UID:0impeuhrkf9g3ujd42f9846g67@google.com
+CREATED:20230927T234850Z
+DESCRIPTION:Join WiCS for our first general meeting + social event with UTS
+ G’s Women’s Resource Agency! Enjoy dinner and assemble care packages with u
+ s to donate to a local shelter!
+LAST-MODIFIED:20231009T204446Z
+LOCATION:GDC 4.304
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:October General Meeting + Care Package Social w/ WRA
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250827T230000Z
+DTEND:20250828T000000Z
+DTSTAMP:20261124T203117Z
+UID:7v7skuurf6o0rn90lb6eu3hvds@google.com
+CREATED:20250824T223534Z
+DESCRIPTION:Join us in getting to know what WiCS has to offer this year! We
+ ’ll be going over our events &amp\; programs\, so make sure to stop by to m
+ eet WiCS members and get some yummy dinner!<br><br><b>Location:</b><b> </b>
+ GDC 2.216 (auditorium)
+LAST-MODIFIED:20250826T005602Z
+LOCATION: GDC 2.216 (auditorium)
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS Fall Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181114T003000Z
+DTEND:20181114T020000Z
+DTSTAMP:20261124T203117Z
+UID:71jtme6vh62evnvg7dkogl3g31@google.com
+CREATED:20181105T011211Z
+LAST-MODIFIED:20181108T230827Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:NDMP Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230422T230000Z
+DTEND:20230423T010000Z
+DTSTAMP:20261124T203117Z
+UID:4d5gk7htci53b8ot05e8o3kvld@google.com
+CREATED:20230404T021955Z
+DESCRIPTION:WiCS invites you to our annual end-of-year banquet! Come join u
+ s for dinner\, prizes\, celebrations\, and your own screen-printed WiCS tot
+ e bag!
+LAST-MODIFIED:20230404T021955Z
+LOCATION:TX Union - Quadrangle Room
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WICS Spring Banquet
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240919T223000Z
+DTEND:20240919T233000Z
+DTSTAMP:20261124T203117Z
+UID:7tghsbmci5mltge2bcg8dqj0gq@google.com
+CREATED:20240914T011506Z
+DESCRIPTION:Chevron is excited to host a resume review workshop! Come get y
+ our resume reviewed and get tips on what companies are looking for in a res
+ ume! Dinner will be provided.
+LAST-MODIFIED:20240919T210949Z
+LOCATION:GDC 2.210
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Chevron x WiCS x HACS x Q++ Resume Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201102T230000Z
+DTEND:20201103T000000Z
+DTSTAMP:20261124T203117Z
+UID:60octoqrqnmvnj4qdqujmn7rrl@google.com
+CREATED:20201102T010056Z
+DESCRIPTION:https://utexas.zoom.us/j/94440640944
+LAST-MODIFIED:20201102T010056Z
+LOCATION:https://utexas.zoom.us/j/94440640944
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS General Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191008T000000Z
+DTEND:20191008T020000Z
+DTSTAMP:20261124T203117Z
+UID:06968c1jd4s4n556tj2dvee2sa@google.com
+CREATED:20190929T180228Z
+LAST-MODIFIED:20190929T180228Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS CS 312 Exam 1 Review
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210914T223000Z
+DTEND:20210914T233000Z
+DTSTAMP:20261124T203117Z
+UID:0nfvvcbhff1p1e1oiljfb97dd4@google.com
+CREATED:20210902T033703Z
+DESCRIPTION:<p>Elevator Pitches\, Resume Review + Office Hours (Help)</p>
+LAST-MODIFIED:20210913T005110Z
+SEQUENCE:3
+STATUS:CONFIRMED
+SUMMARY:Career Fair Prep
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220919T230000Z
+DTEND:20220920T000000Z
+DTSTAMP:20261124T203117Z
+UID:2a3vvb4eadrus0f51t321hc5ng@google.com
+CREATED:20220916T130628Z
+LAST-MODIFIED:20220916T130628Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Chevron x WiCS How to Build a Pitch
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20241107T003000Z
+DTEND:20241107T013000Z
+DTSTAMP:20261124T203117Z
+UID:5id8tknpbctsei19cganbg2foi@google.com
+CREATED:20241105T152811Z
+DESCRIPTION:Come join us as we talk about our upcoming events for the rest 
+ of the semester!<br><b>Location: </b>GDC 1.304
+LAST-MODIFIED:20241105T152811Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:November General Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200901T130000Z
+DTSTAMP:20261124T203117Z
+UID:3dndi6fduut47ornhmlkfcrd3h@google.com
+CREATED:20200830T015537Z
+DESCRIPTION:Sign up to meet fellow WiCS members and officers throughout the
+  month!<br><br><a href="https://forms.gle/PTa9KKjYFuaP6mCQA" id="ow364" __i
+ s_owner="true">https://forms.gle/PTa9KKjYFuaP6mCQA</a>
+LAST-MODIFIED:20200830T015537Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS September Meetups Begin
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201019T233000Z
+DTEND:20201020T003000Z
+DTSTAMP:20261124T203117Z
+UID:1300iebmcope8s4e5e49a470gm@google.com
+CREATED:20201005T193450Z
+DESCRIPTION:\nTopic: WiCS x Bob Ross\nTime: Oct 13\, 2020 06:30 PM Central 
+ Time (US and Canada)\n\nJoin Zoom Meeting\nhttps://utexas.zoom.us/j/9412894
+ 2541 
+LAST-MODIFIED:20201005T193500Z
+LOCATION:https://utexas.zoom.us/j/94128942541
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS x Bob Ross Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231115T233000Z
+DTEND:20231116T003000Z
+DTSTAMP:20261124T203117Z
+UID:0etlsq5l5f7r1cqcht77041s5k@google.com
+CREATED:20230911T135115Z
+DESCRIPTION:Join us for a fun holiday themed trivia and cookie decorating n
+ ight with Reddit to network with recruiters and learn more about the opport
+ unities offered at Reddit!
+LAST-MODIFIED:20231111T230755Z
+LOCATION:GDC 6.202
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Reddit event
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20241113T003000Z
+DTEND:20241113T020000Z
+DTSTAMP:20261124T203117Z
+UID:2q39f5jhcuiit5rtvhvodqrn14@google.com
+CREATED:20241024T163029Z
+DESCRIPTION:WiCS is collaborating with Computer Science Transfers’ Society 
+ and Girls Who Code to host a workshop with tips for transferring into UT co
+ mputer science! Come and learn about this amazing opportunity and enjoy som
+ e cookies!
+LAST-MODIFIED:20241024T163038Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:UTCS Transfer Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200918T220000Z
+DTEND:20200918T230000Z
+DTSTAMP:20261124T203117Z
+UID:4l9kd5q6uliekjc7mhur7c1h7t@google.com
+CREATED:20200830T014403Z
+DESCRIPTION:<br>Come meet some fellow WiCS members with the lovely WECE gal
+ s!<a href="https://utexas.zoom.us/j/95613073043" id="ow548" __is_owner="tru
+ e">https://utexas.zoom.us/j/95613073043</a>
+LAST-MODIFIED:20200913T203142Z
+LOCATION:Zoom
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS x WECE Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260416T233000Z
+DTEND:20260417T003000Z
+DTSTAMP:20261124T203117Z
+UID:lisk790t4aqvon2ajedmqq92p8@google.com
+CREATED:20260416T003953Z
+DESCRIPTION:Come work together with your classmates on any CS coursework! W
+ hether you’re studying for an exam or tackling homework assignments\, this 
+ will be a peer study session. Boba will be provided!
+LAST-MODIFIED:20260416T003953Z
+LOCATION:GDC 5.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Group Study Session
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190205T230000Z
+DTEND:20190206T003000Z
+DTSTAMP:20261124T203117Z
+UID:2djt1gf3ujqj4i2h0j4fd42qg6@google.com
+CREATED:20190205T184825Z
+LAST-MODIFIED:20190205T184837Z
+LOCATION:GDC 6.202
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bulko iOS Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210412T210000Z
+DTEND:20210412T220000Z
+DTSTAMP:20261124T203117Z
+UID:3r35qt7v60u3ld46cq7edr397m@google.com
+CREATED:20210330T215017Z
+DESCRIPTION:<p><a href="https://utexas.zoom.us/j/92512804541">https://utexa
+ s.zoom.us/j/92512804541</a></p><p>Classic bob ross and games :)</p><p>Come 
+ relax so you can refresh your brain and prepare yourself for midterm season
+  &lt\;3</p><p>Open to everyone</p>
+LAST-MODIFIED:20210412T173527Z
+LOCATION:https://utexas.zoom.us/j/92512804541
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Social!
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190905T223000Z
+DTEND:20190906T000000Z
+DTSTAMP:20261124T203117Z
+UID:2bkqtpt1i4h09o6diknf985vhr@google.com
+CREATED:20190807T015811Z
+DESCRIPTION:Join WiCS + PwC (PricewaterhouseCoopers) at our ice cream socia
+ l! PwC will be giving a presentation on networking tips\, such as creating 
+ an elevator pitch\, writing follow up emails\, and general career fair prep
+ aration advice! Then\, network with the PwC engineers over FREEBIRDS dinner
+  and ICE CREAM! The Career Fair is coming up soon\, so make sure to attend 
+ this career fair prep event! \n\nStart the school year off strong and join 
+ PwC for a "Get the Scoop" information session.  We will discuss opportuniti
+ es for women in our new PwC Labs group.  PwC Labs is focused on standardizi
+ ng\, automating\, delivering tools and processes and exploring emerging tec
+ hnologies that drive efficiency and enable our people to re-imagine the pos
+ sible.  We will present both internship and full time opportunities for Lon
+ ghorns\, as well as indulge in a ice cream networking social.  Please join 
+ us on September 5th from 5:30-7:00 p.m. Attire is casual. We look forward t
+ o seeing you there!\n\nDINNER WILL BE PROVIDED!
+LAST-MODIFIED:20190828T222444Z
+LOCATION:GDC 4.302
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS + PwC : How To Network + Ice Cream Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240828T233000Z
+DTEND:20240829T003000Z
+DTSTAMP:20261124T203117Z
+UID:5oa3j4n35g08jrop9cl31p7p2r@google.com
+CREATED:20240822T213628Z
+DESCRIPTION:Join us in getting to know what WiCS has to offer this year! We
+ ’ll be going over our events &amp\; programs\, so make sure to stop by to m
+ eet WiCS members and get some yummy dinner!<br><br><b>Date/Time: </b>8/28\,
+  6:30 - 7:30 pm<br><b>Location: </b>GDC 2.216
+LAST-MODIFIED:20240826T195352Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240131T230000Z
+DTEND:20240201T010000Z
+DTSTAMP:20261124T203117Z
+UID:21ic6ijd2rp7jdovef51an1nq5@google.com
+CREATED:20240129T000811Z
+DESCRIPTION:Join WiCS and ECLAIR on an intro to machine learning and artifi
+ cial intelligence! Develop some useful techniques for future coding project
+ s!
+LAST-MODIFIED:20240129T202828Z
+LOCATION:GDC 6.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to ML/AI with ECLAIR
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231116T000000Z
+DTEND:20231116T013000Z
+DTSTAMP:20261124T203117Z
+UID:0meivb6p796nd6ruh8a7q3avar@google.com
+CREATED:20231111T231213Z
+DESCRIPTION:Nell Dale mentors and mentees\, come join us for cupcake decora
+ ting\, Charlie Brown movies\, and Polaroids to take home of you and your me
+ ntor/mentee!
+LAST-MODIFIED:20231111T231321Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nell Dale Fall Social
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221117T000000Z
+DTEND:20221117T010000Z
+DTSTAMP:20261124T203117Z
+UID:4klt42cusjpehfv4qefuhmah7h@google.com
+CREATED:20221110T222007Z
+DESCRIPTION:Come make snowmen with us as we celebrate the end of the semest
+ er and the start of the holiday season! We will be providing Bao’d Up and g
+ iving out WiCS member T-Shirts.
+LAST-MODIFIED:20221110T222007Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Holiday Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191121T003000Z
+DTEND:20191121T023000Z
+DTSTAMP:20261124T203117Z
+UID:3mbh188rdtdl7jn1h116mavaak@google.com
+CREATED:20191112T071030Z
+LAST-MODIFIED:20191113T195701Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS Gaming Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200918T000000Z
+DTEND:20200918T010000Z
+DTSTAMP:20261124T203117Z
+UID:3g5chuppdu36qhlfc90r89if4k@google.com
+CREATED:20200917T233029Z
+DESCRIPTION:<p><span>Join Bloomberg Engineers for an interactive workshop t
+ itled “Influence: Making It Without Faking It” previously presented at the 
+ 2019 Grace Hopper Celebration. See below for a description of the workshop:
+ </span></p><p><span>Maximize your influence with your peers and senior lead
+ ers by developing a heightened awareness of your authentic traits and poten
+ tial derailers in applying them. Join us on a journey to identify your pers
+ onality traits and practice employing them to influence others authenticall
+ y. Leave the workshop knowing that you can effectively influence your netwo
+ rk by simply playing to your strengths.</span></p><p><span>Event Details:</
+ span></p><ul><li><span>Date: Thursday\, September 17th</span></li><li><span
+ >Time:&nbsp\; 7pm – 8pm</span></li><li><span>Sign up:<a href="http://tinyur
+ l.com/y638fjot">http://tinyurl.com/y638fjot</a></span></li><li><span>Locati
+ on:&nbsp\;<a href="https://bloomberg.zoom.us/j/98168202856?pwd=NlpvVmJIbU9z
+ b3VXekhuNFFDOTNMZz09">Zoom</a></span></li></ul>
+LAST-MODIFIED:20200917T233048Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS + Bloomberg
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200129T160000Z
+DTEND:20200129T200000Z
+DTSTAMP:20261124T203117Z
+UID:37f3md4o89o86ghqa3tkji3pth@google.com
+CREATED:20200127T041929Z
+LAST-MODIFIED:20200127T041929Z
+LOCATION:GDC Atrium (2nd Floor)
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks Tabling
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221004T000000Z
+DTEND:20221004T010000Z
+DTSTAMP:20261124T203117Z
+UID:11th4479276h204ufqlohbj0r1@google.com
+CREATED:20220929T033219Z
+DESCRIPTION:WiCS is having our October General Meeting this Monday\, Octobe
+ r 3rd @ 7-8pm! Come join us as we recap this past month + announce events f
+ or the upcoming months. Pizza and swag will be provided!
+LAST-MODIFIED:20221002T000257Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS October General Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240326T230000Z
+DTEND:20240327T000000Z
+DTSTAMP:20261124T203117Z
+UID:63eb8b8ecltlt43rl60ike0idj@google.com
+CREATED:20240305T020648Z
+LAST-MODIFIED:20240307T223637Z
+LOCATION:GDC 4.302
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS x IMC Trading Event
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230411T233000Z
+DTEND:20230412T003000Z
+DTSTAMP:20261124T203117Z
+UID:5quh200hgg3dj8l9495fidikhl@google.com
+CREATED:20230406T213459Z
+DESCRIPTION:Hear from an Indeed Engineer about how to put your best foot fo
+ rward when interviewing in the engineering field and preparation and execut
+ ion of a successful technical interview. Time remaining will be used for an
+  open Q&A. Dinner will be provided for all attendees.
+LAST-MODIFIED:20230406T213459Z
+LOCATION:GDC 2.402
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Decoding the Whiteboard with Indeed
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240905T230000Z
+DTEND:20240906T000000Z
+DTSTAMP:20261124T203117Z
+UID:48f9ekqa8balg8rfg8d9713uep@google.com
+CREATED:20240903T191253Z
+DESCRIPTION:Nervous about your CS classes? Don't worry! WiCS will be hostin
+ g a workshop for you\, <b>this Thursday</b>\, to get advice +  walk through
+  steps on how to succeed in each class\, as well as participate in a Q&amp\
+ ;A panel with TAs from each class! <b>Snacks will be provided!</b><br><b><b
+ r></b><br><b>Points + Food: </b>10 points\, Tiff's Treats<b><br></b>
+LAST-MODIFIED:20240903T191253Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to CS 312/314
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20181010T230000Z
+DTEND:20181011T010000Z
+DTSTAMP:20261124T203117Z
+UID:cdi6acb66li6ab9p6pimcb9k75hjib9p6ss32bb265i3ichj6krjac9lck@google.com
+CREATED:20181002T231434Z
+DESCRIPTION:Get into the fall spirit with the WiCS October social!! Come pa
+ int pumpkins while enjoying cookies and apple cider 👻🎃
+LAST-MODIFIED:20181002T231434Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Pumpkin Painting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190404T230000Z
+DTEND:20190405T010000Z
+DTSTAMP:20261124T203117Z
+UID:0vh5g4vrvg7841dqk0780f4jjr@google.com
+CREATED:20190327T164426Z
+DESCRIPTION:Watching Hidden Figures\, there will be pizza\, desserts\, and 
+ snacks provided
+LAST-MODIFIED:20190327T164426Z
+LOCATION:GDC 6.202
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Movie Night Social
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20191001
+DTEND;VALUE=DATE:20191005
+DTSTAMP:20261124T203117Z
+UID:2lsosqv81j2ha22gjttra1kpc4@google.com
+CREATED:20190722T061036Z
+LAST-MODIFIED:20190930T163614Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Grace Hopper
+TRANSP:TRANSPARENT
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
+BEGIN:VALARM
+ACTION:AUDIO
+TRIGGER:-PT15H
+X-WR-ALARMUID:61797896-9CC9-49D9-8170-ADAE3A4AFD35
+UID:61797896-9CC9-49D9-8170-ADAE3A4AFD35
+ATTACH;VALUE=URI:Basso
+X-APPLE-DEFAULT-ALARM:TRUE
+ACKNOWLEDGED:20190930T163515Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230913T230000Z
+DTEND:20230914T000000Z
+DTSTAMP:20261124T203117Z
+UID:08d66t4huqskp3kn2cn0ift45i@google.com
+CREATED:20230904T194745Z
+LAST-MODIFIED:20230913T222302Z
+LOCATION:EER 3.646
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:Capital One Networking Dinner
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190918T223000Z
+DTEND:20190919T000000Z
+DTSTAMP:20261124T203117Z
+UID:2l5hmraofcri72jn5q2vt9duar@google.com
+CREATED:20190730T040132Z
+DESCRIPTION:Come join WiCS and Microsoft for our UT Alumni Career Panel! Th
+ e panel will be a casual open Q&A with Microsoft engineers about career and
+  school. (What’s a class you wish you would have taken that would be useful
+  in your job?) \n\nMake sure to bring all your questions and resume and lea
+ rn more about life at Microsoft! :) \n\nFREEBIRD'S WILL BE PROVIDED!!
+LAST-MODIFIED:20190912T155654Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Microsoft: Alumni Career Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240130T000000Z
+DTEND:20240130T010000Z
+DTSTAMP:20261124T203117Z
+UID:00n83vl0dp5odts45bdgalpqoj@google.com
+CREATED:20240124T170529Z
+DESCRIPTION:Join WiCS and ACM to learn more about how to hackathon! Perfect
+  for those who are new to hacking and those heading to WiCS Hacks!
+LAST-MODIFIED:20240124T170529Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS: How to Hackathon with ACM
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190208T010000Z
+DTEND:20190208T023000Z
+DTSTAMP:20261124T203117Z
+UID:1t4ee427pe256o48vvn3ffbssm@google.com
+CREATED:20190129T043330Z
+LAST-MODIFIED:20190129T043330Z
+LOCATION:GDC 6.202
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Hackathon Android Workshop
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250325T170000Z
+DTEND:20250325T180000Z
+DTSTAMP:20261124T203117Z
+UID:3ftamui5pp9u87jbp9pg3vllhn@google.com
+CREATED:20250314T182133Z
+DESCRIPTION:WiCS is hosting our Spring 2025 faculty lunches! Students will 
+ have the opportunity to chat with professors about all things industry\, ac
+ ademia\, and research! Professors coming are involved in systems\, game-the
+ ory\, software engineering fields\, and more. Food will be provided!<br><b>
+ Date/Time: </b>3/24/25 12-1 PM &amp\; 3/25/25 12-1pm<br><b>Location: </b>GD
+ C 6.302<br><b>Link to RSVP Form: </b><a target="_blank" href="https://forms
+ .gle/PiwmWJG3EsZVnabj7">https://forms.gle/PiwmWJG3EsZVnabj7</a>
+LAST-MODIFIED:20250314T182210Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Faculty Lunches
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231102T233000Z
+DTEND:20231103T003000Z
+DTSTAMP:20261124T203117Z
+UID:0m85lgn25s21v2p4bvljd215fa@google.com
+CREATED:20230926T154154Z
+DESCRIPTION:Connect with and meet women in other organizations across campu
+ s! Partnering with WBA\, SELL\, and SWE. Wear pink to represent WiCS. <br><
+ br><a href="https://forms.gle/svFdUis9Ku2kPftH6">https://forms.gle/<u></u>s
+ vFdUis9Ku2kPftH6</a>
+LAST-MODIFIED:20231030T152252Z
+LOCATION:McCombs Atrium
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:"Women in" Mixer
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221011T220000Z
+DTEND:20221011T230000Z
+DTSTAMP:20261124T203117Z
+UID:35ph0bn2gsgc1ap9g9etnq08qe@google.com
+CREATED:20220929T034006Z
+DESCRIPTION:With the Nell Dale families having been formed\, we are hosting
+  a cookie decorating social as a great chance for you to meet your family i
+ n person! Come to GDC 4.304 at 5pm on Tuesday\, October 11th at 5pm to deco
+ rate some Tiff's Treats sugar cookies with icing!!<br><br>RSVP:&nbsp\;<a hr
+ ef="http://tinyurl.com/nelldalecookie" id="ow1472" __is_owner="true">tinyur
+ l.com/nelldalecookie</a>
+LAST-MODIFIED:20220929T034006Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Nell Dale Cookie Decorating Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190129T170000Z
+DTEND:20190129T190000Z
+DTSTAMP:20261124T203117Z
+UID:4b9mtopdjj0tj7dkju7ptvlgj2@google.com
+CREATED:20190125T170521Z
+DESCRIPTION:Register for WiCS Hacks or to volunteer! We can answer any ques
+ tions you have about the hackathon.
+LAST-MODIFIED:20190125T170603Z
+LOCATION:GDC Atrium
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks Tabling
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20210129T010000Z
+DTEND:20210129T020000Z
+DTSTAMP:20261124T203117Z
+UID:0p0tkgqdtumubnp506v9c5litm@google.com
+CREATED:20210119T212848Z
+DESCRIPTION:Join us for a tech talk with TISTA on 5G + IoT + AI!\n\n\n\nJoi
+ n Zoom Meeting\nhttps://utexas.zoom.us/j/92655609952\n\nMeeting ID: 926 556
+ 0 9952\nOne tap mobile\n+13462487799\,\,92655609952# US (Houston)\n+1253215
+ 8782\,\,92655609952# US (Tacoma)\n\nDial by your location\n        +1 346 2
+ 48 7799 US (Houston)\n        +1 253 215 8782 US (Tacoma)\n        +1 669 9
+ 00 6833 US (San Jose)\n        +1 929 205 6099 US (New York)\n        +1 30
+ 1 715 8592 US (Washington D.C)\n        +1 312 626 6799 US (Chicago)\nMeeti
+ ng ID: 926 5560 9952\nFind your local number: https://utexas.zoom.us/u/aBMH
+ GSFfH\n\nJoin by SIP\n92655609952@zoomcrc.com\n\nJoin by H.323\n162.255.37.
+ 11 (US West)\n162.255.36.11 (US East)\n115.114.131.7 (India Mumbai)\n115.11
+ 4.115.7 (India Hyderabad)\n213.19.144.110 (Amsterdam Netherlands)\n213.244.
+ 140.110 (Germany)\n103.122.166.55 (Australia)\n209.9.211.110 (Hong Kong SAR
+ )\n64.211.144.160 (Brazil)\n69.174.57.160 (Canada)\n207.226.132.110 (Japan)
+ \nMeeting ID: 926 5560 9952
+LAST-MODIFIED:20210119T212848Z
+LOCATION:https://utexas.zoom.us/j/92655609952
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:[UT WiCS] Tech Talk with TISTA
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20201005T220000Z
+DTEND:20201005T230000Z
+DTSTAMP:20261124T203117Z
+UID:75h38p9i60q66bb1chj32b9kcphm2bb2chh36b9ncgo64dhlcoq3eoj2c4@google.com
+CREATED:20200926T190608Z
+DESCRIPTION:https://utexas.zoom.us/j/99233048622\n\nMeeting ID: 992 3304 86
+ 22
+LAST-MODIFIED:20201004T203952Z
+LOCATION:https://utexas.zoom.us/j/99233048622
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:WiCS General Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220825T230000Z
+DTEND:20220826T000000Z
+DTSTAMP:20261124T203117Z
+UID:24vuun5ge05i8g15ptd7vlv6as@google.com
+CREATED:20220831T043729Z
+LAST-MODIFIED:20220831T043729Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to CS 429/439
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220907T000000Z
+DTEND:20220907T010000Z
+DTSTAMP:20261124T203117Z
+UID:60r3edj26ss34bb4c8p34b9kc8p3ab9pcpim2b9o6phj8dhlc9gmao9jco@google.com
+CREATED:20220901T124710Z
+LAST-MODIFIED:20220902T032358Z
+LOCATION:GDC Faculty Lounge (6.304)
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Grad Mentorship Kickoff
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220915T230000Z
+DTEND:20220916T003000Z
+DTSTAMP:20261124T203117Z
+UID:2smq0od2pasl9ruknadbvnkbbo@google.com
+CREATED:20220912T164120Z
+DESCRIPTION:GDC 4.302
+LAST-MODIFIED:20220912T230821Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Meta Resume Review & Networking 101
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230204
+DTEND;VALUE=DATE:20230206
+DTSTAMP:20261124T203117Z
+UID:3i53petqkmpkeaqdrsbidpsdbg@google.com
+CREATED:20230102T212849Z
+DESCRIPTION:WiCS is excited to announce our seventh annual hackathon on Feb
+ ruary 4th and 5th! We will have both beginner and intermediate technical wo
+ rkshops in the days leading up to the hackathon + a 24-hour hackathon start
+ ing on Saturday! You’ll have the opportunity to attend company talks\, meet
+  sponsors one on one\, play arcade games\, and WIN PRIZES! WiCS Hacks is op
+ en to ALL women and non-binary students in high school or college. All skil
+ l levels are welcome and we are beginner friendly!<br><br>👾 Register now!&
+ nbsp\;<a href="https://tinyurl.com/wicshacks23" style="background-color: va
+ r(--textfield-surface)\;" id="ow1765" __is_owner="true">tinyurl.com/wicshac
+ ks23</a><span style="background-color: var(--textfield-surface)\; color: va
+ r(--on-surface)\;">&nbsp\;👾</span>
+LAST-MODIFIED:20230103T032238Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Hacks
+TRANSP:TRANSPARENT
+ATTACH;FILENAME=WiCS Hacks 23 Flyer (2).jpg;FMTTYPE=image/jpeg:https://driv
+ e.google.com/open?id=1L4yhHEDWuuRjJgsG9KFDtsTNWdufcVDN&authuser=1
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240911T223000Z
+DTEND:20240911T233000Z
+DTSTAMP:20261124T203117Z
+UID:62i4ves6q8srvc4vu0o142kefh@google.com
+CREATED:20240903T191552Z
+DESCRIPTION:<br>Join us to learn some tips and tricks on navigating recruit
+ ing season! We'll go into info regarding resumes\, applications\, interview
+  questions\, and more. We'll have boba from Coco's Cafe and take headshots 
+ at the end of the workshop! <br><b>Points + Food: </b>10 points\, Boba
+LAST-MODIFIED:20240903T191552Z
+LOCATION:GDC 2.210
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:How to Recruit
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20190922T153000Z
+DTEND:20190922T173000Z
+DTSTAMP:20261124T203117Z
+UID:7aa6m37g8dnp2ffbvuhlrra8pu@google.com
+CREATED:20190918T020759Z
+LAST-MODIFIED:20190922T153503Z
+LOCATION:UT Micro Farm\, 215 W 51st St\, Austin\, TX 78751\, USA
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Bloomberg Volunteering
+TRANSP:OPAQUE
+X-APPLE-TRAVEL-ADVISORY-BEHAVIOR;ACKNOWLEDGED=20190922T153502Z:AUTOMATIC
+BEGIN:VALARM
+ACTION:NONE
+TRIGGER;VALUE=DATE-TIME:19760401T005545Z
+X-WR-ALARMUID:9690CEF6-D3F7-4421-B536-C90E29C3996C
+UID:9690CEF6-D3F7-4421-B536-C90E29C3996C
+ACKNOWLEDGED:20190922T153501Z
+X-APPLE-DEFAULT-ALARM:TRUE
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20180918T220000Z
+DTEND:20180918T233000Z
+DTSTAMP:20261124T203117Z
+UID:1kptia15f0diqqvgi3j8319gui@google.com
+CREATED:20180907T175725Z
+LAST-MODIFIED:20180911T163538Z
+LOCATION:GDC Courtyard
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS + Microsoft: Tiny Tails
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20250922T223000Z
+DTEND:20250922T233000Z
+DTSTAMP:20261124T203117Z
+UID:7e4hifdcd76e5nt2uhho95j8ss@google.com
+CREATED:20250917T065849Z
+DESCRIPTION:Join us for a Zoom Q&amp\;A session with UTCS alum Renu Tewari\
+ , a professional in the tech industry. Renu has graduate degrees from both 
+ Stanford and UT Austin\, and has worked at IBM Almaden Research\, LinkedIn\
+ , and Cloudera – she's currently an Entrepreneur in Residence at Bain Capit
+ al Ventures Labs. She has over 20 years of experience in distributed system
+ s\, databases\, and data analytics\, cloud/object storage.<br><br>Join us f
+ or real-world advice on industry and academia\, career tips\, and a chance 
+ to ask Renu your own questions!<br><br><b>Zoom Link:</b> <a href="https://u
+ texas.zoom.us/j/86131414332?pwd=nSfSpX8atho3YAxTbpNpCfPmqkhifL.1" target="_
+ blank">https://utexas.zoom.us/j/86131414332?pwd=nSfSpX8atho3YAxTbpNpCfPmqkh
+ ifL.1</a>
+LAST-MODIFIED:20250917T065921Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Q&A with Alum Renu Tewari
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191122T000000Z
+DTEND:20191122T010000Z
+DTSTAMP:20261124T203117Z
+UID:78373ldisr1mu7ufv686q50bt5@google.com
+CREATED:20191113T055642Z
+LAST-MODIFIED:20191113T055642Z
+LOCATION:GDC 5.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Grad Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20260916T230000Z
+DTEND:20260917T000000Z
+DTSTAMP:20261124T203117Z
+UID:6kd3ee53lb06dnco2f4qba10tu@google.com
+CREATED:20260831T144622Z
+LAST-MODIFIED:20260831T144744Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Roblox Women in Tech Panel w/ SWE
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20200222T173000Z
+DTEND:20200222T223000Z
+DTSTAMP:20261124T203117Z
+UID:6qfsnfj8rr24bqij7ietr83cdg@google.com
+CREATED:20200220T065948Z
+LAST-MODIFIED:20200220T065948Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Introduce a Girl to Engineering Day
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220825T220000Z
+DTEND:20220825T230000Z
+DTSTAMP:20261124T203117Z
+UID:25cpt4btott4bjrc3h7e9hbidl@google.com
+CREATED:20220831T043710Z
+LAST-MODIFIED:20220831T043710Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Intro to CS 303e/312/314
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20191115T003000Z
+DTEND:20191115T020000Z
+DTSTAMP:20261124T203117Z
+UID:0628a21spen5gjbmstc99cvsvr@google.com
+CREATED:20191028T223611Z
+LAST-MODIFIED:20191028T231553Z
+LOCATION:GDC 4.302
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:WiCS Painting Social
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220912T230000Z
+DTEND:20220913T000000Z
+DTSTAMP:20261124T203117Z
+UID:24lbporjd5vcm1qq7qlvs81doo@google.com
+CREATED:20220908T190855Z
+DESCRIPTION:Come learn how the whole recruiting process works\, where to ap
+ ply\, how to apply\, and who to talk to! This will be the first day of a tw
+ o-part recruitment series on Monday\, September 12th\, @ 6 PM in GDC 1.304.
+  We will be providing Tiff’s Treats!
+LAST-MODIFIED:20220909T184948Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:How to Recruit Day 1 (Overview - Applications\, Interviews and Netw
+ orking)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231129T000000Z
+DTEND:20231129T013000Z
+DTSTAMP:20261124T203117Z
+UID:4rlhi3gihcd7el5ffrjrg4kkam@google.com
+CREATED:20231102T180856Z
+LAST-MODIFIED:20231127T193701Z
+LOCATION:GDC 6.302
+SEQUENCE:3
+STATUS:CONFIRMED
+SUMMARY:WiCS x Lockheed Martin 
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230906T233000Z
+DTEND:20230907T003000Z
+DTSTAMP:20261124T203117Z
+UID:3v4t0jntuvfp3ite7am2dipb9k@google.com
+CREATED:20230830T173324Z
+DESCRIPTION:Want to learn what its like to be a software engineer at Bloomb
+ erg? Join Bloomberg Engineering in partnership with WiCS to learn more from
+  some of our software engineers on what their day-to-day looks like!<br><br
+ >RSVP: <a href="https://tinyurl.com/wicsxbloomberg">https://tinyurl.com/wic
+ sxbloomberg</a>
+LAST-MODIFIED:20230902T015511Z
+LOCATION:GDC 4.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Life @ Bloomberg Panel
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230921T233000Z
+DTEND:20230922T003000Z
+DTSTAMP:20261124T203117Z
+UID:2ggmtornqrmuf7gsq8avkog61c@google.com
+CREATED:20230829T151458Z
+DESCRIPTION:Join a panel of Meta engineers and research scientists as they 
+ share their experience working in AI and the Metaverse. Panelists will talk
+  about their path into Meta and be ready to answer all your questions!
+LAST-MODIFIED:20230916T180801Z
+LOCATION:GDC 1.304
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Meta Event: Metaverse AI Talk
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

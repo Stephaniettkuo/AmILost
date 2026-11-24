@@ -1,0 +1,99 @@
+rules_version = '2';
+
+// Who can read and write what. Firebase enforces these on its servers, so the app can't
+// get around them. Tests: src/rules/firestore.rules.test.ts (run with the emulator).
+//
+// Data:
+//   users/{uid}                          a person's profile
+//   orgs/{orgId}                         an org (created only by the seed script)
+//   orgs/{orgId}/members/{uid}           role 'member' or 'admin'
+//   orgs/{orgId}/events/{eventId}        visibility 'public' or 'members'
+//   orgs/{orgId}/inviteCodes/{code}      codes to join a PRIVATE org (admins manage them)
+//   orgs/{orgId}/claimCodes/{code}       codes officers use to become admin (seed script only)
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function orgPath(orgId) { return /databases/$(database)/documents/orgs/$(orgId); }
+    function memberPath(orgId) {
+      return /databases/$(database)/documents/orgs/$(orgId)/members/$(request.auth.uid);
+    }
+    function isMember(orgId) { return signedIn() && exists(memberPath(orgId)); }
+    function isAdmin(orgId) {
+      return signedIn() && exists(memberPath(orgId)) && get(memberPath(orgId)).data.role == 'admin';
+    }
+
+    match /users/{uid} {
+      allow read, write: if signedIn() && request.auth.uid == uid;
+    }
+
+    match /orgs/{orgId} {
+      // Anyone can see an org exists (so students can find private orgs and enter a code).
+      allow read: if true;
+      allow create, delete: if false; // only the seed script (admin key) creates orgs
+      allow update: if isAdmin(orgId)
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['description', 'calendarUrl', 'isPrivate', 'claimed']);
+
+      match /members/{uid} {
+        allow read: if signedIn() && (request.auth.uid == uid || isAdmin(orgId));
+        // You can only add YOURSELF, in one of three ways:
+        allow create: if signedIn() && request.auth.uid == uid && (
+          // 1) join a public org
+          (request.resource.data.keys().hasOnly(['role', 'joinedAt'])
+            && request.resource.data.role == 'member'
+            && get(orgPath(orgId)).data.isPrivate == false)
+          // 2) join a private org with a valid invite code
+          || (request.resource.data.keys().hasOnly(['role', 'joinedAt', 'inviteCode'])
+            && request.resource.data.role == 'member'
+            && request.resource.data.inviteCode is string
+            && request.resource.data.inviteCode.size() > 0
+            && request.resource.data.inviteCode.size() <= 64
+            && exists(/databases/$(database)/documents/orgs/$(orgId)/inviteCodes/$(request.resource.data.inviteCode)))
+          // 3) claim the org as an officer with a valid claim code
+          || (request.resource.data.keys().hasOnly(['role', 'joinedAt', 'claimCode'])
+            && request.resource.data.role == 'admin'
+            && request.resource.data.claimCode is string
+            && request.resource.data.claimCode.size() > 0
+            && request.resource.data.claimCode.size() <= 64
+            && exists(/databases/$(database)/documents/orgs/$(orgId)/claimCodes/$(request.resource.data.claimCode)))
+        );
+        allow update: if false; // no changing roles from the app
+        allow delete: if signedIn() && (request.auth.uid == uid || isAdmin(orgId)); // leave / remove
+      }
+
+      match /events/{eventId} {
+        // Public events: anyone. Members-only events: members of this org only.
+        // NOTE: rules are not filters. Queries must ask only for what the user may read,
+        // e.g. where('visibility', '==', 'public') unless the user is a member.
+        allow read: if resource.data.visibility == 'public' || isMember(orgId);
+        allow create: if isAdmin(orgId) && validEvent(orgId)
+          && request.resource.data.createdBy == request.auth.uid;
+        allow update: if isAdmin(orgId) && validEvent(orgId)
+          && request.resource.data.createdBy == resource.data.createdBy;
+        allow delete: if isAdmin(orgId);
+      }
+
+      match /inviteCodes/{code} {
+        allow read, write: if isAdmin(orgId);
+      }
+
+      match /claimCodes/{code} {
+        allow read, write: if false; // seed script only
+      }
+    }
+
+    function validEvent(orgId) {
+      let d = request.resource.data;
+      let privateOrg = get(orgPath(orgId)).data.isPrivate;
+      return d.keys().hasAll(['title', 'start', 'end', 'visibility', 'createdBy', 'source'])
+        && d.keys().hasOnly(['title', 'description', 'start', 'end', 'placeId', 'locationText',
+                             'visibility', 'createdBy', 'source', 'importUid', 'updatedAt'])
+        && d.title is string && d.title.size() > 0 && d.title.size() <= 80
+        && d.start is timestamp && d.end is timestamp && d.end > d.start
+        && d.visibility in ['public', 'members']
+        && (privateOrg == false || d.visibility == 'members') // private orgs: members only
+        && d.source in ['manual', 'import'];
+    }
+  }
+}

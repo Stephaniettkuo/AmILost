@@ -39,3 +39,10 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Firebase: secret admin key + local emulator logs (NEVER commit secrets/)
+secrets/
+*firebase-adminsdk*.json
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
