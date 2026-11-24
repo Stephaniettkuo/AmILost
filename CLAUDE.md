@@ -69,6 +69,14 @@ App flow: **Home → Place → Route preview → Directions → Arrived**, plus 
 component in `src/screens/`. Shared UI pieces live in `src/components/`. Full spec:
 `docs/tasks/arrows-and-redesign.md`.
 
+## Firebase (accounts, orgs, events)
+Spec: `docs/tasks/events.md`. **Navigation never depends on Firebase** (signed out, offline, Firebase down: maps and
+directions still work). `src/firebase.ts` sets up Auth + Firestore (emulator when `EXPO_PUBLIC_USE_EMULATOR=1`);
+`src/accounts.ts` talks to Firebase; `src/accountRules.ts` is the pure part (form checks, friendly errors, tested).
+Screens: `'auth'` (sign in / create account) and `'account'` (name, my orgs, sign out), both reached from Settings.
+**Don't loosen `firestore.rules` without asking. Never read, print or commit anything in `secrets/`.**
+Approved packages for this task: `firebase`; dev: `firebase-admin`, `firebase-tools`, `@firebase/rules-unit-testing`.
+
 ## Design system (follow this for every UI change)
 Vibe: **white torn paper, brown ink, burnt orange**, with a few small watercolor pictures. Simple and
 easy to read: one main thing per screen, few decorations.

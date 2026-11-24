@@ -14,9 +14,11 @@ type Props = {
   onAvoidStairs: (value: boolean) => void;
   onBack: () => void;
   onEditor: () => void;
+  signedInAs: string | null;   // name of the person signed in, or null
+  onAccount: () => void;       // Account page if signed in, Sign in page if not
 };
 
-export default function SettingsScreen({ avoidStairs, onAvoidStairs, onBack, onEditor }: Props) {
+export default function SettingsScreen({ avoidStairs, onAvoidStairs, onBack, onEditor, signedInAs, onAccount }: Props) {
   return (
     <Screen onBack={onBack} title="Settings">
       <Card>
@@ -33,6 +35,14 @@ export default function SettingsScreen({ avoidStairs, onAvoidStairs, onBack, onE
             {...webThumb}
           />
         </View>
+      </Card>
+
+      <Card>
+        <Text style={styles.label}>Account</Text>
+        <Text style={styles.small}>
+          {signedInAs ? `Signed in as ${signedInAs}.` : 'Sign in to join student organizations and see their events. Maps and directions work without it.'}
+        </Text>
+        <StampButton label={signedInAs ? 'My account' : 'Sign in or create account'} variant="secondary" onPress={onAccount} />
       </Card>
 
       <Card>

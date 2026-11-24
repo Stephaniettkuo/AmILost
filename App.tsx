@@ -5,7 +5,9 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import { appFonts } from './src/fonts';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { User } from 'firebase/auth';
 import { BackHandler, View } from 'react-native';
+import { signOutUser, watchUser } from './src/accounts';
 import { Item, countByGroup, inRange, makeItems } from './src/calendar/events';
 import { loadFollowing, saveFollowing, toggleFollow } from './src/calendar/following';
 import { CalEvent } from './src/calendar/ics';
@@ -20,6 +22,8 @@ import ArrivedScreen from './src/screens/ArrivedScreen';
 import DirectionsScreen from './src/screens/DirectionsScreen';
 import EditorScreen from './src/screens/EditorScreen';
 import EventDetailScreen from './src/screens/EventDetailScreen';
+import AccountScreen from './src/screens/AccountScreen';
+import AuthScreen from './src/screens/AuthScreen';
 import EventsScreen, { EventsView } from './src/screens/EventsScreen';
 import GroupScreen from './src/screens/GroupScreen';
 import GroupsScreen from './src/screens/GroupsScreen';
@@ -29,11 +33,11 @@ import PreviewScreen from './src/screens/PreviewScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import { colors } from './src/theme';
 
-type Screen = 'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor' | 'events' | 'event' | 'groups' | 'group';
+type Screen = 'home' | 'place' | 'preview' | 'directions' | 'arrived' | 'settings' | 'editor' | 'events' | 'event' | 'groups' | 'group' | 'auth' | 'account';
 
 // Where the phone's back button goes from each screen (Home has none: the app closes).
 const BACK: Partial<Record<Screen, Screen>> = {
-  place: 'home', preview: 'place', directions: 'preview', arrived: 'directions', settings: 'home', editor: 'settings',
+  place: 'home', preview: 'place', directions: 'preview', arrived: 'directions', settings: 'home', editor: 'settings', auth: 'settings', account: 'settings',
   events: 'home', groups: 'events',   // 'event', 'group' and 'preview' depend on how you got there
 };
 
@@ -71,6 +75,12 @@ function Screens() {
     setCalendar(await loadEvents());
     setRefreshing(false);
   }, []);
+  // Who is signed in (null = nobody). Signing in is optional; nothing else waits for this.
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    try { return watchUser(setUser); } catch { return undefined; }
+  }, []);
+
   useEffect(() => {
     reloadCalendar();
     loadFollowing().then((saved) => { if (!changedFollowing.current) setFollowed(saved); });
@@ -154,6 +164,18 @@ function Screens() {
         <SettingsScreen
           avoidStairs={avoidStairs} onAvoidStairs={setAvoidStairs}
           onBack={() => setScreen('home')} onEditor={() => setScreen('editor')}
+          signedInAs={user ? user.displayName || user.email || 'Signed in' : null}
+          onAccount={() => setScreen(user ? 'account' : 'auth')}
+        />
+      );
+    case 'auth':
+      return <AuthScreen onBack={() => setScreen('settings')} onDone={() => setScreen('account')} />;
+    case 'account':
+      if (!user) break;
+      return (
+        <AccountScreen
+          name={user.displayName ?? ''} email={user.email ?? ''} uid={user.uid} onBack={() => setScreen('settings')}
+          onSignOut={async () => { try { await signOutUser(); } catch { /* still signed in; stay here */ return; } setScreen('settings'); }}
         />
       );
     case 'editor':
