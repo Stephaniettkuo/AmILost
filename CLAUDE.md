@@ -31,7 +31,8 @@ Expo SDK 58, React Native 0.88, TypeScript, react-native-svg, react-native-web, 
 "use Expo Router" rule: we switch screens with simple state in `App.tsx` (see "Screens").
 Animations use React Native's built-in `Animated` API (no Reanimated).
 Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-google-fonts/im-fell-english`,
-`@expo-google-fonts/libre-franklin`, `@expo-google-fonts/pinyon-script`, `@expo/vector-icons`, `expo-status-bar`, `react-native-safe-area-context`. Ask before adding anything else.
+`@expo-google-fonts/libre-franklin`, `@expo-google-fonts/pinyon-script`, `@expo/vector-icons`, `expo-status-bar`, `react-native-safe-area-context`, `@react-native-async-storage/async-storage` (for the events task). Ask before adding anything else.
+**Events calendar: only use the UTCS iCal feed (see `docs/tasks/events.md`). Never scrape the calendar's web pages: their robots.txt disallows it.**
 
 ## Files
 | File | What it is |
@@ -55,6 +56,8 @@ Approved extra packages (install with `npx expo install`): `expo-font`, `@expo-g
 | `src/data/exportGraph.ts` | Writes the edited graph back out as the full text of `gdc.ts`. |
 | `src/MapDataOverlay.tsx` | Draws nodes/edges over the floor plan in the editor. |
 | `src/names.ts` | How places are named, and `searchPlaces` (used by the search box). |
+| `src/calendar/` | The events calendar, no screens: `ics.ts` reads the UTCS iCal feed and expands weekly repeats, `events.ts` finds rooms and groups and does search / day-week-month / "Today, Tomorrow" headings, `source.ts` loads live feed → saved copy → snapshot, `time.ts` is Austin wall-clock time. |
+| `src/data/groups.ts`, `src/data/calendarSnapshot.ts`, `data/cs-calendar.ics`, `scripts/snapshot-calendar.mjs` | The hand-made group table; the snapshot of the feed (generated from `data/cs-calendar.ics` by the script; how to refresh is in the README). |
 | `NOTES.md`, `PLAN.md` | Decision/debugging log for the slides; checklist and timeline. |
 
 ## Screens
