@@ -1,99 +1,141 @@
-# Task: events from student organizations
+# Task: CS events, following groups, posting events, and "I'm lost"
 
-Goal: orgs post events in GDC rooms; students join orgs, browse events, and tap
-**Directions** to be guided to the room with the existing route + arrow screens.
-
-**No real accounts or server** (course rule: staff must run the demo with no private
-accounts or paid services). "Joining" and "posting" are saved **only on this phone**.
-Real org accounts, verification and a shared events server go on the "What remains" slide.
+Goal: students browse real UTCS events, search and filter them, follow groups, and tap
+**Directions** to be guided to the room with the existing route + arrow screens. Plus an
+**"I'm lost"** button that re-routes from a room the student says they're near.
 
 Work on a branch called `events`. Do the parts **in order** and stop after each part so we
-can check it. Follow the design system in `CLAUDE.md` and reuse existing components
-(`Card`, `Chip`, `StampButton`, `PlaceSearch`, `FloorMap`, `Screen`, `WcIcon`).
+can check it (tests pass, it looks right on the phone, we understand the code). Commit each
+part separately. Follow the design system in `CLAUDE.md` and reuse existing components and
+screens (search, `FloorMap`, Route preview, Directions). This replaces the earlier version of
+this spec.
 
 ---
 
-## Part 1 — Data + logic (no UI)
+## The data source (read this first)
 
-`src/data/orgs.ts` — 4–5 **made-up** sample orgs (don't use real UT org names, so nothing
-looks like a real org's announcement), e.g. "Longhorn Code Club", "Pixel Art Society":
-```ts
-type Org = { id: string; name: string; short: string; description: string };
-```
+UTCS publishes its events calendar as an iCal feed (linked from the "iCal" button on
+https://apps.cs.utexas.edu/calendar). Do **not** scrape the calendar web pages
+(their robots.txt disallows it); only use the feed.
 
-`src/data/events.ts` — 6–8 sample events in real GDC rooms on several floors (use ids that
-exist in `gdc.ts`, e.g. lecture hall `GDC-1.304`, auditorium `GDC-2.216`, a few classrooms):
-```ts
-type CampusEvent = {
-  id: string; orgId: string; title: string; description: string;
-  start: string;          // ISO date-time
-  minutes: number;        // length
-  placeId: string;        // MapNode id of the room
-  local?: boolean;        // posted on this phone
-};
-```
-Sample dates are generated **relative to today** (today, tomorrow, +3 days…) so the demo
-always has upcoming events. Mark sample events "Sample" in the UI.
+- Live feed: `https://p106-caldav.icloud.com/published/2/MTczOTUxOTA2ODExNzM5NbIQ75YFeLwK-LANlyWBYbU8ZPTfALGVK_nN5W3UJYXs2o6iwRiFvI8pW5y9gwDat10HOpVkpKfXYVCE6ZTfedg`
+  (the site shows it as `webcal://…`; use `https://`).
+- Snapshot (committed): `data/cs-calendar.ics`, downloaded 2026-11-24. Used when the fetch
+  fails, on web (the browser will likely block the fetch: CORS), in tests, and for grading.
+  Metro can't import `.ics` files, so add `scripts/snapshot-calendar.mjs` that turns
+  `data/cs-calendar.ics` into `src/data/calendarSnapshot.ts` (`export default \`…\``), and put
+  the command in the README. To refresh: download the feed to `data/cs-calendar.ics`, rerun.
 
-`src/events.ts` — pure functions:
-- `upcoming(events, now)` — not ended yet, sorted by start
-- `groupByDay(events, now)` — "Today", "Tomorrow", then weekday + date
-- `forOrgs(events, orgIds)` — events of joined orgs
-- `validateNewEvent(draft, now, graph)` — title required (≤ 60 chars), org required and joined,
-  room must exist in the graph and not be a hallway point, start in the future, length 15–240 min;
-  returns a list of friendly error messages
-- `makeEvent(draft)` — builds a `CampusEvent` with a new unique id and `local: true`
-- `timeText(event)` — e.g. "Tue, Nov 24 · 7:00–8:30 PM"
+What the feed contains (checked by hand, 28 events):
+- `SUMMARY` (title), `DESCRIPTION` (text, escaped `\,` `\;` `\n`, long lines folded with a
+  leading space), `DTSTART`/`DTEND` with `TZID=America/Chicago` (wall-clock Austin time),
+  `UID`, `URL` (the event's UTCS page).
+- **Repeats:** most events have `RRULE:FREQ=WEEKLY` with `INTERVAL`, `BYDAY`, and `COUNT` or
+  `UNTIL`, plus `EXDATE` lines for skipped weeks. All repeats in the feed are weekly.
+- **Rooms:** only **4 of 28** events have `LOCATION`, e.g. `GDC 2.216`, `GDC 2.100 (Atrium)`,
+  `GDC 4.516`, `GDC 6.816` — all four exist in `gdc.ts`. Most others are room bookings
+  (URL contains `/calendar/rooms/`) with no room number in the feed.
+- **No organization field.** Group names only appear in titles sometimes:
+  "FoCS: …", "Project AMAZE (ECLAIR)", "Texas Convergent …", "NLL: …", "LARG …", "AMRL …",
+  "RobIn …", "… DiRP" / "Directed Reading Program".
 
-`src/storage.ts` — save/load joined org ids and locally posted events with
-`@react-native-async-storage/async-storage` (approved for this task; install with
-`npx expo install`). Wrap every read/write in try/catch; if storage fails, the app still works
-(just forgets on restart).
+## Part 1 — Calendar logic (no UI)
 
-Tests (`src/events.test.ts`, fixed `now`, answers worked out by hand first):
-- upcoming hides ended events and sorts correctly; an event that started 10 min ago but is
-  still running counts as upcoming
-- groupByDay labels Today / Tomorrow / later days correctly around midnight
-- validateNewEvent: each rule has a failing case and a passing case
-- data check: every sample event's `placeId` exists in `gdcGraph` and is a room/entrance,
-  every `orgId` exists
-Break the code once to confirm a test fails.
+`src/calendar/ics.ts`
+- `parseIcs(text): CalEvent[]` — unfold lines, unescape text, read the fields above.
+  Hand-written (the format is simple); no new package.
+- `occurrences(event, from, to): Occurrence[]` — expand weekly repeats (INTERVAL, BYDAY,
+  COUNT, UNTIL, EXDATE). Unknown/unsupported RRULEs: just the first occurrence.
+- Times: treat `TZID=America/Chicago` values as Austin wall-clock time; make tests independent
+  of the computer's time zone (e.g. compare wall-clock fields, or set `TZ=America/Chicago`
+  for Jest in package.json).
 
-## Part 2 — Screens
+`src/calendar/events.ts`
+- `roomFor(location, graph)` — `"GDC 2.100 (Atrium)"` → `GDC-2.100` if that node exists;
+  otherwise `null` (other buildings, missing rooms).
+- `groupFor(title, description)` — a small hand-made table in `src/data/groups.ts`
+  (`{ id, name, keywords[] }`) for the groups above; no match → no group.
+- `search(list, query)` — matches title, description, group name; case-insensitive.
+- `inRange(list, 'day' | 'week' | 'month', date)` and `groupByDay(list, now)`
+  ("Today", "Tomorrow", then "Fri, Dec 4").
+- Merges feed events + locally posted events (Part 3) into one sorted list.
 
-Add to the `Screen` type in `App.tsx`; keep joined orgs + local events in `App.tsx` state
-(loaded from storage on start).
+`src/calendar/source.ts`
+- `loadEvents()` — try the live feed (timeout ~8 s); on success save the text with
+  AsyncStorage and use it; on failure use the last saved copy; else the snapshot. Report which
+  one was used ("Live", "Saved Nov 24", "Offline snapshot") so the UI can show it.
+- `@react-native-async-storage/async-storage` is approved for this task (`npx expo install`).
+  Wrap every storage call in try/catch.
 
-1. **Events** — list grouped by day; a toggle **All / My orgs**; each event card: title, org
-   chip, time, room name + floor, "Sample" badge if sample. Empty states: "No events yet" /
-   "Join an org to see its events here". Buttons: **Organizations**, **Post an event**.
-2. **Event detail** — title, org (tap → org page), time, room + floor, description, small
-   `FloorMap` with a pin, **Directions** (sets To = the room, keeps From, goes to Route preview),
-   and **Join org** if not joined.
-3. **Organizations** — list of orgs with short description and number of upcoming events;
-   **Join / Joined ✓** toggle on each; tap → org page.
-4. **Org page** — name, description, Join/Leave, its upcoming events.
-5. **Post an event** — only for orgs you've joined (if none: "Join an organization first" +
-   button to Organizations). Fields: org (chips of joined orgs), title, description, day
-   (chips: Today, Tomorrow, then the next 5 days), start time (simple hour/minute/AM-PM
-   pickers made from chips or steppers — **no new date-picker package**), length (30/60/90/120
-   min chips), room (existing `PlaceSearch`). A live preview card of the event. **Post** runs
-   `validateNewEvent`; show errors next to the fields; on success go to the new Event detail.
-   Locally posted events get a "Delete" button on their detail page.
-6. **Home** — add an "Events" entry: a card "Happening today: N events" (or "See upcoming
-   events") that opens Events.
+Tests (`src/calendar/*.test.ts`), answers worked out by hand from `data/cs-calendar.ics`
+first, with the reasoning in comments; break the code once to see a test fail:
+- parsing: folded DESCRIPTION, `\,` and `\n`, the 4 LOCATION events
+- repeats (checked by hand against the snapshot):
+  - "LARG Meeting": weekly Wednesdays from Dec 2, UNTIL May 2027 → Dec 2, 9, 16, …
+  - "NLL: NLP Reading Group": every 2 weeks on Fridays from Nov 27, UNTIL Dec 5 → **only Nov 27**
+  - "FarmBrain Sync": COUNT=2, Fridays from Nov 27 → Nov 27 and Dec 4
+  - EXDATE: in this feed every EXDATE is *before* its event's DTSTART (the feed lists the next
+    occurrence as DTSTART), so also test skipping with a small made-up event whose EXDATE
+    falls after DTSTART
+- `roomFor`: the 4 real locations map to existing node ids; "Zoom" / "PAI 3.02" → null
+- `groupFor`, `search`, `inRange` (day/week/month edges at midnight), `groupByDay`
+- `loadEvents` falls back correctly (mock fetch to succeed / fail)
 
-Back button on every new screen. Keep layouts phone-first; nothing should jump when errors appear.
+## Part 2 — Events screens
+
+Add screens to `App.tsx` (state-based, like the others):
+
+1. **Events** — search box (event or group name); **Day / Week / Month** toggle with a simple
+   date strip (arrows to move by a day/week/month); a **Following** filter chip; list grouped
+   by day. Each card: title, time, group chip (if any), room + floor or "Room not listed".
+   Small source label ("Live" / "Offline snapshot"). Pull to refresh on the phone.
+   Empty states: "No events this week" / "No matches".
+2. **Event detail** — title, group (tap → group page), date + time, room, description
+   (scrollable), and:
+   - room on our map → small `FloorMap` with a pin + **Directions** (To = the room, keep From,
+     go to Route preview)
+   - no room → "Room not listed" + **Open on UTCS calendar** (opens the event's URL)
+   - **Follow group** if it has a group.
+3. **Groups** — the groups from `groups.ts`: name, short description, number of upcoming
+   events, **Follow / Following ✓**. Tap → **Group page**: its upcoming events.
+4. **Home** — add an "Events" entry: "Happening today: N events" (or "See upcoming events").
+5. Followed groups are saved on the phone (AsyncStorage) and survive restarts.
+
+## Part 3 — Post an event (local only)
+
+- **Post an event** button on Events. Fields: title, description, group (optional, from
+  `groups.ts`), day (chips: Today, Tomorrow, next 5 days), start time (simple chips or
+  steppers — **no new date-picker package**), length (30/60/90/120 min), room (existing
+  search). Live preview card. Validation with friendly messages next to the fields: title
+  required (≤ 60 chars), room must be a real room, time in the future.
+- Posted events are saved **only on this phone**, shown with a "Posted by you" badge, merged
+  into the list, have Directions, and can be deleted.
+- Pure `validateNewEvent` + tests (each rule fails and passes).
+
+## Part 4 — "I'm lost"
+
+On the **Directions** screen, an **I'm lost** button:
+1. Opens a card: "No worries! What room are you near?"
+2. **Suggestions first:** rooms/stairs/elevators/entrances within ~150 px of the current
+   step's part of the route, on that floor, closest first (max 6). Below: the normal room search.
+3. Picking one re-runs `findRoute` from that place to the **same destination**, with the same
+   Elevator-only setting, and restarts Directions at step 1 with a short note
+   ("New route from 2.316").
+4. Picked the destination → go to Arrived. No route → "Can't find a way from there — try a
+   nearby room?"
+- Pure `nearbyPlaces(graph, route, stepIndex)` and `reroute(...)` + tests (worked out by hand).
 
 ## Done when
 - `npx tsc --noEmit` and `npm test` pass.
-- In the browser and on a phone (Expo Go): join an org → see its events under "My orgs" →
-  open one → Directions → arrows to the room. Post an event, see it in the list, get
-  directions to it, delete it. Close and reopen the app: joined orgs and posted events are
-  still there.
-- `CLAUDE.md` updated: new screens in the Screens section, new files in the Files table,
-  AsyncStorage added to approved packages.
-- `NOTES.md`: decision entry (local-only orgs/events instead of a server — why, and what a real
-  version needs: accounts, org verification, shared database, moderation) and a Limitations line
-  (posts and memberships live only on one phone; anyone can post as any org they "joined").
+- On a phone (Expo Go) with internet: Events shows "Live"; search "lecture" → Distinguished
+  Lecture → Directions → arrows to GDC 2.216. Follow a group, restart the app, still followed.
+  Post an event, get directions to it, delete it. On a route, tap I'm lost → pick a nearby
+  room → new route.
+- With internet off (or on web): Events shows the snapshot and still works.
+- README: how to refresh the snapshot. `CLAUDE.md`: new screens/files, AsyncStorage approved,
+  "never scrape the calendar pages, only the iCal feed".
+- `NOTES.md`: decisions (iCal feed + snapshot instead of scraping — robots.txt; groups from a
+  keyword table because the feed has no org field; local-only posting) and limitations (only
+  4 of 28 feed events list a room; group matching by keywords can miss/mislabel; posts live on
+  one phone).
 - Explain the new code to us in plain words before each commit.
